@@ -34,6 +34,143 @@ https://online-book-sales-backend.onrender.com/
 [![twitter](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://twitter.com/)
 
 
+
+
+
+# How to Contribute
+
+If you think that you can add a new feature or want to fix a bug, we invite you to contribute to Online Book Sales and make this project better. To start contributing, follow the below instructions:
+
+1. Create a folder at your desire location (usually at your desktop).
+
+2. Open Git Bash Here
+
+3. Create a Git repository.
+
+   Run command `git init`
+
+4. Fork the [repository](https://github.com/Trisha-tech/OnlineBookSales.git).
+
+5. Clone your forked repository of project.
+
+```git clone
+git clone https://github.com/<your_username>/OnlineBookSales.git
+```
+
+6. Navigate to the project directory.
+
+```
+cd FunwithScience
+```
+
+7. Add a reference(remote) to the original repository.
+
+```
+git remote add upstream https://github.com/Trisha-tech/OnlineBookSales.git
+```
+
+8. Check the remotes for this repository.
+
+```
+git remote -v
+```
+
+9. Always take a pull from the upstream repository to your main branch to keep it updated as per the main project repository.
+
+```
+git pull upstream main
+```
+
+10. Create a new branch(prefer a branch name that relates to your assigned issue).
+
+```
+git checkout -b <YOUR_BRANCH_NAME>
+```
+
+11. Perform your desired changes to the code base.
+
+12. Check your changes.
+
+```
+git status
+```
+
+```
+git  diff
+```
+
+13. Stage your changes.
+
+```
+git add . <\files_that_you_made_changes>
+```
+
+14. Commit your changes.
+
+```
+git commit -m "relavant message"
+```
+
+15. Push the committed changes in your feature branch to your remote repository.
+
+```
+git push -u origin <your_branch_name>
+```
+
+16. To create a pull request, click on `compare and pull requests`.
+
+17. Add an appropriate title and description to your PR explaining your changes.
+
+18. Click on `Create pull request`.
+
+Congratulations🎉, you have made a PR to the FunwithPhysics.
+Wait for your submission to be accepted and your PR to be merged by a maintainer.
+
+# How to run the webpage on your local system
+
+1. Go to the `OnlineBookSales` directory.
+
+```
+cd OnlineBookSales
+```
+
+2. Write the command.
+
+```
+npm install
+```
+
+3. For Frontend
+   Go to 'client' directory
+   write command
+
+   ```
+   npm install
+   ```
+
+4. Write the command.
+
+```
+yarn start / npm start
+```
+
+If you have any doubts, please let us know in the comments.
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## MVC Diagram
 
 ![image](https://github.com/Trisha-tech/OnlineBookSales-Backend/assets/55338588/da372c9a-edd8-4816-ab09-436dd0b00195)
