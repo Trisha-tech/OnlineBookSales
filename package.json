@@ -16,7 +16,7 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.3.0",
     "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
