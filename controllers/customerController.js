@@ -46,6 +46,27 @@ exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
   
     sendToken(customer, 200, res);
   });
+
+  //CUSTOMER LOGOUT ROUTE
+  exports.logoutCustomer = catchAsyncErrors(async (req,res,next) => {
+    const customer = await Customer.findById(req.user.id);
+     
+    if(!customer){
+      return next(new ErrorHandler("Invalid logout request", 401));
+    }
+
+    const options = {
+      httpOnly: true,
+      secure: true
+    }
+
+    return res.status(200)
+              .clearCookie("token", options)
+              .json({
+                 success: true
+              })
+    
+  })
   
 
 
