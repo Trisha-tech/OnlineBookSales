@@ -11,7 +11,7 @@ const productSchema = mongoose.Schema({
     required: [true, "Please Enter Product Description"],
   },
   author:{
- type: String,
+  type: String,
     required: [true, "Please Enter Product Author"],
   },
   price: {
@@ -70,7 +70,6 @@ const productSchema = mongoose.Schema({
       },
     },
   ],
-
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",

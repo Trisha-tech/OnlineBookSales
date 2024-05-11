@@ -19,7 +19,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
         url: "ThisisSecureUrl"
       },
     });
-  
+    
     sendToken(customer, 201, res);
   });
 
@@ -100,3 +100,4 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
