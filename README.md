@@ -155,17 +155,93 @@ yarn start / npm start
 ```
 
 If you have any doubts, please let us know in the comments.
-
  
+## Using GitHub Desktop
+
+Alternatively, you can use GitHub Desktop to manage this repository. Here's how:
+
+1. **Download and Install GitHub Desktop**: 
+   - Go to the [GitHub Desktop website](https://desktop.github.com/) and download the GitHub Desktop application.
+   - Follow the installation instructions to install GitHub Desktop on your computer.
+
+2. **Clone the Repository**:
+   - Open GitHub Desktop and sign in to your GitHub account.
+   - Click on the "File" menu, then select "Clone Repository..."
+   - Choose the repository you want to clone from the list or enter its URL.
+   - Choose the local path where you want to clone the repository and click "Clone".
+
+3. **Make Changes**:
+   - After cloning the repository, you can make changes to the files locally using your preferred code editor.
+
+4. **Commit Changes**:
+   - Once you've made changes, open GitHub Desktop.
+   - You'll see a list of files with changes. Write a summary and description of your changes in the text fields.
+   - Click "Commit to main" to commit your changes locally.
+
+5. **Push Changes**:
+   - To push your changes to the remote repository on GitHub.com, click "Push origin".
+
+6. **Pull Changes**:
+   - If there are changes on the remote repository that you don't have locally, you can pull them by clicking "Fetch origin" or "Pull origin".
+
+7. **Sync Changes**:
+   - To synchronize your local repository with the remote repository, click "Sync" to push and pull changes in one step.
+
+That's it! You can now use GitHub Desktop to manage this repository efficiently.
 
 
+## Table of Contents
 
-
-
-
-
-
-
+1. [MVC Diagram](#mvc-diagram)
+2. [Database Design](#database-design)
+   - [Customer Collection in MongoDB](#customer-collection-in-mongodb)
+   - [Product Collections in MongoDB](#product-collections-in-mongodb)
+   - [Order Collection in MongoDB](#order-collection-in-mongodb)
+3. [Usecase Diagram](#usecase-diagram)
+4. [Activity Diagram](#activity-diagram)
+   - [Login Activity Diagram](#login-activity-diagram)
+   - [Registration Activity Diagram](#registration-activity-diagram)
+   - [Admin Registration Activity Diagram](#admin-registration-activity-diagram)
+   - [Admin Login Activity Diagram](#admin-login-activity-diagram)
+   - [User Activity Diagram](#user-activity-diagram)
+5. [Screenshots of the Project](#screenshots-of-the-project)
+6. [Customer Database (MongoDB) Schema](#customer-database-mongodb-schema)
+7. [Product Database (MongoDB) Schema](#product-database-mongodb-schema)
+8. [Order Database (MongoDB) Schema](#order-database-mongodb-schema)
+9. [Customer Routes](#customer-routes)
+10. [Product Routes](#product-routes)
+11. [Order Routes](#order-routes)
+12. [Middleware for Customer Authentication](#middleware-for-customer-authentication)
+13. [Middleware for Error Handler](#middleware-for-error-handler)
+14. [Implementation of JWT Token](#implementation-of-jwt-token)
+15. [New Customer Registration Route/API](#new-customer-registration-route-api)
+    - [POST Request for Customer Registration](#post-request-for-customer-registration)
+16. [Customer Login Route/API](#customer-login-route-api)
+    - [POST Request for Custom Login](#post-request-for-custom-login)
+17. [Get Customer Details Route/API](#get-customer-details-route-api)
+18. [Update Customer Profile Route/API](#update-customer-profile-route-api)
+    - [Customer Details Update Route](#customer-details-update-route)
+19. [Update Customer Password Route/APl](#update-customer-password-route-api)
+20. [Product Creation Route/API](#product-creation-route-api)
+    - [POST Request for Production Creation Route](#post-request-for-production-creation-route)
+21. [Get all Products (Admin) Route/API](#get-all-products-admin-route-api)
+    - [GET Request for Get All Products Route](#get-request-for-get-all-products-route)
+22. [Get Product Details Route/API](#get-product-details-route-api)
+    - [GET Request Get Product Details Route](#get-request-get-product-details-route)
+23. [Update Product (Admin) Route/API](#update-product-admin-route-api)
+    - [PUT Request for Update Product Route](#put-request-for-update-product-route)
+24. [Delete Product Route/API](#delete-product-route-api)
+    - [DELETE Request for Delete Product Route](#delete-request-for-delete-product-route)
+25. [New Order Creation Route/API](#new-order-creation-route-api)
+    - [POST Request for New Order Creation Route](#post-request-for-new-order-creation-route)
+26. [Get Single Order Route/API](#get-single-order-route-api)
+    - [GET Request for Get Single Order Route](#get-request-for-get-single-order-route)
+27. [Get Logged in Customer Order Route/API](#get-logged-in-customer-order-route-api)
+    - [GET Request for Get Logged in Customer Order Route](#get-request-for-get-logged-in-customer-order-route)
+28. [Update Order Status (Admin) Route/API](#update-order-status-admin-route-api)
+    - [PUT Request for Update Order Status Route](#put-request-for-update-order-status-route)
+29. [Delete Order(Admin) Route/API](#delete-orderadmin-route-api)
+    - [DELETE Request for Delete Order Route](#delete-request-for-delete-order-route)
 
 
 
