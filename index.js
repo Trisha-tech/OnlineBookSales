@@ -6,14 +6,28 @@ const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
-
 const errorMiddleware = require("./middlewares/error.js");
 
-dotenv.config({path : `.env`})
+// dotenv.config({path : `.env`})
+require('dotenv').config();
+console.log(process.env.MONGO_URL);
 
 /*MONGODB CONNECTION START*/
 const MONGO_URL = process.env.MONGO_URL ;
+<<<<<<< HEAD
+=======
+// cors
+const cors=require("cors");
+app.use(cors())
+>>>>>>> 7962f91ef49cda7b06eb6348fff4ee0351215193
 
+// Check if MONGO_URL is defined
+if (!MONGO_URL) {
+    console.error("MONGO_URL is not defined in the environment variables.");
+    process.exit(1); // Terminate the application
+}
+
+// MongoDB connection
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -42,7 +56,6 @@ app.use("/order", order);
 
 // Middleware for Errors
 app.use(errorMiddleware);
-
 app.get('/', (req, res) => {
     res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
 })
