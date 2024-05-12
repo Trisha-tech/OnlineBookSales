@@ -29,8 +29,8 @@ const SignUpPage = () => {
             setName("");
             setEmail("");
             setPassword("");
-            setPhone("");
-            setAddress("");
+            //setPhone("");
+            //setAddress("");
             setError("");
         } catch (err) {
             // Check if err.response exists, otherwise set a default error message
@@ -90,7 +90,7 @@ const SignUpPage = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 margin="normal"
                             />
-                            <TextField
+                            {/* <TextField
                                 label="Phone"
                                 fullWidth
                                 variant="outlined"
@@ -105,7 +105,7 @@ const SignUpPage = () => {
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)}
                                 margin="normal"
-                            />
+                            /> */}
                             {error && <Typography color="error" align="center">{error}</Typography>}
                             <Button
                                 variant="contained"
@@ -118,9 +118,6 @@ const SignUpPage = () => {
                             >
                                 Register
                             </Button>
-                            <Typography align="center" sx={{ mt: 2, mr: 2 }}>
-                                Don't have an account? <a href="/login">Login</a>
-                            </Typography>
                         </form>
                     </Grid>
                 </Grid>
