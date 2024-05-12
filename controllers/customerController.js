@@ -20,12 +20,9 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
         url: "ThisisSecureUrl",
       },
     });
-<<<<<<< HEAD
   
     sendToken(customer, 201, res);
-  });
-=======
->>>>>>> 7962f91ef49cda7b06eb6348fff4ee0351215193
+
 
     // Access JWT secret key from environment variables
     const jwtSecret = process.env.JWT_SECRET;
@@ -45,7 +42,6 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, jwtSecret);
-
     sendToken(customer, 201, res);
   } catch (error) {
     console.error("Error occurred during user registration:", error);
