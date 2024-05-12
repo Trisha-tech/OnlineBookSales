@@ -4,6 +4,18 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.message = err.message || "Internal Server Error";
 
+  // Handle undefined payload error
+  if (err.message === "payload is not defined") {
+    const message = "Payload is not defined";
+    err = new ErrorHandler(message, 500);
+  }
+
+  // Handle undefined jwtSecret error
+  if (err.message === "jwtSecret is not defined") {
+    const message = "JWT secret key is not defined";
+    err = new ErrorHandler(message, 500);
+  }
+
   // Wrong Mongodb Id error
   if (err.name === "CastError") {
     const message = `Resource not found. Invalid: ${err.path}`;
