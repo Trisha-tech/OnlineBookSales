@@ -21,8 +21,5 @@
     "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
     "validator": "^13.9.0"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.3"
   }
 }

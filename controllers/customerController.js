@@ -19,9 +19,6 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
         url: "ThisisSecureUrl"
       },
     });
-    if(!customer){
-      return next(new ErrorHandler("Invalid email or password", 401));
-    }
   
     sendToken(customer, 201, res);
   });

@@ -12,7 +12,7 @@ const errorMiddleware = require("./middlewares/error.js");
 dotenv.config({path : `.env`})
 
 /*MONGODB CONNECTION START*/
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = process.env.MONGO_URL ;
 
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
