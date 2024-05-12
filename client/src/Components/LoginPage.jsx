@@ -55,7 +55,7 @@ const LoginPage = () => {
                 Login
               </Typography>
               <TextField
-                label="Username"
+                label="email"
                 fullWidth
                 variant="outlined"
                 value={email}
