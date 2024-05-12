@@ -4,13 +4,16 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Lottie from "lottie-react";
-import loginAnimation from '../Lottie-animation/loginAnimation.json'
+import loginAnimation from '../../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); //state to store error message
+
+  let navigate = useNavigate();
 
   // handle Submit function
   const handleSubmit = async (e) => {
@@ -24,6 +27,9 @@ const LoginPage = () => {
       setEmail("");
       setPassword("");
       setError("");
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      navigate('Home', { replace: true });
     } catch (err) {
       setError(err.response.data.message);//set error message received from backend
     }
