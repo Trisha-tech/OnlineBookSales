@@ -81,3 +81,41 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+
+// Search Product 
+
+exports.searchProduct = catchAsyncErrors(async (req, res, next) => {
+  const products = await Product.findById(req.params.id);
+
+  if(!products){
+    return next(new ErrorHandler("Product not found", 404));
+  }
+  res.status(200).json({
+    success:true,
+    products
+  });
+});
+
+// Filter Product
+
+exports.filterProduct = catchAsyncErrors(async (req, res, next) => {
+  const { category, numOfReviews } = req.body;
+  if(!category || !numOfReviews){
+    return next(new ErrorHandler("Please select either category or numOfReviews", 404)); 
+    }
+
+    let filterCriteria = {}
+    if(category){
+      filterCriteria.category = category
+    }else if(numOfReviews){
+      filterCriteria.numOfReviews=numOfReviews
+    }
+    const products = await Product.find(filterCriteria);
+    if(!products){
+      return next(new ErrorHandler("Products not found", 404));
+    }
+    res.status(200).json({
+      success:true,
+      products
+    });
+});
