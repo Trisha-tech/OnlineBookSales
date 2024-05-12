@@ -7,6 +7,11 @@ const {
   updateProfile,
 
 } = require("../controllers/customerController.js");
+const {
+  addTocart,
+  getCartItems,
+  deleteCartItem
+}=require('../controllers/cartController');
 const { isAuthenticatedUser, authorizeRoles } = require("../middlewares/auth.js");
 
 
@@ -22,6 +27,17 @@ router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
+
+
+
+
+//cart routes
+//instead of sending user as req parameter we can send user id
+router.route("/cart/add-product").post(addTocart);
+
+router.route("/cart/remove-product").delete(deleteCartItem);
+
+router.route("/cart").get(getCartItems);
 
 
 
