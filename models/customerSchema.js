@@ -3,7 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require(`dotenv`);
-dotenv.config({path : `.env`})
+dotenv.config({ path: `.env` });
 
 const customerSchema = new mongoose.Schema({
   name: {
@@ -24,13 +24,13 @@ const customerSchema = new mongoose.Schema({
     minLength: [8, "Password should be greater than 8 characters"],
     select: false,
   },
-  phone:{
+  phone: {
     type: Number,
     required: [true, "Please Enter Your Phone Number"],
     maxLength: [10, "Phone Number must be of 10 digits"],
     minLength: [10, "Phone Number must be of 10 digits"],
   },
-  address:{
+  address: {
     type: String,
     required: [true, "Please Enter Your Address"],
     minLength: [10, "Address should have more than 10 characters"],
@@ -58,27 +58,23 @@ const customerSchema = new mongoose.Schema({
   resetPasswordExpire: Date,
 });
 
-
 customerSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) {
-      next();
-    }
-  
-    this.password = await bcrypt.hash(this.password, 10);
-  });
-  
-  // JWT TOKEN
-  customerSchema.methods.getJWTToken = function () {
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRE,
-    });
-  };
+  if (!this.isModified("password")) {
+    next();
+  }
 
-  // Compare Password
+  this.password = await bcrypt.hash(this.password, 10);
+});
+
+// JWT TOKEN
+customerSchema.methods.getJWTToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET);
+};
+
+// Compare Password
 
 customerSchema.methods.comparePassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
-  };
-
+  return await bcrypt.compare(password, this.password);
+};
 
 module.exports = mongoose.model("Customer", customerSchema);
