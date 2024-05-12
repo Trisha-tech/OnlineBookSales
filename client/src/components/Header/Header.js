@@ -1,6 +1,5 @@
 import { 
   PaperAirplaneIcon,
-  MoonIcon,
   SunIcon,
   Bars3Icon,
   // XMarkIcon,
