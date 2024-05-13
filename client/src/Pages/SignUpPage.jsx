@@ -20,7 +20,7 @@ const SignUpPage = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/customer/register", { name, email, password, phone, address })
+            const response = await axios.post("http://localhost:8080/customer/register", { name, email, password})
 
             console.log(response.data);
             toast.success("register sucess");
