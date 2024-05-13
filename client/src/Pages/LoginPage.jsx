@@ -7,10 +7,13 @@ import Lottie from "lottie-react";
 import loginAnimation from '../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); //state to store error message
+
+  let navigate = useNavigate();
 
   // handle Submit function
   const handleSubmit = async (e) => {
@@ -24,6 +27,9 @@ const LoginPage = () => {
       setEmail("");
       setPassword("");
       setError("");
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      navigate('/', { replace: true });
     } catch (err) {
       setError(err.response.data.message);//set error message received from backend
     }
@@ -55,7 +61,7 @@ const LoginPage = () => {
                 Login
               </Typography>
               <TextField
-                label="Username"
+                label="email"
                 fullWidth
                 variant="outlined"
                 value={email}
