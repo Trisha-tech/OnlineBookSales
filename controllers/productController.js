@@ -6,7 +6,14 @@ const ErrorHandler=require("../utils/errorHandler.js")
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   
     const product = await Product.create(req.body);
-  product.save();
+
+      await product.save();
+      const { url } = req.body;
+      if (url) {
+                  product.shareableLink = url;
+                  await product.save();
+              }
+
     res.status(201).json({
       success: true,
       product,
@@ -81,3 +88,17 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+exports.getShareableLink = async (req, res) => {
+  try {
+    const { Id } = req.params;
+    const product = await Product.findById(Id);
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    const shareableLink = product.shareableLink;
+    res.json({ success: true, shareableLink });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
