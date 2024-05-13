@@ -82,6 +82,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 
+
 // Search Product 
 
 exports.searchProduct = catchAsyncErrors(async (req, res, next) => {
@@ -119,3 +120,4 @@ exports.filterProduct = catchAsyncErrors(async (req, res, next) => {
       products
     });
 });
+
