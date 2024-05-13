@@ -4,9 +4,7 @@ const {
   getAdminProducts,
   getProductDetails,
   updateProduct,
-  deleteProduct,
-  searchProduct,
-  filterProduct
+  deleteProduct
 } = require("../controllers/productController.js");
 
 const router = express.Router();
