@@ -5,15 +5,28 @@ const ErrorHandler = require("../utils/errorHandler.js");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 // CUSTOMER REGISTRATION ROUTE
+const validator = require('validator');
+const disposableEmailDomains = require('disposable-email-domains');
+
 exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {
+    // Validate email format
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ error: 'Invalid email address' });
+    }
+
+    // Check if email domain is disposable
+    const domain = email.split('@')[1];
+    if (disposableEmailDomains.includes(domain)) {
+      return res.status(400).json({ error: 'Disposable email addresses are not allowed' });
+    }
+
     const customer = await Customer.create({
       name,
       email,
       password,
-      
       avatar: {
         public_id: "This is Public ID",
         url: "ThisisSecureUrl",
@@ -33,7 +46,6 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     const payload = {
       name,
       email,
-     
     };
 
     const token = jwt.sign(payload, jwtSecret);
@@ -44,6 +56,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     next(error); // Pass the error to the error handling middleware
   }
 });
+
 
 
 // CUSTOMER LOGIN ROUTE
