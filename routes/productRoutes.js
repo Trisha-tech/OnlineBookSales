@@ -3,6 +3,7 @@ const {
   createProduct,
   getAdminProducts,
   getProductDetails,
+  getShareableLink,//it was missing causing error
   updateProduct,
   deleteProduct
 } = require("../controllers/productController.js");

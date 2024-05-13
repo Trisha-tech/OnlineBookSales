@@ -6,15 +6,14 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 // CUSTOMER REGISTRATION ROUTE
 exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
-  const { name, email, password, phone, address } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     const customer = await Customer.create({
       name,
       email,
       password,
-      phone,
-      address,
+      
       avatar: {
         public_id: "This is Public ID",
         url: "ThisisSecureUrl",
@@ -34,8 +33,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     const payload = {
       name,
       email,
-      phone,
-      address,
+     
     };
 
     const token = jwt.sign(payload, jwtSecret);

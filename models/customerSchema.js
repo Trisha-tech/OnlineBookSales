@@ -24,17 +24,7 @@ const customerSchema = new mongoose.Schema({
     minLength: [8, "Password should be greater than 8 characters"],
     select: false,
   },
-  phone: {
-    type: Number,
-    required: [true, "Please Enter Your Phone Number"],
-    maxLength: [10, "Phone Number must be of 10 digits"],
-    minLength: [10, "Phone Number must be of 10 digits"],
-  },
-  address: {
-    type: String,
-    required: [true, "Please Enter Your Address"],
-    minLength: [10, "Address should have more than 10 characters"],
-  },
+  
   avatar: {
     public_id: {
       type: String,
