@@ -46,11 +46,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const customer = require("./routes/customerRoutes.js");
 const product = require("./routes/productRoutes.js");
 const order = require("./routes/orderRoutes.js");
+const admin = require("./routes/adminRoutes.js");
+const { authorizeRoles } = require('./middlewares/auth.js');
 
 app.use("/customer", customer);
 app.use("/product", product);
 app.use("/order", order);
 
+app.use('admin',authorizeRoles,admin);
 // Middleware for Errors
 app.use(errorMiddleware);
 app.get('/', (req, res) => {

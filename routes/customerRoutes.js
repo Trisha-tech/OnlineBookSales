@@ -6,6 +6,8 @@ const {
   updatePassword,
   updateProfile,
   logoutCustomer,
+  addFeedback
+  
 
 } = require("../controllers/customerController.js");
 const {
@@ -43,5 +45,15 @@ router.route("/cart/remove-product").delete(deleteCartItem);
 router.route("/cart").get(getCartItems);
 
 
+//cart routes
+//instead of sending user as req parameter we can send user id
+router.route("/cart/add-product").post(isAuthenticatedUser,addTocart);
 
+router.route("/cart/remove-product").delete(isAuthenticatedUser,deleteCartItem);
+
+router.route("/cart").get(isAuthenticatedUser,getCartItems);
+
+
+//giving feedback
+router.route("/add-feedback").post(isAuthenticatedUser,addFeedback);
 module.exports = router;

@@ -1,5 +1,6 @@
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
 const Customer = require("../models/customerSchema.js");
+const Feedback = require("../models/feebackSchema.js");
 const sendToken = require("../utils/jwtToken");
 const ErrorHandler = require("../utils/errorHandler.js");
 const jwt = require("jsonwebtoken");
@@ -159,3 +160,39 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+
+exports.addFeedback = catchAsyncErrors(async (req, res, next) => {
+  const { feedback,topic } = req.body;
+  const newFeedback = await Feedback.create({
+    feedback,
+    topic,
+    user: req.body.user._id,
+  });
+  try{
+   // sendMailToAdmin(newFeedback);
+    res.status(200).json({
+      success: true,
+      newFeedback,
+    });
+  } catch (error) {
+    newFeedback.delete();
+    console.error("Error occurred during feedback creation:", error);
+    next(error);
+  }
+});
+sendMailToAdmin = async (newFeedback) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.SMTP_EMAIL,
+      pass: process.env.SMTP_PASSWORD,
+    },  
+  });
+  const mailOptions = {
+    from: process.env.SMTP_EMAIL,
+    to: 'admin email',
+    subject: "New Feedback",
+    text: `New Feedback received from ${newFeedback.user}`,
+  };
+};
