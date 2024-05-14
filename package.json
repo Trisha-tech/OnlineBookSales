@@ -11,6 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.17",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
@@ -21,6 +25,8 @@
     "mongoose": "^7.6.11",
     "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
+    "react-router-dom": "^6.23.1",
+    "styled-components": "^6.1.11",
     "validator": "^13.9.0"
   }
 }
