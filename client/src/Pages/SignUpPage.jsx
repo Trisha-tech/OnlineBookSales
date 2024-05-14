@@ -11,8 +11,7 @@ const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
+   
     const [error, setError] = useState(""); //state to store error message
 
     // handle Submit function
