@@ -45,7 +45,7 @@ function Navbar() {
             <MenuIcon sx={{ fontSize: '2rem' }} />
           </IconButton>
         ) : (
-          <div>
+          <div className='flex gap-4'>
             <StyledButton color="inherit" component={Link} to="/login" startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}>
               Login
             </StyledButton>
