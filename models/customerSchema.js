@@ -26,13 +26,13 @@ const customerSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: [true, "Please Enter Your Phone Number"],
+   //required: [true, "Please Enter Your Phone Number"],
     maxLength: [10, "Phone Number must be of 10 digits"],
     minLength: [10, "Phone Number must be of 10 digits"],
   },
   address: {
     type: String,
-    required: [true, "Please Enter Your Address"],
+    //required: [true, "Please Enter Your Address"],
     minLength: [10, "Address should have more than 10 characters"],
   },
   avatar: {
