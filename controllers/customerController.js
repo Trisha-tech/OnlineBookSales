@@ -61,26 +61,50 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
 
 // CUSTOMER LOGIN ROUTE
 exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
-  const { email, password } = req.body;
+    const { email, password } = req.body;
+   
+    if (!email || !password) {
+      return next(new ErrorHandler("Please Enter Email & Password", 400));
+    }
+  
+    const customer = await Customer.findOne({ email }).select("+password");
+  
+    if (!customer) {
+      return next(new ErrorHandler("Invalid email or password", 401));
+    }
+  
+    const isPasswordMatched = await customer.comparePassword(password);
+  
+    if (!isPasswordMatched) {
+      return next(new ErrorHandler("Invalid email or password", 401));
+    }
+  
+    sendToken(customer, 200, res);
+  });
+  
+    //CUSTOMER LOGOUT ROUTE
+    exports.logoutCustomer = catchAsyncErrors(async (req,res,next) => {
+      const customer = await Customer.findById(req.user.id);
+       
+      if(!customer){
+        return next(new ErrorHandler("Invalid logout request", 401));
+      }
+  
+      const options = {
+        httpOnly: true,
+        secure: true
+      }
+  
+      return res.status(200)
+                .clearCookie("token", options)
+                .json({
+                   success: true
+                })
+      
+    })
+    
+  
 
-  if (!email || !password) {
-    return next(new ErrorHandler("Please Enter Email & Password", 400));
-  }
-
-  const customer = await Customer.findOne({ email }).select("+password");
-
-  if (!customer) {
-    return next(new ErrorHandler("Invalid email or password", 401));
-  }
-
-  const isPasswordMatched = await customer.comparePassword(password);
-
-  if (!isPasswordMatched) {
-    return next(new ErrorHandler("Invalid email or password", 401));
-  }
-
-  sendToken(customer, 200, res);
-});
 
 // GET CUSTOMER DETAIL
 exports.getCustomerDetails = catchAsyncErrors(async (req, res, next) => {
