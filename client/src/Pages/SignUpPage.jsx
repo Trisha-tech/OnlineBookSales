@@ -7,24 +7,25 @@ import Lottie from "lottie-react";
 import loginAnimation from '../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
+import { useNavigate } from "react-router-dom";
 const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
+    // const [phone, setPhone] = useState("");
+    // const [address, setAddress] = useState("");
     const [error, setError] = useState(""); //state to store error message
-
+    let navigate = useNavigate();
     // handle Submit function
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/customer/register", { name, email, password, phone, address })
+            const response = await axios.post("http://localhost:8080/customer/register", { name, email, password})
 
             console.log(response.data);
             toast.success("register sucess");
-
+            navigate('/login')
             // reset form and err msg on success
             setName("");
             setEmail("");

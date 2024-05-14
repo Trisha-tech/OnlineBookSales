@@ -1,19 +1,20 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from "./Components/LoginPage";
-import SignUpPage from "./Components/SignUpPage";
-import Product from "./Components/Product";
+
+import LoginPage from "./Pages/LoginPage";
+import SignUpPage from "./Pages/SignUpPage";
+import HomePage from "./Pages/Home"; 
+
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />{" "}
-        {/* Adjusted route path */}
-        <Route path="/login" element={<LoginPage />} />{" "}
-        {/* Adjusted route path */}
-        <Route path="/product" element={<Product/>}/>
+
+        <Route index element={<HomePage />} /> {/* Route for the Home page */}
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
+
       </Routes>
     </BrowserRouter>
   );

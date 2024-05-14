@@ -3,6 +3,7 @@ const {
   createProduct,
   getAdminProducts,
   getProductDetails,
+  getShareableLink,//it was missing causing error
   updateProduct,
   deleteProduct
 } = require("../controllers/productController.js");
@@ -19,6 +20,7 @@ router
 
 
   router.route("/product/:id").get(getProductDetails);
+  router.route("/producturl/:id").get(getShareableLink);
 
   router
   .route("/admin/product/:id")
