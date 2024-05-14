@@ -1,46 +1,91 @@
-import React from 'react';
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, IconButton, Button, useMediaQuery, useTheme, styled } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import StoreIcon from '@mui/icons-material/Store';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import { Link } from 'react-router-dom';
 
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: '#002147', // Adjust color to your preference
+});
 
+const StyledButton = styled(Button)({
+  fontSize: '1rem', // Adjust font size
+  '&:hover': {
+    color: '#FFD700', // Adjust hover color
+    textDecoration: 'underline', // Underline on hover
+  },
+});
 
 function Navbar() {
-    const location = useLocation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [openMenu, setOpenMenu] = useState(false);
 
-    return (
-        <div className="bg-gray-800 text-white p-4 flex justify-between">
-            <div className="left-topbar-container">
-                <Link to="/">
-                    <h2 className="text-xl font-bold">Book4u</h2>
-                </Link>
-                {location.pathname === "/shop" && (
-                    <div className="search-bar">
-                        <input 
-                            className="bg-gray-700 rounded px-2 py-1"
-                            type="text"
-                            placeholder="Search"
-                        />
-                    </div>
-                )}
-            </div>
-            <div className="right-topbar-container">
-                <Link to="/login">
-                    <button className="mr-4 px-4 py-2 rounded bg-blue-500 hover:bg-blue-600">Login</button>
-                </Link>
-                <Link to="/shop">
-                    <button className="mr-2 px-4 py-2 rounded bg-gray-600 hover:bg-gray-700">Shop</button>
-                </Link>
-                <Link to="/wishlist">
-                    <button className="mr-2 px-4 py-2 rounded bg-gray-600 hover:bg-gray-700">Wishlist</button>
-                </Link>
-                <Link to="/cart">
-                    <button className="mr-2 px-4 py-2 rounded bg-gray-600 hover:bg-gray-700">Cart</button>
-                </Link>
-                <Link to="/orders">
-                    <button className="px-4 py-2 rounded bg-gray-600 hover:bg-gray-700">Orders</button>
-                </Link>
-            </div>
+  const handleMenuClick = () => {
+    setOpenMenu(!openMenu);
+  };
+
+  return (
+    <StyledAppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: '1.5rem' }}>
+          Book4u
+        </Typography>
+        {isMobile ? (
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleMenuClick}
+          >
+            <MenuIcon sx={{ fontSize: '2rem' }} />
+          </IconButton>
+        ) : (
+          <div>
+            <StyledButton color="inherit" component={Link} to="/login" startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}>
+              Login
+            </StyledButton>
+            <StyledButton color="inherit" component={Link} to="/shop" startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />}>
+              Shop
+            </StyledButton>
+            <StyledButton color="inherit" component={Link} to="/wishlist" startIcon={<FavoriteIcon sx={{ fontSize: '1.5rem' }} />}>
+              Wishlist
+            </StyledButton>
+            <StyledButton color="inherit" component={Link} to="/cart" startIcon={<ShoppingCartIcon sx={{ fontSize: '1.5rem' }} />}>
+              Cart
+            </StyledButton>
+            <StyledButton color="inherit" component={Link} to="/orders" startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />}>
+              Orders
+            </StyledButton>
+          </div>
+        )}
+      </Toolbar>
+      {/* Conditional rendering for the mobile menu */}
+      {isMobile && (
+        <div style={{ display: openMenu ? 'block' : 'none' }}>
+          <StyledButton color="inherit" component={Link} to="/login" startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+            Login
+          </StyledButton>
+          <StyledButton color="inherit" component={Link} to="/shop" startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+            Shop
+          </StyledButton>
+          <StyledButton color="inherit" component={Link} to="/wishlist" startIcon={<FavoriteIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+            Wishlist
+          </StyledButton>
+          <StyledButton color="inherit" component={Link} to="/cart" startIcon={<ShoppingCartIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+            Cart
+          </StyledButton>
+          <StyledButton color="inherit" component={Link} to="/orders" startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+            Orders
+          </StyledButton>
         </div>
-    )
+      )}
+    </StyledAppBar>
+  );
 }
 
 export default Navbar;
