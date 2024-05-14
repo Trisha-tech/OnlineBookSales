@@ -3,8 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 
 
 
-function Navbar() {
+function Navbar({handleSearch}) {
     const location = useLocation();
+    const handleChange=(e)=>{
+        handleSearch(e.target.value);
+    }
 
     return (
         <div className="bg-gray-800 text-white p-4 flex justify-between">
@@ -15,9 +18,10 @@ function Navbar() {
                 {location.pathname === "/shop" && (
                     <div className="search-bar">
                         <input 
-                            className="bg-gray-700 rounded px-2 py-1"
+                            className="bg-gray-700 rounded px-2 py-1 my-1"
                             type="text"
                             placeholder="Search"
+                            onChange={handleChange}
                         />
                     </div>
                 )}
