@@ -49,7 +49,6 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, jwtSecret);
-
     sendToken(customer, 201, res);
   } catch (error) {
     console.error("Error occurred during user registration:", error);
