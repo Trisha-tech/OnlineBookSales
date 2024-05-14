@@ -19,7 +19,7 @@ router
 
 
   router.route("/product/:id").get(getProductDetails);
-  router.route("/producturl/:id").get(getShareableLink);
+ // router.route("/producturl/:id").get(getShareableLink);
 
   router
   .route("/admin/product/:id")
