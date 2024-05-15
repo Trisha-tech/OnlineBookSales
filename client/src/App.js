@@ -1,13 +1,14 @@
 
 import "./App.css";
 import {Outlet} from "react-router-dom";
-import { Header } from './Components/index.js';
+import { Header, Footer } from './Components/index.js';
 
 function App() {
   return (
     <>
     <Header />
       <Outlet />
+    <Footer />
     </>
   );
 }
