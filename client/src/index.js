@@ -8,7 +8,6 @@ import { HomePage, ProfilePage, Product } from "./Components/index"
 import LoginPage from "./Pages/LoginPage.jsx"
 import SignUpPage from "./Pages/SignUpPage.jsx"
 import Home from "./Pages/Home.jsx"
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,8 +40,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>
+  <RouterProvider router={router}>
+    <App />
+  </RouterProvider>
+</React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
