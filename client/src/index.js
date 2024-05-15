@@ -4,7 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { HomePage, ProfilePage} from "./components/index"
+import { HomePage, ProfilePage, Product } from "./Components/index"
+import LoginPage from "./Pages/LoginPage.jsx"
+import SignUpPage from "./Pages/SignUpPage.jsx"
+import Home from "./Pages/Home.jsx"
 
 const router = createBrowserRouter([
   {
@@ -13,11 +16,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <Home />,
       },
       {
         path: "/profile",
         element: <ProfilePage />
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage />
+      },
+      {
+        path: "/login",
+        element: <LoginPage />
+      },
+      {
+        path: "/product",
+        element: <Product/>
       }
     ]
   }
