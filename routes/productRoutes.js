@@ -5,7 +5,9 @@ const {
   getProductDetails,
   getShareableLink,//it was missing causing error
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  searchProduct,
+  filterProduct
 } = require("../controllers/productController.js");
 
 const router = express.Router();
