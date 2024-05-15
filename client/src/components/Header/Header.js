@@ -47,7 +47,7 @@ function Header(){
             {/* primary */}
             <div className="hidden lg:flex gap-8 ">
               {navItems.map((item, index) => (
-                <a href={item.url} index={index}>
+                <a href={item.url} key={index}>   {/*changed index={index} to key={index} to make list items unique*/}
                   {item.title}
                 </a>
               ))}
@@ -86,7 +86,7 @@ function Header(){
               Features
             </a> */}
             {navItems.map((item, index) => (
-              <a href="/" index={index}>
+              <a href="/" key={index}>{/*changed index={index} to key={index} to make list items unique*/}
                 {item.title}
               </a>
             ))}
