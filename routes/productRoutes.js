@@ -18,8 +18,8 @@ router
   .route("/admin/products")
   .get(getAdminProducts);
 
-
   router.route("/product/:id").get(getProductDetails);
+
   router.route("/producturl/:id").get(getShareableLink);
 
   router
@@ -27,4 +27,9 @@ router
   .put(updateProduct)
   .delete(deleteProduct);
 
+
+
+  router.route("/product/search/:id").get(searchProduct);
+  router.route("/product").get(filterProduct);
+  
 module.exports = router;

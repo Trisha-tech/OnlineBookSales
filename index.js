@@ -14,6 +14,7 @@ console.log(process.env.MONGO_URL);
 
 /*MONGODB CONNECTION START*/
 const MONGO_URL = process.env.MONGO_URL ;
+
 // cors
 const cors=require("cors");
 app.use(cors())
