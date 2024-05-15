@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@500&display=swap");
+=======
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x:hidden;
+}
+>>>>>>> 46cceaa6d23d6b023f4fe11cc04873562d73b110
 
 @tailwind base;
 @tailwind components;
@@ -7,3 +19,6 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
