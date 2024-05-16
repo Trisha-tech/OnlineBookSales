@@ -1,6 +1,5 @@
 const express = require(`express`);
 const app = express();
-const PORT =  8080;
 const dotenv = require(`dotenv`);
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
@@ -10,6 +9,7 @@ const errorMiddleware = require("./middlewares/error.js");
 
 // dotenv.config({path : `.env`})
 require('dotenv').config();
+const PORT = process.env.PORT || 8080;
 console.log(process.env.MONGO_URL);
 
 /*MONGODB CONNECTION START*/
