@@ -4,8 +4,9 @@ const dotenv = require(`dotenv`);
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-import { rateLimit } from "express-rate-limit";
+const { rateLimit } = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
+const hpp = require("hpp");
 
 const errorMiddleware = require("./middlewares/error.js");
 
@@ -69,6 +70,9 @@ mongoose.connection.on('error', (err) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//HPP puts array parameters in req.query and/or req.body aside and just selects the last parameter value. You add the middleware and you are done.
+app.use(hpp()); // Make sure the body is parsed beforehand.
 
 
 // Route Imports
