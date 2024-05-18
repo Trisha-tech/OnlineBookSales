@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const { rateLimit } = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const hpp = require("hpp");
-
+const helmet = require('helmet');
 const errorMiddleware = require("./middlewares/error.js");
 
 
@@ -47,6 +47,11 @@ app.use(
     replaceWith: "_",
   })
 );
+
+
+//Helmet helps secure Express apps by setting HTTP response headers.
+app.use(helmet());
+
 
 // Check if MONGO_URL is defined
 if (!MONGO_URL) {
