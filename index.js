@@ -4,8 +4,14 @@ const dotenv = require(`dotenv`);
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+import { rateLimit } from "express-rate-limit";
 
 const errorMiddleware = require("./middlewares/error.js");
+
+
+
+
+
 
 // dotenv.config({path : `.env`})
 require('dotenv').config();
@@ -18,6 +24,22 @@ const MONGO_URL = process.env.MONGO_URL ;
 // cors
 const cors=require("cors");
 app.use(cors())
+
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+  // store: ... , // Redis, Memcached, etc. See below.
+});
+
+// Apply the rate limiting middleware to all requests.
+app.use(limiter);
+
+
+
+
 
 // Check if MONGO_URL is defined
 if (!MONGO_URL) {
