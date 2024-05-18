@@ -20,11 +20,11 @@ function Header(){
     },
     {
       "title": "Book Store",
-      "url": "/",
+      "url": "/bookstore",
     },
     {
       "title": "Order",
-      "url": "/",
+      "url": "/order",
     },
     {
       "title": "Profile",
