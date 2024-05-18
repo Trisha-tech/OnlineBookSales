@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 import { rateLimit } from "express-rate-limit";
+const mongoSanitize = require("express-mongo-sanitize");
 
 const errorMiddleware = require("./middlewares/error.js");
 
@@ -38,8 +39,13 @@ const limiter = rateLimit({
 app.use(limiter);
 
 
-
-
+// Or, to sanitize data that only contains $, without .(dot)
+// Can be useful for letting data pass that is meant for querying nested documents.
+app.use(
+  mongoSanitize({
+    replaceWith: "_",
+  })
+);
 
 // Check if MONGO_URL is defined
 if (!MONGO_URL) {
