@@ -42,7 +42,7 @@ const LoginPage = () => {
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
+              <Lottie animationData={loginAnimation} style={{ height: '500px' }} className="fromLeft" />
             </Box>
           </Grid>
           <Grid
@@ -56,7 +56,7 @@ const LoginPage = () => {
             }}
           >
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="fromRight">
               <Typography variant="h5" align="center" gutterBottom>
                 Login
               </Typography>
