@@ -482,41 +482,13 @@ That's it! You can now use GitHub Desktop to manage this repository efficiently.
 ![image](https://github.com/Trisha-tech/OnlineBookSales-Backend/assets/55338588/c715d391-5a08-434e-bd81-63f44839c5de)
 
 
+ 
+<h2 align = "center">Our Contributors ❤️</h2>
+<div align = "center">
+ <h3>Thank you for contributing to our repository</h3>
 
+![Contributors](https://contrib.rocks/image?repo=Trisha-tech/OnlineBookSales)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 💙 Thank You !!! 💙
