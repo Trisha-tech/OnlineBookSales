@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Button, useMediaQuery, useTheme, styled } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -6,8 +6,9 @@ import StoreIcon from '@mui/icons-material/Store';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
+import { useToast } from "../../Context/ToastContext";
 const StyledAppBar = styled(AppBar)({
   backgroundColor: '#002147', // Adjust color to your preference
 });
@@ -20,19 +21,41 @@ const StyledButton = styled(Button)({
   },
 });
 
+
+
 function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [openMenu, setOpenMenu] = useState(false);
 
+  const { userLoggedIn, setUserLoggedIn } = useAuth();
+  let navigate = useNavigate();
+  const {showToast} =useToast();
+  
+
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
   };
 
+  const handleLogout = () => {
+    try {
+      const token = sessionStorage.getItem('token');
+      if (token) {
+        sessionStorage.removeItem('token'); // Remove the token from sessionStorage
+      }
+    } catch (error) {
+      console.error('Error removing token from sessionStorage:', error);
+    }
+
+    setUserLoggedIn(false); // Update the user logged-in state
+    navigate('/', { replace: true }); // Redirect to home page
+    showToast("success","","Logged out successfully");
+  };
+
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="sticky">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: '1.5rem' }}>
+        <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1, fontSize: '1.5rem' }}>
           Book4u
         </Typography>
         {isMobile ? (
@@ -46,9 +69,25 @@ function Navbar() {
           </IconButton>
         ) : (
           <div className='flex gap-4'>
-            <StyledButton color="inherit" component={Link} to="/login" startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}>
-              Login
+            <StyledButton
+              color="inherit"
+              component={Link}
+              to={userLoggedIn ? "#" : "/login"}
+              onClick={userLoggedIn ? handleLogout : null}
+              startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
+            >
+              {userLoggedIn ? "Logout" : "Login"}
             </StyledButton>
+            {userLoggedIn && (
+              <StyledButton
+                color="inherit"
+                component={Link}
+                to="/profile"
+                startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
+              >
+                Profile
+              </StyledButton>
+            )}
             <StyledButton color="inherit" component={Link} to="/shop" startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />}>
               Shop
             </StyledButton>
@@ -67,9 +106,27 @@ function Navbar() {
       {/* Conditional rendering for the mobile menu */}
       {isMobile && (
         <div style={{ display: openMenu ? 'block' : 'none' }}>
-          <StyledButton color="inherit" component={Link} to="/login" startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
-            Login
+          <StyledButton
+            color="inherit"
+            component={Link}
+            to={userLoggedIn ? "#" : "/login"}
+            onClick={userLoggedIn ? handleLogout : null}
+            startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
+            fullWidth
+          >
+            {userLoggedIn ? "Logout" : "Login"}
           </StyledButton>
+          {userLoggedIn && (
+            <StyledButton
+              color="inherit"
+              component={Link}
+              to="/profile"
+              startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
+              fullWidth
+            >
+              Profile
+            </StyledButton>
+          )}
           <StyledButton color="inherit" component={Link} to="/shop" startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
             Shop
           </StyledButton>

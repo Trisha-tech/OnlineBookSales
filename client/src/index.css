@@ -6,12 +6,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x:hidden;
+  overflow-y: auto;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Custom keyframes for toast animation */
+@keyframes toast-from-right {
+  from {
+      transform: translateX(100%);
+  }
+  to {
+      transform: translateX(0%);
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
