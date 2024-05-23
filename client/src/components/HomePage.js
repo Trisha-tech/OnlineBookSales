@@ -1,6 +1,6 @@
 function HomePage(){
     return(
-        <div className="h-screen bg-blue-400">Home Page</div>
+        <div className="h-screen zoomIn bg-blue-400">Home Page</div>
     )
 }
 
