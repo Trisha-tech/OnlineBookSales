@@ -5,7 +5,10 @@ import App from './App';
 import { AuthContextProvider } from './Context/AuthContext.js';
 import { ToastContextProvider } from './Context/ToastContext.js';
 import reportWebVitals from './reportWebVitals';
-
+import {store} from "./redux/store.js"
+import { Provider } from 'react-redux';
+import { SearchBarContextProvider } from './Context/SearchBarContext.js';
+import { PriceFilterProvider } from './Context/PriceFilterContext.js';
 
 
 
@@ -52,11 +55,17 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <Provider store={store}>
+    <PriceFilterProvider>
+  <SearchBarContextProvider>
   <AuthContextProvider>
     <ToastContextProvider>
         <App/>
     </ToastContextProvider>
   </AuthContextProvider>
+  </SearchBarContextProvider>
+  </PriceFilterProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

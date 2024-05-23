@@ -12,6 +12,8 @@ export const AuthContextProvider = ({ children }) => {
     console.log(token);
     if (token) {
       setUserLoggedIn(true);
+    }else{
+      setUserLoggedIn(false);
     }
   }, []);
 
