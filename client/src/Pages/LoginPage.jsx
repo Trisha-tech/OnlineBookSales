@@ -8,11 +8,14 @@ import loginAnimation from '../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
+import { useToast } from "../Context/ToastContext";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); //state to store error message
-
+  const { setUserLoggedIn }= useAuth()
+  const { showToast } = useToast()
   let navigate = useNavigate();
 
   // handle Submit function
@@ -29,6 +32,8 @@ const LoginPage = () => {
       setError("");
       const { token } = response.data;
       localStorage.setItem('token', token);
+      setUserLoggedIn(true);
+      showToast("success","","Logged in successfully");
       navigate('/', { replace: true });
     } catch (err) {
       setError(err.response.data.message);//set error message received from backend

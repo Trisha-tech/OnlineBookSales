@@ -1,30 +1,38 @@
-# Description
+### Description
+A clear and concise description of what the PR does.
+- This PR does the following:
+  - Adds ...
+  - Fixes ...
+  - Updates ...
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+### Related Issues
+Link any related issues using the format `Fixes #issue_number`. 
+This helps to automatically close related issues when the PR is merged.
+- Placeholder: "Fixes #123"
 
-Fixes:  #(issue no.)
+### Changes
+List the detailed changes made in this PR.
+- Added a new feature to ...
+- Refactored the ...
+- Fixed a bug in ...
 
-<!---give the issue number you fixed----->
+### Testing Instructions
+Detailed instructions on how to test the changes. Include any setup needed and specific test cases.
+1. Pull this branch.
+2. Run `npm install` to install dependencies.
+3. Run `npm test` to execute the test suite.
+4. Verify that ...
 
-## Type of change
+### Screenshots (if applicable)
+Add any screenshots that help explain or visualize the changes.
 
-<!----Please delete options that are not relevant.And in order to tick the check box just but x inside them for example [x] like this----->
+### Additional Context
+Any additional context or information that reviewers should be aware of.
+- This PR is based on the following...
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
-
-# Checklist:
-
-<!----Please delete options that are not relevant.And in order to tick the check box just but x inside them for example [x] like this----->
-- [ ] I have made this from my own
-- [ ] I have taken help from some online resourses 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
+### Checklist
+Make sure to check off all the items before submitting. Mark with [x] if done.
+- [ ] I have performed a self-review of my code
 - [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
 - [ ] My changes generate no new warnings
-
-
-# ATTACH SCREEN-SHOTS / DEPLOYMENT LINK
+- [ ] I am working on this issue under GSSOC
