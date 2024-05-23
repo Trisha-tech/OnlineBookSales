@@ -8,11 +8,14 @@ import loginAnimation from '../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
+import { useToast } from "../Context/ToastContext";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); //state to store error message
-
+  const { setUserLoggedIn }= useAuth()
+  const { showToast } = useToast()
   let navigate = useNavigate();
 
   // handle Submit function
@@ -29,6 +32,8 @@ const LoginPage = () => {
       setError("");
       const { token } = response.data;
       localStorage.setItem('token', token);
+      setUserLoggedIn(true);
+      showToast("success","","Logged in successfully");
       navigate('/', { replace: true });
     } catch (err) {
       setError(err.response.data.message);//set error message received from backend
@@ -42,7 +47,7 @@ const LoginPage = () => {
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
+              <Lottie animationData={loginAnimation} style={{ height: '500px' }} className="fromLeft" />
             </Box>
           </Grid>
           <Grid
@@ -56,7 +61,7 @@ const LoginPage = () => {
             }}
           >
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="fromRight">
               <Typography variant="h5" align="center" gutterBottom>
                 Login
               </Typography>

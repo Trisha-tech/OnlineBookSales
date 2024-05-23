@@ -2,32 +2,61 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { AuthContextProvider } from './Context/AuthContext.js';
+import { ToastContextProvider } from './Context/ToastContext.js';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { HomePage, ProfilePage} from "./components/index"
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/profile",
-        element: <ProfilePage />
-      }
-    ]
-  }
-])
+
+
+
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <App />,
+//     children: [
+//       {
+//         path: '/',
+//         element: <HomePage />,
+//       },
+//       {
+//         path: '/cart',
+//         element: <Cart />,
+//       },
+//       {
+//         path: '/orders',
+//         element: <Orders />,
+//       },
+//       {
+//         path: '/profile',
+//         element: <ProfilePage />,
+//       },
+//       {
+//         path: '/signup',
+//         element: <SignUpPage />,
+//       },
+//       {
+//         path: '/login',
+//         element: <LoginPage />,
+//       },
+//       {
+//         path: '/product',
+//         element: <Product />,
+//       },
+//       {
+//         path: '/wishlist',
+//         element: <Wishlist />,
+//       },
+//     ],
+//   },
+// ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>
+  <AuthContextProvider>
+    <ToastContextProvider>
+        <App/>
+    </ToastContextProvider>
+  </AuthContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -107,3 +107,65 @@ We warmly welcome all those who wish to contribute to **Online Book Sales**. Whe
 
 ⭐️ Support the Project
 If you find this project helpful, please consider giving it a star on GitHub! Your support helps to grow the project and reach more contributors.
+
+
+# Contributing to OnlineBookSales
+
+First off, thanks for taking the time to contribute! 🎉
+
+The following is a set of guidelines for contributing to OnlineBookSales. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+
+## Reporting Issues
+
+### Before You Submit an Issue
+
+1. Check the existing issues to see if your issue has already been reported. Duplicate issues clutter the issue tracker and make it harder for us to prioritize issues.
+
+2. Search through open and closed issues to see if your issue has already been addressed.
+
+3. Review the project documentation to ensure your issue hasn't already been covered.
+
+### How to Submit an Issue
+
+1. Use a clear and descriptive title for the issue to identify the problem.
+
+2. Describe the exact steps to reproduce the problem. Include code snippets or links to a repository, if applicable.
+
+3. Explain the expected behavior and what actually happens.
+
+4. Include any relevant logs or screenshots that can help us understand and reproduce the issue.
+
+5. (Optional)Mention the version of the software you're using and the environment (e.g., operating system, browser) where the issue occurs.
+
+## Pull Requests
+
+### Before You Submit a Pull Request
+
+1. Ensure that your changes are aligned with the project's goals and codebase.
+
+2. Write clear and concise commit messages and add the issue number where you were assigned the task (for clarity).
+
+3. Test your changes thoroughly.
+
+4. Update the documentation if your changes require it.
+
+5. Ensure there are no merge conflicts with the base branch.
+
+6. Only submit a pull request for issues that have been assigned to you or if the issue is not assigned to anyone else. Someone else might be working on an issue that has been assigned to them, so it’s important to avoid duplicating efforts.
+
+### Submitting a Pull Request
+
+1. Create a new branch for your work.
+
+2. Make your changes on this branch.
+
+3. Commit your changes with a clear message.
+
+4. Push your changes to your fork on GitHub.
+
+5. Create a pull request from your fork's branch to the original repository's main branch.
+
+6. Provide a detailed description of your changes in the pull request.
+
+
+Remember, contributions are reviewed by project maintainers who might provide feedback or request changes before merging your pull request into the main branch.
