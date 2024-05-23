@@ -1,21 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -40,28 +23,31 @@
     transform: rotate(360deg);
   }
 }
+
 .app {
   height: 100%;
   width: 100%;
   font-family: 'Poppins';
-  @apply bg-gray-100 text-gray-500
+  background-color: #f7fafc;
+  color: #6b7280; 
 }
+
 a:hover {
-  @apply transition duration-200;
-  @apply text-gray-700
+  transition: color 0.2s;
+  color: #374151; 
 }
 
 /* Animations */
-.fromTop{
+.fromTop {
   animation: slideTop 1s ease forwards;
 }
-.fromLeft{
+.fromLeft {
   animation: slideLeft 1s ease forwards;
 }
-.fromRight{
+.fromRight {
   animation: slideRight 1s ease forwards;
 }
-.fromBottom{
+.fromBottom {
   animation: slideBottom 1s ease forwards;
 }
 
