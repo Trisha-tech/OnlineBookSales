@@ -79,6 +79,11 @@ const productSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  shareableLink:{
+    type: String,
+    required:true,
+  },
+
 });
 
 module.exports = mongoose.model("Product", productSchema);

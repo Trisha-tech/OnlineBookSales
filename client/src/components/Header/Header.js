@@ -1,14 +1,17 @@
 import { 
   PaperAirplaneIcon,
-  MoonIcon,
   SunIcon,
   Bars3Icon,
+  ShoppingCartIcon,
+  HeartIcon,
   // XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Header(){
   const [ toggleMenu, setToggleMenu ] = useState(false)
+  const navigate = useNavigate();
 
   const navItems = [
     {
@@ -25,7 +28,7 @@ function Header(){
     },
     {
       "title": "Profile",
-      "url": "/",
+      "url": "/profile",
     },
   ]
   return(
@@ -36,7 +39,7 @@ function Header(){
           {/* Primary menu and logo */}
           <div className="flex items-center gap-16 my-12">
             {/* logo */}
-            <div>
+            <div className="fromLeft">
               <a
                 href="/"
                 className="flex gap-1 font-bold text-gray-700 items-center "
@@ -46,7 +49,7 @@ function Header(){
               </a>
             </div>
             {/* primary */}
-            <div className="hidden lg:flex gap-8 ">
+            <div className="hidden lg:flex gap-8 fromTop">
               {navItems.map((item, index) => (
                 <a href={item.url} index={index}>
                   {item.title}
@@ -57,11 +60,14 @@ function Header(){
           {/* secondary */}
           <div className="flex gap-6">
             <div className="hidden xs:flex items-center gap-10">
-              <div className="hidden lg:flex items-center gap-2">
+              <div className="hidden lg:flex items-center gap-2 fromTop">
+                <ShoppingCartIcon className="h-6 w-6"/>
+                <HeartIcon className="h-6 w-6"/>
                 <SunIcon className="h-6 w-6" />
               </div>
               <div>
-                <button className="rounded-full border-solid border-2 border-gray-300 py-2 px-4 hover:bg-pink-700 hover:text-gray-100">
+                <button onClick={()=> navigate("/login")}
+                className="rounded-full border-solid border-2 border-gray-300 py-2 px-4 hover:bg-pink-700 hover:text-gray-100 fromRight">
                   Sign-up/Sign-in
                 </button>
               </div>
@@ -87,7 +93,7 @@ function Header(){
               Features
             </a> */}
             {navItems.map((item, index) => (
-              <a href="/" index={index}>
+              <a href={item.url} index={index}>
                 {item.title}
               </a>
             ))}
