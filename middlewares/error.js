@@ -28,6 +28,24 @@ module.exports = (err, req, res, next) => {
     err = new ErrorHandler(message, 400);
   }
 
+  const ErrorHandler = require("../utils/errorHandler.js");
+
+  module.exports = (err, req, res, next) => {
+    err.statusCode = err.statusCode || 500;
+    err.message = err.message || "Internal Server Error";
+
+    // Handle session-related errors
+    if (err.name === "UnauthorizedError") {
+      const message = "Unauthorized access";
+      err = new ErrorHandler(message, 401);
+    }
+
+    res.status(err.statusCode).json({
+      success: false,
+      message: err.message,
+    });
+  };
+
   // Wrong JWT error
   if (err.name === "JsonWebTokenError") {
     const message = `Json Web Token is invalid, Try again `;
