@@ -5,9 +5,11 @@ const sendToken = require("../utils/jwtToken");
 const ErrorHandler = require("../utils/errorHandler.js");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const bcrypt = require("bcryptjs");
+
 // CUSTOMER REGISTRATION ROUTE
-const validator = require('validator');
-const disposableEmailDomains = require('disposable-email-domains');
+const validator = require("validator");
+const disposableEmailDomains = require("disposable-email-domains");
 
 exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -15,13 +17,15 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   try {
     // Validate email format
     if (!validator.isEmail(email)) {
-      return res.status(400).json({ error: 'Invalid email address' });
+      return res.status(400).json({ error: "Invalid email address" });
     }
 
     // Check if email domain is disposable
-    const domain = email.split('@')[1];
+    const domain = email.split("@")[1];
     if (disposableEmailDomains.includes(domain)) {
-      return res.status(400).json({ error: 'Disposable email addresses are not allowed' });
+      return res
+        .status(400)
+        .json({ error: "Disposable email addresses are not allowed" });
     }
 
     const customer = await Customer.create({
@@ -39,7 +43,9 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
 
     // Check if jwtSecret is defined
     if (!jwtSecret) {
-      console.error("JWT secret key is not defined in the environment variables.");
+      console.error(
+        "JWT secret key is not defined in the environment variables."
+      );
       process.exit(1); // Terminate the application
     }
 
@@ -57,59 +63,76 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
-
-
 // CUSTOMER LOGIN ROUTE
 exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
-    const { email, password } = req.body;
-   
-    if (!email || !password) {
-      return next(new ErrorHandler("Please Enter Email & Password", 400));
-    }
-  
-    const customer = await Customer.findOne({ email }).select("+password");
-  
-    if (!customer) {
-      return next(new ErrorHandler("Invalid email or password", 401));
-    }
-  
-    const isPasswordMatched = await customer.comparePassword(password);
-  
-    if (!isPasswordMatched) {
-      return next(new ErrorHandler("Invalid email or password", 401));
-    }
-  
-    sendToken(customer, 200, res);
-  });
-  
-    //CUSTOMER LOGOUT ROUTE
-    exports.logoutCustomer = catchAsyncErrors(async (req,res,next) => {
-      const customer = await Customer.findById(req.user.id);
-       
-      if(!customer){
-        return next(new ErrorHandler("Invalid logout request", 401));
-      }
-  
-      const options = {
-        httpOnly: true,
-        secure: true
-      }
-  
-      return res.status(200)
-                .clearCookie("token", options)
-                .json({
-                   success: true
-                })
-      
-    })
-    
-  
+  const { email, password } = req.body;
 
+  if (!email || !password) {
+    return next(new ErrorHandler("Please Enter Email & Password", 400));
+  }
+
+  const customer = await Customer.findOne({ email }).select("+password");
+
+  if (!customer) {
+    return next(new ErrorHandler("Invalid email or password", 401));
+  }
+
+  const isPasswordMatched = await customer.comparePassword(password);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Invalid email or password", 401));
+  }
+
+  sendToken(customer, 200, res);
+});
+
+//CUSTOMER LOGOUT ROUTE
+// exports.logoutCustomer = catchAsyncErrors(async (req,res,next) => {
+//   const customer = await Customer.findById(req.user.id);
+
+//   if(!customer){
+//     return next(new ErrorHandler("Invalid logout request", 401));
+//   }
+
+//   const options = {
+//     httpOnly: true,
+//     secure: true
+//   }
+
+//   return res.status(200)
+//             .clearCookie("token", options)
+//             .json({
+//                success: true
+//             })
+
+// })
+
+// CUSTOMER LOGOUT ROUTE
+exports.logoutCustomer = catchAsyncErrors(async (req, res, next) => {
+  const customer = await Customer.findById(req.user.id);
+
+  if (!customer) {
+    return next(new ErrorHandler("Invalid logout request", 401));
+  }
+
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+
+  return res.status(200).clearCookie("token", options).json({
+    success: true,
+  });
+});
 
 // GET CUSTOMER DETAIL
 exports.getCustomerDetails = catchAsyncErrors(async (req, res, next) => {
-  const customer = await Customer.findById(req.user.id);
+  // const customer = await Customer.findById(req.user.id);
+  const customer = req.user;
 
+  if (!customer) {
+    return next(new ErrorHandler("Customer not found", 404));
+  }
   res.status(200).json({
     success: true,
     customer,
@@ -120,23 +143,18 @@ exports.getCustomerDetails = catchAsyncErrors(async (req, res, next) => {
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const customer = await Customer.findById(req.user.id).select("+password");
 
-  const isPasswordMatched = await customer.comparePassword(
-    req.body.oldPassword
-  );
-
-  if (!isPasswordMatched) {
+  const isMatch = await bcrypt.compare(req.body.oldPassword, customer.password);
+  if (!isMatch) {
     return next(new ErrorHandler("Old password is incorrect", 400));
   }
 
-  if (req.body.newPassword !== req.body.confirmPassword) {
-    return next(new ErrorHandler("Password does not match", 400));
-  }
-
   customer.password = req.body.newPassword;
-
   await customer.save();
 
-  sendToken(customer, 200, res);
+  res.status(200).json({
+    success: true,
+    message: "Password updated successfully",
+  });
 });
 
 // UPDATE CUSTOMER PROFILE
@@ -161,16 +179,15 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 exports.addFeedback = catchAsyncErrors(async (req, res, next) => {
-  const { feedback,topic } = req.body;
+  const { feedback, topic } = req.body;
   const newFeedback = await Feedback.create({
     feedback,
     topic,
     user: req.body.user._id,
   });
-  try{
-   // sendMailToAdmin(newFeedback);
+  try {
+    // sendMailToAdmin(newFeedback);
     res.status(200).json({
       success: true,
       newFeedback,
@@ -187,11 +204,11 @@ sendMailToAdmin = async (newFeedback) => {
     auth: {
       user: process.env.SMTP_EMAIL,
       pass: process.env.SMTP_PASSWORD,
-    },  
+    },
   });
   const mailOptions = {
     from: process.env.SMTP_EMAIL,
-    to: 'admin email',
+    to: "admin email",
     subject: "New Feedback",
     text: `New Feedback received from ${newFeedback.user}`,
   };
