@@ -3,6 +3,7 @@ const {
   createProduct,
   getAdminProducts,
   getProductDetails,
+  getAllProduct,
   getShareableLink,//it was missing causing error
   updateProduct,
   deleteProduct,
@@ -19,6 +20,8 @@ router
   router
   .route("/admin/products")
   .get(getAdminProducts);
+
+  router.route("/getAllProducts").get(getAllProduct);
 
   router.route("/product/:id").get(getProductDetails);
 

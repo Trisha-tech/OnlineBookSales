@@ -5,12 +5,17 @@ import { toast } from "react-hot-toast";
 import { add, remove } from "../../redux/Slices/CartSlice";
 import { Like, dislike } from "../../redux/Slices/WishListSlice";
 
-const Product = ({ post }) => {
-  const { cart, WishList } = useSelector((state) => state);
+const Product = (props) => {
+
+ const post=props.post;
+ console.log(post._id);
+ const cart = useSelector((state) => state.cart);
+ const WishList = useSelector((state) => state.WishList);
+ 
   const dispatch = useDispatch();
 
   // Check if the item is already liked
-  const isLiked = WishList.some((item) => item.id === post.id);
+  const isLiked = WishList.some((item) => item._id === post._id);
   const [like, setLike] = useState(isLiked);
 
   const addToCart = () => {
@@ -19,13 +24,13 @@ const Product = ({ post }) => {
   };
 
   const removeFromCart = () => {
-    dispatch(remove(post.id));
+    dispatch(remove(post._id));
     toast.error("Item removed from Cart");
   };
 
   const toggleLike = () => {
     if (like) {
-      dispatch(dislike(post.id));
+      dispatch(dislike(post._id));
       toast.error("Item removed from Wishlist");
     } else {
       dispatch(Like(post));
@@ -47,7 +52,7 @@ const Product = ({ post }) => {
       </div>
       
       <div>
-        <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">{post.title}</p>
+        <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">{post.name}</p>
       </div>
       <div>
         <p className="w-40 text-gray-400 font-normal text-[10px] text-left">
@@ -55,7 +60,11 @@ const Product = ({ post }) => {
         </p>
       </div>
       <div className="h-[180px]">
-        <img src={post.image} className="h-full w-full" alt={post.title} />
+        <img src={post.images[0].url} className="h-full w-full" alt={post.title} />
+      </div>
+
+      <div>
+        <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">{post.author}</p>
       </div>
 
       <div className="flex justify-between gap-12 items-center w-full mt-5">
@@ -63,7 +72,7 @@ const Product = ({ post }) => {
           <p className="text-green-600 font-semibold">${post.price}</p>
         </div>
 
-        {cart.some((p) => p.id === post.id) ? (
+        {cart.some((p) => p._id === post._id) ? (
           <button
             className="text-white border-2 
             bg-red-600 border-gray-700 rounded-full font-semibold 

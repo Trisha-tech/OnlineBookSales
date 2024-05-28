@@ -142,3 +142,12 @@ exports.getShareableLink = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+exports.getAllProduct = catchAsyncErrors(async (req, res) => {
+  const products = await Product.find();
+  console.log("hii");
+  res.status(200).json({
+    success: true,
+    products,
+  });
+});

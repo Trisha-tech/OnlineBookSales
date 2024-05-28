@@ -7,7 +7,7 @@ import { useSearchBar } from "../Context/SearchBarContext";
 import { usePriceFilter } from "../Context/PriceFilterContext";
 
 const Shop = () => {
-    const API_URL = "https://fakestoreapi.com/products";
+    const API_URL = "http://localhost:8080/product/getAllProducts";
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
     const { searchBarTerm } = useSearchBar();
@@ -19,8 +19,9 @@ const Shop = () => {
         try {
             const res = await fetch(API_URL);
             const data = await res.json();
-
-            setPosts(data);
+            console.log(data);
+            console.log(Array.isArray(data.products));
+            setPosts(data.products);
         } catch (error) {
             console.log("Error aagya ji");
             setPosts([]);
@@ -32,11 +33,11 @@ const Shop = () => {
         fetchProductData();
     }, []);
 
-    const filteredPosts = posts.filter((post) =>
-        post.title.toLowerCase().includes(searchBarTerm.toLowerCase())
-    ).filter((post) => {
-        const price = parseFloat(post.price);
-        return price >= minPrice && price <= maxPrice;
+    const filteredPosts = posts.filter((post) => {
+        
+        const name = post.name.toLowerCase().includes(searchBarTerm.toLowerCase());
+        const priceMatch = post.price >= minPrice && post.price <= maxPrice;
+        return name && priceMatch;
     });
 
     return (
@@ -50,7 +51,8 @@ const Shop = () => {
             ) : filteredPosts.length > 0 ? (
                 <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl p-2 mx-auto space-y-10 space-x-5 min-h-[80vh]">
                     {filteredPosts.map((post) => (
-                        <Product key={post.id} post={post} />
+                        
+                        <Product key={post._id} post={post} />
                     ))}
                 </div>
             ) : (
