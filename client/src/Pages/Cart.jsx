@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import CartItem from "../Components/CartItem";
 import { useAuth } from '../Context/AuthContext';
 import { updateUserCart } from "../redux/Slices/CartSlice";
-import { jwtDecode } from 'jwt-decode';
-
+import {jwtDecode} from 'jwt-decode';
 import axios from "axios";
 import Spinner from "../Components/Spinner";
 
@@ -14,34 +13,32 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { userLoggedIn } = useAuth();
   const [totalAmount, setTotalAmount] = useState(0);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchCartData = async () => {
     const token = localStorage.getItem('token');
-    const updateUserCartFromAPI = async () => {
-      if (token) {
-        const user = jwtDecode(token);
-        if (!user) {
-          localStorage.removeItem('token');
-        } else {
-          try {
-            const response = await axios.get("http://localhost:8080/customer/cart", {
-              headers: {
-                'token': token
-              }
-            });
-            const updatedCart = response.data.cartItems;
-            dispatch(updateUserCart(updatedCart));
-          } catch (error) {
-            console.error("Error updating user cart:", error);
-          } finally {
-            setLoading(false); 
-          }
+    if (token) {
+      const user = jwtDecode(token);
+      if (!user) {
+        localStorage.removeItem('token');
+      } else {
+        try {
+          const response = await axios.get("http://localhost:8080/customer/cart", {
+            headers: { 'token': token }
+          });
+          const updatedCart = response.data.cartItems;
+          dispatch(updateUserCart(updatedCart));
+        } catch (error) {
+          console.error("Error updating user cart:", error);
+        } finally {
+          setLoading(false);
         }
       }
-    };
+    }
+  };
 
-    updateUserCartFromAPI();
+  useEffect(() => {
+    fetchCartData();
   }, [dispatch]);
 
   useEffect(() => {
@@ -52,7 +49,7 @@ const Cart = () => {
 
   return (
     <div>
-      {loading ? ( // Show spinner while loading
+      {loading ? (
         <Spinner />
       ) : (
         <>
@@ -60,10 +57,9 @@ const Cart = () => {
             <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-center">
               <div className="w-[100%] md:w-[60%] flex flex-col p-2">
                 {cart.map((item, index) => (
-                  <CartItem key={item.productDetails._id} item={item.productDetails} itemIndex={index} />
+                  <CartItem key={item.productDetails._id} item={item.productDetails} itemIndex={index} fetchCartData={fetchCartData} />
                 ))}
               </div>
-
               <div className="w-[100%] md:w-[40%] mt-5 flex flex-col">
                 <div className="flex flex-col p-5 gap-5 my-14 h-[100%] justify-between">
                   <div className="flex flex-col gap-5">
@@ -74,7 +70,6 @@ const Cart = () => {
                     </p>
                   </div>
                 </div>
-
                 <div className="flex flex-col">
                   <p className="text-xl font-bold">
                     <span className="text-gray-700 font-semibold">Total Amount:</span> ${totalAmount}

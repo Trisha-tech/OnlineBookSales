@@ -2,29 +2,27 @@ import React, { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import { addToCart,removeFromCart } from "../../redux/Slices/CartSlice";
+import { addToCart, removeFromCart } from "../../redux/Slices/CartSlice";
 import { Like, dislike } from "../../redux/Slices/WishListSlice";
+import { Rating, Typography } from '@mui/material'; // Importing Rating and Typography from Material-UI
 
 const Product = (props) => {
+  const post = props.post;
+  const cart = useSelector((state) => state.cart);
+  const WishList = useSelector((state) => state.WishList);
 
- const post=props.post;
- console.log(post);
- const cart = useSelector((state) => state.cart);
- const WishList = useSelector((state) => state.WishList);
- 
   const dispatch = useDispatch();
 
   // Check if the item is already liked
   const isLiked = WishList.some((item) => item._id === post._id);
   const [like, setLike] = useState(isLiked);
 
-  const add_to_Cart =() => {
-    // dispatch(add(post));
+  const add_to_Cart = () => {
     dispatch(addToCart(post));
     toast.success("Item added to Cart");
   };
 
-  const remove_from_cart =  () => {
+  const remove_from_cart = () => {
     dispatch(removeFromCart(post._id));
     toast.error("Item removed from Cart");
   };
@@ -42,8 +40,8 @@ const Product = (props) => {
 
   return (
     <div className="relative flex flex-col items-center justify-between 
-    hover:scale-110 transition duration-300 ease-in gap-3 p-4 mt-10 ml-5 rounded-xl outline">
-      
+      hover:scale-110 transition duration-300 ease-in gap-2 p-4 mt-10 ml-5 rounded-xl outline">
+
       <div className="absolute top-4 right-4">
         <AiFillHeart
           size={25}
@@ -51,15 +49,25 @@ const Product = (props) => {
           className={`${like ? "text-red-600" : "text-gray-400"} transition duration-300 cursor-pointer`}
         />
       </div>
-      
+
       <div>
         <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">{post.name}</p>
       </div>
+
+      
+      <Rating
+        name="half-rating-read"
+        value={post.ratings}
+        precision={0.5}
+        readOnly
+      />
+      
       <div>
         <p className="w-40 text-gray-400 font-normal text-[10px] text-left">
           {post.description.split(" ").slice(0, 10).join(" ") + "..."}
         </p>
       </div>
+
       <div className="h-[180px]">
         <img src={post.images[0].url} className="h-full w-full" alt={post.title} />
       </div>
