@@ -9,6 +9,7 @@ import {store} from "./redux/store.js"
 import { Provider } from 'react-redux';
 import { SearchBarContextProvider } from './Context/SearchBarContext.js';
 import { PriceFilterProvider } from './Context/PriceFilterContext.js';
+import { FilterProvider } from './Context/filterContext.js';
 
 
 
@@ -58,11 +59,13 @@ root.render(
   <Provider store={store}>
     <PriceFilterProvider>
   <SearchBarContextProvider>
+    <FilterProvider>
   <AuthContextProvider>
     <ToastContextProvider>
         <App/>
     </ToastContextProvider>
   </AuthContextProvider>
+  </FilterProvider>
   </SearchBarContextProvider>
   </PriceFilterProvider>
   </Provider>
