@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import { add, remove } from "../../redux/Slices/CartSlice";
+import { addToCart,removeFromCart } from "../../redux/Slices/CartSlice";
 import { Like, dislike } from "../../redux/Slices/WishListSlice";
 
 const Product = (props) => {
 
  const post=props.post;
- console.log(post._id);
+ console.log(post);
  const cart = useSelector((state) => state.cart);
  const WishList = useSelector((state) => state.WishList);
  
@@ -18,13 +18,14 @@ const Product = (props) => {
   const isLiked = WishList.some((item) => item._id === post._id);
   const [like, setLike] = useState(isLiked);
 
-  const addToCart = () => {
-    dispatch(add(post));
+  const add_to_Cart =() => {
+    // dispatch(add(post));
+    dispatch(addToCart(post));
     toast.success("Item added to Cart");
   };
 
-  const removeFromCart = () => {
-    dispatch(remove(post._id));
+  const remove_from_cart =  () => {
+    dispatch(removeFromCart(post._id));
     toast.error("Item removed from Cart");
   };
 
@@ -79,7 +80,7 @@ const Product = (props) => {
             text-[12px] p-1 px-3 uppercase 
             hover:bg-gray-700
             hover:text-white transition duration-300 ease-in"
-            onClick={removeFromCart}>
+            onClick={remove_from_cart}>
             Remove Item
           </button>
         ) : (
@@ -88,7 +89,7 @@ const Product = (props) => {
             text-[12px] p-1 px-3 uppercase 
             hover:bg-green-700
             hover:text-white transition duration-300 ease-in"
-            onClick={addToCart}>
+            onClick={add_to_Cart}>
             Add to Cart
           </button>
         )}
