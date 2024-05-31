@@ -3,50 +3,22 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
 const ErrorHandler=require("../utils/errorHandler.js")
 
 // CREATE PRODUCT
-
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-  console.log("here i am at createProduct");
-  console.log(req.body);
+  
+    const product = await Product.create(req.body);
 
-  try {
-    // Create product with request body data
-    const productData = { ...req.body };
+      await product.save();
+      const { url } = req.body;
+      if (url) {
+                  product.shareableLink = url;
+                  await product.save();
+              }
 
-    // Associate product with the user if user is available
-    if (req.user) {
-      productData.user = req.user._id;
-    } else {
-      // Handle the case where user is required but not provided
-      return res.status(400).json({
-        success: false,
-        message: 'User is required to create a product.',
-      });
-    }
-
-    // Add image and shareable link if provided
-    if (req.body.image) {
-      productData.images = req.body.image;
-      productData.shareableLink = req.body.image.url;
-    }
-
-    // Save the product
-    const product = await Product.create(productData);
-
-    // Send success response
     res.status(201).json({
       success: true,
       product,
     });
-
-  } catch (error) {
-    // Log the error and pass it to the next middleware
-    console.log(error);
-    next(error);
-  }
-});
-
-
-
+  });
 
 
   
@@ -170,12 +142,3 @@ exports.getShareableLink = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
-exports.getAllProduct = catchAsyncErrors(async (req, res) => {
-  const products = await Product.find();
-  console.log("hii");
-  res.status(200).json({
-    success: true,
-    products,
-  });
-});
