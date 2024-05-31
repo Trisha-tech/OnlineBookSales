@@ -18,6 +18,7 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 
   // Find user by ID
   req.user = await Customer.findById(decodedData.id);
+  
 
   if (!req.user) {
     return next(new ErrorHandler("User not found", 404));

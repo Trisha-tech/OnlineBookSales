@@ -1,4 +1,5 @@
 const express = require("express");
+const { isAuthenticatedUser} = require("../middlewares/auth.js");
 const {
   createProduct,
   getAdminProducts,
@@ -16,6 +17,10 @@ const router = express.Router();
 router
   .route("/admin/product/new")
   .post(createProduct);
+
+router
+.route("/oldBook/product/new")
+.post(isAuthenticatedUser,createProduct);
 
   router
   .route("/admin/products")

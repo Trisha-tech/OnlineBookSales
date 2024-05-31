@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Avatar, Box, Typography, Button, CircularProgress, Paper, TextField, Grid, MenuItem,Rating } from '@mui/material';
+import { Avatar, Box, Typography, Button, CircularProgress, Paper, TextField, Grid, MenuItem, Rating } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 
 const Profile = () => {
@@ -13,7 +13,7 @@ const Profile = () => {
     description: '',
     category: '',
     stock: 1,
-    ratings:0,
+    ratings: 0,
     shareableLink: '',
     image: { public_id: '', url: '' },
   });
@@ -50,12 +50,23 @@ const Profile = () => {
     });
   };
 
+  const handleImageChange = (e) => {
+    const { name, value } = e.target;
+    setBookDetails({
+      ...bookDetails,
+      image: {
+        ...bookDetails.image,
+        [name]: value
+      }
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormLoading(true);
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post('http://localhost:8080/books/sell', bookDetails, {
+      const response = await axios.post('http://localhost:8080/product/oldBook/product/new', bookDetails, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -68,7 +79,7 @@ const Profile = () => {
         description: '',
         category: '',
         stock: 1,
-        ratings:0,
+        ratings: 0,
         shareableLink: '',
         image: { public_id: '', url: '' },
       });
@@ -205,9 +216,9 @@ const Profile = () => {
               >
                 {/* Add your categories here */}
                 <MenuItem value="Fiction">Fiction</MenuItem>
-                <MenuItem value="Non-Fiction"></MenuItem>
+                <MenuItem value="Non-Fiction">Non-Fiction</MenuItem>
                 <MenuItem value="Romance">Romance</MenuItem>
-                <MenuItem value="Science">Tech/</MenuItem>
+                <MenuItem value="Science">Science</MenuItem>
                 {/* Add more categories as needed */}
               </TextField>
             </Grid>
@@ -223,13 +234,14 @@ const Profile = () => {
               />
             </Grid>
             <Grid item xs={12}>
-             <Typography component="legend" name="ratings"/>
-            <Rating name="half-rating" defaultValue={0} precision={0.5} />
-            
-            
-            
+              <Typography component="legend">Ratings</Typography>
+              <Rating
+                name="ratings"
+                value={bookDetails.ratings}
+                onChange={(event, newValue) => setBookDetails({ ...bookDetails, ratings: newValue })}
+                precision={0.5}
+              />
             </Grid>
-            
             <Grid item xs={12}>
               <TextField
                 label="Shareable Link"
@@ -242,13 +254,20 @@ const Profile = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                label="Image Public ID"
+                name="public_id"
+                value={bookDetails.image.public_id}
+                onChange={handleImageChange}
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
                 label="Image URL"
-                name="imageUrl"
+                name="url"
                 value={bookDetails.image.url}
-                onChange={(e) => setBookDetails({
-                  ...bookDetails,
-                  image: { ...bookDetails.image, url: e.target.value }
-                })}
+                onChange={handleImageChange}
                 fullWidth
                 required
               />

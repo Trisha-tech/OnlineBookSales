@@ -69,7 +69,7 @@ const Product = (props) => {
       </div>
 
       <div className="h-[180px]">
-        <img src={post.images[0].url} className="h-full w-full" alt={post.title} />
+        <img src={post.images.url} className="h-full w-full" alt={post.title} />
       </div>
 
       <div>
