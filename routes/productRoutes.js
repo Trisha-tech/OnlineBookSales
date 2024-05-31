@@ -1,8 +1,10 @@
 const express = require("express");
+const { isAuthenticatedUser} = require("../middlewares/auth.js");
 const {
   createProduct,
   getAdminProducts,
   getProductDetails,
+  getAllProduct,
   getShareableLink,//it was missing causing error
   updateProduct,
   deleteProduct,
@@ -16,9 +18,15 @@ router
   .route("/admin/product/new")
   .post(createProduct);
 
+router
+.route("/oldBook/product/new")
+.post(isAuthenticatedUser,createProduct);
+
   router
   .route("/admin/products")
   .get(getAdminProducts);
+
+  router.route("/getAllProducts").get(getAllProduct);
 
   router.route("/product/:id").get(getProductDetails);
 
