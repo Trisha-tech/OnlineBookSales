@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Avatar, Box, Typography, Button, CircularProgress, Paper } from '@mui/material';
+import { Avatar, Box, Typography, Button, CircularProgress, Paper, TextField, Grid, MenuItem,Rating } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [bookDetails, setBookDetails] = useState({
+    name: '',
+    author: '',
+    price: '',
+    description: '',
+    category: '',
+    stock: 1,
+    ratings:0,
+    shareableLink: '',
+    image: { public_id: '', url: '' },
+  });
+  const [formLoading, setFormLoading] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,6 +41,43 @@ const Profile = () => {
 
     fetchUserData();
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setBookDetails({
+      ...bookDetails,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.post('http://localhost:8080/books/sell', bookDetails, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log('Book listed successfully:', response.data);
+      setBookDetails({
+        name: '',
+        author: '',
+        price: '',
+        description: '',
+        category: '',
+        stock: 1,
+        ratings:0,
+        shareableLink: '',
+        image: { public_id: '', url: '' },
+      });
+    } catch (error) {
+      console.error('Error listing book:', error);
+    } finally {
+      setFormLoading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -93,6 +142,124 @@ const Profile = () => {
         <Button variant="contained" color="primary" className="mt-6" sx={{ mt: 4 }}>
           Edit Profile
         </Button>
+      </Paper>
+
+      <Paper elevation={3} className="p-6 mt-6">
+        <Typography variant="h5" component="h2" className="text-gray-900 font-bold mb-4">
+          Sell Your Old Book
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                label="Book Name"
+                name="name"
+                value={bookDetails.name}
+                onChange={handleInputChange}
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Author"
+                name="author"
+                value={bookDetails.author}
+                onChange={handleInputChange}
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Price"
+                name="price"
+                value={bookDetails.price}
+                onChange={handleInputChange}
+                type="number"
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Description"
+                name="description"
+                value={bookDetails.description}
+                onChange={handleInputChange}
+                fullWidth
+                multiline
+                rows={4}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Category"
+                name="category"
+                value={bookDetails.category}
+                onChange={handleInputChange}
+                fullWidth
+                required
+                select
+              >
+                {/* Add your categories here */}
+                <MenuItem value="Fiction">Fiction</MenuItem>
+                <MenuItem value="Non-Fiction"></MenuItem>
+                <MenuItem value="Romance">Romance</MenuItem>
+                <MenuItem value="Science">Tech/</MenuItem>
+                {/* Add more categories as needed */}
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Stock"
+                name="stock"
+                value={bookDetails.stock}
+                onChange={handleInputChange}
+                type="number"
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+             <Typography component="legend" name="ratings"/>
+            <Rating name="half-rating" defaultValue={0} precision={0.5} />
+            
+            
+            
+            </Grid>
+            
+            <Grid item xs={12}>
+              <TextField
+                label="Shareable Link"
+                name="shareableLink"
+                value={bookDetails.shareableLink}
+                onChange={handleInputChange}
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Image URL"
+                name="imageUrl"
+                value={bookDetails.image.url}
+                onChange={(e) => setBookDetails({
+                  ...bookDetails,
+                  image: { ...bookDetails.image, url: e.target.value }
+                })}
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button variant="contained" color="primary" type="submit" fullWidth disabled={formLoading}>
+                {formLoading ? <CircularProgress size={24} /> : 'Submit'}
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
       </Paper>
     </Box>
   );
