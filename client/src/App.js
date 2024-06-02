@@ -45,21 +45,23 @@
 // export default App;
 
 // src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+// import {Outlet} from "react-router-dom";
 import { Navbar, Footer } from "./Components/index.js";
 import { Product } from "./Components/index";
 import LoginPage from "./Pages/LoginPage.jsx";
 import SignUpPage from "./Pages/SignUpPage.jsx";
 import Cart from "./Pages/Cart.jsx";
+import Profile from "./Pages/Profile.jsx";
 import Orders from "./Pages/Orders.jsx";
 import Wishlist from "./Pages/Wishlist.jsx";
 import HomePage from "./Pages/Home.jsx";
-import Profile from "./Pages/Profile.jsx";
 import Shop from "./Pages/Shop.jsx";
-import ForgotPassword from "./Pages/ForgotPassword.jsx";
-import ResetPassword from "./Pages/ResetPassword.jsx";
+import ForgotPassword from "./Pages/ForgotPassword.jsx"; // Import ForgotPassword
+import ResetPassword from "./Pages/ResetPassword.jsx"; // Import ResetPassword
 import { Toast } from "./Toast/Toast.js";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./Animations.css";
 
 function App() {
@@ -78,8 +80,13 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/password/forgot" element={<ForgotPassword />} />
-            <Route path="/password/reset/:token" element={<ResetPassword />} />
+            <Route path="/password/forgot" element={<ForgotPassword />} />{" "}
+            {/* Add this line */}
+            <Route
+              path="/password/reset/:token"
+              element={<ResetPassword />}
+            />{" "}
+            {/* Add this line */}
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
