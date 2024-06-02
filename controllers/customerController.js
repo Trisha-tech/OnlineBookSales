@@ -1,3 +1,5 @@
+
+
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
 const Customer = require("../models/customerSchema.js");
 const Feedback = require("../models/feebackSchema.js");
@@ -8,11 +10,10 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
-
-// CUSTOMER REGISTRATION ROUTE
 const validator = require("validator");
 const disposableEmailDomains = require("disposable-email-domains");
 
+// CUSTOMER REGISTRATION ROUTE
 exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -28,9 +29,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   // Check if email domain is disposable
   const domain = email.split("@")[1];
   if (disposableEmailDomains.includes(domain)) {
-    return next(
-      new ErrorHandler("Disposable email addresses are not allowed", 400)
-    );
+    return next(new ErrorHandler("Disposable email addresses are not allowed", 400));
   }
 
   const customer = await Customer.create({
@@ -66,7 +65,6 @@ exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
-  // sendToken(customer, 200, res);
   // Generate token
   const token = customer.getJWTToken();
 
@@ -96,8 +94,6 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   await customer.save({ validateBeforeSave: false });
 
   const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
-  // console.log("Frontend URL:", process.env.FRONTEND_URL);
-
   console.log("Reset URL:", resetUrl);
 
   const message = `Your password reset token is as follows:\n\n${resetUrl}\n\nIf you have not requested this email, please ignore it.`;
