@@ -40,18 +40,18 @@ router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 //instead of sending user as req parameter we can send user id
 router.route("/cart/add-product").post(addTocart);
 
-router.route("/cart/remove-product").post(deleteCartItem);
+router.route("/cart/remove-product").delete(deleteCartItem);
 
 router.route("/cart").get(getCartItems);
 
 
-// //cart routes
-// //instead of sending user as req parameter we can send user id
-// router.route("/cart/add-product").post(isAuthenticatedUser,addTocart);
+//cart routes
+//instead of sending user as req parameter we can send user id
+router.route("/cart/add-product").post(isAuthenticatedUser,addTocart);
 
-// router.route("/cart/remove-product").delete(isAuthenticatedUser,deleteCartItem);
+router.route("/cart/remove-product").delete(isAuthenticatedUser,deleteCartItem);
 
-// router.route("/cart").get(isAuthenticatedUser,getCartItems);
+router.route("/cart").get(isAuthenticatedUser,getCartItems);
 
 
 //giving feedback

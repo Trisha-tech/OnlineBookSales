@@ -1,109 +1,74 @@
-import React, { useState } from "react";
-import { AiFillHeart } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-hot-toast";
-import { addToCart, removeFromCart } from "../../redux/Slices/CartSlice";
-import { Like, dislike } from "../../redux/Slices/WishListSlice";
-import { Rating, Typography } from '@mui/material'; // Importing Rating and Typography from Material-UI
+import React,{ useEffect, useState} from 'react'
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
+import jwt_decode from "jwt-decode";
+import './ProductCard.css'
 
-const Product = (props) => {
-  const post = props.post;
-  const cart = useSelector((state) => state.cart);
-  const WishList = useSelector((state) => state.WishList);
 
-  const dispatch = useDispatch();
+export default function ProductCard({ productdetails }) 
+{
+    const navigate = useNavigate()
 
-  // Check if the item is already liked
-  const isLiked = WishList.some((item) => item._id === post._id);
-  const [like, setLike] = useState(isLiked);
+    const {
+        _id, 
+        bookName,
+        author,
+        originalPrice,
+        discountedPrice,
+        discountPercent,
+        imgSrc, 
+        imgAlt,
+        badgeText, 
+        outOfStock
+    } = productdetails
+  
 
-  const add_to_Cart = () => {
-    dispatch(addToCart(post));
-    toast.success("Item added to Cart");
-  };
+    
 
-  const remove_from_cart = () => {
-    dispatch(removeFromCart(post._id));
-    toast.error("Item removed from Cart");
-  };
+  
+    
+    return (
+        <Link 
+            to={`/shop/${_id}`}  
+            onClick={() => localStorage.setItem(`${_id}`, JSON.stringify(productdetails))}
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div className="card-basic">
+                <img src={imgSrc} alt={imgAlt}/>
+                <div className="card-item-details">
+                    <div className="item-title">
+                        <h4>{bookName}</h4>
+                    </div>
+                    <h5 className="item-author">- By  &nbsp;{author}</h5>
+                    <p><b>Rs. {discountedPrice}   &nbsp;&nbsp;</b><del>Rs. {originalPrice}</del> &nbsp;&nbsp;
+                        <span className="discount-on-card">({discountPercent}% off)</span>
+                    </p>
+                    <div className="card-button">
+                        <button 
+                            onClick={(event)=>{
+                                event.preventDefault();
+                                event.stopPropagation();
+                                // addOrRemoveItemToWishlist()
+                            }} 
+                            className={`card-icon-btn ${wishlistBtn} outline-card-secondary-btn`}>
+                                <i className={`fa fa-x ${wishlistHeartIcon}`} aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div className="badge-on-card">
+                        {badgeText}
+                    </div>
+                    {
+                        outOfStock && (
+                            <div className="card-text-overlay-container">
+                                    <p>Out of Stock</p>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        </Link>
+    )
+}
 
-  const toggleLike = () => {
-    if (like) {
-      dispatch(dislike(post._id));
-      toast.error("Item removed from Wishlist");
-    } else {
-      dispatch(Like(post));
-      toast.success("Item added to Wishlist");
-    }
-    setLike(!like);
-  };
-
-  return (
-    <div className="relative flex flex-col items-center justify-between 
-      hover:scale-110 transition duration-300 ease-in gap-2 p-4 mt-10 ml-5 rounded-xl outline">
-
-      <div className="absolute top-4 right-4">
-        <AiFillHeart
-          size={25}
-          onClick={toggleLike}
-          className={`${like ? "text-red-600" : "text-gray-400"} transition duration-300 cursor-pointer`}
-        />
-      </div>
-
-      <div>
-        <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">{post.name}</p>
-      </div>
-
-      
-      <Rating
-        name="half-rating-read"
-        value={post.ratings}
-        precision={0.5}
-        readOnly
-      />
-      
-      <div>
-        <p className="w-40 text-gray-400 font-normal text-[10px] text-left">
-          {post.description.split(" ").slice(0, 10).join(" ") + "..."}
-        </p>
-      </div>
-
-      <div className="h-[180px]">
-        <img src={post.images.url} className="h-full w-full" alt={post.title} />
-      </div>
-
-      <div>
-        <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">{post.author}</p>
-      </div>
-
-      <div className="flex justify-between gap-12 items-center w-full mt-5">
-        <div>
-          <p className="text-green-600 font-semibold">${post.price}</p>
-        </div>
-
-        {cart.some((p) => p._id === post._id) ? (
-          <button
-            className="text-white border-2 
-            bg-red-600 border-gray-700 rounded-full font-semibold 
-            text-[12px] p-1 px-3 uppercase 
-            hover:bg-gray-700
-            hover:text-white transition duration-300 ease-in"
-            onClick={remove_from_cart}>
-            Remove Item
-          </button>
-        ) : (
-          <button
-            className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold 
-            text-[12px] p-1 px-3 uppercase 
-            hover:bg-green-700
-            hover:text-white transition duration-300 ease-in"
-            onClick={add_to_Cart}>
-            Add to Cart
-          </button>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default Product;
+export { ProductCard };
