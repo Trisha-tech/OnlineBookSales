@@ -33,9 +33,13 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/password/forgot" element={<ForgotPassword />} />
-
-            <Route path="/password/reset/:token" element={<ResetPassword />} />
+            <Route path="/password/forgot" element={<ForgotPassword />} />{" "}
+            {/* Add this line */}
+            <Route
+              path="/password/reset/:token"
+              element={<ResetPassword />}
+            />{" "}
+            {/* Add this line */}
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
