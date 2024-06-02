@@ -17,7 +17,7 @@ import reportWebVitals from './reportWebVitals';
 //       {
 //         path: '/',
 //         element: <HomePage />,
-//       },
+//       },   
 //       {
 //         path: '/cart',
 //         element: <Cart />,

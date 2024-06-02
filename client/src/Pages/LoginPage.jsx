@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
+import { Link } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -103,6 +104,10 @@ const LoginPage = () => {
               >
                 Login
               </Button>
+              {/* Forgot Password Link */}
+              <Typography align="center" sx={{ mt: 2, mr: 2 }}>
+                <Link to="/password/forgot">Forgot Password?</Link>
+              </Typography>
               <Typography align="center" sx={{ mt: 2, mr: 2 }}>
                 Don't have an account? <a href="/signup">Sign up</a>
               </Typography>
