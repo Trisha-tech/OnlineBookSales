@@ -2,7 +2,7 @@
 import "./App.css";
 // import {Outlet} from "react-router-dom";
 import { Navbar, Footer } from './Components/index.js';
-import { ProfilePage, Product } from './Components/index';
+import { Product } from './Components/index';
 import LoginPage from './Pages/LoginPage.jsx';
 import SignUpPage from './Pages/SignUpPage.jsx';
 import Cart from './Pages/Cart.jsx';
