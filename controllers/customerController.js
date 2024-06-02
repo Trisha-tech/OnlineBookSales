@@ -1,7 +1,5 @@
-
-
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
-const Customer = require("../models/customerSchema.js");
+const Customer = require('../models/customerSchema.js');
 const Feedback = require("../models/feebackSchema.js");
 const sendToken = require("../utils/jwtToken");
 const ErrorHandler = require("../utils/errorHandler.js");
@@ -26,24 +24,23 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email address", 400));
   }
 
-  // Check if email domain is disposable
-  const domain = email.split("@")[1];
-  if (disposableEmailDomains.includes(domain)) {
-    return next(new ErrorHandler("Disposable email addresses are not allowed", 400));
-  }
+    // Check if email domain is disposable
+    const domain = email.split('@')[1];
+    if (disposableEmailDomains.includes(domain)) {
+      return res.status(400).json({ error: 'Disposable email addresses are not allowed' });
+    }
 
-  const customer = await Customer.create({
-    name,
-    email,
-    password,
-    avatar: {
-      public_id: "This is Public ID",
-      url: "ThisisSecureUrl",
-    },
-  });
-
-  sendToken(customer, 201, res);
-});
+    const customer = await Customer.create({
+      name,
+      email,
+      password,
+      avatar: {
+        public_id: "This is Public ID",
+        url: "ThisisSecureUrl",
+      },
+    });
+  
+    sendToken(customer, 201, res);
 
 // CUSTOMER LOGIN ROUTE
 exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
