@@ -28,6 +28,12 @@ module.exports = (err, req, res, next) => {
     err = new ErrorHandler(message, 400);
   }
 
+  // Handle session-related errors
+  if (err.name === "UnauthorizedError") {
+    const message = "Unauthorized access";
+    err = new ErrorHandler(message, 401);
+  }
+
   // Wrong JWT error
   if (err.name === "JsonWebTokenError") {
     const message = `Json Web Token is invalid, Try again `;
