@@ -61,6 +61,6 @@ app.get("/", (req, res) => {
   res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT,() => {
   console.log(`Server is running on port ${PORT}`);
 });
