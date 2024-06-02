@@ -41,7 +41,6 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
       });
   
       sendToken(customer, 201, res);
-
 // CUSTOMER LOGIN ROUTE
 exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
