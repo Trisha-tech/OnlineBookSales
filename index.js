@@ -33,14 +33,14 @@ mongoose.connect(MONGO_URL, {
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
-mongoose.connection.on("error", (err) => {
+mongoose.connection.on("error", err => {
   console.log("Error Connecting to Database", err);
 });
 /*MONGODB CONNECTION END*/
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Route Imports
 const customer = require("./routes/customerRoutes.js");
@@ -48,7 +48,7 @@ const product = require("./routes/productRoutes.js");
 const order = require("./routes/orderRoutes.js");
 const admin = require("./routes/adminRoutes.js");
 const auth = require("./routes/authRoutes.js"); // Import authentication routes
-const { authorizeRoles } = require("./middlewares/auth.js");
+const {authorizeRoles} = require("./middlewares/auth.js");
 
 app.use("/customer", customer);
 app.use("/product", product);
