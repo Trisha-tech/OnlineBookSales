@@ -14,6 +14,7 @@ console.log(process.env.MONGO_URL);
 
 /*MONGODB CONNECTION START*/
 const MONGO_URL = process.env.MONGO_URL;
+mongoose.Mongoose;
 
 // cors
 const cors = require("cors");
@@ -56,7 +57,6 @@ app.use("/order", order);
 app.use("/admin", authorizeRoles, admin);
 app.use("/auth", auth);
 
-// Middleware for Errors
 app.use(errorMiddleware);
 app.get("/", (req, res) => {
   res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
