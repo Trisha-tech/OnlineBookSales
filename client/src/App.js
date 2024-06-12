@@ -11,7 +11,7 @@ import Wishlist from './Pages/Wishlist.jsx';
 import HomePage from './Pages/Home.jsx';
 import Shop from "./Pages/Shop.jsx";
 import { Toast } from "./Toast/Toast.js";
-
+import Contact from "./Pages/Contact.jsx";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './Animations.css';
 
@@ -33,6 +33,7 @@ function App() {
           <Route path="/wishlist"       element={<Wishlist/>} />
           <Route path="/cart"           element={<Cart/>} />
           <Route path="/orders"         element={<Orders/>} />
+          <Route path="/contactus"      element={<Contact/>}/>
         </Routes>
         <Toast position="bottom-right"/>
         <Footer/>

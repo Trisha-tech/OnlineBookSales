@@ -9,7 +9,7 @@ function Footer() {
                 <div className="footer-section">
                     <h2 className="text-lg font-bold mb-4">ABOUT</h2>
                     <ul className="footer-list">
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Contact us</Link></li>
+                        <li><Link to="/contactus" className="hover:text-yellow-300 text-lg">Contact us</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">About us</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Careers</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
