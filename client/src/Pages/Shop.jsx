@@ -1,9 +1,12 @@
-function Shop(){
-    return(
-        <div>
-            this will contain all information related to product
-        </div>
-    )
+import React from 'react'
+import Productitem from './ProductItem'
+
+const Shop = () => {
+  return (
+    <div>
+      <Productitem/>
+    </div>
+  )
 }
 
-export default Shop;
+export default Shop

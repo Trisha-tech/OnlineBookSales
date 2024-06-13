@@ -1,23 +1,18 @@
-const express = require(`express`);
+const express = require('express');
 const app = express();
-const dotenv = require(`dotenv`);
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const errorMiddleware = require('./middlewares/error.js');
 
-const errorMiddleware = require("./middlewares/error.js");
-
-// dotenv.config({path : `.env`})
-require('dotenv').config();
+// Load environment variables
+dotenv.config();
 const PORT = process.env.PORT || 8080;
-console.log(process.env.MONGO_URL);
+const MONGO_URL = process.env.MONGO_URL;
 
-/*MONGODB CONNECTION START*/
-const MONGO_URL = process.env.MONGO_URL ;
-
-// cors
-const cors=require("cors");
-app.use(cors())
+console.log(MONGO_URL);
 
 // Check if MONGO_URL is defined
 if (!MONGO_URL) {
@@ -29,38 +24,42 @@ if (!MONGO_URL) {
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-})
-mongoose.connection.on('connected', () => {
-    console.log("Connected to MongoDB")
-})
-mongoose.connection.on('error', (err) => {
-    console.log("Error Connecting to Database", err)
-})
-/*MONGODB CONNECTION END*/
+});
 
+mongoose.connection.on('connected', () => {
+    console.log("Connected to MongoDB");
+});
+
+mongoose.connection.on('error', (err) => {
+    console.log("Error Connecting to Database", err);
+});
+
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors());
 
 // Route Imports
-const customer = require("./routes/customerRoutes.js");
-const product = require("./routes/productRoutes.js");
-const order = require("./routes/orderRoutes.js");
-const admin = require("./routes/adminRoutes.js");
+const customerRoutes = require('./routes/customerRoutes.js');
+const productRoutes = require('./routes/productRoutes.js');  // Make sure this import statement is correct
+const orderRoutes = require('./routes/orderRoutes.js');
+const adminRoutes = require('./routes/adminRoutes.js');
 const { authorizeRoles } = require('./middlewares/auth.js');
 
-app.use("/customer", customer);
-app.use("/product", product);
-app.use("/order", order);
+// Route Middleware
+app.use('/api/customer', customerRoutes);
+app.use('/api/product', productRoutes);  // Ensure this line is correct
+app.use('/api/order', orderRoutes);
+app.use('/api/admin', authorizeRoles, adminRoutes);
 
-app.use('admin',authorizeRoles,admin);
-// Middleware for Errors
+// Error Middleware
 app.use(errorMiddleware);
-app.get('/', (req, res) => {
-    res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
-})
 
-app.listen(PORT,()=>{
+app.get('/', (req, res) => {
+    res.send(`Welcome to Scizers Assignment! Made by Trisha Sahu`);
+});
+
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-})
+});
