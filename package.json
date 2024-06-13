@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
-
   },
   "keywords": [],
   "author": "",
@@ -25,5 +24,10 @@
     "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
     "validator": "^13.12.0"
-  }
+  },
+  "devDependencies": {},
+  "name": "your-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:8080"
 }

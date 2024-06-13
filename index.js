@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const errorMiddleware = require('./middlewares/error.js');
 
-// Load environment variables
 dotenv.config();
 const PORT = process.env.PORT || 8080;
 const MONGO_URL = process.env.MONGO_URL;
@@ -16,8 +15,8 @@ console.log(MONGO_URL);
 
 // Check if MONGO_URL is defined
 if (!MONGO_URL) {
-    console.error("MONGO_URL is not defined in the environment variables.");
-    process.exit(1); // Terminate the application
+  console.error("MONGO_URL is not defined in the environment variables.");
+  process.exit(1); // Terminate the application
 }
 
 // MongoDB connection
