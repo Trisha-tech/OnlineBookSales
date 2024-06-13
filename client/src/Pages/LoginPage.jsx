@@ -1,53 +1,68 @@
-"use client";
+
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton"; // Import IconButton
+import VisibilityIcon from "@mui/icons-material/Visibility"; // Import VisibilityIcon
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Import VisibilityOffIcon
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Lottie from "lottie-react";
-import loginAnimation from '../Lottie-animation/loginAnimation.json'
+import loginAnimation from "../Lottie-animation/loginAnimation.json";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); //state to store error message
-  const { setUserLoggedIn }= useAuth()
-  const { showToast } = useToast()
+  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
+  const [error, setError] = useState("");
+  const { setUserLoggedIn } = useAuth();
+  const { showToast } = useToast();
   let navigate = useNavigate();
 
-  // handle Submit function
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/customer/login", { email, password })
+      const response = await axios.post("http://localhost:8080/customer/login", {
+        email,
+        password,
+      });
       console.log(response.data);
-      toast.success("login sucess")
-      // reset form and err msg on sucess
+      toast.success("login success");
       setEmail("");
       setPassword("");
       setError("");
       const { token } = response.data;
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
       setUserLoggedIn(true);
-      showToast("success","","Logged in successfully");
-      navigate('/', { replace: true });
+      showToast("success", "", "Logged in successfully");
+      navigate("/", { replace: true });
     } catch (err) {
-      setError(err.response.data.message);//set error message received from backend
+      setError(err.response.data.message);
     }
+  };
 
-  }
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <Container maxWidth="xl">
       <div style={{ marginTop: "100px", marginBottom: "180px" }}>
-<Toaster/>
-        <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
+        <Toaster />
+        <Grid container spacing={2} sx={{ justifyContent: "center" }}>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Lottie animationData={loginAnimation} style={{ height: '500px' }} className="fromLeft" />
+              <Lottie
+                animationData={loginAnimation}
+                style={{ height: "500px" }}
+                className="fromLeft"
+              />
             </Box>
           </Grid>
           <Grid
@@ -60,7 +75,6 @@ const LoginPage = () => {
               justifyContent: "center",
             }}
           >
-
             <form onSubmit={handleSubmit} className="fromRight">
               <Typography variant="h5" align="center" gutterBottom>
                 Login
@@ -73,16 +87,28 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 margin="normal"
               />
-              <TextField
-                fullWidth
-                label="Password"
-                type="password"
-                variant="outlined"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                margin="normal"
-              />
-              {error && <Typography color="error" align="center">{error}</Typography>}
+              <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type={showPassword ? "text" : "password"} // Set input type dynamically
+                  variant="outlined"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  margin="normal"
+                />
+                <IconButton
+                  onClick={togglePasswordVisibility}
+                  sx={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)" }}
+                >
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              </Box>
+              {error && (
+                <Typography color="error" align="center">
+                  {error}
+                </Typography>
+              )}
               <Button
                 variant="contained"
                 type="submit"
