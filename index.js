@@ -64,4 +64,4 @@ app.use("admin", authorizeRoles, admin);
 app.use(errorMiddleware);
 app.get("/", (req, res) => {
   res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
-})
+});
