@@ -1,17 +1,29 @@
-const express = require('express');
+const express = require(`express`);
+const path=require('path');
 const app = express();
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const errorMiddleware = require('./middlewares/error.js');
+const dotenv = require(`dotenv`);
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 
-dotenv.config();
+const errorMiddleware = require("./middlewares/error.js");
+
+// dotenv.config({path : `.env`})
+require("dotenv").config();
 const PORT = process.env.PORT || 8080;
+console.log(process.env.MONGO_URL);
+
+/*MONGODB CONNECTION START*/
 const MONGO_URL = process.env.MONGO_URL;
 
-console.log(MONGO_URL);
+// cors
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "http://localhost:3000", // your frontend's origin
+    optionsSuccessStatus: 200,
+  }),
+);
 
 // Check if MONGO_URL is defined
 if (!MONGO_URL) {
@@ -24,20 +36,17 @@ mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
-mongoose.connection.on('connected', () => {
+mongoose.connection.on("connected", () => {
     console.log("Connected to MongoDB");
-});
-
-mongoose.connection.on('error', (err) => {
+  });
+  mongoose.connection.on("error", (err) => {
     console.log("Error Connecting to Database", err);
-});
+  });
+  /*MONGODB CONNECTION END*/
 
-// Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
 // Route Imports
 const customerRoutes = require('./routes/customerRoutes.js');
@@ -46,19 +55,17 @@ const orderRoutes = require('./routes/orderRoutes.js');
 const adminRoutes = require('./routes/adminRoutes.js');
 const { authorizeRoles } = require('./middlewares/auth.js');
 
-// Route Middleware
-app.use('/api/customer', customerRoutes);
-app.use('/api/product', productRoutes);  // Ensure this line is correct
-app.use('/api/order', orderRoutes);
-app.use('/api/admin', authorizeRoles, adminRoutes);
+app.use("/customer", customer);
+app.use("/api/product", productRoutes);
+app.use("/order", order);
 
-// Error Middleware
+app.use("admin", authorizeRoles, admin);
+// Middleware for Errors
 app.use(errorMiddleware);
-
-app.get('/', (req, res) => {
-    res.send(`Welcome to Scizers Assignment! Made by Trisha Sahu`);
+app.get("/", (req, res) => {
+  res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
