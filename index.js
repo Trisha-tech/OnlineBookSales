@@ -2,7 +2,7 @@ const express = require(`express`);
 const path=require('path');
 const app = express();
 const dotenv = require(`dotenv`);
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
@@ -33,27 +33,27 @@ if (!MONGO_URL) {
 
 // MongoDB connection
 mongoose.connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 mongoose.connection.on("connected", () => {
-    console.log("Connected to MongoDB");
-  });
-  mongoose.connection.on("error", (err) => {
-    console.log("Error Connecting to Database", err);
-  });
-  /*MONGODB CONNECTION END*/
+  console.log("Connected to MongoDB");
+});
+mongoose.connection.on("error", (err) => {
+  console.log("Error Connecting to Database", err);
+});
+/*MONGODB CONNECTION END*/
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route Imports
-const customerRoutes = require('./routes/customerRoutes.js');
-const productRoutes = require('./routes/productRoutes.js');  // Make sure this import statement is correct
-const orderRoutes = require('./routes/orderRoutes.js');
-const adminRoutes = require('./routes/adminRoutes.js');
-const { authorizeRoles } = require('./middlewares/auth.js');
+const customer = require("./routes/customerRoutes.js");
+const product = require("./routes/productRoutes.js");
+const order = require("./routes/orderRoutes.js");
+const admin = require("./routes/adminRoutes.js");
+const { authorizeRoles } = require("./middlewares/auth.js");
 
 app.use("/customer", customer);
 app.use("/api/product", productRoutes);
