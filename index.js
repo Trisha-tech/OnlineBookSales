@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const errorMiddleware = require("./middlewares/error.js");
 
 // dotenv.config({path : `.env`})
-require("dotenv").config();
+require('dotenv').config();
 const PORT = process.env.PORT || 8080;
 console.log(process.env.MONGO_URL);
 
@@ -17,7 +17,7 @@ console.log(process.env.MONGO_URL);
 const MONGO_URL = process.env.MONGO_URL;
 
 // cors
-const cors = require("cors");
+const cors=require("cors");
 app.use(
   cors({
     origin: "http://localhost:3000", // your frontend's origin
@@ -53,19 +53,19 @@ const customer = require("./routes/customerRoutes.js");
 const product = require("./routes/productRoutes.js");
 const order = require("./routes/orderRoutes.js");
 const admin = require("./routes/adminRoutes.js");
-const { authorizeRoles } = require("./middlewares/auth.js");
+const { authorizeRoles } = require('./middlewares/auth.js');
 
 app.use("/customer", customer);
 app.use("/api/product", productRoutes);
 app.use("/order", order);
 
-app.use("admin", authorizeRoles, admin);
+app.use('admin', authorizeRoles, admin);
 // Middleware for Errors
 app.use(errorMiddleware);
-app.get("/", (req, res) => {
-  res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
-});
+app.get('/', (req, res) => {
+    res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
+})
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(PORT, ()=>{
+    console.log(`Server is running on port ${PORT}`);
 });
