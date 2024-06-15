@@ -17,7 +17,6 @@ console.log(process.env.MONGO_URL);
 const MONGO_URL = process.env.MONGO_URL;
 
 // cors
-const cors=require("cors");
 app.use(
   cors({
     origin: "http://localhost:3000", // your frontend's origin
@@ -59,13 +58,8 @@ app.use("/customer", customer);
 app.use("/api/product", productRoutes);
 app.use("/order", order);
 
-app.use('admin', authorizeRoles, admin);
 // Middleware for Errors
 app.use(errorMiddleware);
 app.get('/', (req, res) => {
     res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
 })
-
-app.listen(PORT, ()=>{
-    console.log(`Server is running on port ${PORT}`);
-});
