@@ -1,7 +1,9 @@
-const express = require(`express`);
-const path=require('path');
+
+const express = require("express");
+const path=require("path");
 const app = express();
-const dotenv = require(`dotenv`);
+const dotenv = require("dotenv");
+
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -56,7 +58,7 @@ const admin = require("./routes/adminRoutes.js");
 const { authorizeRoles } = require("./middlewares/auth.js");
 
 app.use("/customer", customer);
-app.use("/product", product);
+app.use("/api/product", productRoutes);
 app.use("/order", order);
 
 app.use("admin", authorizeRoles, admin);
@@ -64,9 +66,12 @@ app.use("admin", authorizeRoles, admin);
 app.use(errorMiddleware);
 app.get("/", (req, res) => {
   res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
-});
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+})
+
+app.listen(PORT,()=>{
+    console.log(`Server is running on port ${PORT}`);
+})
+
+
 
