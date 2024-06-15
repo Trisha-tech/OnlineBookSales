@@ -63,5 +63,4 @@ app.use("admin", authorizeRoles, admin);
 // Middleware for Errors
 app.use(errorMiddleware);
 app.get("/", (req, res) => {
-  res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
-});
+  res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);});
