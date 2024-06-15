@@ -56,7 +56,7 @@ const admin = require("./routes/adminRoutes.js");
 const { authorizeRoles } = require("./middlewares/auth.js");
 
 app.use("/customer", customer);
-app.use("/product", product);
+app.use("/api/product", productRoutes);
 app.use("/order", order);
 
 app.use("admin", authorizeRoles, admin);
