@@ -1,5 +1,4 @@
 const express = require(`express`);
-const path = require('path');
 const app = express();
 const dotenv = require(`dotenv`);
 const mongoose = require("mongoose");
@@ -64,8 +63,4 @@ app.use("admin", authorizeRoles, admin);
 app.use(errorMiddleware);
 app.get("/", (req, res) => {
   res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });
