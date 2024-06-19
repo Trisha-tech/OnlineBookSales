@@ -1,7 +1,12 @@
+import { useState } from "react";
+import Spinner from "./Spinner";
 function Cart(){
-    return(
+    const [isLoading, setIsLoading] = useState(true);
+    const [data, setData] = useState(null);
+    return(  
         <div>
             this will contain information related to carts.
+            <Spinner/>
         </div>
     )
 }

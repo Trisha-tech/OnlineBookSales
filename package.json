@@ -26,9 +26,10 @@
     "nodemon": "^2.0.22",
     "validator": "^13.12.0"
   },
-  {
+  "your-frontend":{
   "name": "your-frontend",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8080"
+}
 }
