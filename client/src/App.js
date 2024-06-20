@@ -24,6 +24,9 @@ function App() {
     <Router>
       <div className="App">
         <Navbar/>
+       <button id="dark-mode-toggle" onClick={toggleDarkMode}>
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
+          </button>
         <Routes>
           <Route path="/"         exact element={<HomePage/>} />
           <Route path="/shop"     exact element={<Shop/>} />
