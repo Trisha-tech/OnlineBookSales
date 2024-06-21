@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Button, useMediaQuery, useTheme, styled } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -9,6 +9,9 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
 import { useToast } from "../../Context/ToastContext";
+import sunIcon from '../../assets/sun.png'; // Adjust the path as necessary
+import moonIcon from '../../assets/moon.png'; // Adjust the path as necessary
+
 const StyledAppBar = styled(AppBar)({
   backgroundColor: '#002147', // Adjust color to your preference
 });
@@ -21,17 +24,14 @@ const StyledButton = styled(Button)({
   },
 });
 
-
-
-function Navbar() {
+function Navbar({ darkMode, toggleDarkMode }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [openMenu, setOpenMenu] = useState(false);
 
   const { userLoggedIn, setUserLoggedIn } = useAuth();
   let navigate = useNavigate();
-  const {showToast} =useToast();
-  
+  const { showToast } = useToast();
 
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
@@ -49,7 +49,7 @@ function Navbar() {
 
     setUserLoggedIn(false); // Update the user logged-in state
     navigate('/', { replace: true }); // Redirect to home page
-    showToast("success","","Logged out successfully");
+    showToast("success", "", "Logged out successfully");
   };
 
   return (
@@ -58,6 +58,9 @@ function Navbar() {
         <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1, fontSize: '1.5rem' }}>
           Book4u
         </Typography>
+        <IconButton onClick={toggleDarkMode} style={{ marginRight: '10px' }}>
+          <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
+        </IconButton>
         {isMobile ? (
           <IconButton
             edge="start"
