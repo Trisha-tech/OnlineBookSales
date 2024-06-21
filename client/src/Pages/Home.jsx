@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import B1Child from '../assets/image/B1Child.jpeg'; 
+import Spinner from './Spinner'
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true); // when home page data will come from backend then setData = data from backend and setIsLoading = false;
+  const [data, setData] = useState(null);
   return (
     <div className="bg-gray-100">
       {/* Image Container */}
