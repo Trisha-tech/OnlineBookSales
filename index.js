@@ -22,9 +22,11 @@ const MONGO_URL = process.env.MONGO_URL;
 const cors = require("cors");
 app.use(
   cors({
-    origin: "http://localhost:3000", // your frontend's origin
-    optionsSuccessStatus: 200,
-  }),
+    origin: "http://localhost:3000", // Allow requests from localhost:3000
+    credentials: true, // Allow sending cookies from the frontend
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow the HTTP methods you use
+    allowedHeaders: ["Content-Type", "auth-token", "Origin", "X-Requested-With", "Accept"], // Allow headers
+  })
 );
 
 // Check if MONGO_URL is defined
@@ -55,12 +57,13 @@ const customer = require("./routes/customerRoutes.js");
 const productRoutes = require("./routes/productRoutes.js");
 const order = require("./routes/orderRoutes.js");
 const admin = require("./routes/adminRoutes.js");
+const wishlistRoutes = require("./routes/wishlistRoutes.js");
 const { authorizeRoles } = require("./middlewares/auth.js");
 
 app.use("/customer", customer);
 app.use("/api/product", productRoutes);
 app.use("/order", order);
-
+app.use("/api/wishlist", wishlistRoutes);
 app.use("admin", authorizeRoles, admin);
 // Middleware for Errors
 app.use(errorMiddleware);
