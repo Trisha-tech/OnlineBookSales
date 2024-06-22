@@ -52,7 +52,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route Imports
 const customer = require("./routes/customerRoutes.js");
-const product = require("./routes/productRoutes.js");
+const productRoutes = require("./routes/productRoutes.js");
 const order = require("./routes/orderRoutes.js");
 const admin = require("./routes/adminRoutes.js");
 const { authorizeRoles } = require("./middlewares/auth.js");

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Spinner from './Spinner';
 
 const ProductItem = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/product/admin/products');
         setProducts(response.data.products);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching products', error);
       }
@@ -17,7 +20,7 @@ const ProductItem = () => {
     fetchProducts();
   }, []);
 
-  // Function to render individual book items
+  
   const renderBooks = (books) => {
     return books.map((book) => (
       <div key={book._id} className="bg-white rounded-lg shadow-lg p-6 mb-6 flex flex-col relative">
@@ -36,15 +39,20 @@ const ProductItem = () => {
 
   return (
     <div className="bg-gray-100 p-6">
-      {categories.map((category) => (
-        <section key={category} className="container mx-auto my-8">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">{category}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {renderBooks(products.filter((book) => book.category === category))}
-          </div>
-        </section>
-      ))}
+      {isLoading ? (
+        <Spinner /> // Display spinner while data is not loaded
+      ) : (
+        categories.map((category) => (
+          <section key={category} className="container mx-auto my-8">
+            <h2 className="text-3xl font-bold mb-6 text-gray-800">{category}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {renderBooks(products.filter((book) => book.category === category))}
+            </div>
+          </section>
+        ))
+      )}
     </div>
+
   );
 };
 
