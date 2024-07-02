@@ -22,18 +22,22 @@ const Home = () => {
     }, 2000);
   }, []);
 
+
   const handleSearch = (query) => {
     console.log('Search query:', query);
     // Implement search logic here
   };
+
 
   return (
     <div className="bg-gray-100">
       {isLoading && <Spinner />}
       {!isLoading && (
         <>
+
           {/* Search Bar */}
           <SearchBar onSearch={handleSearch} />
+
 
           {/* Image Container */}
           <header className="bg-white shadow">

@@ -1,6 +1,5 @@
-
 const express = require("express");
-const path=require("path");
+const path = require("path");
 const app = express();
 const dotenv = require("dotenv");
 
@@ -10,22 +9,27 @@ const bodyParser = require("body-parser");
 
 const errorMiddleware = require("./middlewares/error.js");
 
-// dotenv.config({path : `.env`})
-require("dotenv").config();
+// Load environment variables from .env file
+dotenv.config({ path: ".env" });
 const PORT = process.env.PORT || 8080;
 console.log(process.env.MONGO_URL);
 
-/*MONGODB CONNECTION START*/
+/* MONGODB CONNECTION START */
 const MONGO_URL = process.env.MONGO_URL;
 
-// cors
+// CORS
 const cors = require("cors");
 app.use(
   cors({
+
+    origin: "http://localhost:3000", // your frontend's origin
+    optionsSuccessStatus: 200,
+
     origin: "http://localhost:3000", // Allow requests from localhost:3000
     credentials: true, // Allow sending cookies from the frontend
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow the HTTP methods you use
     allowedHeaders: ["Content-Type", "auth-token", "Origin", "X-Requested-With", "Accept"], // Allow headers
+
   })
 );
 
@@ -46,7 +50,7 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => {
   console.log("Error Connecting to Database", err);
 });
-/*MONGODB CONNECTION END*/
+/* MONGODB CONNECTION END */
 
 app.use(express.json());
 app.use(cookieParser());
@@ -63,18 +67,25 @@ const { authorizeRoles } = require("./middlewares/auth.js");
 app.use("/customer", customer);
 app.use("/api/product", productRoutes);
 app.use("/order", order);
+
+
+app.use("/admin", authorizeRoles, admin);
+
+
 app.use("/api/wishlist", wishlistRoutes);
 app.use("admin", authorizeRoles, admin);
+
 // Middleware for Errors
 app.use(errorMiddleware);
+
 app.get("/", (req, res) => {
-  res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
+  res.send(`Welcome to Scizers Assignment !!! Made by Trisha Sahu`);
+});
 
-})
+// New Route for Cart
+const cartRoutes = require("./routes/cartRoutes.js");
+app.use("/api/cart", cartRoutes);
 
-app.listen(PORT,()=>{
-    console.log(`Server is running on port ${PORT}`);
-})
-
-
-
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
