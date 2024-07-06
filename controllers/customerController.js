@@ -39,6 +39,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
 
     // Access JWT secret key from environment variables
     const jwtSecret = process.env.JWT_SECRET;
+    console.log(jwtSecret);
 
     // Check if jwtSecret is defined
     if (!jwtSecret) {
