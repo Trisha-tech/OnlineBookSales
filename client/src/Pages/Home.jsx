@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import B1Child from '../assets/image/B1Child.jpeg'; 
 import AuthorImage from '../assets/image/author1.jpeg'
 import Spinner from './Spinner';
+import SearchBar from './SearchBar'; // Import the SearchBar component
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,11 +22,23 @@ const Home = () => {
     }, 2000);
   }, []);
 
+
+  const handleSearch = (query) => {
+    console.log('Search query:', query);
+    // Implement search logic here
+  };
+
+
   return (
     <div className="bg-gray-100">
       {isLoading && <Spinner />}
       {!isLoading && (
         <>
+
+          {/* Search Bar */}
+          <SearchBar onSearch={handleSearch} />
+
+
           {/* Image Container */}
           <header className="bg-white shadow">
             <div className="container mx-auto p-6">
