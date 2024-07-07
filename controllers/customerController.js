@@ -9,6 +9,7 @@ require("dotenv").config();
 const validator = require('validator');
 const disposableEmailDomains = require('disposable-email-domains');
 
+
 exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -33,13 +34,18 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
         url: "ThisisSecureUrl",
       },
     });
-  
+
     sendToken(customer, 201, res);
+    const refreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
+
+    if (customer) {
+      await Customer.findByIdAndUpdate(customer._id, { refreshToken });
+    }
+
 
 
     // Access JWT secret key from environment variables
     const jwtSecret = process.env.JWT_SECRET;
-    console.log(jwtSecret);
 
     // Check if jwtSecret is defined
     if (!jwtSecret) {
@@ -55,6 +61,18 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
 
     const token = jwt.sign(payload, jwtSecret);
     sendToken(customer, 201, res);
+
+    const options = {
+      expires: new Date(Date.now() + process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+
+    res.status(201).cookie('refreshToken', refreshToken, options).json({
+      success: true,
+      refreshToken,
+      customer,
+    });;
+
   } catch (error) {
     console.error("Error occurred during user registration:", error);
     next(error); // Pass the error to the error handling middleware
@@ -65,47 +83,68 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
 
 // CUSTOMER LOGIN ROUTE
 exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
-    const { email, password } = req.body;
-   
-    if (!email || !password) {
-      return next(new ErrorHandler("Please Enter Email & Password", 400));
-    }
-  
-    const customer = await Customer.findOne({ email }).select("+password");
-  
-    if (!customer) {
-      return next(new ErrorHandler("Invalid email or password", 401));
-    }
-  
-    const isPasswordMatched = await customer.comparePassword(password);
-  
-    if (!isPasswordMatched) {
-      return next(new ErrorHandler("Invalid email or password", 401));
-    }
-  
-    sendToken(customer, 200, res);
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return next(new ErrorHandler("Please Enter Email & Password", 400));
+  }
+
+  const customer = await Customer.findOne({ email }).select("+password");
+
+  if (!customer) {
+    return next(new ErrorHandler("Invalid email or password", 401));
+  }
+
+  const isPasswordMatched = await customer.comparePassword(password);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Invalid email or password", 401));
+  }
+
+  sendToken(customer, 200, res);
+  const refreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
+
+  if (customer) {
+    await Customer.findByIdAndUpdate(customer._id, { refreshToken });
+  }
+
+  const options = {
+    expires: new Date(Date.now() + process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+    httpOnly: true,
+  };
+
+  res.status(200).cookie('refreshToken', refreshToken, options).json({
+    success: true,
+    refreshToken,
+    customer,
   });
-  
-    //CUSTOMER LOGOUT ROUTE
-    exports.logoutCustomer = catchAsyncErrors(async (req,res,next) => {
-      const customer = await Customer.findById(req.user.id);
-       
-      if(!customer){
-        return next(new ErrorHandler("Invalid logout request", 401));
-      }
-  
-      const options = {
-        httpOnly: true,
-        secure: true
-      }
-  
-      return res.status(200)
-                .clearCookie("token", options)
-                .json({
-                   success: true
-                })
-      
+});
+
+//CUSTOMER LOGOUT ROUTE
+exports.logoutCustomer = catchAsyncErrors(async (req, res, next) => {
+  const customer = await Customer.findById(req.user.id);
+
+  if (!customer) {
+    return next(new ErrorHandler("Invalid logout request", 401));
+  }
+  const updatedCustomer = await Customer.findOneAndUpdate(
+    { _id: req.user.id },
+    { refreshToken: null },
+    { new: true }
+  );
+  const options = {
+    httpOnly: true,
+    secure: true
+  }
+
+  return res.status(200)
+    .clearCookie("token", options)
+    .clearCookie("refreshToken", options)
+    .json({
+      success: true
     })
+
+})
     
   
 
@@ -200,3 +239,47 @@ sendMailToAdmin = async (newFeedback) => {
     text: `New Feedback received from ${newFeedback.user}`,
   };
 };
+
+
+exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
+  const refreshToken = req.cookies.refreshToken;
+
+  if (!refreshToken) {
+    return next(new ErrorHandler("Refresh token is required", 400));
+  }
+
+  try {
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const customer = await Customer.findById(decoded.id);
+
+    if (!customer || customer.refreshToken !== refreshToken) {
+      return next(new ErrorHandler("Invalid refresh token", 401));
+    }
+
+    const accessToken = customer.getJWTToken(); 
+
+    const newRefreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
+
+    const updatedCustomer =await Customer.findByIdAndUpdate(customer._id,{refreshTOken:newRefreshToken})
+    
+    const accessTokenOptions = {
+      expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+    const refreshTokenOptions = {
+      expires: new Date(Date.now() + process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+
+    res.cookie('accessToken', accessToken, accessTokenOptions);
+    res.cookie('refreshToken', newRefreshToken, refreshTokenOptions);
+
+    res.status(200).json({
+      success: true,
+      accessToken,
+      refreshToken
+    });
+  } catch (error) {
+    return next(new ErrorHandler("Invalid refresh token", 401));
+  }
+});
