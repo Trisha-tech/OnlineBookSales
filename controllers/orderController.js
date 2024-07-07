@@ -2,6 +2,10 @@ const Order = require("../models/orderSchema.js");
 const Product = require("../models/productSchema.js");
 const ErrorHandler = require("../utils/errorHandler.js");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
+const Razorpay = require('razorpay');
+
+const razorpay_secret = process.env.RAZOR_PAY_SECRET;
+var instance = new Razorpay({ key_id: 'YOUR_KEYID', key_secret: "RAZORPAY_SECRET" })
 
 // CREATE NEW ORDER
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
@@ -116,4 +120,30 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
     });
   });
   
+  //Order Creation for Razorpay
+  exports.createOrder = catchAsyncErrors(async(req,res)=>{
+    try{
+        let amount = req.body.amount;
+        amount = amount*100;
+
+        var options = {
+            amount: amount,  // amount in the smallest currency unit
+            currency: "INR",
+            receipt: "order_rcptid_11"
+        };
+
+        const order = await instance.orders.create(options);
+
+        if(order){
+            console.log(order);
+            res.json({
+                order : order
+            });
+        }else{
+            res.status(500).send("Error");
+        }
+    }catch(error){
+        res.status(500).send(error);
+    }
+});
   
