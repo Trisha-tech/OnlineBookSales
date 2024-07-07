@@ -21,7 +21,7 @@ function Footer() {
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Payments</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Shipping</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Cancellation & Returns</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">FAQs</Link></li>
+                        <li><Link to="/faqs" className="hover:text-yellow-300 text-lg">FAQs</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">
