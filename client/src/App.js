@@ -1,4 +1,5 @@
 import "./App.css";
+// import {Outlet} from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { Navbar, Footer } from './Components/index.js';
 import { Product } from './Components/index';
@@ -28,7 +29,7 @@ function App() {
   useEffect(() => {
     if (darkMode) {
       document.body.style.backgroundColor = '#121212';
-      document.body.style.color = 'white';
+      document.body.style.color = 'black';
     } else {
       document.body.style.backgroundColor = 'white';
       document.body.style.color = 'black';
@@ -60,8 +61,6 @@ function App() {
             <Route path="/password/reset/:token" element={<ResetPassword />} />
             <Route path="/contactus" element={<Contact />} />
             <Route path="/faqs" element={<FAQ />} />
-            <Route path="/password/forgot" element={<ForgotPassword />}/>
-            <Route  path="/password/reset/:token" element={<ResetPassword />} />
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
