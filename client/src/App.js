@@ -37,6 +37,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/contactus" element={<Contact />} />
+            <Route path="/faqs" element={<FAQ/>}/>            
             <Route path="/password/forgot" element={<ForgotPassword />}/>
             <Route  path="/password/reset/:token" element={<ResetPassword />} />
         </Routes>
