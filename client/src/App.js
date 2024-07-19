@@ -28,16 +28,17 @@ function App() {
       <div className="App">
         <Navbar/>
         <Routes>
-          <Route path="/" exact element={<HomePage/>} />
-          <Route path="/shop" exact element={<Shop/>} />
-          <Route path="/shop/:id" element={<Product/>} />
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/signup" element={<SignUpPage/>} />
-          <Route path="/wishlist" element={<Wishlist/>} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path="/orders" element={<Orders/>} />
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="/password/forgot" element={<ForgotPassword />}/>
+        <Route path="/" exact element={<HomePage darkMode={darkMode} />} />
+            <Route path="/shop" exact element={<Shop />} />
+            <Route path="/shop/:id" element={<Product />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/contactus" element={<Contact />} />
+            <Route path="/faqs" element={<FAQ/>}/>
+            <Route path="/password/forgot" element={<ForgotPassword />}/>
             <Route  path="/password/reset/:token" element={<ResetPassword />} />
         </Routes>
         <Toast position="bottom-right"/>
