@@ -17,8 +17,6 @@ import Contact from "./Pages/Contact.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './Animations.css';
 import FAQ from "./Pages/Faq.jsx";
-import ForgotPassword from "./Pages/ForgotPassword.jsx";
-import ResetPassword from "./Pages/ResetPassword.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -59,8 +57,6 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/contactus" element={<Contact />} />
             <Route path="/faqs" element={<FAQ />} />
-            <Route path="/password/forgot" element={<ForgotPassword />} />
-            <Route path="/password/reset/:token" element={<ResetPassword />} />
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
