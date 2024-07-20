@@ -10,7 +10,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../Lottie-animation/loginAnimation.json";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 
@@ -136,7 +136,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-
-
-
