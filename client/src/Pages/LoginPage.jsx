@@ -17,13 +17,13 @@ import { useToast } from "../Context/ToastContext";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); //state to store error message
+  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
+  const [error, setError] = useState("");
   const { setUserLoggedIn } = useAuth();
   const { showToast } = useToast();
   let navigate = useNavigate();
 
-  // handle Submit function
-  const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -33,7 +33,6 @@ const LoginPage = () => {
          });
       console.log(response.data);
       toast.success("login sucess");
-      // reset form and err msg on sucess
       setEmail("");
       setPassword("");
       setError("");
@@ -97,6 +96,23 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 margin="normal"
               />
+               <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type={showPassword ? "text" : "password"} // Set input type dynamically
+                  variant="outlined"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  margin="normal"
+                />
+                <IconButton
+                  onClick={togglePasswordVisibility}
+                  sx={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)" }}
+                >
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              </Box>
               {error && (
                 <Typography color="error" align="center">
                   {error}
@@ -113,10 +129,6 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-              {/* Forgot Password Link */}
-              <Typography align="center" sx={{ mt: 2, mr: 2 }}>
-                <Link to="/password/forgot">Forgot Password?</Link>
-              </Typography>
               <Typography align="center" sx={{ mt: 2, mr: 2 }}>
                 Don't have an account? <a href="/signup">Sign up</a>
               </Typography>
