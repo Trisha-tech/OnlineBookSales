@@ -1,23 +1,37 @@
 const express = require(`express`);
+const path = require("path");
 const app = express();
 const dotenv = require(`dotenv`);
+
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 const errorMiddleware = require("./middlewares/error.js");
 
-// dotenv.config({path : `.env`})
-require("dotenv").config();
+// Load environment variables from .env file
+dotenv.config({ path: ".env" });
 const PORT = process.env.PORT || 8080;
 console.log(process.env.MONGO_URL);
 
 /*MONGODB CONNECTION START*/
 const MONGO_URL = process.env.MONGO_URL;
 
-// cors
+// CORS
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+
+    origin: "http://localhost:3000", // your frontend's origin
+    optionsSuccessStatus: 200,
+
+    origin: "http://localhost:3000", // Allow requests from localhost:3000
+    credentials: true, // Allow sending cookies from the frontend
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow the HTTP methods you use
+    allowedHeaders: ["Content-Type", "auth-token", "Origin", "X-Requested-With", "Accept"], // Allow headers
+
+  })
+);
 
 // Check if MONGO_URL is defined
 if (!MONGO_URL) {
@@ -53,13 +67,23 @@ const {authorizeRoles} = require("./middlewares/auth.js");
 app.use("/customer", customer);
 app.use("/product", product);
 app.use("/order", order);
-app.use("/admin", authorizeRoles, admin);
-app.use("/auth", auth);
 
+
+app.use("/admin", authorizeRoles, admin);
+
+app.use("/api/wishlist", wishlistRoutes);
+app.use("admin", authorizeRoles, admin);
+
+// Middleware for Errors
 app.use(errorMiddleware);
+
 app.get("/", (req, res) => {
-  res.send(`Welcome to Scizers Assignment !!!    Made by Trisha Sahu`);
+  res.send(`Welcome to Scizers Assignment !!! Made by Trisha Sahu`);
 });
+
+// New Route for Cart
+const cartRoutes = require("./routes/cartRoutes.js");
+app.use("/api/cart", cartRoutes);
 
 app.listen(PORT,() => {
   console.log(`Server is running on port ${PORT}`);
