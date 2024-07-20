@@ -159,6 +159,82 @@ exports.getCustomerDetails = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// CUSTOMER FORGOT PASSWORD ROUTE
+exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return next(new ErrorHandler("Please provide an email address", 400));
+  }
+
+  const customer = await Customer.findOne({ email });
+
+  if (!customer) {
+    return next(new ErrorHandler("Customer not found", 404));
+  }
+
+  // Generate reset token
+  const resetToken = customer.getResetPasswordToken();
+
+  await customer.save({ validateBeforeSave: false });
+
+  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  console.log("Reset URL:", resetUrl);
+
+  const message = `Your password reset token is as follows:\n\n${resetUrl}\n\nIf you have not requested this email, please ignore it.`;
+
+  try {
+    await sendEmail({
+      email: customer.email,
+      subject: "Password Recovery",
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to: ${customer.email}`,
+    });
+  } catch (error) {
+    customer.resetPasswordToken = undefined;
+    customer.resetPasswordExpire = undefined;
+
+    await customer.save({ validateBeforeSave: false });
+
+    return next(new ErrorHandler("Email could not be sent", 500));
+  }
+});
+
+// CUSTOMER RESET PASSWORD ROUTE
+exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
+
+  const customer = await Customer.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+
+  if (!customer) {
+    return next(new ErrorHandler("Invalid or expired reset token", 400));
+  }
+
+  // Set new password
+  customer.password = req.body.password;
+  customer.resetPasswordToken = undefined;
+  customer.resetPasswordExpire = undefined;
+
+  await customer.save();
+  console.log("Password updated for user:", customer.email); // Debugging line
+
+  res.status(200).json({
+    success: true,
+    message: "Password updated successfully",
+  });
+});
+
+
 // UPDATE CUSTOMER PASSWORD
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const customer = await Customer.findById(req.user.id).select("+password");
@@ -284,77 +360,3 @@ exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
-// CUSTOMER FORGOT PASSWORD ROUTE
-exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
-  const { email } = req.body;
-
-  if (!email) {
-    return next(new ErrorHandler("Please provide an email address", 400));
-  }
-
-  const customer = await Customer.findOne({ email });
-
-  if (!customer) {
-    return next(new ErrorHandler("Customer not found", 404));
-  }
-
-  // Generate reset token
-  const resetToken = customer.getResetPasswordToken();
-
-  await customer.save({ validateBeforeSave: false });
-
-  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
-  console.log("Reset URL:", resetUrl);
-
-  const message = `Your password reset token is as follows:\n\n${resetUrl}\n\nIf you have not requested this email, please ignore it.`;
-
-  try {
-    await sendEmail({
-      email: customer.email,
-      subject: "Password Recovery",
-      message,
-    });
-
-    res.status(200).json({
-      success: true,
-      message: `Email sent to: ${customer.email}`,
-    });
-  } catch (error) {
-    customer.resetPasswordToken = undefined;
-    customer.resetPasswordExpire = undefined;
-
-    await customer.save({ validateBeforeSave: false });
-
-    return next(new ErrorHandler("Email could not be sent", 500));
-  }
-});
-
-// CUSTOMER RESET PASSWORD ROUTE
-exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
-  const resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(req.params.token)
-    .digest("hex");
-
-  const customer = await Customer.findOne({
-    resetPasswordToken,
-    resetPasswordExpire: { $gt: Date.now() },
-  });
-
-  if (!customer) {
-    return next(new ErrorHandler("Invalid or expired reset token", 400));
-  }
-
-  // Set new password
-  customer.password = req.body.password;
-  customer.resetPasswordToken = undefined;
-  customer.resetPasswordExpire = undefined;
-
-  await customer.save();
-  console.log("Password updated for user:", customer.email); // Debugging line
-
-  res.status(200).json({
-    success: true,
-    message: "Password updated successfully",
-  });
-});
