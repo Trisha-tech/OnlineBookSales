@@ -10,7 +10,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../Lottie-animation/loginAnimation.json";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 
@@ -120,6 +120,10 @@ const LoginPage = () => {
               >
                 Login
               </Button>
+                 {/* Forgot Password Link */}
+                 <Typography align="center" sx={{ mt: 2, mr: 2 }}>
+                <Link to="/password/forgot">Forgot Password?</Link>
+              </Typography>
               <Typography align="center" sx={{ mt: 2, mr: 2 }}>
                 Don't have an account? <a href="/signup">Sign up</a>
               </Typography>
@@ -132,3 +136,7 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+
+
+
