@@ -5,12 +5,11 @@ const sendToken = require("../utils/jwtToken");
 const ErrorHandler = require("../utils/errorHandler.js");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+// CUSTOMER REGISTRATION ROUTE
 const validator = require('validator');
 const disposableEmailDomains = require('disposable-email-domains');
-const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
 
-// CUSTOMER REGISTRATION ROUTE
+
 exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -146,8 +145,8 @@ exports.logoutCustomer = catchAsyncErrors(async (req, res, next) => {
     })
 
 })
- 
-
+    
+  
 
 
 // GET CUSTOMER DETAIL
@@ -284,7 +283,6 @@ exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid refresh token", 401));
   }
 });
-
 
 // CUSTOMER FORGOT PASSWORD ROUTE
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
