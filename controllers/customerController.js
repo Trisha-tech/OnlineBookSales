@@ -1,6 +1,6 @@
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
 const Customer = require("../models/customerSchema.js");
-const Feedback = require("../models/feebackSchema.js");
+const Feedback = require("../models/feedbackSchema.js");
 const sendToken = require("../utils/jwtToken");
 const ErrorHandler = require("../utils/errorHandler.js");
 const sendEmail = require("../utils/sendEmail");
@@ -37,7 +37,6 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
       },
     });
 
-    sendToken(customer, 201, res);
     const refreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
 
     if (customer) {
@@ -99,7 +98,6 @@ exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
-  sendToken(customer, 200, res);
   const refreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
 
   if (customer) {
@@ -125,23 +123,24 @@ exports.logoutCustomer = catchAsyncErrors(async (req, res, next) => {
   if (!customer) {
     return next(new ErrorHandler("Invalid logout request", 401));
   }
-  const updatedCustomer = await Customer.findOneAndUpdate(
+
+  await Customer.findOneAndUpdate(
     { _id: req.user.id },
     { refreshToken: null },
     { new: true }
   );
+
   const options = {
     httpOnly: true,
-    secure: true
-  }
+    secure: true,
+  };
 
   return res.status(200)
     .clearCookie("token", options)
     .clearCookie("refreshToken", options)
     .json({
-      success: true
-    })
-
+      success: true,
+    });
 });
 
 // GET CUSTOMER DETAIL
@@ -158,9 +157,7 @@ exports.getCustomerDetails = catchAsyncErrors(async (req, res, next) => {
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const customer = await Customer.findById(req.user.id).select("+password");
 
-  const isPasswordMatched = await customer.comparePassword(
-    req.body.oldPassword
-  );
+  const isPasswordMatched = await customer.comparePassword(req.body.oldPassword);
 
   if (!isPasswordMatched) {
     return next(new ErrorHandler("Old password is incorrect", 400));
@@ -184,7 +181,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
   };
 
-  const customer = await Customer.findByIdAndUpdate(
+  await Customer.findByIdAndUpdate(
     req.user.id,
     newCustomerData,
     {
@@ -219,6 +216,7 @@ exports.addFeedback = catchAsyncErrors(async (req, res, next) => {
     next(error);
   }
 });
+
 const sendMailToAdmin = async (newFeedback) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -255,7 +253,7 @@ exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
 
     const newRefreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
 
-    const updatedCustomer = await Customer.findByIdAndUpdate(customer._id, { refreshTOken: newRefreshToken });
+    await Customer.findByIdAndUpdate(customer._id, { refreshToken: newRefreshToken });
 
     const accessTokenOptions = {
       expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
