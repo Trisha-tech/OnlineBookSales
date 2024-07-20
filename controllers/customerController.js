@@ -359,4 +359,3 @@ exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Invalid refresh token", 401));
   }
 });
-
