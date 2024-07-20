@@ -120,6 +120,10 @@ const LoginPage = () => {
               >
                 Login
               </Button>
+                 {/* Forgot Password Link */}
+                 <Typography align="center" sx={{ mt: 2, mr: 2 }}>
+                <Link to="/password/forgot">Forgot Password?</Link>
+              </Typography>
               <Typography align="center" sx={{ mt: 2, mr: 2 }}>
                 Don't have an account? <a href="/signup">Sign up</a>
               </Typography>

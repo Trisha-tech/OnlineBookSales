@@ -7,6 +7,7 @@ import { ProfilePage, Product } from './Components/index';
 import LoginPage from './Pages/LoginPage.jsx';
 import SignUpPage from './Pages/SignUpPage.jsx';
 import Cart from './Pages/Cart.jsx';
+import Profile from "./Pages/Profile.jsx";
 import Orders from './Pages/Orders.jsx';
 import Wishlist from './Pages/Wishlist.jsx';
 import HomePage from './Pages/Home.jsx';
