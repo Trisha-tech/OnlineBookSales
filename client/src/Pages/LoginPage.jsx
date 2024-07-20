@@ -1,7 +1,10 @@
-"use client";
+
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton"; // Import IconButton
+import VisibilityIcon from "@mui/icons-material/Visibility"; // Import VisibilityIcon
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Import VisibilityOffIcon
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Lottie from "lottie-react";
 import loginAnimation from "../Lottie-animation/loginAnimation.json";
@@ -10,7 +13,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
-import { Link } from "react-router-dom";
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,10 +27,10 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/customer/login",
-        { email, password }
-      );
+      const response = await axios.post("http://localhost:8080/customer/login",{
+         email, 
+         password,
+         });
       console.log(response.data);
       toast.success("login sucess");
       // reset form and err msg on sucess
@@ -43,6 +46,12 @@ const LoginPage = () => {
       setError(err.response.data.message); //set error message received from backend
     }
   };
+
+    // Function to toggle password visibility
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
+
   return (
     <Container maxWidth="xl">
       <div style={{ marginTop: "100px", marginBottom: "180px" }}>
