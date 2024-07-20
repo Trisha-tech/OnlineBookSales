@@ -23,16 +23,16 @@ const LoginPage = () => {
   const { showToast } = useToast();
   let navigate = useNavigate();
 
-   const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/customer/login",{
-         email, 
-         password,
-         });
+      const response = await axios.post("http://localhost:8080/customer/login", {
+        email,
+        password,
+      });
       console.log(response.data);
-      toast.success("login sucess");
+      toast.success("login success");
       setEmail("");
       setPassword("");
       setError("");
@@ -42,14 +42,14 @@ const LoginPage = () => {
       showToast("success", "", "Logged in successfully");
       navigate("/", { replace: true });
     } catch (err) {
-      setError(err.response.data.message); //set error message received from backend
+      setError(err.response.data.message);
     }
   };
 
-    // Function to toggle password visibility
-    const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword);
-    };
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <Container maxWidth="xl">
@@ -87,16 +87,7 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 margin="normal"
               />
-              <TextField
-                fullWidth
-                label="Password"
-                type="password"
-                variant="outlined"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                margin="normal"
-              />
-               <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+              <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <TextField
                   fullWidth
                   label="Password"
