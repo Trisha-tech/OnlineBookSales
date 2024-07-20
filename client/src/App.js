@@ -1,29 +1,55 @@
-// src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar, Footer } from "./Components/index.js";
-import { Product } from "./Components/index";
-import LoginPage from "./Pages/LoginPage.jsx";
-import SignUpPage from "./Pages/SignUpPage.jsx";
-import Cart from "./Pages/Cart.jsx";
-import Orders from "./Pages/Orders.jsx";
-import Wishlist from "./Pages/Wishlist.jsx";
-import HomePage from "./Pages/Home.jsx";
+
+import "./App.css";
+// import {Outlet} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Navbar, Footer } from './Components/index.js';
+import { ProfilePage, Product } from './Components/index';
+import LoginPage from './Pages/LoginPage.jsx';
+import SignUpPage from './Pages/SignUpPage.jsx';
+import Cart from './Pages/Cart.jsx';
+import Orders from './Pages/Orders.jsx';
+import Wishlist from './Pages/Wishlist.jsx';
+import HomePage from './Pages/Home.jsx';
 import Shop from "./Pages/Shop.jsx";
+import { Toast } from "./Toast/Toast.js";
+import Contact from "./Pages/Contact.jsx";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './Animations.css';
+import FAQ from "./Pages/Faq.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx"; // Import ForgotPassword
 import ResetPassword from "./Pages/ResetPassword.jsx"; // Import ResetPassword
-import { Toast } from "./Toast/Toast.js";
-import "./Animations.css";
 import CookieBanner from "./Components/CookieBanner/CookieBanner.js";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.style.backgroundColor = '#121212';
+      document.body.style.color = 'black';
+    } else {
+      document.body.style.backgroundColor = 'white';
+      document.body.style.color = 'black';
+    }
+  }, [darkMode]);
+
+  const appStyle = {
+    backgroundColor: darkMode ? '#333' : '#f4f4f4',
+    padding: '20px',
+    borderRadius: '8px',
+  };
+
   return (
     <>
       <Router>
-        <div className="App">
-          <Navbar />
+        <div className="App" style={appStyle}>
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <Routes>
-            <Route path="/" exact element={<HomePage />} />
+            <Route path="/" exact element={<HomePage darkMode={darkMode} />} />
             <Route path="/shop" exact element={<Shop />} />
             <Route path="/shop/:id" element={<Product />} />
             <Route path="/login" element={<LoginPage />} />
@@ -31,12 +57,13 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/contactus" element={<Contact />} />
+            <Route path="/faqs" element={<FAQ/>}/>
             <Route path="/password/forgot" element={<ForgotPassword />} />{" "}
             {/* Add this line */}
             <Route path="/password/reset/:token" element={<ResetPassword />} />
           </Routes>
           <Toast position="bottom-right" />
-          <CookieBanner />
           <Footer />
         </div>
       </Router>
