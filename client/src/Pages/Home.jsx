@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import B1Child from '../assets/image/B1Child.jpeg'; 
 import AuthorImage from '../assets/image/author1.jpeg'
 import Spinner from './Spinner';
-import SearchBar from './SearchBar'; // Import the SearchBar component
+import SearchBar from '../Components/SearchBar';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    // Simulate a fetch call to backend
+    
     setTimeout(() => {
       setData({
         featuredAuthor: {

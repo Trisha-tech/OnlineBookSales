@@ -10,7 +10,7 @@ function Footer() {
                     <h2 className="text-lg font-bold mb-4">ABOUT</h2>
                     <ul className="footer-list">
                         <li><Link to="/contactus" className="hover:text-yellow-300 text-lg">Contact us</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">About us</Link></li>
+                        <li><Link to="/about" className="hover:text-yellow-300 text-lg">About us</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Careers</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
                     </ul>
@@ -21,7 +21,7 @@ function Footer() {
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Payments</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Shipping</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Cancellation & Returns</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">FAQs</Link></li>
+                        <li><Link to="/faqs" className="hover:text-yellow-300 text-lg">FAQs</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">

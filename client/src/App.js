@@ -15,6 +15,8 @@ import { Toast } from "./Toast/Toast.js";
 import Contact from "./Pages/Contact.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './Animations.css';
+import FAQ from "./Pages/Faq.jsx";
+import AboutUs from "./Pages/AboutUs.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -54,6 +56,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/contactus" element={<Contact />} />
+            <Route path="/about" element={<AboutUs/>}/>
+            <Route path="/faqs" element={<FAQ/>}/>
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
