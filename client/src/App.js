@@ -29,18 +29,16 @@ function App() {
 
   useEffect(() => {
     if (darkMode) {
-      document.body.style.backgroundColor = '#121212';
-      document.body.style.color = 'black';
+      document.body.classList.add("dark")
     } else {
-      document.body.style.backgroundColor = 'white';
-      document.body.style.color = 'black';
+      document.body.classList.remove("dark")
     }
   }, [darkMode]);
 
   const appStyle = {
     backgroundColor: darkMode ? '#333' : '#f4f4f4',
     padding: '20px',
-    borderRadius: '8px',
+    // borderRadius: '8px',
   };
 
   return (

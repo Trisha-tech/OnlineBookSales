@@ -10,7 +10,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../Lottie-animation/loginAnimation.json";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 import Preloader from "../Components/Preloader";
@@ -22,6 +22,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const { setUserLoggedIn } = useAuth();
   const { showToast } = useToast();
+
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -79,26 +80,28 @@ const LoginPage = () => {
             }}
           >
             <form onSubmit={handleSubmit} className="fromRight">
-              <Typography variant="h5" align="center" gutterBottom>
+              <Typography variant="h5" align="center" gutterBottom className=" dark:text-white">
                 Login
               </Typography>
-              <TextField
-                label="email"
+              <input
+                placeholder="Email"
                 fullWidth
                 variant="outlined"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 margin="normal"
+                color="primary"
+                className="w-full p-3 mb-4 bg-transparent border border-black rounded-md dark:text-white"
               />
               <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
-                <TextField
-                  fullWidth
+                <input
+                  placeholder="Password"
                   label="Password"
                   type={showPassword ? "text" : "password"} // Set input type dynamically
-                  variant="outlined"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   margin="normal"
+                  className="w-full p-3 bg-transparent border border-black rounded-md dark:text-white"
                 />
                 <IconButton
                   onClick={togglePasswordVisibility}
@@ -123,8 +126,8 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-              <Typography align="center" sx={{ mt: 2, mr: 2 }}>
-                Don't have an account? <a href="/signup">Sign up</a>
+              <Typography align="center" sx={{ mt: 2, mr: 2 }}  className="text-black dark:text-white">
+                Don't have an account? <Link to="/signup">Sign up</Link>
               </Typography>
             </form>
           </Grid>
