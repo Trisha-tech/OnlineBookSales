@@ -54,7 +54,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContextProvider>
     <ToastContextProvider>
-        <App/>
+      <App/>
     </ToastContextProvider>
   </AuthContextProvider>
 );
