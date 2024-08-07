@@ -8,6 +8,8 @@ import loginAnimation from '../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom";
+import Preloader from "../Components/Preloader";
+
 const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -41,6 +43,8 @@ const SignUpPage = () => {
     }
 
     return (
+
+        <><Preloader/>
         <Container maxWidth="xl">
             <Toaster/>
             <div style={{ marginTop: "100px", marginBottom: "180px" }}>
@@ -124,6 +128,7 @@ const SignUpPage = () => {
                 </Grid>
             </div>
         </Container>
+        </>
     );
 };
 
