@@ -1,11 +1,14 @@
 import React from 'react';
 import { useEffect } from 'react';
+import Preloader from '../Components/Preloader';
+
 function Contact() {
   useEffect(()=>{
       window.scrollTo(0,0)
   })
   return (
-    
+    <>
+    <Preloader/>
     <div className="w-96 max-w-5xl p-5 bg-slate-900 shadow-md rounded-lg mx-auto my-10">
       <h1 className="text-center text-white text-4xl mb-10">Contact Us</h1>
       <div className="flex flex-col items-center gap-5">
@@ -30,6 +33,7 @@ function Contact() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
