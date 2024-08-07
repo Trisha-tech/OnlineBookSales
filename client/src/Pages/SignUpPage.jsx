@@ -2,16 +2,21 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, IconButton, Typography } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility"; // Import VisibilityIcon
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Import VisibilityOffIcon
 import Lottie from "lottie-react";
 import loginAnimation from '../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom";
+
+
 const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     // const [phone, setPhone] = useState("");
     // const [address, setAddress] = useState("");
     const [error, setError] = useState(""); //state to store error message
@@ -40,6 +45,10 @@ const SignUpPage = () => {
         }
     }
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     return (
         <Container maxWidth="xl">
             <Toaster/>
@@ -63,34 +72,42 @@ const SignUpPage = () => {
                     >
 
                         <form onSubmit={handleSubmit}>
-                            <Typography variant="h5" align="center" gutterBottom>
+                            <Typography variant="h5" align="center" gutterBottom className="dark:text-white">
                                 Register
                             </Typography>
-                            <TextField
-                                label="Name"
-                                fullWidth
+                            <input
+                                placeholder="Name"
                                 variant="outlined"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 margin="normal"
+                                className="w-full mb-4 p-3 bg-transparent border border-black rounded-md dark:text-white"
                             />
-                            <TextField
-                                label="Email"
-                                fullWidth
+                            <input 
+                                placeholder="Email"
                                 variant="outlined"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 margin="normal"
+                                className="w-full mb-4 p-3 bg-transparent border border-black rounded-md dark:text-white"
                             />
-                            <TextField
-                                fullWidth
-                                label="Password"
-                                type="password"
-                                variant="outlined"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                margin="normal"
-                            />
+                            <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+                                <input 
+                                    placeholder="Password"
+                                    variant="outlined"
+                                    value={password}
+                                    type={showPassword ? "text" : "password"} // Set input type dynamically
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="w-full p-3 bg-transparent border border-black rounded-md dark:text-white"
+                                    margin="normal"
+                                />
+                                <IconButton
+                                    onClick={togglePasswordVisibility}
+                                    sx={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)" }}
+                                    >
+                                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                </IconButton>
+                            </Box>
                             {/* <TextField
                                 label="Phone"
                                 fullWidth
