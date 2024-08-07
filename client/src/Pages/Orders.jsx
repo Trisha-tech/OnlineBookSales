@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   Container,
   CircularProgress,
@@ -92,24 +93,39 @@ function OrderList() {
           <CircularProgress />
         </Box>
       ) : (
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Order ID</TableCell>
-                <TableCell>Item</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredData.map((order) => (
-                <TableRow key={order.id}>
-                  <TableCell>{order.id}</TableCell>
-                  <TableCell>{order.item}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <>
+          {
+            filteredData.length === 0 ? (
+              <div className="h-[50vh] mb-4 w-full flex justify-center items-center flex-col">
+                <div>You Haven't Orderd Something yet.</div>
+                <Link to="/shop" className="underline hover:text-blue-600">Order Now</Link>
+              </div>
+            ) : (
+              <>
+              <TableContainer component={Paper} className="mb-4">
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Order ID</TableCell>
+                      <TableCell>Item</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                  {
+                    filteredData.map((order) => (
+                      <TableRow key={order.id}>
+                      <TableCell>{order.id}</TableCell>
+                      <TableCell>{order.item}</TableCell>
+                      </TableRow>
+                    ))
+                  }
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              </>
+            )
+          }
+        </>
       )}
     </Container>
     </>
