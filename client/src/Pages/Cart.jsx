@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Spinner from "./Spinner";
 import { fetchCartData, addItemToCart, removeItemFromCart } from "../api/api.js";
 import "./Cart.css";
+import Preloader from '../Components/Preloader';
+
 
 function Cart() {
   const [isLoading, setIsLoading] = useState(true);
@@ -122,6 +124,8 @@ function Cart() {
 
   if (error) {
     return (
+    <>
+      <Preloader/>
       <div className="cart-container">
         <h1 className="cart-header">Shopping Cart</h1>
         <p className="error-message">{error}</p>
@@ -150,10 +154,12 @@ function Cart() {
         <hr />
         {renderSuggestedProducts()}
       </div>
+      </>
     );
   }
 
   return (
+    <><Preloader/>
     <div className="cart-container">
       <h1 className="cart-header">Shopping Cart</h1>
       <table className="cart-table">
@@ -177,6 +183,7 @@ function Cart() {
       <hr />
       {renderSuggestedProducts()}
     </div>
+    </>
   );
 }
 
