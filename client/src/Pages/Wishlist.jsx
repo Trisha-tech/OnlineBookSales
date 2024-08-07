@@ -74,11 +74,11 @@ function Wishlist() {
     <>
     <Preloader/>
     <div className="wishlist-container">
-      <h2>
+      <h2 className="dark:text-white">
         <FaTable /> Your Wishlist
       </h2>
       {wishlistItems.length === 0 ? (
-        <p>Your wishlist is empty.</p>
+        <p className="dark:text-white">Your wishlist is empty.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {wishlistItems.map((item) => (
@@ -91,12 +91,12 @@ function Wishlist() {
               </button>
               <div>
                 <img src={item.product.images[0].url} alt={item.product.name} className="w-full h-48 object-cover mb-4 rounded-lg" />
-                <h3 className="text-xl font-bold mb-2 text-gray-900">{item.product.name}</h3>
-                <p className="text-gray-600 mb-1">Author: {item.product.author}</p>
-                <p className="text-gray-600 mb-4">{item.product.description}</p>
+                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{item.product.name}</h3>
+                <p className="text-gray-600 mb-1 dark:text-white">Author: {item.product.author}</p>
+                <p className="text-gray-600 mb-4 dark:text-white">{item.product.description}</p>
               </div>
               <div className="flex justify-between items-center mt-4">
-                <p className="text-gray-900 font-semibold text-lg">₹{item.product.price}</p>
+                <p className="text-gray-900 font-semibold text-lg dark:text-white">₹{item.product.price}</p>
                 <button onClick={() => addToCart(item.product._id)} className="text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-300 ease-in-out" style={{ backgroundColor: '#002147' }}>
                   <FaHeart /> Add to Cart
                 </button>
