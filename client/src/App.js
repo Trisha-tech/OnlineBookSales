@@ -18,6 +18,7 @@ import './Animations.css';
 import FAQ from "./Pages/Faq.jsx";
 import AboutUs from "./Pages/AboutUs.jsx";
 import { OrderList } from './Pages/Orders.jsx';
+import Preloader from "./Components/Preloader.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -60,6 +61,7 @@ function App() {
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
+          <Preloader/>
         </div>
       </Router>
     </>

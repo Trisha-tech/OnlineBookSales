@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaHeart, FaTrash, FaTable, FaRegHeart } from "react-icons/fa";
-import Spinner from "./Spinner";
 import "./Wishlist.css"; // Import CSS file for wishlist component styling
+import Preloader from "../Components/Preloader";
 
 function Wishlist() {
   const [isLoading, setIsLoading] = useState(true);
@@ -65,15 +65,14 @@ function Wishlist() {
     }
   };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
 
   if (error) {
     return <div className="error-message">{error}</div>;
   }
 
   return (
+    <>
+    <Preloader/>
     <div className="wishlist-container">
       <h2>
         <FaTable /> Your Wishlist
@@ -107,6 +106,7 @@ function Wishlist() {
         </div>
       )}
     </div>
+    </>
   );
 }
 

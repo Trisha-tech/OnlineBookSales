@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Preloader from '../Components/Preloader';
 
 const AboutUs = () => {
   useEffect(() => {
@@ -6,6 +7,8 @@ const AboutUs = () => {
   }, []);
 
   return (
+    <>
+    <Preloader />
     <div className="bg-blue-50 py-5">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-blue-100 rounded-lg overflow-hidden shadow-lg">
@@ -45,6 +48,7 @@ const AboutUs = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

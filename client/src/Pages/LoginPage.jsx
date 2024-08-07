@@ -13,6 +13,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
+import Preloader from "../Components/Preloader";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -53,6 +54,8 @@ const LoginPage = () => {
   };
 
   return (
+    <>
+    <Preloader />
     <Container maxWidth="xl">
       <div style={{ marginTop: "100px", marginBottom: "180px" }}>
         <Toaster />
@@ -131,6 +134,7 @@ const LoginPage = () => {
         </Grid>
       </div>
     </Container>
+    </>
   );
 };
 

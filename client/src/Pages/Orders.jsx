@@ -19,6 +19,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import Preloader from "../Components/Preloader";
 
 function OrderList() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +63,8 @@ function OrderList() {
   );
 
   return (
+    <>
+    <Preloader />
     <Container maxWidth="lg">
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
         <TextField
@@ -109,6 +112,7 @@ function OrderList() {
         </TableContainer>
       )}
     </Container>
+    </>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import Preloader from '../Components/Preloader';
 
 const FAQ = () => {
   const faqs = [
@@ -68,6 +69,8 @@ const FAQ = () => {
 
 
   return (
+    <>
+    <Preloader />
     <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h2 className="text-3xl font-extrabold text-gray-900 mb-6 text-center">FAQ</h2>
       <dl className="space-y-6">
@@ -108,6 +111,7 @@ const FAQ = () => {
         ))}
       </dl>
     </div>
+    </>
   );
 };
 
