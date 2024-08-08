@@ -13,6 +13,7 @@ import HomePage from './Pages/Home.jsx';
 import Shop from "./Pages/Shop.jsx";
 import { Toast } from "./Toast/Toast.js";
 import Contact from "./Pages/Contact.jsx";
+import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './Animations.css';
 import FAQ from "./Pages/Faq.jsx";
@@ -37,7 +38,6 @@ function App() {
 
   const appStyle = {
     backgroundColor: darkMode ? '#333' : '#f4f4f4',
-    padding: '20px',
     // borderRadius: '8px',
   };
 
@@ -58,6 +58,7 @@ function App() {
             <Route path="/contactus" element={<Contact />} />
             <Route path="/about" element={<AboutUs/>}/>
             <Route path="/faqs" element={<FAQ/>}/>
+            <Route path="/privacy" element={<PrivacyPolicy />}/>
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
