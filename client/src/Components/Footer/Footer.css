@@ -1,0 +1,73 @@
+.py-8 {
+    padding-top: 3rem;
+    padding-bottom: 1.3rem;
+}
+
+/* Footer section styles */
+.footer-section {
+    margin: 0; /* Remove space between sections */
+    padding: 0; /* Remove padding if needed */
+}
+
+/* Footer list styles */
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Social icons list styles */
+.footer-list.flex {
+    display: flex;
+    gap: 24px; /* Increase this value for more space between icons */
+}
+
+.footer-list.flex li {
+    margin: 0; /* Ensure there's no margin on list items */
+}
+
+/* Optionally, you can also adjust individual icon size if needed */
+.footer-list li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7px;
+}
+
+/* Copyright section styles */
+.copyright-section {
+    color: #ffffff; /* Text color for copyright */
+    font-size: 0.875rem; /* Smaller text size */
+}
+
+/* Footer links styles */
+.footer-list li a {
+    transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+.footer-list li a:hover {
+    transform: scale(1.1); /* Scale up by 10% on hover */
+}
+
+/* Social icons list styles */
+.footer-list.flex {
+    display: flex;
+    gap: 24px; /* Increase this value for more space between icons */
+}
+
+.footer-list.flex li {
+    margin: 0; /* Ensure there's no margin on list items */
+}
+
+/* Optionally, you can also adjust individual icon size if needed */
+.footer-list li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Copyright section styles */
+.copyright-section {
+    color: #ffffff; /* Text color for copyright */
+    font-size: 0.875rem; /* Smaller text size */
+}
