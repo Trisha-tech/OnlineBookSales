@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import Preloader from '../Components/Preloader';
 
 const TermsAndConditions = () => {
     useEffect(() => {
@@ -8,6 +9,7 @@ const TermsAndConditions = () => {
 
   return (
     <>
+    <Preloader/>
       <div className="py-8 mb-5 sm:w-[90vw] justify-start ml-auto mr-auto mt-10">
         <div className='text-center'>
           <TermsWrapper className='privacy'>
