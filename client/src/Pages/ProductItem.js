@@ -77,7 +77,7 @@ const ProductItem = () => {
 
   const renderBooks = (books) => {
     return books.map((book) => (
-      <div key={book._id} className="bg-white rounded-lg shadow-lg p-6 mb-6 flex flex-col relative transform transition duration-500 hover:scale-105 hover:shadow-2xl border border-gray-200">
+      <div key={book._id} className="bg-white rounded-lg shadow-lg p-6 mb-6 flex flex-col relative transform transition duration-500 hover:scale-105 hover:shadow-2xl border border-gray-200 dark:bg-[rgb(40,40,40)]">
         <button
           onClick={() => toggleWishlist(book)}
           className="absolute top-2 right-2 text-red-600 hover:text-red-800 transition duration-300"
@@ -85,11 +85,11 @@ const ProductItem = () => {
           {wishlist.includes(book._id) ? <FaHeart size={20} fill="#ff0000" /> : <FaRegHeart size={20} />}
         </button>
         <img src={book.images[0].url} alt={book.name} className="w-full h-48 object-cover mb-4 rounded-lg" />
-        <h3 className="text-xl font-bold mb-2 text-gray-900">{book.name}</h3>
-        <p className="text-gray-600 mb-1">Author: {book.author}</p>
-        <p className="text-gray-600 mb-4">{book.description}</p>
+        <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{book.name}</h3>
+        <p className="text-gray-600 mb-1 dark:text-white">Author: {book.author}</p>
+        <p className="text-gray-600 mb-4 dark:text-white">{book.description}</p>
         <div className="flex justify-between items-center mt-auto">
-          <p className="text-gray-900 font-semibold text-lg">₹{book.price}</p>
+          <p className="text-gray-900 font-semibold text-lg dark:text-white">₹{book.price}</p>
           <button className="self-end text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-300 ease-in-out" style={{ backgroundColor: '#002147' }}>
             Add to Cart
           </button>
@@ -106,8 +106,8 @@ const ProductItem = () => {
         <Spinner /> // Display spinner while data is not loaded
       ) : (
         categories.map((category) => (
-          <section key={category} className="container mx-auto my-8">
-            <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b border-gray-300 pb-2">{category}</h2>
+          <section key={category} className="container mx-auto my-8 dark:bg-[rgb(51,51,51)]">
+            <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b border-gray-300 pb-2 dark:text-white">{category}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {renderBooks(products.filter((book) => book.category === category))}
             </div>

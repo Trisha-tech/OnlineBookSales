@@ -13,7 +13,7 @@ const SearchBar = ({ onSearch }) => {
     <form onSubmit={handleSearch} className="w-full max-w-lg mx-auto my-8">
       <div className="flex items-center border-b-2 border-teal-500 py-2">
         <input
-          className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none dark:text-white"
           type="text"
           placeholder="Search for books..."
           value={query}

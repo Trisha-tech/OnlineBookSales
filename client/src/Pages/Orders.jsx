@@ -66,21 +66,22 @@ function OrderList() {
   return (
     <>
     <Preloader />
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" className="mt-4">
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-        <TextField
-          label="Search Orders"
-          variant="outlined"
-          value={searchTerm}
-          onChange={handleSearch}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
+
+        <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+            <input 
+                placeholder="Search Orders"
+                value={searchTerm}
+                onChange={handleSearch}
+                className="w-full p-3 bg-transparent border border-black rounded-md dark:text-white"
+                margin="normal"
+            />
+            <IconButton sx={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)" }}>
+              <SearchIcon />
+            </IconButton>
+        </Box>
+
         <Button variant="contained" startIcon={<SortIcon />} onClick={handleSort}>
           Sort
         </Button>
@@ -97,15 +98,15 @@ function OrderList() {
           {
             filteredData.length === 0 ? (
               <div className="h-[50vh] mb-4 w-full flex justify-center items-center flex-col">
-                <div>You Haven't Orderd Something yet.</div>
-                <Link to="/shop" className="underline hover:text-blue-600">Order Now</Link>
+                <div className=" dark:text-white">You Haven't Orderd Something yet.</div>
+                <Link to="/shop" className="underline hover:text-blue-600 dark:text-white">Order Now</Link>
               </div>
             ) : (
               <>
               <TableContainer component={Paper} className="mb-4">
                 <Table>
                   <TableHead>
-                    <TableRow>
+                    <TableRow className="">
                       <TableCell>Order ID</TableCell>
                       <TableCell>Item</TableCell>
                     </TableRow>
@@ -178,13 +179,13 @@ function OrderTracking() {
         )}
         {!isLoading && orderData && (
           <Paper elevation={3} style={{ padding: 16, marginTop: 16 }}>
-            <h3>Order ID: {orderData.id}</h3>
-            <p>Status: {orderData.status}</p>
-            <p>Expected Delivery: {orderData.expectedDelivery}</p>
+            <h3 className="dark:text-white">Order ID: {orderData.id}</h3>
+            <p className="dark:text-white">Status: {orderData.status}</p>
+            <p className="dark:text-white">Expected Delivery: {orderData.expectedDelivery}</p>
           </Paper>
         )}
         {!isLoading && !orderData && (
-          <p style={{ marginTop: 16 }}>Please enter an Order ID to track your order.</p>
+          <p style={{ marginTop: 16 }} className="dark:text-white">Please enter an Order ID to track your order.</p>
         )}
       </Box>
     </Container>

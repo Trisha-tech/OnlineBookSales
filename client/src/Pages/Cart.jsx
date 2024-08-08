@@ -61,7 +61,7 @@ function Cart() {
     if (!data || !data.items || data.items.length === 0) {
       return (
         <tr>
-          <td colSpan="5">Your cart is empty.</td>
+          <td colSpan="5" className="dark:text-white">Your cart is empty.</td>
         </tr>
       );
     }
@@ -108,11 +108,11 @@ function Cart() {
     // Replace with actual suggested products logic
     return (
       <div className="suggested-products">
-        <h2>Suggested Products</h2>
+        <h2 className="dark:text-white">Suggested Products</h2>
         <ul>
-          <li>Suggested Product 1</li>
-          <li>Suggested Product 2</li>
-          <li>Suggested Product 3</li>
+          <li className="dark:text-white">Suggested Product 1</li>
+          <li className="dark:text-white">Suggested Product 2</li>
+          <li className="dark:text-white">Suggested Product 3</li>
         </ul>
       </div>
     );
@@ -126,21 +126,21 @@ function Cart() {
     return (
     <>
       <Preloader/>
-      <div className="cart-container">
-        <h1 className="cart-header">Shopping Cart</h1>
+      <div className="cart-container dark:bg-[rgb(40,40,40)]">
+        <h1 className="cart-header dark:text-white">Shopping Cart</h1>
         <p className="error-message">{error}</p>
-        <button onClick={handleRetry} className="retry-button">
+        <button onClick={handleRetry} className="retry-button dark:text-white">
           Retry
         </button>
-        <hr />
+        {/* <hr /> */}
         <table className="cart-table">
           <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Action</th>
+            <tr className="dark:bg-[rgb(40,40,40)]">
+              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Image</th>
+              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Name</th>
+              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Price</th>
+              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Quantity</th>
+              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -148,8 +148,8 @@ function Cart() {
           </tbody>
         </table>
         <div className="cart-summary">
-          <div className="cart-total">Total: ${data ? data.total.toFixed(2) : "0.00"}</div>
-          <button className="checkout-button">Proceed to Checkout</button>
+          <div className="cart-total dark:text-white">Total: ${data ? data.total.toFixed(2) : "0.00"}</div>
+          <button className="checkout-button dark:text-white">Proceed to Checkout</button>
         </div>
         <hr />
         {renderSuggestedProducts()}
@@ -160,8 +160,8 @@ function Cart() {
 
   return (
     <><Preloader/>
-    <div className="cart-container">
-      <h1 className="cart-header">Shopping Cart</h1>
+    <div className="cart-container dark:bg-[rgb(40,40,40)]">
+      <h1 className="cart-header dark:text-white">Shopping Cart</h1>
       <table className="cart-table">
         <thead>
           <tr>
@@ -177,10 +177,10 @@ function Cart() {
         </tbody>
       </table>
       <div className="cart-summary">
-        <div className="cart-total">Total: ${data ? data.total.toFixed(2) : "0.00"}</div>
-        <button className="checkout-button">Proceed to Checkout</button>
+        <div className="cart-total dark:text-white">Total: ${data ? data.total.toFixed(2) : "0.00"}</div>
+        <button className="checkout-button dark:text-white">Proceed to Checkout</button>
       </div>
-      <hr />
+      {/* <hr /> */}
       {renderSuggestedProducts()}
     </div>
     </>
