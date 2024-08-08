@@ -53,7 +53,7 @@ const Wrapper = styled.div`
   transition: transform 0.3s ease;
 
   &:hover {
-    background: #0039a6;
+    background: #0269b8;
     transform: scale(1.1); 
   }
 
