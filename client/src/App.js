@@ -20,6 +20,7 @@ import FAQ from "./Pages/Faq.jsx";
 import AboutUs from "./Pages/AboutUs.jsx";
 import { OrderList } from './Pages/Orders.jsx';
 import Preloader from "./Components/Preloader.jsx";
+import GoToTop from "./Components/GoToTop.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -63,6 +64,7 @@ function App() {
           <Toast position="bottom-right" />
           <Footer />
           <Preloader/>
+          <GoToTop />
         </div>
       </Router>
     </>
