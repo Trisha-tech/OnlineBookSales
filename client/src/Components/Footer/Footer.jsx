@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { GitHub, Twitter, LinkedIn, Instagram } from '@mui/icons-material';
+import { GitHub, LinkedIn, Instagram } from '@mui/icons-material';
+import XIcon from '@mui/icons-material/X';
+import './Footer.css'; 
 
 function Footer() {
     return (
@@ -25,14 +27,25 @@ function Footer() {
                     </ul>
                 </div>
                 <div className="footer-section">
+                    <h2 className="text-lg font-bold mb-4">Legal</h2>
+                    <ul className="footer-list">
+                        <li><Link to="/privacy" className="hover:text-yellow-300 text-lg">Privacy Policy</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Terms and Conditions</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Licensing</Link></li>
+                    </ul>
+                </div>
+                <div className="footer-section">
                     <h2 className="text-lg font-bold mb-4 text-center">SOCIALS</h2>
-                    <ul className="footer-list flex gap-16">
-                        <li><a href="/" className="hover:text-yellow-300"><LinkedIn sx={{ fontSize: '2rem' }} /></a></li>
-                        <li><a href="/" className="hover:text-yellow-300"><GitHub sx={{ fontSize: '2rem' }} /></a></li>
-                        <li><a href="/" className="hover:text-yellow-300"><Twitter sx={{ fontSize: '2rem' }} /></a></li>
+                    <ul className="footer-list flex">
+                        <li><a href="https://www.linkedin.com/in/trisha-sahu-171623193/" className="hover:text-yellow-300"><LinkedIn sx={{ fontSize: '2rem' }} /></a></li>
+                        <li><a href="https://github.com/Trisha-tech/OnlineBookSales" className="hover:text-yellow-300"><GitHub sx={{ fontSize: '2rem' }} /></a></li>
+                        <li><a href="/" className="hover:text-yellow-300"><XIcon sx={{ fontSize: '2rem' }} /></a></li>
                         <li><a href="/" className="hover:text-yellow-300"><Instagram sx={{ fontSize: '2rem' }} /></a></li>
                     </ul>
                 </div>
+            </div>
+            <div className="copyright-section text-center mt-8">
+                <p>&copy; {new Date().getFullYear()} Online Book Sales - Books4U. All rights reserved.</p>
             </div>
         </footer>
     );
