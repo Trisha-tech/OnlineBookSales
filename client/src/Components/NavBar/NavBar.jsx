@@ -52,8 +52,8 @@ const MobileMenu = styled('div')(({ open }) => ({
 }));
 
 const MobileMenuButton = styled(IconButton)({
-  fill: 'white', // Adjust color as needed
-  marginLeft: '-2px', // Adjust for proper alignment
+  fill: '#fff', // Adjust color as needed
+  marginLeft: '-13px', // Adjust for proper alignment
 });
 
 function Navbar({ darkMode, toggleDarkMode }) {
