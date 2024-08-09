@@ -15,7 +15,7 @@ import { Toast } from "./Toast/Toast.js";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './Animations.css';
 
-
+import ScrollToTopButton from "./Components/ScrollToTopButton.jsx";
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
           <Route path="/orders"         element={<Orders/>} />
         </Routes>
         <Toast position="bottom-right"/>
+        <ScrollToTopButton/>
         <Footer/>
       </div>
     </Router>
