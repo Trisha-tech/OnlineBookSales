@@ -21,11 +21,13 @@ code {
   to {
       transform: translateX(0%);
   }
+
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 
 .scroll-to-top {
@@ -62,3 +64,4 @@ code {
 .scroll-to-top:hover {
   background-color: #555;
 }
+
