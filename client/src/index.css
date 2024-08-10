@@ -48,3 +48,42 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  /* Adjust size as needed */
+  height: 50px;
+  /* Adjust size as needed */
+  border-radius: 50%;
+  /* This makes the button round */
+  background-color: #333;
+  /* Background color */
+  color: #fff;
+  /* Text/icon color */
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.4s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  background-color: #555;
+}
+
