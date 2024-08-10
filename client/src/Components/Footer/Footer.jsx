@@ -24,6 +24,8 @@ function Footer() {
                         <li><Link to="/about" className="hover:text-yellow-300 text-lg">About us</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Careers</Link></li>
                         <li><Link to="/" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
+                        <li><Link to="/contributors" className="hover:text-yellow-300 text-lg">Our Contributors</Link></li>
+
                     </ul>
                 </div>
                 <div className="footer-section">
