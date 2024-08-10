@@ -14,12 +14,14 @@ import Shop from "./Pages/Shop.jsx";
 import { Toast } from "./Toast/Toast.js";
 import Contact from "./Pages/Contact.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
+import TermsAndConditions from "./Pages/Terms.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './Animations.css';
 import FAQ from "./Pages/Faq.jsx";
 import AboutUs from "./Pages/AboutUs.jsx";
 import { OrderList } from './Pages/Orders.jsx';
 import Preloader from "./Components/Preloader.jsx";
+import GoToTop from "./Components/GoToTop.jsx";
 
 
 import ScrollToTopButton from "./Components/ScrollToTopButton.jsx";
@@ -85,10 +87,12 @@ function App() {
             <Route path="/about" element={<AboutUs/>}/>
             <Route path="/faqs" element={<FAQ/>}/>
             <Route path="/privacy" element={<PrivacyPolicy />}/>
+            <Route path="/terms" element={<TermsAndConditions />}/>
           </Routes>
           <Toast position="bottom-right" />
           <Footer />
           <Preloader/>
+          <GoToTop />
         </div>
       </Router>
 
