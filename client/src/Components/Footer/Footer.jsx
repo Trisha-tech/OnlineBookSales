@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { GitHub, LinkedIn, Instagram } from '@mui/icons-material';
 import XIcon from '@mui/icons-material/X';
 import './Footer.css'; 
 
 function Footer() {
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        setMessage("Thank you for subscribing!");
+        setEmail("");
+    };
+
     return (
         <footer className="bg-blue-900 text-white py-8">
             <div className="container mx-auto flex flex-wrap justify-between max-w-[90%]">
@@ -42,6 +51,21 @@ function Footer() {
                         <li><a href="/" className="hover:text-yellow-300"><XIcon sx={{ fontSize: '2rem' }} /></a></li>
                         <li><a href="/" className="hover:text-yellow-300"><Instagram sx={{ fontSize: '2rem' }} /></a></li>
                     </ul>
+                </div>
+                <div className="footer-section">
+                    <h2 className="text-lg font-bold mb-4 text-center">NEWSLETTER</h2>
+                    <form className="newsletter-form" onSubmit={handleSubscribe}>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Your email address"
+                            className="newsletter-input"
+                            required
+                        />
+                        <button type="submit" className="newsletter-button">Subscribe</button>
+                    </form>
+                    {message && <p className="newsletter-message">{message}</p>}
                 </div>
             </div>
             <div className="copyright-section text-center mt-8">

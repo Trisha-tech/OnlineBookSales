@@ -71,3 +71,46 @@
     color: #ffffff; /* Text color for copyright */
     font-size: 0.875rem; /* Smaller text size */
 }
+
+/* newsletter */
+.newsletter-form {
+    margin-top: 20px;
+}
+
+.newsletter-form h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px; 
+    margin-top: 24px;
+    text-align: center; 
+}
+
+.newsletter-input {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    width: 100%;
+    color: black;
+}
+
+.newsletter-button {
+    padding: 10px;
+    background-color: navy;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-left: 35%;
+}
+
+.newsletter-button:hover {
+    background-color: #003366; 
+}
+
+.newsletter-message {
+    font-weight: 600;
+    color: #ffff00; /* Yellow color for the message */
+    margin-top: 10px; /* Space above the message */
+    text-align: center; /* Center-align the message */
+}
