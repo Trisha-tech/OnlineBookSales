@@ -11,27 +11,29 @@ function Footer() {
                 <div className="footer-section">
                     <h2 className="text-lg font-bold mb-4">ABOUT</h2>
                     <ul className="footer-list">
-                        <li><Link to="/contactus" className="hover:text-yellow-300 text-lg">Contact us</Link></li>
-                        <li><Link to="/about" className="hover:text-yellow-300 text-lg">About us</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Careers</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
+                        <li><Link to="/contactus" className="hover:text-yellow-300 text-lg">☎ Contact us</Link></li>
+                        <li><Link to="/about" className="hover:text-yellow-300 text-lg">🛈 About us</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">🏛 Careers</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">✉︎ Gift Cards</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">
                     <h2 className="text-lg font-bold mb-4">HELP</h2>
                     <ul className="footer-list">
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Payments</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Shipping</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Cancellation & Returns</Link></li>
-                        <li><Link to="/faqs" className="hover:text-yellow-300 text-lg">FAQs</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">✔ Payments</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">⛟ Shipping</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">✖ Cancellation & Returns</Link></li>
+                        <li><Link to="/faqs" className="hover:text-yellow-300 text-lg">？FAQs</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">
                     <h2 className="text-lg font-bold mb-4">Legal</h2>
                     <ul className="footer-list">
-                        <li><Link to="/privacy" className="hover:text-yellow-300 text-lg">Privacy Policy</Link></li>
-                        <li><Link to="/terms" className="hover:text-yellow-300 text-lg">Terms and Conditions</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Licensing</Link></li>
+
+                        <li><Link to="/privacy" className="hover:text-yellow-300 text-lg">📄 Privacy Policy</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">📄 Terms and Conditions</Link></li>
+                        <li><Link to="/" className="hover:text-yellow-300 text-lg">📄 Licensing</Link></li>
+
                     </ul>
                 </div>
                 <div className="footer-section">
