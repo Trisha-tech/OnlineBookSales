@@ -22,6 +22,7 @@ import AboutUs from "./Pages/AboutUs.jsx";
 import { OrderList } from './Pages/Orders.jsx';
 import Preloader from "./Components/Preloader.jsx";
 import GoToTop from "./Components/GoToTop.jsx";
+import License from "./Pages/Licensing.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -61,6 +62,7 @@ function App() {
             <Route path="/about" element={<AboutUs/>}/>
             <Route path="/faqs" element={<FAQ/>}/>
             <Route path="/privacy" element={<PrivacyPolicy />}/>
+            <Route path="/licensing" element={<License />}/>
             <Route path="/terms" element={<TermsAndConditions />}/>
           </Routes>
           <Toast position="bottom-right" />
