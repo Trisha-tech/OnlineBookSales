@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Preloader from '../Components/Preloader';
 
 const PrivacyPolicy = () => {
@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
     <Preloader />
       <div className="py-8 mb-5 sm:w-[90vw] justify-start ml-auto mr-auto mt-10">
         <div className='text-center'>
-          <PolicyWrapper className='privacy'>
+          <div className='privacy'>
             <h1>Privacy Policy</h1>
             <section className='text-left'>
               <p>Last updated: August 8, 2024</p>
@@ -43,45 +43,45 @@ const PrivacyPolicy = () => {
               <h2>Contact Us</h2>
               <p>If you have any questions or comments about this privacy policy, please contact us at: <a href="mailto:supportbook4u@onlinebooksales.com">supportbook4u@onlinebooksales.com</a>.</p>
             </section>
-          </PolicyWrapper>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-const PolicyWrapper = styled.div`
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  color: #333;
-  line-height: 1.6;
-  margin-top: -65px;
+// const PolicyWrapper = styled.div`
+//   padding: 20px;
+//   max-width: 800px;
+//   margin: 0 auto;
+//   color: #333;
+//   line-height: 1.6;
+//   margin-top: -65px;
 
   
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #002147;
-  }
+//   h1 {
+//     font-size: 2.5rem;
+//     margin-bottom: 20px;
+//     font-weight: bold;
+//     color: #002147;
+//   }
 
-  h2 {
-    font-size: 1.5rem;
-  }
+//   h2 {
+//     font-size: 1.5rem;
+//   }
 
-  p {
-    margin: 10px 0;
-  }
+//   p {
+//     margin: 10px 0;
+//   }
 
-  ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
+//   ul {
+//     list-style-type: disc;
+//     margin-left: 20px;
+//   }
 
-  li {
-    margin: 10px 0;
-  }
-`;
+//   li {
+//     margin: 10px 0;
+//   }
+// `;
 
 export default PrivacyPolicy;

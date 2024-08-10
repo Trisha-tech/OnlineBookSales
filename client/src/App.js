@@ -13,12 +13,16 @@ import HomePage from './Pages/Home.jsx';
 import Shop from "./Pages/Shop.jsx";
 import Contact from "./Pages/Contact.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
+import TermsAndConditions from "./Pages/Terms.jsx";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './Animations.css';
 import FAQ from "./Pages/Faq.jsx";
 import AboutUs from "./Pages/AboutUs.jsx";
 import { OrderList } from './Pages/Orders.jsx';
 import Contributors from "./Pages/Contributors.jsx"; 
 import Preloader from "./Components/Preloader.jsx";
 import { Toast } from "./Toast/Toast.js";
+import GoToTop from "./Components/GoToTop.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -36,7 +40,7 @@ function App() {
   };
 
   return (
-    <Router>
+ <Router>
       <div className="App" style={appStyle}>
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <Routes>
@@ -52,12 +56,14 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/contributors" element={<Contributors />} />
           <Route path="*" element={<NotFound />} /> {/* Fallback route */}
         </Routes>
         <Toast position="bottom-right" />
         <Footer />
         <Preloader /> {/* Ensure Preloader is correctly styled */}
+        <GoToTop /> {/* Added GoToTop component */}
       </div>
     </Router>
   );
