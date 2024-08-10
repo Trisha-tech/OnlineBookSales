@@ -67,7 +67,9 @@ function Wishlist() {
 
 
   if (error) {
-    return <div className="error-message">{error}</div>;
+    return <div className="h-[60vh] md:h-[80vh]">
+      <div className="error-message">{error}</div>
+    </div>;
   }
 
   return (
