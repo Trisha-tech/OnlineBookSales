@@ -3,11 +3,18 @@ import axios from "axios";
 import { FaHeart, FaTrash, FaTable, FaRegHeart } from "react-icons/fa";
 import "./Wishlist.css"; // Import CSS file for wishlist component styling
 import Preloader from "../Components/Preloader";
+import { useAuth } from "../Context/AuthContext";
+import { useToast } from "../Context/ToastContext";
+import { useNavigate } from "react-router-dom";
 
 function Wishlist() {
   const [isLoading, setIsLoading] = useState(true);
   const [wishlistItems, setWishlistItems] = useState([]);
   const [error, setError] = useState(null);
+  const { userLoggedIn } = useAuth();
+  const { showToast } = useToast();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -30,6 +37,16 @@ function Wishlist() {
 
     fetchWishlist();
   }, []);
+
+  useEffect(() => {
+    if (!userLoggedIn) {
+      showToast("error", "Please login to view your wishlist.", undefined, 7000);
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000); // 3000 milliseconds = 3 seconds
+    }
+  }, [userLoggedIn]);
+
 
   const removeFromWishlist = async (productId) => {
     try {

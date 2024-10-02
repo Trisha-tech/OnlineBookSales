@@ -21,12 +21,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Preloader from "../Components/Preloader";
+import { useAuth } from "../Context/AuthContext";
+import { useToast } from "../Context/ToastContext";
+import { useNavigate } from "react-router-dom";
 
 function OrderList() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+
+  const { userLoggedIn } = useAuth();
+  const { showToast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -43,6 +50,15 @@ function OrderList() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!userLoggedIn) {
+      showToast("error", "Please login to view your orders.", undefined, 7000);
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+  }, [userLoggedIn]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);

@@ -3,6 +3,9 @@ import Spinner from "./Spinner";
 import { fetchCartData, addItemToCart, removeItemFromCart } from "../api/api.js";
 import "./Cart.css";
 import Preloader from '../Components/Preloader';
+import { useAuth } from "../Context/AuthContext";
+import { useToast } from "../Context/ToastContext";
+import { useNavigate } from "react-router-dom";
 
 
 function Cart() {
@@ -10,6 +13,11 @@ function Cart() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
+
+  const { userLoggedIn } = useAuth();
+  const { showToast } = useToast();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetchCartData()
@@ -24,6 +32,15 @@ function Cart() {
         console.error("Error fetching cart data:", err);
       });
   }, [retryCount]); // Retry whenever retryCount changes
+
+  useEffect(() => {
+    if (!userLoggedIn) {
+      showToast("error", "Please login to view your cart.", undefined, 7000);
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+  }, [userLoggedIn]);
 
   const handleAddItem = (item) => {
     setIsLoading(true);
