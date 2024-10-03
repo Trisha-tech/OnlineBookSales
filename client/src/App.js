@@ -14,7 +14,7 @@ import Shop from "./Pages/Shop.jsx";
 import Contact from "./Pages/Contact.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import TermsAndConditions from "./Pages/Terms.jsx";
-import FAQ from "./Pages/Faq.jsx";
+import FAQ from "./Pages/Faq.jsx"; // Import the FAQ component
 import AboutUs from "./Pages/AboutUs.jsx";
 import { OrderList } from './Pages/Orders.jsx';
 import Contributors from "./Pages/Contributors.jsx"; 
@@ -53,7 +53,7 @@ function App() {
           <Route path="/orders" element={<OrderList />} />
           <Route path="/contactus" element={<Contact />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/faqs" element={<FAQ />} />
+          <Route path="/faqs" element={<FAQ />} /> {/* Route for FAQ */}
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/licensing" element={<License />} />
           <Route path="/terms" element={<TermsAndConditions />} />
@@ -70,7 +70,13 @@ function App() {
 }
 
 function NotFound() {
-  return <h1>404 Not Found</h1>;
+  return (
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h1>404 Not Found</h1>
+      <p>Sorry, the page you are looking for does not exist.</p>
+      <a href="/">Go back to Home</a>
+    </div>
+  );
 }
 
 export default App;
