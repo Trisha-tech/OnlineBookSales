@@ -6,25 +6,16 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const User = require('./models/userSchema'); // Import User model
+const User = require('./models/customerSchema'); // Import User model
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000; // Use port from .env or fallback to 5000
 
 // Enable CORS to allow requests from the frontend
-app.use(cors());
-
-// Sample order data
-const orders = [
-    { id: 1, item: 'Item 1' },
-    { id: 2, item: 'Item 2' },
-    { id: 3, item: 'Item 3' }
-];
-
-// Endpoint to fetch orders
-app.get('/api/orders', (req, res) => {
-    res.json(orders);
-});
+app.use(cors({
+    origin: 'http://localhost:3000', // Frontend URL
+    credentials: true // To allow cookies (for session management)
+}));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URL, {
@@ -32,6 +23,13 @@ mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));
+
+// Setup session
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
+
+// Initialize Passport and session
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Passport configuration for Google OAuth
 passport.use(new GoogleStrategy({
@@ -78,11 +76,6 @@ passport.deserializeUser(async (id, done) => {
     }
 });
 
-// Setup session
-app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Route to initiate Google OAuth flow
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] })
@@ -90,9 +83,9 @@ app.get('/auth/google',
 
 // Google OAuth callback route
 app.get('/auth/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/' }),
+    passport.authenticate('google', { failureRedirect: '/login' }), // Change to /login or /auth/failure
     (req, res) => {
-        // Successful authentication, redirect to frontend
+        console.log('Google authentication successful for user:', req.user);
         res.redirect('http://localhost:3000');
     }
 );
@@ -100,6 +93,18 @@ app.get('/auth/google/callback',
 // Endpoint to check the current user
 app.get('/auth/current_user', (req, res) => {
     res.send(req.user); // Send the current authenticated user
+});
+
+// Sample order data
+const orders = [
+    { id: 1, item: 'Item 1' },
+    { id: 2, item: 'Item 2' },
+    { id: 3, item: 'Item 3' }
+];
+
+// Endpoint to fetch orders
+app.get('/api/orders', (req, res) => {
+    res.json(orders);
 });
 
 // Start the server
