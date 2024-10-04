@@ -2,13 +2,12 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
 const Customer = require("../models/customerSchema.js");
 const Feedback = require("../models/feebackSchema.js");
 const sendToken = require("../utils/jwtToken");
-const ErrorHandler = require("../utils/errorHandler.js");
+const errorHandler = require("../utils/errorHandler");
+const responseHandler = require("../utils/responseHandler");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-// CUSTOMER REGISTRATION ROUTE
-const validator = require('validator');
-const disposableEmailDomains = require('disposable-email-domains');
-
+const validator = require("validator");
+const disposableEmailDomains = require("disposable-email-domains");
 
 exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -16,13 +15,29 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
   try {
     // Validate email format
     if (!validator.isEmail(email)) {
-      return res.status(400).json({ error: 'Invalid email address' });
+      return res
+        .status(404)
+        .send(
+          errorHandler(
+            404,
+            "Invalid request",
+            "Please provide a valid email id"
+          )
+        );
     }
 
     // Check if email domain is disposable
-    const domain = email.split('@')[1];
+    const domain = email.split("@")[1];
     if (disposableEmailDomains.includes(domain)) {
-      return res.status(400).json({ error: 'Disposable email addresses are not allowed' });
+      return res
+        .status(404)
+        .send(
+          errorHandler(
+            404,
+            "Invalid request",
+            "Disposable email addresses are not allowed"
+          )
+        );
     }
 
     const customer = await Customer.create({
@@ -36,20 +51,23 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     });
 
     sendToken(customer, 201, res);
-    const refreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
+    const refreshToken = jwt.sign(
+      { id: customer._id },
+      process.env.REFRESH_TOKEN_SECRET
+    );
 
     if (customer) {
       await Customer.findByIdAndUpdate(customer._id, { refreshToken });
     }
-
-
 
     // Access JWT secret key from environment variables
     const jwtSecret = process.env.JWT_SECRET;
 
     // Check if jwtSecret is defined
     if (!jwtSecret) {
-      console.error("JWT secret key is not defined in the environment variables.");
+      console.error(
+        "JWT secret key is not defined in the environment variables."
+      );
       process.exit(1); // Terminate the application
     }
 
@@ -63,57 +81,80 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     sendToken(customer, 201, res);
 
     const options = {
-      expires: new Date(Date.now() + process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      expires: new Date(
+        Date.now() +
+          process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
       httpOnly: true,
     };
 
-    res.status(201).cookie('refreshToken', refreshToken, options).json({
+    res.status(201).cookie("refreshToken", refreshToken, options).json({
       success: true,
       refreshToken,
       customer,
-    });;
-
+    });
   } catch (error) {
     console.error("Error occurred during user registration:", error);
     next(error); // Pass the error to the error handling middleware
   }
 });
 
-
-
 // CUSTOMER LOGIN ROUTE
 exports.loginCustomer = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new ErrorHandler("Please Enter Email & Password", 400));
+    return res
+      .status(404)
+      .send(
+        errorHandler(
+          404,
+          "Missing Parameters",
+          "Please enter email and password"
+        )
+      );
   }
 
   const customer = await Customer.findOne({ email }).select("+password");
 
   if (!customer) {
-    return next(new ErrorHandler("Invalid email or password", 401));
+    return res
+      .status(404)
+      .send(
+        errorHandler(
+          404,
+          "Invalid Request",
+          "Please enter valid email and password"
+        )
+      );
   }
 
   const isPasswordMatched = await customer.comparePassword(password);
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Invalid email or password", 401));
+    return res
+      .status(404)
+      .send(errorHandler(404, "Bad Request", "Please enter valid password"));
   }
 
   sendToken(customer, 200, res);
-  const refreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
+  const refreshToken = jwt.sign(
+    { id: customer._id },
+    process.env.REFRESH_TOKEN_SECRET
+  );
 
   if (customer) {
     await Customer.findByIdAndUpdate(customer._id, { refreshToken });
   }
 
   const options = {
-    expires: new Date(Date.now() + process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+    expires: new Date(
+      Date.now() + process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+    ),
     httpOnly: true,
   };
 
-  res.status(200).cookie('refreshToken', refreshToken, options).json({
+  res.status(200).cookie("refreshToken", refreshToken, options).json({
     success: true,
     refreshToken,
     customer,
@@ -125,7 +166,9 @@ exports.logoutCustomer = catchAsyncErrors(async (req, res, next) => {
   const customer = await Customer.findById(req.user.id);
 
   if (!customer) {
-    return next(new ErrorHandler("Invalid logout request", 401));
+    return res
+      .status(404)
+      .send(errorHandler(404, "Bad Request", "Customer does not exists"));
   }
   const updatedCustomer = await Customer.findOneAndUpdate(
     { _id: req.user.id },
@@ -134,28 +177,30 @@ exports.logoutCustomer = catchAsyncErrors(async (req, res, next) => {
   );
   const options = {
     httpOnly: true,
-    secure: true
-  }
+    secure: true,
+  };
 
-  return res.status(200)
+  return res
+    .status(200)
     .clearCookie("token", options)
     .clearCookie("refreshToken", options)
     .json({
-      success: true
-    })
-
-})
-    
-  
-
+      success: true,
+    });
+});
 
 // GET CUSTOMER DETAIL
 exports.getCustomerDetails = catchAsyncErrors(async (req, res, next) => {
   const customer = await Customer.findById(req.user.id);
 
-  res.status(200).json({
-    success: true,
-    customer,
+  return res.status(200).send({
+    response: {
+      data: { customer },
+      title: "Customer Fetched",
+      message: "Customer Fetched Successfully!",
+      status: 200,
+    },
+    errors: {},
   });
 });
 
@@ -168,11 +213,17 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   );
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Old password is incorrect", 400));
+    return res
+      .status(404)
+      .send(
+        errorHandler(404, "Bad Request", "Please enter the correct password")
+      );
   }
 
   if (req.body.newPassword !== req.body.confirmPassword) {
-    return next(new ErrorHandler("Password does not match", 400));
+    return res
+      .status(404)
+      .send(errorHandler(404, "Bad Request", "Password do not match"));
   }
 
   customer.password = req.body.newPassword;
@@ -199,24 +250,34 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     }
   );
 
-  res.status(200).json({
-    success: true,
+  return res.status(200).send({
+    response: {
+      data: {},
+      title: "Profile Updated",
+      message: "Customer's Profile Updated Successfully!",
+      status: 200,
+    },
+    errors: {},
   });
 });
 
-
 exports.addFeedback = catchAsyncErrors(async (req, res, next) => {
-  const { feedback,topic } = req.body;
+  const { feedback, topic } = req.body;
   const newFeedback = await Feedback.create({
     feedback,
     topic,
     user: req.body.user._id,
   });
-  try{
-   // sendMailToAdmin(newFeedback);
-    res.status(200).json({
-      success: true,
-      newFeedback,
+  try {
+    // sendMailToAdmin(newFeedback);
+    return res.status(200).send({
+      response: {
+        data: { newFeedback },
+        title: "Feedback Added",
+        message: "Feedback Added Successfully!",
+        status: 200,
+      },
+      errors: {},
     });
   } catch (error) {
     newFeedback.delete();
@@ -230,16 +291,15 @@ sendMailToAdmin = async (newFeedback) => {
     auth: {
       user: process.env.SMTP_EMAIL,
       pass: process.env.SMTP_PASSWORD,
-    },  
+    },
   });
   const mailOptions = {
     from: process.env.SMTP_EMAIL,
-    to: 'admin email',
+    to: "admin email",
     subject: "New Feedback",
     text: `New Feedback received from ${newFeedback.user}`,
   };
 };
-
 
 exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken;
@@ -253,33 +313,51 @@ exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
     const customer = await Customer.findById(decoded.id);
 
     if (!customer || customer.refreshToken !== refreshToken) {
-      return next(new ErrorHandler("Invalid refresh token", 401));
+      return res
+        .status(401)
+        .send(errorHandler(401, "Invalid Request", "Invalid Refresh Token"));
     }
 
-    const accessToken = customer.getJWTToken(); 
+    const accessToken = customer.getJWTToken();
 
-    const newRefreshToken = jwt.sign({ id: customer._id }, process.env.REFRESH_TOKEN_SECRET);
+    const newRefreshToken = jwt.sign(
+      { id: customer._id },
+      process.env.REFRESH_TOKEN_SECRET
+    );
 
-    const updatedCustomer =await Customer.findByIdAndUpdate(customer._id,{refreshTOken:newRefreshToken})
-    
+    const updatedCustomer = await Customer.findByIdAndUpdate(customer._id, {
+      refreshTOken: newRefreshToken,
+    });
+
     const accessTokenOptions = {
-      expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      expires: new Date(
+        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
       httpOnly: true,
     };
     const refreshTokenOptions = {
-      expires: new Date(Date.now() + process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      expires: new Date(
+        Date.now() +
+          process.env.REFRESH_TOKEN_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
       httpOnly: true,
     };
 
-    res.cookie('accessToken', accessToken, accessTokenOptions);
-    res.cookie('refreshToken', newRefreshToken, refreshTokenOptions);
+    res.cookie("accessToken", accessToken, accessTokenOptions);
+    res.cookie("refreshToken", newRefreshToken, refreshTokenOptions);
 
-    res.status(200).json({
-      success: true,
-      accessToken,
-      refreshToken
+    return res.status(200).send({
+      response: {
+        data: { accessToken, refreshToken },
+        title: "Tokens Fetched",
+        message: "Tokens Fetched Successfully!",
+        status: 200,
+      },
+      errors: {},
     });
   } catch (error) {
-    return next(new ErrorHandler("Invalid refresh token", 401));
+    return res
+      .status(401)
+      .send(errorHandler(401, "Invalid Request", "Invalid Refresh Token"));
   }
 });

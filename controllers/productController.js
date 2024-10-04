@@ -1,35 +1,42 @@
 const Product = require("../models/productSchema.js");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors.js");
-const ErrorHandler=require("../utils/errorHandler.js")
+const errorHandler = require("../utils/errorHandler");
+const responseHandler = require("../utils/responseHandler");
 
 // CREATE PRODUCT
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-  
-    const product = await Product.create(req.body);
+  const product = await Product.create(req.body);
 
-      await product.save();
-      const { url } = req.body;
-      if (url) {
-                  product.shareableLink = url;
-                  await product.save();
-              }
+  await product.save();
+  const { url } = req.body;
+  if (url) {
+    product.shareableLink = url;
+    await product.save();
+  }
 
-    res.status(201).json({
-      success: true,
-      product,
-    });
+  return res.status(200).send({
+    response: {
+      data: { product },
+      title: "Product Created",
+      message: "Product Created Successfully!",
+      status: 200,
+    },
+    errors: {},
   });
+});
 
-
-  
-
-  // GET ALL PRODUCTS (ADMIN)
+// GET ALL PRODUCTS (ADMIN)
 exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
   const products = await Product.find();
 
-  res.status(200).json({
-    success: true,
-    products,
+  return res.status(200).send({
+    response: {
+      data: { products },
+      title: "Product Fetched",
+      message: "Product Fetched Successfully!",
+      status: 200,
+    },
+    errors: {},
   });
 });
 
@@ -38,16 +45,21 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) {
-    return next(new ErrorHandler("Product not found", 404));
+    return res
+      .status(404)
+      .send(errorHandler(404, "Not Found", "Product Not Found"));
   }
 
-  res.status(200).json({
-    success: true,
-    product,
+  return res.status(200).send({
+    response: {
+      data: { product },
+      title: "Product Fetched",
+      message: "Product Fetched Successfully!",
+      status: 200,
+    },
+    errors: {},
   });
 });
-
-
 
 // UPDATE PRODUCT -- ADMIN
 
@@ -55,7 +67,9 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 
   if (!product) {
-    return next(new ErrorHandler("Product not found", 404));
+    return res
+      .status(404)
+      .send(errorHandler(404, "Not Found", "Product Not Found"));
   }
 
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
@@ -64,12 +78,16 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     useFindAndModify: false,
   });
 
-  res.status(200).json({
-    success: true,
-    product,
+  return res.status(200).send({
+    response: {
+      data: { product },
+      title: "Product Fetched",
+      message: "Product Fetched Successfully!",
+      status: 200,
+    },
+    errors: {},
   });
 });
-
 
 // DELETE PRODUCT
 
@@ -77,30 +95,37 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) {
-    return next(new ErrorHander("Product not found", 404));
+    return res
+      .status(404)
+      .send(errorHandler(404, "Not Found", "Product Not Found"));
   }
 
   await product.deleteOne();
 
-  res.status(200).json({
-    success: true,
-    message: "Product Deleted Successfully",
+  return res.status(200).send({
+    response: {
+      data: { product },
+      title: "Product Deleted",
+      message: "Product Deleted Successfully!",
+      status: 200,
+    },
+    errors: {},
   });
 });
 
-
-
-// Search Product 
+// Search Product
 
 exports.searchProduct = catchAsyncErrors(async (req, res, next) => {
   const products = await Product.findById(req.params.id);
 
-  if(!products){
-    return next(new ErrorHandler("Product not found", 404));
+  if (!products) {
+    return res
+      .status(404)
+      .send(errorHandler(404, "Not Found", "Product Not Found"));
   }
   res.status(200).json({
-    success:true,
-    products
+    success: true,
+    products,
   });
 });
 
@@ -108,24 +133,34 @@ exports.searchProduct = catchAsyncErrors(async (req, res, next) => {
 
 exports.filterProduct = catchAsyncErrors(async (req, res, next) => {
   const { category, numOfReviews } = req.body;
-  if(!category || !numOfReviews){
-    return next(new ErrorHandler("Please select either category or numOfReviews", 404)); 
-    }
+  if (!category || !numOfReviews) {
+    return res
+      .status(404)
+      .send(
+        errorHandler(
+          404,
+          "Invalid Request",
+          "Please select either category or numOfReviews"
+        )
+      );
+  }
 
-    let filterCriteria = {}
-    if(category){
-      filterCriteria.category = category
-    }else if(numOfReviews){
-      filterCriteria.numOfReviews=numOfReviews
-    }
-    const products = await Product.find(filterCriteria);
-    if(!products){
-      return next(new ErrorHandler("Products not found", 404));
-    }
-    res.status(200).json({
-      success:true,
-      products
-    });
+  let filterCriteria = {};
+  if (category) {
+    filterCriteria.category = category;
+  } else if (numOfReviews) {
+    filterCriteria.numOfReviews = numOfReviews;
+  }
+  const products = await Product.find(filterCriteria);
+  if (!products) {
+    return res
+      .status(404)
+      .send(errorHandler(404, "Not Found", "Product Not Found"));
+  }
+  res.status(200).json({
+    success: true,
+    products,
+  });
 });
 
 exports.getShareableLink = async (req, res) => {
@@ -133,12 +168,12 @@ exports.getShareableLink = async (req, res) => {
     const { Id } = req.params;
     const product = await Product.findById(Id);
     if (!product) {
-      return res.status(404).json({ error: 'Product not found' });
+      return res.status(404).json({ error: "Product not found" });
     }
     const shareableLink = product.shareableLink;
     res.json({ success: true, shareableLink });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
