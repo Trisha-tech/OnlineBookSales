@@ -149,6 +149,7 @@ const SignUpPage = () => {
                                         Already have an account?{' '}
                                     </p>
                                 </div>
+                                {/* back to login page */}
                                 <button
                                     type="button"
                                     className='w-full text-white my-2 font-semibold bg-[#060606] border border-black/40 rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black'
