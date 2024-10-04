@@ -126,9 +126,13 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-              <Typography align="center" sx={{ mt: 2, mr: 2 }}  className="text-black dark:text-white">
-                Don't have an account? <Link to="/signup">Sign up</Link>
-              </Typography>
+           <Typography align="left" sx={{ mt: 2, mr: 2 }} className="text-black dark:text-white">
+  Don't have an account? <Link to="/signup">Sign up</Link>
+</Typography>
+<Typography align="left" sx={{ mt: 2, mr: 2 }} className="text-black dark:text-white">
+  Forgot your password? <Link to="/resetpassword">Reset Password</Link>
+</Typography>
+
             </form>
           </Grid>
         </Grid>

@@ -5,6 +5,8 @@ const sendToken = require("../utils/jwtToken");
 const ErrorHandler = require("../utils/errorHandler.js");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const bcrypt = require("bcryptjs");
+const saltRounds = 10;
 // CUSTOMER REGISTRATION ROUTE
 const validator = require('validator');
 const disposableEmailDomains = require('disposable-email-domains');
@@ -203,6 +205,37 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+//RESET Password
+exports.resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body; // expecting newPassword
+
+  if (!newPassword) {
+    return res.status(400).json({ error: 'New password is required.' });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);  // Hash new password
+
+    const updatedUser = await Customer.findOneAndUpdate(
+      { email },  // Find user by email
+      { $set: { password: hashedPassword } },  // Set new hashed password
+      { new: true }
+    );
+
+    if (updatedUser) {
+      return res.json({ message: 'Password updated successfully.' });
+    } else {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+  } catch (error) {
+    console.error('Error updating password:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
 
 
 exports.addFeedback = catchAsyncErrors(async (req, res, next) => {

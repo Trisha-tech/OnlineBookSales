@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const dotenv = require(`dotenv`);
+const dotenv = require("dotenv");
 dotenv.config({ path: `.env` });
 
 const customerSchema = new mongoose.Schema({
@@ -38,8 +38,8 @@ const customerSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
-  refreshTOken:{
-    type:String,
+  refreshToken: { // Corrected key name
+    type: String,
     required: false,
   },
   createdAt: {
@@ -61,11 +61,10 @@ customerSchema.pre("save", async function (next) {
 
 // JWT TOKEN
 customerSchema.methods.getJWTToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET);
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Consider adding expiration
 };
 
 // Compare Password
-
 customerSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };

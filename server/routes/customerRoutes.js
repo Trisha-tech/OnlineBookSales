@@ -6,9 +6,8 @@ const {
   updatePassword,
   updateProfile,
   logoutCustomer,
-  addFeedback
-  
-
+  addFeedback,
+  resetPassword 
 } = require("../controllers/customerController.js");
 const {
   addTocart,
@@ -32,8 +31,7 @@ router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
-
-
+router.route("/resetpassword").post(resetPassword);
 
 
 //cart routes

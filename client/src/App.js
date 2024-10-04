@@ -22,6 +22,7 @@ import Preloader from "./Components/Preloader.jsx";
 import { Toast } from "./Toast/Toast.js";
 import GoToTop from "./Components/GoToTop.jsx";
 import License from "./Pages/Licensing.jsx";
+import ResetPassword from "./Pages/ResetPassword.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -58,6 +59,7 @@ function App() {
           <Route path="/licensing" element={<License />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/contributors" element={<Contributors />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} /> {/* Fallback route */}
         </Routes>
         <Toast position="bottom-right" />
