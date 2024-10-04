@@ -55,85 +55,103 @@ const LoginPage = () => {
 
   return (
     <>
-    <Preloader />
-    <Container maxWidth="xl">
-      <div style={{ marginTop: "100px", marginBottom: "180px" }}>
-        <Toaster />
-        <Grid container spacing={2} sx={{ justifyContent: "center" }}>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Lottie
-                animationData={loginAnimation}
-                style={{ height: "500px" }}
-                className="fromLeft"
-              />
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <form onSubmit={handleSubmit} className="fromRight">
-              <Typography variant="h5" align="center" gutterBottom className=" dark:text-white">
-                Login
-              </Typography>
-              <input
-                placeholder="Email"
-                fullWidth
-                variant="outlined"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                margin="normal"
-                color="primary"
-                className="w-full p-3 mb-4 bg-transparent border border-black rounded-md dark:text-white"
-              />
-              <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
-                <input
-                  placeholder="Password"
-                  label="Password"
-                  type={showPassword ? "text" : "password"} // Set input type dynamically
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  margin="normal"
-                  className="w-full p-3 bg-transparent border border-black rounded-md dark:text-white"
+      <Preloader />
+      <Container maxWidth="xl">
+        <div style={{ marginTop: "50px", marginBottom: "50px" }}>
+          <Toaster />
+          <Grid container spacing={2} sx={{ justifyContent: "center" }}>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: { xs: "none", md: "block" } }}>
+                <Lottie
+                  animationData={loginAnimation}
+                  style={{ height: "500px" }}
+                  className="fromLeft"
                 />
-                <IconButton
-                  onClick={togglePasswordVisibility}
-                  sx={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)" }}
-                >
-                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                </IconButton>
               </Box>
-              {error && (
-                <Typography color="error" align="center">
-                  {error}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <form onSubmit={handleSubmit} className="w-full max-w-[400px] flex flex-col bg-white dark:bg-[#1e1e1e] p-8 rounded-xl shadow-2xl transform transition-all duration-300 hover:scale-105">
+                <Typography variant="h5" align="center" gutterBottom className="dark:text-white">
+                  <h1 className='text-2xl md:text-3xl text-[#060606] font-semibold mb-1 mt-1 dark:text-white'>Book4U</h1>
+                  <h2 className='text-lg md:text-xl mb-1'>Login</h2>
+
                 </Typography>
-              )}
-              <Button
-                variant="contained"
-                type="submit"
-                fullWidth
-                sx={{
-                  mt: 2,
-                  "&:hover": { backgroundColor: "#0069d9" },
-                }}
-              >
-                Login
-              </Button>
-              <Typography align="center" sx={{ mt: 2, mr: 2 }}  className="text-black dark:text-white">
-                Don't have an account? <Link to="/signup">Sign up</Link>
-              </Typography>
-            </form>
+                <input
+                  placeholder="Email"
+                  fullWidth
+                  variant="outlined"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  margin="normal"
+                  color="primary"
+                  className="w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none dark:text-white dark:border-white"
+                />
+                <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+                  <input
+                    placeholder="Password"
+                    label="Password"
+                    type={showPassword ? "text" : "password"} // Set input type dynamically
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    margin="normal"
+                    className="w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none dark:text-white dark:border-white"
+                  />
+                  <IconButton
+                    onClick={togglePasswordVisibility}
+                    sx={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)" }}
+                  >
+                    {showPassword ? (
+                      <VisibilityIcon className="text-black dark:text-white" /> // Text color changes based on theme
+                    ) : (
+                      <VisibilityOffIcon className="text-black dark:text-white" />
+                    )}
+                  </IconButton>
+
+                </Box>
+                {error && (
+                  <Typography color="error" align="center">
+                    {error}
+                  </Typography>
+                )}
+                <button
+                  variant="contained"
+                  type="submit"
+                  fullWidth
+                  sx={{
+                    mt: 2,
+                    "&:hover": { backgroundColor: "#0069d9" },
+                  }}
+                  className="w-full text-white my-2 mt-5 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black"
+                >
+                  Login
+                </button>
+                <div className='w-full flex items-center justify-center mt-3 mb-3'>
+                  <p className='text-sm text-[#060606] dark:text-white'>
+                    Don't have an account?{' '}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className='w-full text-white my-2 font-semibold bg-[#060606] border border-black/40 rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black'
+                  onClick={() => navigate('/signup')}
+                >
+                  Sign Up
+                </button>
+
+              </form>
+            </Grid>
           </Grid>
-        </Grid>
-      </div>
-    </Container>
+        </div>
+      </Container>
     </>
   );
 };
