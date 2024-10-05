@@ -9,7 +9,7 @@ import Lottie from "lottie-react";
 import loginAnimation from '../Lottie-animation/loginAnimation.json'
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Preloader from "../Components/Preloader";
 
 
@@ -146,17 +146,9 @@ const SignUpPage = () => {
                                 </button>
                                 <div className='w-full flex items-center justify-center mt-3 mb-3'>
                                     <p className='text-sm text-[#060606] dark:text-white'>
-                                        Already have an account?{' '}
+                                        Already have an account?{' '} <Link to="/login">Login</Link>
                                     </p>
                                 </div>
-                                {/* back to login page */}
-                                <button
-                                    type="button"
-                                    className='w-full text-white my-2 font-semibold bg-[#060606] border border-black/40 rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black'
-                                    onClick={() => navigate('/login')}
-                                >
-                                    Login
-                                </button>
                             </form>
                         </Grid>
                     </Grid>
