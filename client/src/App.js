@@ -39,6 +39,18 @@ function App() {
     backgroundColor: darkMode ? '#333' : '#f4f4f4',
   };
 
+  // Optionally, fetch user data if logged in
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/auth/current_user', {
+      credentials: 'include',
+    })
+      .then(response => response.json())
+      .then(data => setUser(data))
+      .catch(err => console.error(err));
+  }, []);
+
   return (
     <Router>
       <div className="App" style={appStyle}>
