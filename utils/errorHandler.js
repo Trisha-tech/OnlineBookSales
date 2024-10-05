@@ -1,12 +1,14 @@
-class ErrorHandler extends Error{
-    constructor(message,statusCode){
-        super(message);
-        this.statusCode = statusCode
+const errorHandler = (status, title, detail) => {
+    return {
+      response: {},
+      errors: {
+        status: status || 500,
+        title: title || "Internal Server Error",
+        detail: detail || "Error in processing request! Please try again later.",
+      },
+    };
+  };
 
-        Error.captureStackTrace(this,this.constructor);
-
-    }
-    
+module.exports = {
+    errorHandler
 }
-
-module.exports = ErrorHandler
