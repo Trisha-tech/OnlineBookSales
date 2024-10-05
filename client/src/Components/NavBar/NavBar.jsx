@@ -54,7 +54,6 @@ const MobileMenu = styled('div')(({ open }) => ({
 
 const MobileMenuButton = styled(IconButton)({
   fill: '#fff', // Adjust color as needed
-  marginLeft: 'auto', // Move the menu icon to the end in mobile view
 });
 
 function Navbar({ darkMode, toggleDarkMode }) {
@@ -95,32 +94,17 @@ function Navbar({ darkMode, toggleDarkMode }) {
         {/* Desktop or Mobile Menu */}
         {isMobile ? (
           <>
+            {/* Theme Switcher on the left side of the hamburger icon */}
+            <IconButton onClick={toggleDarkMode} style={{ marginRight: '10px' }}>
+              <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
+            </IconButton>
+            
             <MobileMenuButton onClick={handleMenuClick}>
               <MenuIcon sx={{ fontSize: '2rem' }} />
             </MobileMenuButton>
+            
             <MobileMenu open={openMenu}>
               {/* Menu Items */}
-              <StyledButton
-                color="inherit"
-                component={Link}
-                to={userLoggedIn ? "#" : "/login"}
-                onClick={userLoggedIn ? handleLogout : null}
-                startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
-                fullWidth
-              >
-                {userLoggedIn ? "Logout" : "Login"}
-              </StyledButton>
-              {userLoggedIn && (
-                <StyledButton
-                  color="inherit"
-                  component={Link}
-                  to="/profile"
-                  startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
-                  fullWidth
-                >
-                  Profile
-                </StyledButton>
-              )}
               <StyledButton color="inherit" component={Link} to="/" startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
                 Home
               </StyledButton>
@@ -135,6 +119,18 @@ function Navbar({ darkMode, toggleDarkMode }) {
               </StyledButton>
               <StyledButton color="inherit" component={Link} to="/orders" startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
                 Orders
+              </StyledButton>
+
+              {/* Login inside the menu */}
+              <StyledButton
+                color="inherit"
+                component={Link}
+                to={userLoggedIn ? "#" : "/login"}
+                onClick={userLoggedIn ? handleLogout : null}
+                startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
+                fullWidth
+              >
+                {userLoggedIn ? "Logout" : "Login"}
               </StyledButton>
             </MobileMenu>
           </>
@@ -155,7 +151,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
             <StyledButton color="inherit" component={Link} to="/orders" startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />}>
               Orders
             </StyledButton>
-            
+
             {/* Move these two to the end */}
             <IconButton onClick={toggleDarkMode} style={{ marginLeft: 'auto', marginRight: '10px' }}>
               <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
