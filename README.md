@@ -8,15 +8,35 @@
 This project named **Online Book Sales - Backend** deals with developing an e-commerce website for Online Book Sale. It provides the user with a catalog of different books available for purchase in the store. In order to facilitate online purchase, a shopping cart is provided to the user. The system is implemented using a 3-tier approach, with a backend database, a middle tier of Node.js and Express.js, and a web browser as the front end client.
 
 
+## 📑 Table of Content
 
-## 💥 Features
+- **[Features](#features)**
+- **[Link Of The Project](#link-of-the-project)**
+- **[Tech Stack](#tech-stack)**
+- **[Code of Conduct](#code-of-conduct)**
+- **[How to Fork](#how-to-fork)**
+- **[How to Contribute](#how-to-contribute)**
+- **[How to run the webpage on your local system](#how-to-run-the-webpage-on-your-local-system)**
+- **[Using GitHub Desktop](#using-gitHub-desktop)**
+- **[Content Details](#content-details)**
+  - **[MVC Diagram](#mvc-diagram)**
+  - **[Database Design](#database-design)**
+  - **[Usecase Diagram](#usecase-diagram)**
+  - **[Activity Diagram](#activity-diagram)**
+  - **[Screenshots of the Project](#screenshots-of-the-project)**
+- **[Our Contributors](#our-contributors)**
+- **[Contact Information](#contact-information)**
+
+
+
+##  Features
 
 - Registration and Login System.
 
 
 
 
-## ✨ Link Of The Project
+## Link Of The Project
 
 Live Link: https://book4u-j5au.onrender.com/
 
@@ -25,7 +45,7 @@ Backend Link: https://online-book-sales-backend.onrender.com/
 
 
 
-## 📌 Tech Stack
+## Tech Stack
 
 [![linkedin](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://www.linkedin.com/)
 [![portfolio](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://katherineoelsner.com/)
@@ -36,10 +56,41 @@ Backend Link: https://online-book-sales-backend.onrender.com/
 [![twitter](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://twitter.com/)
 
 
+## Code of Conduct
+
+To foster a positive and inclusive community, please adhere to the following guidelines:
+
+- **Be Respectful:** Treat everyone with respect. Engage in constructive conversations.
+- **No Harassment:** Harassment, bullying, or discrimination will not be tolerated.
+- **Report Issues:** If you witness or experience any unacceptable behavior, please report it to the project maintainers.
+
+Please read the [code of Conduct](CODE_OF_CONDUCT.md) for more clear understanding.
 
 
+## How to Fork
 
-# How to Contribute
+Forking allows you to create a personal copy of the repository, where you can experiment and make changes without affecting the original project. Here’s how to do it:
+
+### Navigate to the Repository:
+
+- Go to the Awesome GitHub Profiles repository.
+
+### Click on Fork:
+
+- On the top right corner, click the "Fork" button.
+
+### Select Your Account:
+
+- Choose your GitHub account to create the fork.
+
+### Clone Your Fork:
+
+- Use the command below to clone your fork to your local machine:
+  ```bash
+  git clone https://github.com/YOUR_USERNAME/Awesome-Github-Profiles.git
+  ```
+
+## How to Contribute
 
 If you think that you can add a new feature or want to fix a bug, we invite you to contribute to Online Book Sales and make this project better. To start contributing, follow the below instructions:
 
@@ -128,7 +179,9 @@ git push -u origin <your_branch_name>
 Congratulations🎉, you have made a PR to the FunwithPhysics.
 Wait for your submission to be accepted and your PR to be merged by a maintainer.
 
-# How to run the webpage on your local system
+To get started with contributing, please follow the steps outlined in the [CONTRIBUTING.md](Contributing.md).
+
+## How to run the webpage on your local system
 
 1. Go to the `OnlineBookSales` directory.
 
@@ -192,70 +245,62 @@ Alternatively, you can use GitHub Desktop to manage this repository. Here's how:
 That's it! You can now use GitHub Desktop to manage this repository efficiently.
 
 
-## Table of Contents
+## Content Details
 
 1. [MVC Diagram](#mvc-diagram)
 2. [Database Design](#database-design)
-   - [Customer Collection in MongoDB](#customer-collection-in-mongodb)
-   - [Product Collections in MongoDB](#product-collections-in-mongodb)
-   - [Order Collection in MongoDB](#order-collection-in-mongodb)
 3. [Usecase Diagram](#usecase-diagram)
 4. [Activity Diagram](#activity-diagram)
-   - [Login Activity Diagram](#login-activity-diagram)
-   - [Registration Activity Diagram](#registration-activity-diagram)
-   - [Admin Registration Activity Diagram](#admin-registration-activity-diagram)
-   - [Admin Login Activity Diagram](#admin-login-activity-diagram)
-   - [User Activity Diagram](#user-activity-diagram)
 5. [Screenshots of the Project](#screenshots-of-the-project)
-6. [Customer Database (MongoDB) Schema](#customer-database-mongodb-schema)
-7. [Product Database (MongoDB) Schema](#product-database-mongodb-schema)
-8. [Order Database (MongoDB) Schema](#order-database-mongodb-schema)
-9. [Customer Routes](#customer-routes)
-10. [Product Routes](#product-routes)
-11. [Order Routes](#order-routes)
-12. [Middleware for Customer Authentication](#middleware-for-customer-authentication)
-13. [Middleware for Error Handler](#middleware-for-error-handler)
-14. [Implementation of JWT Token](#implementation-of-jwt-token)
-15. [New Customer Registration Route/API](#new-customer-registration-route-api)
-    - [POST Request for Customer Registration](#post-request-for-customer-registration)
-16. [Customer Login Route/API](#customer-login-route-api)
-    - [POST Request for Custom Login](#post-request-for-custom-login)
-17. [Get Customer Details Route/API](#get-customer-details-route-api)
-18. [Update Customer Profile Route/API](#update-customer-profile-route-api)
-    - [Customer Details Update Route](#customer-details-update-route)
-19. [Update Customer Password Route/APl](#update-customer-password-route-api)
-20. [Product Creation Route/API](#product-creation-route-api)
-    - [POST Request for Production Creation Route](#post-request-for-production-creation-route)
-21. [Get all Products (Admin) Route/API](#get-all-products-admin-route-api)
-    - [GET Request for Get All Products Route](#get-request-for-get-all-products-route)
-22. [Get Product Details Route/API](#get-product-details-route-api)
-    - [GET Request Get Product Details Route](#get-request-get-product-details-route)
-23. [Update Product (Admin) Route/API](#update-product-admin-route-api)
-    - [PUT Request for Update Product Route](#put-request-for-update-product-route)
-24. [Delete Product Route/API](#delete-product-route-api)
-    - [DELETE Request for Delete Product Route](#delete-request-for-delete-product-route)
-25. [New Order Creation Route/API](#new-order-creation-route-api)
-    - [POST Request for New Order Creation Route](#post-request-for-new-order-creation-route)
-26. [Get Single Order Route/API](#get-single-order-route-api)
-    - [GET Request for Get Single Order Route](#get-request-for-get-single-order-route)
-27. [Get Logged in Customer Order Route/API](#get-logged-in-customer-order-route-api)
-    - [GET Request for Get Logged in Customer Order Route](#get-request-for-get-logged-in-customer-order-route)
-28. [Update Order Status (Admin) Route/API](#update-order-status-admin-route-api)
-    - [PUT Request for Update Order Status Route](#put-request-for-update-order-status-route)
-29. [Delete Order(Admin) Route/API](#delete-orderadmin-route-api)
-    - [DELETE Request for Delete Order Route](#delete-request-for-delete-order-route)
+   1. [Customer Database (MongoDB) Schema](#customer-database-mongodb-schema)
+   2. [Product Database (MongoDB) Schema](#product-database-mongodb-schema)
+   3. [Order Database (MongoDB) Schema](#order-database-mongodb-schema)
+   4. [Customer Routes](#customer-routes)
+   5. [Product Routes](#product-routes)
+   6. [Order Routes](#order-routes)
+   7. [Middleware for Customer Authentication](#middleware-for-customer-authentication)
+   8. [Middleware for Error Handler](#middleware-for-error-handler)
+   9. [Implementation of JWT Token](#implementation-of-jwt-token)
+   10. [New Customer Registration Route/API](#new-customer-registration-route-api)
+     - [POST Request for Customer Registration](#post-request-for-customer-registration)
+   11. [Customer Login Route/API](#customer-login-route-api)
+     - [POST Request for Custom Login](#post-request-for-custom-login)
+   12. [Get Customer Details Route/API](#get-customer-details-route-api)
+   13. [Update Customer Profile Route/API](#update-customer-profile-route-api)
+     - [Customer Details Update Route](#customer-details-update-route)
+   14. [Update Customer Password Route/APl](#update-customer-password-route-api)
+   15. [Product Creation Route/API](#product-creation-route-api)
+     - [POST Request for Production Creation Route](#post-request-for-production-creation-route)
+   16. [Get all Products (Admin) Route/API](#get-all-products-admin-route-api)
+     - [GET Request for Get All Products Route](#get-request-for-get-all-products-route)
+   17. [Get Product Details Route/API](#get-product-details-route-api)
+     - [GET Request Get Product Details Route](#get-request-get-product-details-route)
+   18. [Update Product (Admin) Route/API](#update-product-admin-route-api)
+     - [PUT Request for Update Product Route](#put-request-for-update-product-route)
+   19. [Delete Product Route/API](#delete-product-route-api)
+     - [DELETE Request for Delete Product Route](#delete-request-for-delete-product-route)
+   20. [New Order Creation Route/API](#new-order-creation-route-api)
+     - [POST Request for New Order Creation Route](#post-request-for-new-order-creation-route)
+   21. [Get Single Order Route/API](#get-single-order-route-api)
+     - [GET Request for Get Single Order Route](#get-request-for-get-single-order-route)
+   22. [Get Logged in Customer Order Route/API](#get-logged-in-customer-order-route-api)
+     - [GET Request for Get Logged in Customer Order Route](#get-request-for-get-logged-in-customer-order-route)
+   23. [Update Order Status (Admin) Route/API](#update-order-status-admin-route-api)
+     - [PUT Request for Update Order Status Route](#put-request-for-update-order-status-route)
+   24. [Delete Order(Admin) Route/API](#delete-orderadmin-route-api)
+     - [DELETE Request for Delete Order Route](#delete-request-for-delete-order-route)
 
 
 
 
 
-## MVC Diagram
+### MVC Diagram
 
 ![image](https://github.com/Trisha-tech/OnlineBookSales-Backend/assets/55338588/da372c9a-edd8-4816-ab09-436dd0b00195)
 
 
 
-## Database Design
+### Database Design
 
 
 **1.	Customer Collections in MongoDB**
@@ -274,12 +319,11 @@ That's it! You can now use GitHub Desktop to manage this repository efficiently.
 ![image](https://github.com/Trisha-tech/OnlineBookSales-Backend/assets/55338588/368691d1-da9b-422e-b722-80da7a835c53)
 
 
-## Use-Case Diagram
+### Usecase Diagram
 
 ![image](https://github.com/Trisha-tech/OnlineBookSales-Backend/assets/55338588/1ec30aa8-08f7-44ee-9fdd-51f1dcf94ea9)
 
-
-## Activity Diagram
+### Activity Diagram
 
 
 **1.	Login Activity Diagram**
@@ -307,10 +351,7 @@ That's it! You can now use GitHub Desktop to manage this repository efficiently.
 ![image](https://github.com/Trisha-tech/OnlineBookSales-Backend/assets/55338588/8e446cf0-ec52-4e5e-9517-68533c2c6b92)
 
 
-
-
-
-## 📸 Screenshots Of The Project
+### Screenshots Of The Project
 
 **1.	Customer Database (MongoDB) Schema**
 
@@ -485,12 +526,17 @@ That's it! You can now use GitHub Desktop to manage this repository efficiently.
 
 
  
-<h2 align = "center">Our Contributors ❤️</h2>
-<div align = "center">
+## <h2 align = "center">Our Contributors</h2>
+ <div align = "center">
  <h3>Thank you for contributing to our repository</h3>
 
-![Contributors](https://contrib.rocks/image?repo=Trisha-tech/OnlineBookSales)
+ ![Contributors](https://contrib.rocks/image?repo=Trisha-tech/OnlineBookSales)
 
-</div>
+ </div>
 
+## Contact Information
+
+If you have questions, suggestions, or feedback, please reach out via email at email@example.com. You can also join our discussion forum [here](https://github.com/Trisha-tech/OnlineBookSales/discussions).
+
+We value open communication and are happy to help!
 💙 Thank You !!! 💙
