@@ -16,7 +16,11 @@ import {
   IconButton,
   Button,
   Box,
+  MenuItem,
+  InputLabel,
 } from "@mui/material";
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -27,6 +31,7 @@ function OrderList() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -49,6 +54,7 @@ function OrderList() {
   };
 
   const handleSort = () => {
+    setHidden(!hidden);
     const sortedData = [...data].sort((a, b) => {
       if (sortOrder === "asc") {
         return a.item.localeCompare(b.item);
@@ -82,9 +88,33 @@ function OrderList() {
             </IconButton>
         </Box>
 
-        <Button variant="contained" startIcon={<SortIcon />} onClick={handleSort}>
-          Sort
-        </Button>
+        <span className="relative">
+          <Button variant="contained" startIcon={<SortIcon />} onClick={handleSort}>
+            Sort
+          </Button>
+          {
+            !hidden && <div className="options absolute top-[100%] text-black flex flex-col mt-1 rounded-lg bg-[#1976d2] border-gray-500 w-[150px] items-center" >
+              <span className="p-1 text-white cursor-pointer w-auto h-full flex justify-center">
+                <span className="w-auto h-full hover:bg-[#1565c0] text-center">Price: high to low</span>
+              </span>
+              <span className="p-1 text-white cursor-pointer w-auto h-full flex justify-center">
+                <span className="w-auto h-full hover:bg-[#1565c0] text-center">Price: low to high</span>
+              </span>
+              <span className="p-1 text-white cursor-pointer w-auto h-full flex justify-center">
+                <span className="w-auto h-full hover:bg-[#1565c0] text-center">Date: high to low</span>
+              </span>
+              <span className="p-1 text-white cursor-pointer w-auto h-full flex justify-center">
+                <span className="w-auto h-full hover:bg-[#1565c0] text-center">Date: low to high</span>
+              </span>
+              <span className="p-1 text-white cursor-pointer w-auto h-full flex justify-center">
+                <span className="w-auto h-full hover:bg-[#1565c0] text-center">Alphabatical: A-Z</span>
+              </span>
+              <span className="p-1 text-white cursor-pointer w-auto h-full flex justify-center">
+                <span className="w-auto h-full hover:bg-[#1565c0] text-center">Alphabetical: Z-A</span>
+              </span>
+            </div>
+          }
+        </span>
         <IconButton onClick={fetchData}>
           <RefreshIcon />
         </IconButton>
