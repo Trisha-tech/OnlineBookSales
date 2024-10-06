@@ -1,0 +1,5 @@
+.mySwiper .swiper-pagination {
+    bottom: 0; /* Moves pagination to the bottom */
+    margin-top: 10px; /* Adds some margin between the card and dots */
+    position: relative; /* Avoids overlap with the image */
+}
