@@ -15,7 +15,7 @@ function Cart() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const isAuthenticated =!! localStorage.getItem('token');
   if(!isAuthenticated){
     navigate('/login')
@@ -24,7 +24,7 @@ function Cart() {
 
   const { userLoggedIn } = useAuth();
   const { showToast } = useToast();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
 
   useEffect(() => {
