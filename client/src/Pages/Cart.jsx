@@ -24,7 +24,7 @@ function Cart() {
 
   const { userLoggedIn } = useAuth();
   const { showToast } = useToast();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
 
   useEffect(() => {
