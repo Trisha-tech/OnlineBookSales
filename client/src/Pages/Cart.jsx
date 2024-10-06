@@ -3,10 +3,8 @@ import Spinner from "./Spinner";
 import { fetchCartData, addItemToCart, removeItemFromCart } from "../api/api.js";
 import "./Cart.css";
 import Preloader from '../Components/Preloader';
-
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
-
 import { useNavigate } from "react-router-dom";
 
 
@@ -15,12 +13,6 @@ function Cart() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
-  const navigate = useNavigate();
-  const isAuthenticated =!! localStorage.getItem('token');
-  if(!isAuthenticated){
-    navigate('/login')
-
- }
 
   const { userLoggedIn } = useAuth();
   const { showToast } = useToast();

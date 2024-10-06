@@ -78,10 +78,8 @@ function Navbar({ darkMode, toggleDarkMode }) {
     } catch (error) {
       console.error('Error removing token from sessionStorage:', error);
     }
-     
-    setUserLoggedIn(false);
-    localStorage.removeItem('token'); // Remove the token from localStorage
-     // Update the user logged-in state
+
+    setUserLoggedIn(false); // Update the user logged-in state
     navigate('/', { replace: true }); // Redirect to home page
     showToast("success", "", "Logged out successfully");
   };
