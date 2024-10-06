@@ -74,41 +74,42 @@ const FAQ = () => {
     <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h2 className="text-3xl font-extrabold text-gray-900 mb-6 text-center dark:text-white">FAQ</h2>
       <dl className="space-y-6">
-        {faqs.map((faq, index) => (
-          <div
-            key={index}
-            className="bg-white border border-gray-300 rounded-lg shadow-sm dark:bg-[rgb(40,40,40)]"
-          >
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="w-full p-4 text-left focus:outline-none dark:bg-[rgb(40,40,40)]"
-              aria-expanded={openIndex === index}
-            >
-              <div className="flex justify-between items-center ">
-                <span className="text-lg font-medium text-gray-900 dark:text-white">{faq.question}</span>
-                <svg
-                  className={`h-6 w-6 transition-transform dark:text-white duration-600 transform ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d={openIndex === index ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'}
-                  />
-                </svg>
-              </div>
-            </button>
-            {openIndex === index && (
-              <p className="p-4 text-base text-gray-200">{faq.answer}</p>
-            )}
-          </div>
-        ))}
+      {faqs.map((faq, index) => (
+  <div
+    key={index}
+    className="bg-white border border-gray-300 rounded-lg shadow-sm dark:bg-[rgb(40,40,40)]"
+  >
+    <button
+      onClick={() => toggleFAQ(index)}
+      className="w-full p-4 text-left focus:outline-none dark:bg-[rgb(40,40,40)]"
+      aria-expanded={openIndex === index}
+    >
+      <div className="flex justify-between items-center ">
+        <span className="text-lg font-medium text-gray-900 dark:text-white">{faq.question}</span>
+        <svg
+          className={`h-6 w-6 transition-transform dark:text-white duration-600 transform ${
+            openIndex === index ? 'rotate-180' : ''
+          }`}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d={openIndex === index ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'}
+          />
+        </svg>
+      </div>
+    </button>
+    {openIndex === index && (
+      <p className="p-4 text-base text-gray-900">{faq.answer}</p>
+    )}
+  </div>
+))}
+
       </dl>
     </div>
     </>
