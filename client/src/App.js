@@ -29,6 +29,7 @@ import Preloader from "./Components/Preloader.jsx";
 import { Toast } from "./Toast/Toast.js";
 import GoToTop from "./Components/GoToTop.jsx";
 import License from "./Pages/Licensing.jsx";
+import CustomerProfile from './Pages/CustomerProfile.jsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -44,6 +45,18 @@ function App() {
   const appStyle = {
     backgroundColor: darkMode ? '#333' : '#f4f4f4',
   };
+
+  // Optionally, fetch user data if logged in
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/auth/current_user', {
+      credentials: 'include',
+    })
+      .then(response => response.json())
+      .then(data => setUser(data))
+      .catch(err => console.error(err));
+  }, []);
 
   return (
     <Router>
@@ -67,6 +80,7 @@ function App() {
           <Route path="/orders" element={<OrderList />} />
           <Route path="/contactus" element={<Contact />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/profile" element={<CustomerProfile />} />
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/licensing" element={<License />} />

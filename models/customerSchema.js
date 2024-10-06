@@ -38,15 +38,19 @@ const customerSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
-  refreshTOken:{
-    type:String,
+  googleId: {
+    type: String,
+    unique: true,
+    sparse: true, // This allows either Google login or email/password login
+  },
+  refreshToken: {
+    type: String,
     required: false,
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
-
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
@@ -65,7 +69,6 @@ customerSchema.methods.getJWTToken = function () {
 };
 
 // Compare Password
-
 customerSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };

@@ -8,7 +8,7 @@ let ToastContextProvider = ({children}) => {
 
   let toastProperties = null;
 
-  const showToast = (typeOfToast, toastTitle, toastDescription) =>
+  const showToast = (typeOfToast, toastTitle, toastDescription, time=5000) =>
   {
     switch(typeOfToast)
     {
@@ -17,6 +17,7 @@ let ToastContextProvider = ({children}) => {
         title : toastTitle,
         description : toastDescription,
         type:"success",
+        time: time
 
       }
         
@@ -26,6 +27,7 @@ let ToastContextProvider = ({children}) => {
         title : toastTitle,
         description : toastDescription,
         type:"error",
+        time: time
       }
       break;
       case "warning" : toastProperties = {
@@ -33,6 +35,7 @@ let ToastContextProvider = ({children}) => {
         title : toastTitle,
         description : toastDescription,
         type:"warning",
+        time: time
       }
       break;
       case "info" : toastProperties = {
@@ -40,6 +43,7 @@ let ToastContextProvider = ({children}) => {
         title : toastTitle,
         description : toastDescription,
         type:"info",
+        time: time
       }
       break;
       default : toastProperties = {}
