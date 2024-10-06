@@ -136,17 +136,9 @@ const LoginPage = () => {
                 </button>
                 <div className='w-full flex items-center justify-center mt-3 mb-3'>
                   <p className='text-sm text-[#060606] dark:text-white'>
-                    Don't have an account?{' '}
+                    Don't have an account?{' '} <Link to="/signup">Sign up</Link>
                   </p>
                 </div>
-                <button
-                  type="button"
-                  className='w-full text-white my-2 font-semibold bg-[#060606] border border-black/40 rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black'
-                  onClick={() => navigate('/signup')}
-                >
-                  Sign Up
-                </button>
-
               </form>
             </Grid>
           </Grid>
