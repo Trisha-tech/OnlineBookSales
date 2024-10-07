@@ -91,3 +91,25 @@ def get_book_author_pairs():
     return book_author_pairs
 
 
+def get_goodreads_ratings(title, author):
+    """Finds Goodreads ratings and rating count of the book."""
+    logger.info(
+        f"[+] Fetching Goodreads URL for book '{title}' by author '{author}'..."
+    )
+    url = f"https://www.goodreads.com/book/auto_complete?format=json&q={title}"
+    try:
+        r = requests.get(url)
+        r_list = json.loads(r.text)
+        for book in r_list:
+            if (
+                "summary" in book["title"].lower()
+                or "supersummary" in book["title"].lower()
+                or "study guide" in book["title"].lower()
+            ):
+                continue
+            return book["description"]["fullContentUrl"]
+    except requests.exceptions.RequestException as e:
+        logger.error("Failed to fetch Goodreads data due to: %s", e)
+    return None
+
+
