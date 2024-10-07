@@ -42,3 +42,19 @@ def append_text_to_file(filename, text):
         file.write(text)
 
 
+def extract_text(book, tag, class_name):
+    """
+    This function extracts text from a given HTML tag with a given class within the
+    BeautifulSoup object of the book's HTML.
+    """
+    try:
+        container = book.find(tag, class_=class_name)
+        if container:
+            return container.text
+    except Exception as e:
+        logger.error(
+            f"[!] Error while extracting '{tag}' with class '{class_name}': {str(e)}"
+        )
+        return None
+
+
