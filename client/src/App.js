@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './Animations.css';
-import { Navbar, Footer } from './Components/index.js';
-import { ProfilePage, Product } from './Components/index';
+import Navbar from './Components/NavBar/NavBar.jsx'
+import Footer from './Components/Footer/Footer.jsx'
+import  ProfilePage  from './Components/CustomerProfile/Profile.jsx';
+import Product from './Components/Card/ProductCard.jsx'
 import LoginPage from './Pages/LoginPage.jsx';
 import SignUpPage from './Pages/SignUpPage.jsx';
 import Cart from './Pages/Cart.jsx';

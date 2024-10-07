@@ -5,6 +5,7 @@ import Spinner from './Spinner';
 import SearchBar from '../Components/SearchBar';
 import Preloader from '../Components/Preloader';
 
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -23,6 +24,8 @@ const Home = () => {
     }, 2000);
   }, []);
 
+ 
+
 
   const handleSearch = (query) => {
     console.log('Search query:', query);
@@ -37,6 +40,7 @@ const Home = () => {
       {isLoading && <Spinner />}
       {!isLoading && (
         <>
+        
 
           {/* Search Bar */}
           <SearchBar onSearch={handleSearch} />
@@ -137,6 +141,7 @@ const Home = () => {
               </div>
             </div>
           </section>
+         
         </>
       )}
     </div>

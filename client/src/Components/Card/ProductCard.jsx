@@ -51,8 +51,8 @@ export default function ProductCard({ productdetails })
                                 event.stopPropagation();
                                 // addOrRemoveItemToWishlist()
                             }} 
-                            className={`card-icon-btn ${wishlistBtn} outline-card-secondary-btn`}>
-                                <i className={`fa fa-x ${wishlistHeartIcon}`} aria-hidden="true"></i>
+                            className={`card-icon-btn wishlistBtn outline-card-secondary-btn`}>
+                                <i className={`fa fa-x wishlistHeartIcon`} aria-hidden="true"></i>
                         </button>
                     </div>
                     <div className="badge-on-card">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Spinner from "./Spinner";
 import { fetchCartData, addItemToCart, removeItemFromCart } from "../api/api.js";
 import "./Cart.css";
-import Preloader from '../Components/Preloader';
+import Preloader from '../Components/Preloader.jsx';
 
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
@@ -15,7 +15,7 @@ function Cart() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const isAuthenticated =!! localStorage.getItem('token');
   if(!isAuthenticated){
     navigate('/login')

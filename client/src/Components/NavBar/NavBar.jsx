@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { AppBar, Toolbar, IconButton, Button, useMediaQuery, useTheme, styled } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -14,10 +14,11 @@ import sunIcon from '../../assets/sun.png'; // Adjust the path as necessary
 import moonIcon from '../../assets/moon.png'; // Adjust the path as necessary
 import logo from '../../assets/Logo.png'; // Adjust the path as necessary
 
+import gsap from 'gsap'
 const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
   backgroundColor: darkMode ? 'black' : '#002147', // Change color based on darkMode
 }));
-
+const tl=gsap.timeline()
 const Logo = styled('img')({
   width: '220px',
   height: 'auto',
@@ -83,9 +84,23 @@ function Navbar({ darkMode, toggleDarkMode }) {
     navigate('/', { replace: true });
     showToast("success", "", "Logged out successfully");
   };
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      tl.from('.navbar', {
+        y: -10,
+        opacity: 0,
+        delay:3,
+        duration: 0.3
+      })
+      
+    });
+
+    tl.play();  // Play the timeline
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <StyledAppBar position="sticky" darkMode={darkMode}>
+    <StyledAppBar className='navbar' position="sticky" darkMode={darkMode}>
       <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <IconButton component={Link} to="/">
           <Logo src={logo} alt="Logo" />
