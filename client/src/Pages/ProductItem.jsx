@@ -266,7 +266,49 @@ const ProductItem = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-40 object-cover mb-4 rounded-md"
+                  className="w-3/4 h-60 object-cover mb-4 mx-auto rounded-md"
+                />
+                <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+                <p className="mb-4">{product.description}</p>
+                <p className="font-bold text-lg">₹{product.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold mb-2">CHILDREN'S BOOK</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map((product) => (
+              <div
+                key={product.id}
+                className="border rounded-lg shadow-lg p-4 text-center transform transition duration-500 hover:scale-105"
+              >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-3/4 h-60 object-cover mb-4 mx-auto rounded-md"
+                />
+                <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+                <p className="mb-4">{product.description}</p>
+                <p className="font-bold text-lg">₹{product.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold mb-2">NON-FICTION</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map((product) => (
+              <div
+                key={product.id}
+                className="border rounded-lg shadow-lg p-4 text-center transform transition duration-500 hover:scale-105"
+              >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-3/4 h-60 object-cover mb-4 mx-auto rounded-md"
                 />
                 <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
                 <p className="mb-4">{product.description}</p>
@@ -276,50 +318,7 @@ const ProductItem = () => {
           </div>
         </div>
       </div>
-
-      <div>
-        <h2 className="text-2xl font-bold mb-2">CHILDREN'S BOOK</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map((product) => (
-            <div
-              key={product.id}
-              className="border rounded-lg shadow-lg p-4 text-center transform transition duration-500 hover:scale-105"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 object-cover mb-4 rounded-md"
-              />
-              <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-              <p className="mb-4">{product.description}</p>
-              <p className="font-bold text-lg">₹{product.price}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <h2 className="text-2xl font-bold mb-2">NON-FICTION</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map((product) => (
-            <div
-              key={product.id}
-              className="border rounded-lg shadow-lg p-4 text-center transform transition duration-500 hover:scale-105"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 object-cover mb-4 rounded-md"
-              />
-              <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-              <p className="mb-4">{product.description}</p>
-              <p className="font-bold text-lg">₹{product.price}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </>
   );
 };
-
 export default ProductItem;
