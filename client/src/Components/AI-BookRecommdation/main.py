@@ -82,3 +82,12 @@ def fetch_html_content(link):
         logger.error("Failed to fetch HTML content due to: %s", e)
 
 
+def get_book_author_pairs():
+    """Extracts book and author pairs from the config file."""
+    book_author_pairs = []
+    for book in config["books"]["favorites"].splitlines():
+        title, author = book.strip().split(",")
+        book_author_pairs.append((title, author))
+    return book_author_pairs
+
+
