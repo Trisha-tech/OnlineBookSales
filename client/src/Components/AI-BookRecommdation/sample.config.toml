@@ -4,3 +4,10 @@ api_key = "your-openai-key"
 model_name = "gpt-4"
 temperature = 0.5
 
+[books]
+favorites = """
+Project Hail Mary, Andy Weir
+Home Before Dark, Riley Sager
+The Invisible Life of Addie LaRue, V.E. Schwab
+"""
+
