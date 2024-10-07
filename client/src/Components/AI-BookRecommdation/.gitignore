@@ -167,3 +167,17 @@ cython_debug/
 # Poetry local configuration file - https://python-poetry.org/docs/configuration/#local-configuration
 poetry.toml
 
+# ruff
+.ruff_cache/
+
+# LSP config files
+pyrightconfig.json
+
+# End of https://www.toptal.com/developers/gitignore/api/python
+test.py
+config.toml
+logs
+main.ipynb
+temp.**
+README.md.**
+gh-md-toc
