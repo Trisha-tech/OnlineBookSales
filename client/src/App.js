@@ -4,6 +4,13 @@ import './App.css';
 import './Animations.css';
 import { Navbar, Footer } from './Components/index.js';
 import { ProfilePage, Product } from './Components/index';
+import RomancePage from './Pages/RomancePage.jsx';
+import ActionPage from './Pages/ActionPage.jsx';
+import ThrillerPage from './Pages/ThrillerPage.jsx';
+import FictionPage from './Pages/FictionPage.jsx';
+import TechPage from './Pages/TechPage.jsx';
+import PhilosophyPage from './Pages/PhilosophyPage.jsx';
+import MangaPage from './Pages/MangaPage.jsx';
 import LoginPage from './Pages/LoginPage.jsx';
 import SignUpPage from './Pages/SignUpPage.jsx';
 import Cart from './Pages/Cart.jsx';
@@ -45,6 +52,13 @@ function App() {
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <Routes>
           <Route path="/" element={<HomePage darkMode={darkMode} />} />
+          <Route path="/romance" element = {<RomancePage />}/>
+          <Route path="/action" element = {<ActionPage />}/>
+          <Route path="/thriller" element = {<ThrillerPage />}/>
+          <Route path="/fiction" element = {<FictionPage />}/>
+          <Route path="/tech" element = {<TechPage />}/>
+          <Route path="/philosophy" element = {<PhilosophyPage />}/>
+          <Route path="/manga" element = {<MangaPage />}/>
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:id" element={<Product />} />
           <Route path="/login" element={<LoginPage />} />

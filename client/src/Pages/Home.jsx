@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import B1Child from '../assets/image/B1Child.jpeg'; 
 import AuthorImage from '../assets/image/author1.jpeg'
 import Spinner from './Spinner';
@@ -57,34 +58,55 @@ const Home = () => {
           <section className="container mx-auto my-8">
             <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Book Categories</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+              <Link to="/romance">
               <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 dark:bg-[rgb(30,30,30)]">
                 <h3 className="text-xl font-bold mb-2 dark:text-white ">Romance</h3>
                 <p className="text-gray-600 dark:text-white">Explore our collection of romantic novels.</p>
               </div>
+              </Link>
+              
+              <Link to = "/action">
               <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-100 dark:bg-[rgb(30,30,30)]">
                 <h3 className="text-xl font-bold mb-2 dark:text-white">Action</h3>
                 <p className="text-gray-600 dark:text-white">Dive into thrilling action-packed stories.</p>
               </div>
+              </Link>
+              
+              <Link to = "/thriller">
               <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-200 dark:bg-[rgb(30,30,30)]">
                 <h3 className="text-xl font-bold mb-2 dark:text-white">Thriller</h3>
                 <p className="text-gray-600 dark:text-white">Get your adrenaline pumping with our thrillers.</p>
               </div>
+              </Link>
+              
+              <Link to = "/fiction">
               <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-300 dark:bg-[rgb(30,30,30)]">
                 <h3 className="text-xl font-bold mb-2 dark:text-white">Fiction</h3>
                 <p className="text-gray-600 dark:text-white" >Discover imaginative and captivating fiction.</p>
               </div>
+              </Link>
+              
+              <Link to = "/tech">
               <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-400 dark:bg-[rgb(30,30,30)]">
                 <h3 className="text-xl font-bold mb-2 dark:text-white">Tech</h3>
                 <p className="text-gray-600 dark:text-white">Stay updated with the latest in technology.</p>
               </div>
+              </Link>
+              
+              <Link to = "/philosophy">
               <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-500 dark:bg-[rgb(30,30,30)]">
                 <h3 className="text-xl font-bold mb-2 dark:text-white">Philosophy</h3>
                 <p className="text-gray-600 dark:text-white">Dive deep into philosophical thoughts and ideas.</p>
               </div>
+              </Link>
+
+              <Link to = "/manga">
               <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-600 dark:bg-[rgb(30,30,30)]">
                 <h3 className="text-xl font-bold mb-2 dark:text-white">Manga</h3>
                 <p className="text-gray-600 dark:text-white">Explore our extensive collection of Manga.</p>
               </div>
+              </Link>
             </div>
           </section>
 
