@@ -1,5 +1,7 @@
 # 📚 Online Book Sales 📚
 
+![CoverPage](cover-page.png)
+
 Welcome to **Online Book Sales**, an e-commerce platform where you can browse, purchase, and enjoy a wide range of books from our extensive catalog! Our system is built with a 3-tier architecture, featuring a **MongoDB** database backend, **Node.js** & **Express.js** middleware, and a sleek **React** frontend.
 
 ## 📑 Table of Contents
