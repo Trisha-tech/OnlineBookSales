@@ -151,3 +151,13 @@ def main():
         """
         template += info
 
+    chat = ChatOpenAI(
+        openai_api_key=config["openai"]["api_key"],
+        streaming=True,
+        callbacks=[StreamingStdOutCallbackHandler()],
+        verbose=True,
+        model_name=config["openai"]["model_name"],
+        temperature=config["openai"]["temperature"],
+    )
+
+  
