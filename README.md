@@ -73,7 +73,7 @@ Forking allows you to create a personal copy of the repository, where you can ex
 
 ### Navigate to the Repository:
 
-- Go to the Awesome GitHub Profiles repository.
+- Go to the Online Book Sales repository.
 
 ### Click on Fork:
 
@@ -87,7 +87,7 @@ Forking allows you to create a personal copy of the repository, where you can ex
 
 - Use the command below to clone your fork to your local machine:
   ```bash
-  git clone https://github.com/YOUR_USERNAME/Awesome-Github-Profiles.git
+  git clone https://github.com/YOUR_USERNAME/OnlineBookSales.git
   ```
 
 ## How to Contribute
@@ -113,7 +113,7 @@ git clone https://github.com/<your_username>/OnlineBookSales.git
 6. Navigate to the project directory.
 
 ```
-cd FunwithScience
+cd OnlineBookSales
 ```
 
 7. Add a reference(remote) to the original repository.
