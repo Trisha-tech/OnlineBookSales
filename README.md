@@ -91,9 +91,9 @@ Follow these steps to run the project on your local machine:
 
 4. Write the command.
 
-        ```
-        yarn start / npm start
-        ```
+    ```
+    yarn start / npm start
+    ```
 
 That's it! You’re ready to explore the application locally. 🚀
 
@@ -127,7 +127,7 @@ For a detailed overview of how the project works, please read the [Project Detai
 
 ## 📧 Contact Information
 
-If you have any questions or feedback, feel free to reach out via email: email@example.com. You can also join our discussion forum.
+If you have any questions or feedback, feel free to reach out via **GitHub**. You can also join our discussion forum.
 
 We look forward to hearing from you! ✨
 
