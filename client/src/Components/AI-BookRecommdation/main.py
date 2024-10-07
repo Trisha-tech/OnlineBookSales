@@ -142,4 +142,12 @@ def main():
                 "span", class_="BookPageMetadataSection__genreButton"
             )
         ]
- 
+        # Appending book info to template
+        info = f"""
+        Title: {title}
+        Author: {author}
+        Genres: {genres[:3]}
+        Synopsis: {desc}
+        """
+        template += info
+
