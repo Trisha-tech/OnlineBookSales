@@ -19,7 +19,7 @@ Welcome to **Online Book Sales**, an e-commerce platform where you can browse, p
 
 ---
 
-## Features 🚀
+## Features
 
 - **User Registration & Login**: Secure account creation with user authentication.
 - **Browse Books**: Explore our rich catalog with detailed book info.
@@ -28,14 +28,14 @@ Welcome to **Online Book Sales**, an e-commerce platform where you can browse, p
 
 ---
 
-## 🌐 Live Project Links
+## Live Project Links
 
 - **Frontend**: [Book4U](https://book4u-j5au.onrender.com/) 🖱️
 - **Backend**: [API Server](https://online-book-sales-backend.onrender.com/) 🌍
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Frontend | Backend | Database |
 | :------: | :-----: | :------: |
@@ -45,13 +45,13 @@ Welcome to **Online Book Sales**, an e-commerce platform where you can browse, p
 
 ---
 
-## 🌟 Code of Conduct
+## Code of Conduct
 
 We encourage everyone to be respectful and inclusive. Please take a moment to review our [Code of Conduct](CODE_OF_CONDUCT.md) to help foster a positive environment. 💬
 
 ---
 
-## 🤝 How to Contribute
+## How to Contribute
 
 We welcome all contributions! 🎉 If you'd like to add new features or fix bugs, check out the [Contributing Guidelines](CONTRIBUTING.md) to get started. Fork the repo, clone it, make your changes, and submit a pull request. 
 
@@ -68,7 +68,7 @@ Here’s how to fork the project:
 
 ---
 
-## 💻 How to Run the Webpage on Your Local System
+## How to Run the Webpage on Your Local System
 
 Follow these steps to run the project on your local machine:
 
@@ -101,7 +101,7 @@ That's it! You’re ready to explore the application locally. 🚀
 
 ---
 
-## 🖥️ Using GitHub Desktop
+## Using GitHub Desktop
 
 Alternatively, you can use GitHub Desktop to manage the repository:
 
@@ -112,13 +112,13 @@ Alternatively, you can use GitHub Desktop to manage the repository:
 
 ---
 
-## 🔍 In-Depth Project Analysis
+## In-Depth Project Analysis
 
 For a detailed overview of how the project works, please read the [Project Details](PROJECT_DETAILS.md) documentation. This will give you a deep dive into the architecture and design decisions. 🧠
 
 ---
 
-## 💖 Our Contributors
+## Our Contributors
 
 <h3 align="center">A big THANK YOU to all our contributors! 🙌</h3> 
 <div align="center">
@@ -127,7 +127,7 @@ For a detailed overview of how the project works, please read the [Project Detai
 
 ---
 
-## 📧 Contact Information
+## Contact Information
 
 If you have any questions or feedback, feel free to reach out via **GitHub**. You can also join our discussion forum.
 
