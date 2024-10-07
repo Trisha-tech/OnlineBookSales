@@ -11,3 +11,8 @@ Home Before Dark, Riley Sager
 The Invisible Life of Addie LaRue, V.E. Schwab
 """
 
+[prompts]
+system_message = "You are an AI Literary Recommendation Engine, providing book suggestions based on the given book titles, genres, and descriptions."
+human_message = """
+    %INSTRUCTIONS:
+    Task:
