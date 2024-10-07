@@ -23,6 +23,8 @@ import { Toast } from "./Toast/Toast.js";
 import GoToTop from "./Components/GoToTop.jsx";
 import License from "./Pages/Licensing.jsx";
 import CustomerProfile from './Pages/CustomerProfile.jsx';
+import GiftCards from './Pages/GiftCards.jsx';
+import Careers from './Pages/Careers.jsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -60,6 +62,8 @@ function App() {
           <Route path="/licensing" element={<License />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/contributors" element={<Contributors />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/giftcards" element={<GiftCards />} />
           <Route path="*" element={<NotFound />} /> {/* Fallback route */}
         </Routes>
         <Toast position="bottom-right" />
