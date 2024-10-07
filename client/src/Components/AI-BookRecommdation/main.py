@@ -58,3 +58,27 @@ def extract_text(book, tag, class_name):
         return None
 
 
+def fetch_html_content(link):
+    """Fetches the HTML content of a webpage."""
+    logger.info(f"[+] Fetching book synopsis for link: {link}...")
+    # Headers to mimic a browser visit
+    headers = {
+        "User-Agent": ua.firefox,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Accept-Encoding": "gzip, deflate, br",
+        "DNT": "1",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-User": "?1",
+    }
+    try:
+        response = requests.request("GET", link, headers=headers)
+        return response.text
+    except requests.exceptions.RequestException as e:
+        logger.error("Failed to fetch HTML content due to: %s", e)
+
+
