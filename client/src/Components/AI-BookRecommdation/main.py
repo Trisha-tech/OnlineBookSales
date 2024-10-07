@@ -129,3 +129,17 @@ def main():
         if link
     ]
 
+    # Initializing template
+    template = config["prompts"]["human_message"]
+
+    for book in books_info:
+        desc = extract_text(book, "span", "Formatted")
+        title = extract_text(book, "h1", "Text Text__title1")
+        author = extract_text(book, "span", "ContributorLink__name")
+        genres = [
+            each_genre.find("span", class_="Button__labelItem").text
+            for each_genre in book.find_all(
+                "span", class_="BookPageMetadataSection__genreButton"
+            )
+        ]
+ 
