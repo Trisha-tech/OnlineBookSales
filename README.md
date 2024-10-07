@@ -19,7 +19,7 @@ Welcome to **Online Book Sales**, an e-commerce platform where you can browse, p
 
 ---
 
-## Features
+## Features 🚀
 
 - **User Registration & Login**: Secure account creation with user authentication.
 - **Browse Books**: Explore our rich catalog with detailed book info.
