@@ -14,3 +14,9 @@
 
 - 📚 Git
   - Install from [here](https://git-scm.com/downloads).
+
+- ⚡️ PIP
+  - Install from [here](https://pip.pypa.io/en/stable/installation/#get-pip-py).
+  
+- ✅ Virtual Environment (`venv`)
+  - Install from [here](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv).
