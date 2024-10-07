@@ -6,10 +6,10 @@ Welcome to **Online Book Sales**, an e-commerce platform where you can browse, p
 
 ## 📑 Table of Contents
 
-- **[Features](#features)** 🚀
+- **[Features](#🚀-features)** 🚀
 - **[Live Project Links](#live-project-links)** 🌐
 - **[Tech Stack](#tech-stack)** 🛠️
-- **[Code of Conduct](#code-of-conduct)** 🌟
+- **[Code of Conduct](#🌟-code-of-conduct)** 🌟
 - **[How to Contribute](#how-to-contribute)** 🤝
 - **[How to Run Locally](#how-to-run-the-webpage-on-your-local-system)** 💻
 - **[Using GitHub Desktop](#using-github-desktop)** 🖥️
