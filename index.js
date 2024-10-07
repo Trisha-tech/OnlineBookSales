@@ -89,3 +89,93 @@ app.use("/api/cart", cartRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+const books = {
+  action: [
+      {
+          title: "Action Book 1",
+          description: "An exciting action book.",
+          author: "Author 1",
+          cost: "$10"
+      },
+      {
+          title: "Action Book 2",
+          description: "Another thrilling action book.",
+          author: "Author 2",
+          cost: "$15"
+      }
+  ],
+  thriller: [
+      {
+          title: "Thriller Book 1",
+          description: "A spine-chilling thriller.",
+          author: "Author 3",
+          cost: "$12"
+      },
+      {
+          title: "Thriller Book 2",
+          description: "A suspenseful journey.",
+          author: "Author 4",
+          cost: "$18"
+      }
+  ],
+  fiction: [
+      {
+          title: "Fiction Book 1",
+          description: "A captivating fiction novel.",
+          author: "Author 5",
+          cost: "$14"
+      }
+  ],
+  tech: [
+      {
+          title: "Tech Book 1",
+          description: "Stay updated with technology.",
+          author: "Author 6",
+          cost: "$20"
+      }
+  ],
+  philosophy: [
+      {
+          title: "Philosophy Book 1",
+          description: "Deep insights into philosophy.",
+          author: "Author 7",
+          cost: "$25"
+      }
+  ],
+  manga: [
+      {
+          title: "Manga Book 1",
+          description: "Explore fascinating manga stories.",
+          author: "Author 8",
+          cost: "$10"
+      }
+  ]
+};
+
+function showBooks(category) {
+  const bookList = document.getElementById('book-list');
+  bookList.innerHTML = '';
+  books[category].forEach(book => {
+      const bookDiv = document.createElement('div');
+      bookDiv.className = 'book';
+      bookDiv.innerHTML = `<strong>${book.title}</strong> <button class="button" onclick="openModal('${book.title}', '${book.description}', '${book.author}', '${book.cost}')">View Details</button>`;
+      bookList.appendChild(bookDiv);
+  });
+}
+
+function openModal(title, description, author, cost) {
+  document.getElementById('book-title').innerText = title;
+  document.getElementById('book-description').innerText = description;
+  document.getElementById('book-author').innerText = author;
+  document.getElementById('book-cost').innerText = cost;
+  document.getElementById('myModal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('myModal').style.display = 'none';
+}
+
+function purchaseBook() {
+  alert('Book purchased!');
+  closeModal();
+}
