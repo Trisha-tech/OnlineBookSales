@@ -160,4 +160,11 @@ def main():
         temperature=config["openai"]["temperature"],
     )
 
-  
+    logger.info(
+        f"[+] Here are few suggestions for your next reading adventure: \n")
+
+    messages = [
+        SystemMessage(content=config["prompts"]["system_message"]),
+        HumanMessage(content=template),
+    ]
+
