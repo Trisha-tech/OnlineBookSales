@@ -1,10 +1,10 @@
 ## Description **📚**
 
-The AI Book Recommender 🤖📚 works by interacting with two main components: Goodreads 📖 for fetching book data, and OpenAI's ChatGPT 🧠 for generating recommendations.
+The AI Book Recommender 🤖 works by interacting with two main components: Goodreads 📖 for fetching book data, and OpenAI's ChatGPT for generating recommendations.
 
-- **Goodreads 📖:** We're using Goodreads to fetch details about your favorite books 📚, including the book title 🏷️, author 🖋️, genres 🏷️, and synopsis 📝. The script then extracts this data and uses it to generate personalized book recommendations 🎯.
+- **Goodreads :** We're using Goodreads to fetch details about your favorite books 📚, including the book title, author, genres, and synopsis. The script then extracts this data and uses it to generate personalized book recommendations.
 
-- **OpenAI's ChatGPT 🧠:** We're using ChatGPT to generate book recommendations based on the book data fetched from Goodreads 📖. We feed ChatGPT with a conversation context 🗨️ where the user talks about their favorite books (the data fetched from Goodreads). The AI then responds with book recommendations 📚 in a conversational manner.
+- **OpenAI's ChatGPT :** We're using ChatGPT to generate book recommendations based on the book data fetched from Goodreads . We feed ChatGPT with a conversation context where the user talks about their favorite books (the data fetched from Goodreads). The AI then responds with book recommendations in a conversational manner.
 
 
 ### Getting Started 🚀
