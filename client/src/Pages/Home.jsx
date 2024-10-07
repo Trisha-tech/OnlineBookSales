@@ -5,7 +5,8 @@ import AuthorImage from '../assets/image/author1.jpeg'
 import Spinner from './Spinner';
 import SearchBar from '../Components/SearchBar';
 import Preloader from '../Components/Preloader';
-
+import Newarrivals from './Newarrivals';
+import Review from './Review';
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -113,19 +114,13 @@ const Home = () => {
           {/* New Arrivals Section */}
           <section className="bg-gray-200 py-8 dark:bg-[rgb(40,40,40)]">
             <div className="container mx-auto ">
-              <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">New Arrivals</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-700 dark:bg-[rgb(30,30,30)]">
-                  <h3 className="text-xl font-bold mb-2 dark:text-white">Book Title 1</h3>
-                  <p className="text-gray-600 dark:text-white">Coming Soon</p>
-                </div>
-                <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-800 dark:bg-[rgb(30,30,30)]">
-                  <h3 className="text-xl font-bold mb-2 dark:text-white">Book Title 2</h3>
-                  <p className="text-gray-600 dark:text-white">Latest Edition</p>
-                </div>
-                {/* Add more books as needed */}
+            <h2 className="text-4xl font-bold mb-6 text-gray-800 dark:text-white text-center">
+  New Arrivals
+</h2>
+
+              <Newarrivals />
               </div>
-            </div>
+              
           </section>
 
           {/* Top Trending Books Section */}
@@ -159,6 +154,7 @@ const Home = () => {
               </div>
             </div>
           </section>
+          <Review/>
         </>
       )}
     </div>
