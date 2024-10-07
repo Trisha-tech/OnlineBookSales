@@ -113,3 +113,19 @@ def get_goodreads_ratings(title, author):
     return None
 
 
+def main():
+    """Main function."""
+    book_author_pairs = get_book_author_pairs()
+
+    # Getting Goodreads links for each book
+    goodread_links = [
+        get_goodreads_ratings(pair[0], pair[1]) for pair in book_author_pairs
+    ]
+
+    # Fetching book info from Goodreads
+    books_info = [
+        BeautifulSoup(fetch_html_content(link), "html.parser")
+        for link in goodread_links
+        if link
+    ]
+
