@@ -1,0 +1,6 @@
+[openai]
+api_key = "your-openai-key"
+# Choose model_name between gpt-4, gpt-3.5-turbo
+model_name = "gpt-4"
+temperature = 0.5
+
