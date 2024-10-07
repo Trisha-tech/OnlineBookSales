@@ -27,3 +27,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger()
 
+# Creating logs directory if it doesn't exist
+if not os.path.exists("logs"):
+    os.makedirs("logs")
+
+# Creating unique log filename with timestamp
+timestamp = time.strftime("%Y%m%d-%H%M%S")
+filename = f"logs/{timestamp}.log"
+
+
+def append_text_to_file(filename, text):
+    """Function to append text to the end of a file."""
+    with open(filename, "a") as file:
+        file.write(text)
+
+
