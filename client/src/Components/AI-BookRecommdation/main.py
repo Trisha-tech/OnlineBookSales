@@ -168,3 +168,13 @@ def main():
         HumanMessage(content=template),
     ]
 
+    # Getting and writing AI response to file
+    try:
+        output = chat(messages)
+        append_text_to_file(filename, output.content)
+    except Exception as e:
+        logger.error("Failed to generate chat due to: %s", e)
+
+
+if __name__ == "__main__":
+    main()
