@@ -28,3 +28,5 @@ human_message = """
         Synopsis:
         Reason for Recommendation:
 
+    %BOOK TITLES WITH THEIR DESCRIPTIONS:
+"""
