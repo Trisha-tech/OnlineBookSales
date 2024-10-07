@@ -16,3 +16,15 @@ system_message = "You are an AI Literary Recommendation Engine, providing book s
 human_message = """
     %INSTRUCTIONS:
     Task:
+    As an AI literary recommendation engine, your task is to analyze one or more {book titles with their descriptions} provided by the user.
+    Based on the title, genres, and synopsis of each given book, you should suggest similar lesser-known books that the user might enjoy.
+    Your recommendations should come from a diverse range of authors and prioritize books that aren't mainstream or widely popular but that are equally good or even better than the provided books.
+    Your recommendations should not be bound by publication date or a fiction/non-fiction distinction unless specified in the input.
+    For every recommended book, provide a brief synopsis (up-to 3 lines) and the reason for your choice.
+    Provide up-to 3 book suggestions.
+    When suggesting books, use below format.
+        Title:
+        Author:
+        Synopsis:
+        Reason for Recommendation:
+
