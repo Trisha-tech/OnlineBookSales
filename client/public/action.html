@@ -51,7 +51,7 @@
         }
 
         .button {
-            background-color: #f76b45;
+            background-color: #1b6f4c;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -63,7 +63,7 @@
         }
 
         .button:hover {
-            background-color: #e65c39;
+            background-color: #f7b7a8;
         }
 
         footer {
@@ -84,7 +84,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color: darkblue;">
 
    
     <div class="category-title"> <h2>Action Books</h2></div>
@@ -106,6 +106,8 @@
                 bookDiv.innerHTML = `
                     <h4>${book.title}</h4>
                     <p><strong>Author:</strong> ${book.authors.map(author => author.name).join(", ")}</p>
+                    
+                    <p><strong>Cost:</strong> $${Math.floor(Math.random() * 20) + 10} (estimated price)</p>
                     `;
                 bookList.appendChild(bookDiv);
             });
