@@ -106,8 +106,7 @@
                 bookDiv.innerHTML = `
                     <h4>${book.title}</h4>
                     <p><strong>Author:</strong> ${book.authors.map(author => author.name).join(", ")}</p>
-                    <p class="description"><strong>Description:</strong> ${book.first_sentence ? book.first_sentence : 'No description available.'}</p>
-                `;
+                    `;
                 bookList.appendChild(bookDiv);
             });
         };
