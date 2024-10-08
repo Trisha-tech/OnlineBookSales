@@ -22,7 +22,7 @@
     "cors": "^2.8.5",
     "disposable-email-domains": "^1.0.62",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.11",
     "nodemailer": "^6.9.3",
