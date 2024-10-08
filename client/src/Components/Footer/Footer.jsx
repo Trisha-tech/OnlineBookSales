@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GitHub, LinkedIn, Instagram } from '@mui/icons-material';
 import XIcon from '@mui/icons-material/X';
 import './Footer.css';
-
+import GoogleTranslate from '../GoogleTranslate';
 function Footer({ darkMode }) {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
@@ -57,6 +57,23 @@ function Footer({ darkMode }) {
                         <li><a href="/" className="hover:text-yellow-300"><XIcon sx={{ fontSize: '2rem' }} /></a></li>
                         <li><a href="/" className="hover:text-yellow-300"><Instagram sx={{ fontSize: '2rem' }} /></a></li>
                     </ul>
+                    <div className="translator"
+              style={{
+                position:'relative',
+                marginLeft: 'auto',
+                marginRight: '0',
+                marginBottom : '4px',
+                marginTop: '16px',
+                color: "white",
+                display: "block",
+                alignItems: "center",
+                width: 'fit-content',
+              }}>
+                                <img src="google.png" alt="" className="google-translate" style={{display: 'block',width:'45px', margin:'auto'}} />
+
+                <GoogleTranslate/>
+
+                        </div>
                 </div>
                 <div className="footer-section">
                     <h2 className="text-lg font-bold mb-4 text-center">NEWSLETTER</h2>
