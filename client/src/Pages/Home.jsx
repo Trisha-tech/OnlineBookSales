@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import B1Child from "../assets/image/B1Child.jpeg";
 import AuthorImage from "../assets/image/author1.jpeg";
 import Spinner from "./Spinner";
 import SearchBar from "../Components/SearchBar";
 import Preloader from "../Components/Preloader";
 import Book from "../Components/Card/Book";
+import Newarrivals from './Newarrivals';
+import Review from './Review';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,36 +58,58 @@ const Home = () => {
                 Book Categories
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+               <Link to="/romance">
                 <Book
                   genre="Romance"
                   description="Explore our collection of romantic novels."
                 />
+                </Link>
+
+               <Link to="/action">
                 <Book
                   genre="Action"
                   description="Dive into thrilling action-packed stories."
                 />
+                </Link>
+<Link to="/thriller">
+
                 <Book
                   genre="Thriller"
                   description="Get your adrenaline pumping with our thrillers."
                 />
+                    
+                                                      </Link>
+<Link to="/fiction">
+
                 <Book
                   genre="Fiction"
                   description="Discover imaginative and captivating fiction."
                 />
+                                                      </Link>
+<Link to="/tech">
+
                 <Book
                   genre="Tech"
                   description="Stay updated with the latest in technology."
                 />
+                                                      </Link>
+<Link to = "/philosophy">
+
                 <Book
                   genre="Philosophy"
                   description="Dive deep into philosophical thoughts and ideas."
                 />
+                                                      </Link>
+<Link to = "/manga">
                 <Book
                   genre="Manga"
                   description="Explore our extensive collection of Manga."
                 />
+                                                      </Link>
+
               </div>
             </section>
+
 
             {/* New Arrivals Section */}
             <section className="bg-gray-200 py-8 dark:bg-[rgb(40,40,40)]">
@@ -140,9 +165,11 @@ const Home = () => {
                 </div>
               </div>
             </section>
+          <Review/>
           </>
         )}
       </div>
+
     </>
   );
 };

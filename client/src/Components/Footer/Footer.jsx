@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { GitHub, LinkedIn, Instagram } from '@mui/icons-material';
 import XIcon from '@mui/icons-material/X';
-import './Footer.css'; 
+import './Footer.css';
 
-function Footer() {
+function Footer({ darkMode }) {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
@@ -14,18 +14,22 @@ function Footer() {
         setEmail("");
     };
 
+    const footerStyle = {
+        backgroundColor: darkMode ? '#1a1a1a' : '#003366', // Darker background in dark mode
+        color: darkMode ? '#f1f1f1' : '#ffffff'  // Light text color in dark mode
+    };
+
     return (
-        <footer className="bg-blue-900 text-white py-8">
+        <footer style={footerStyle} className="py-8">
             <div className="container mx-auto flex flex-wrap justify-between max-w-[90%]">
                 <div className="footer-section">
                     <h2 className="text-lg font-bold mb-4">ABOUT</h2>
                     <ul className="footer-list">
                         <li><Link to="/contactus" className="hover:text-yellow-300 text-lg">Contact us</Link></li>
                         <li><Link to="/about" className="hover:text-yellow-300 text-lg">About us</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Careers</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
+                        <li><Link to="/careers" className="hover:text-yellow-300 text-lg">Careers</Link></li>
+                        <li><Link to="/giftcards" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
                         <li><Link to="/contributors" className="hover:text-yellow-300 text-lg">Our Contributors</Link></li>
-
                     </ul>
                 </div>
                 <div className="footer-section">
