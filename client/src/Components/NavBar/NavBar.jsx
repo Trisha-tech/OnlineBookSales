@@ -13,6 +13,9 @@ import { useToast } from "../../Context/ToastContext";
 import sunIcon from '../../assets/sun.png'; // Adjust the path as necessary
 import moonIcon from '../../assets/moon.png'; // Adjust the path as necessary
 import logo from '../../assets/Logo.png'; // Adjust the path as necessary
+import {useEffect} from 'react'
+import gsap from 'gsap'
+const tl=gsap.timeline()
 
 const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
   backgroundColor: darkMode ? 'black' : '#002147', // Change color based on darkMode
@@ -83,6 +86,20 @@ function Navbar({ darkMode, toggleDarkMode }) {
     navigate('/', { replace: true });
     showToast("success", "", "Logged out successfully");
   };
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      tl.from('.navbar', {
+        y: -10,
+        opacity: 0,
+        delay:3,
+        duration: 0.3
+      })
+
+    });
+
+    tl.play();  // Play the timeline
+    return () => ctx.revert();
+  }, []);
 
   return (
     <StyledAppBar position="sticky" darkMode={darkMode}>
