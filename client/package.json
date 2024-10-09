@@ -8,7 +8,7 @@
     "@floating-ui/react": "^0.26.24",
     "@heroicons/react": "^2.1.3",
     "@mui/icons-material": "^5.15.17",
-    "@mui/material": "^5.15.17",
+    "@mui/material": "^5.16.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
