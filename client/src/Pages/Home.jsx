@@ -8,6 +8,9 @@ import Preloader from "../Components/Preloader";
 import Newarrivals from "./Newarrivals";
 import Review from "./Review";
 import Trending from "../Components/Trending";
+import Book from "../Components/Card/Book";
+import Review from './Review';
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -58,83 +61,57 @@ const Home = () => {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Link to="/romance">
-                  <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 dark:bg-[rgb(30,30,30)]">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white ">
-                      Romance
-                    </h3>
-                    <p className="text-gray-600 dark:text-white">
-                      Explore our collection of romantic novels.
-                    </p>
-                  </div>
+                <Book
+                  genre="Romance"
+                  description="Explore our collection of romantic novels."
+                />
                 </Link>
 
-                <Link to="/action">
-                  <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-100 dark:bg-[rgb(30,30,30)]">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white">
-                      Action
-                    </h3>
-                    <p className="text-gray-600 dark:text-white">
-                      Dive into thrilling action-packed stories.
-                    </p>
-                  </div>
+               <Link to="/action">
+                <Book
+                  genre="Action"
+                  description="Dive into thrilling action-packed stories."
+                />
                 </Link>
+<Link to="/thriller">
 
-                <Link to="/thriller">
-                  <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-200 dark:bg-[rgb(30,30,30)]">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white">
-                      Thriller
-                    </h3>
-                    <p className="text-gray-600 dark:text-white">
-                      Get your adrenaline pumping with our thrillers.
-                    </p>
-                  </div>
-                </Link>
+                <Book
+                  genre="Thriller"
+                  description="Get your adrenaline pumping with our thrillers."
+                />
+                    
+                                                      </Link>
+<Link to="/fiction">
 
-                <Link to="/fiction">
-                  <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-300 dark:bg-[rgb(30,30,30)]">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white">
-                      Fiction
-                    </h3>
-                    <p className="text-gray-600 dark:text-white">
-                      Discover imaginative and captivating fiction.
-                    </p>
-                  </div>
-                </Link>
+                <Book
+                  genre="Fiction"
+                  description="Discover imaginative and captivating fiction."
+                />
+                                                      </Link>
+<Link to="/tech">
 
-                <Link to="/tech">
-                  <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-400 dark:bg-[rgb(30,30,30)]">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white">
-                      Tech
-                    </h3>
-                    <p className="text-gray-600 dark:text-white">
-                      Stay updated with the latest in technology.
-                    </p>
-                  </div>
-                </Link>
+                <Book
+                  genre="Tech"
+                  description="Stay updated with the latest in technology."
+                />
+                                                      </Link>
+<Link to = "/philosophy">
 
-                <Link to="/philosophy">
-                  <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-500 dark:bg-[rgb(30,30,30)]">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white">
-                      Philosophy
-                    </h3>
-                    <p className="text-gray-600 dark:text-white">
-                      Dive deep into philosophical thoughts and ideas.
-                    </p>
-                  </div>
-                </Link>
+                <Book
+                  genre="Philosophy"
+                  description="Dive deep into philosophical thoughts and ideas."
+                />
+                                                      </Link>
+<Link to = "/manga">
+                <Book
+                  genre="Manga"
+                  description="Explore our extensive collection of Manga."
+                />
+                                                      </Link>
 
-                <Link to="/manga">
-                  <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-600 dark:bg-[rgb(30,30,30)]">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white">
-                      Manga
-                    </h3>
-                    <p className="text-gray-600 dark:text-white">
-                      Explore our extensive collection of Manga.
-                    </p>
-                  </div>
-                </Link>
               </div>
             </section>
+
 
             {/* New Arrivals Section */}
             <section className="bg-gray-200 py-8 dark:bg-[rgb(40,40,40)]">

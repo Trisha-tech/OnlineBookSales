@@ -1,0 +1,31 @@
+.smalltitlefont {
+    color: #10a5f5;
+    font-family: Georgia, Times New Roman, Times, serif;
+    font-size: 1.2rem;
+    font-weight: 470;
+    letter-spacing: 1px;
+}
+
+.formlevel {
+    color: #000;
+    font-family: Georgia, Times New Roman, Times, serif;
+    font-size: 1.2rem;
+    font-weight: 470;
+    letter-spacing: 1px;
+    padding: 2px;
+}
+
+.mediumtitlefont {
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+ 
+@media (max-width: 600px) {
+   .formlevel{
+    font-size: 0.6rem;
+   }
+  }
+  
