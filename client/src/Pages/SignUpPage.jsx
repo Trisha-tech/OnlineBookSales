@@ -11,12 +11,14 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
 import { Link, useNavigate } from "react-router-dom";
 import Preloader from "../Components/Preloader";
+import GoogleLogin from "../Components/GoogleLogin";
 
 
 const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState(""); //New state for confirm password
     const [showPassword, setShowPassword] = useState(false);
     // const [phone, setPhone] = useState("");
     // const [address, setAddress] = useState("");
@@ -25,6 +27,11 @@ const SignUpPage = () => {
     // handle Submit function
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match!");
+            return; //Prevent form submission if passwords don't match
+        }
 
         try {
             const response = await axios.post("http://localhost:8080/customer/register", { name, email, password })
@@ -115,6 +122,16 @@ const SignUpPage = () => {
                                         )}
                                     </IconButton>
                                 </Box>
+                                <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+                                    <input
+                                        placeholder=" Confirm Password"
+                                        variant="outlined"
+                                        value={confirmPassword}
+                                        type={showPassword ? "text" : "password"} // Set input type dynamically
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        className="w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none dark:text-white dark:border-white"
+                                    />
+                                </Box>
                                 {/* <TextField
                                 label="Phone"
                                 fullWidth
@@ -144,6 +161,10 @@ const SignUpPage = () => {
                                 >
                                     Register
                                 </button>
+
+                                {/* Google Login Button */}
+                                <GoogleLogin />
+
                                 <div className='w-full flex items-center justify-center mt-3 mb-3'>
                                     <p className='text-sm text-[#060606] dark:text-white'>
                                         Already have an account?{' '} <Link to="/login">Login</Link>

@@ -27,8 +27,8 @@ function Footer({ darkMode }) {
                     <ul className="footer-list">
                         <li><Link to="/contactus" className="hover:text-yellow-300 text-lg">Contact us</Link></li>
                         <li><Link to="/about" className="hover:text-yellow-300 text-lg">About us</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Careers</Link></li>
-                        <li><Link to="/" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
+                        <li><Link to="/careers" className="hover:text-yellow-300 text-lg">Careers</Link></li>
+                        <li><Link to="/giftcards" className="hover:text-yellow-300 text-lg">Gift Cards</Link></li>
                         <li><Link to="/contributors" className="hover:text-yellow-300 text-lg">Our Contributors</Link></li>
                     </ul>
                 </div>

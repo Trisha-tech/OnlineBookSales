@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-
+const { sendContactEmail } = require('./controllers/mailcontroller.js');
 const errorMiddleware = require("./middlewares/error.js");
 
 // Load environment variables from .env file
@@ -67,7 +67,7 @@ const { authorizeRoles } = require("./middlewares/auth.js");
 app.use("/customer", customer);
 app.use("/api/product", productRoutes);
 app.use("/order", order);
-
+app.use(bodyParser.json());
 
 app.use("/admin", authorizeRoles, admin);
 
@@ -82,6 +82,9 @@ app.get("/", (req, res) => {
   res.send(`Welcome to Scizers Assignment !!! Made by Trisha Sahu`);
 });
 
+
+// Define the POST route
+app.post("/contact", sendContactEmail);
 // New Route for Cart
 const cartRoutes = require("./routes/cartRoutes.js");
 app.use("/api/cart", cartRoutes);
