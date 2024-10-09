@@ -3,7 +3,7 @@ import BannerCard from "../Pages/BannerCard";
 import axios from "axios";
 
 function Trending() {
-  const apiKey = "gQZbXIJQx8ReWAgBvBjH0xNLYBWXrb0T"; // API key
+  const apiKey = process.env.REACT_APP_NY_TIMES_APIKEY; // API key
   const [books, setBooks] = useState([]); 
 
   // Hardcoded fallback or initial state books
