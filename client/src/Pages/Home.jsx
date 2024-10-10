@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import B1Child from "../assets/image/B1Child.jpeg";
 import AuthorImage from "../assets/image/author1.jpeg";
 import Spinner from "./Spinner";
 import SearchBar from "../Components/SearchBar";
 import Preloader from "../Components/Preloader";
+import Newarrivals from "./Newarrivals";
+import Review from "./Review";
+import Trending from "../Components/Trending";
 import Book from "../Components/Card/Book";
-import Newarrivals from './Newarrivals';
 import Review from './Review';
 
 const Home = () => {
@@ -59,10 +61,12 @@ const Home = () => {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Link to="/romance">
+
                   <Book
                     genre="Romance"
                     description="Explore our collection of romantic novels."
                   />
+
                 </Link>
 
                 <Link to="/action">
@@ -121,19 +125,29 @@ const Home = () => {
             </section>
 
             {/* Top Trending Books Section */}
-            <section className="container mx-auto my-8">
-              <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
-                Top Trending Books
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Book
-                  genre="Trending Book 1"
-                  description="Description of the trending book."
-                />
-                <Book
-                  genre="Trending Book 2"
-                  description="Description of the trending book."
-                />
+
+            {/* <section className="container mx-auto my-8">
+            <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Top Trending Books</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-900 dark:bg-[rgb(30,30,30)]">
+                <h3 className="text-xl font-bold mb-2 dark:text-white">Trending Book 1</h3>
+                <p className="text-gray-600 dark:text-white">Description of the trending book.</p>
+              </div>
+              <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-1000 dark:bg-[rgb(30,30,30)]">
+                <h3 className="text-xl font-bold mb-2 dark:text-white">Trending Book 2</h3>
+                <p className="text-gray-600 dark:text-white">Description of the trending book.</p>
+              </div>
+            </div>
+          </section> */}
+
+            <section className="bg-gray-200 py-8 dark:bg-[rgb(40,40,40)]">
+              <div className="container mx-auto ">
+                <h2 className="text-4xl font-bold mb-6 text-gray-800 dark:text-white text-center">
+                  Trending
+                </h2>
+
+                <Trending />
+
               </div>
             </section>
 
@@ -142,7 +156,7 @@ const Home = () => {
               <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
                 Featured Author
               </h2>
-              <div className="bg-white rounded-lg shadow-lg p-6 flex items-center dark:bg-[rgb(30,30,30)] hover:bg-zinc-200 hover:cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out transform">
+              <div className="bg-white rounded-lg shadow-lg p-6 flex items-center dark:bg-[rgb(30,30,30)]">
                 <img
                   src={data.featuredAuthor.image}
                   alt={data.featuredAuthor.name}
