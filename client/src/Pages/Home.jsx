@@ -61,57 +61,57 @@ const Home = () => {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Link to="/romance">
-                <Book
-                  genre="Romance"
-                  description="Explore our collection of romantic novels."
-                />
+
+                  <Book
+                    genre="Romance"
+                    description="Explore our collection of romantic novels."
+                  />
+
                 </Link>
 
-               <Link to="/action">
-                <Book
-                  genre="Action"
-                  description="Dive into thrilling action-packed stories."
-                />
+                <Link to="/action">
+                  <Book
+                    genre="Action"
+                    description="Dive into thrilling action-packed stories."
+                  />
                 </Link>
-<Link to="/thriller">
 
-                <Book
-                  genre="Thriller"
-                  description="Get your adrenaline pumping with our thrillers."
-                />
-                    
-                                                      </Link>
-<Link to="/fiction">
+                <Link to="/thriller">
+                  <Book
+                    genre="Thriller"
+                    description="Get your adrenaline pumping with our thrillers."
+                  />
+                </Link>
 
-                <Book
-                  genre="Fiction"
-                  description="Discover imaginative and captivating fiction."
-                />
-                                                      </Link>
-<Link to="/tech">
+                <Link to="/fiction">
+                  <Book
+                    genre="Fiction"
+                    description="Discover imaginative and captivating fiction."
+                  />
+                </Link>
 
-                <Book
-                  genre="Tech"
-                  description="Stay updated with the latest in technology."
-                />
-                                                      </Link>
-<Link to = "/philosophy">
+                <Link to="/tech">
+                  <Book
+                    genre="Tech"
+                    description="Stay updated with the latest in technology."
+                  />
+                </Link>
 
-                <Book
-                  genre="Philosophy"
-                  description="Dive deep into philosophical thoughts and ideas."
-                />
-                                                      </Link>
-<Link to = "/manga">
-                <Book
-                  genre="Manga"
-                  description="Explore our extensive collection of Manga."
-                />
-                                                      </Link>
+                <Link to="/philosophy">
+                  <Book
+                    genre="Philosophy"
+                    description="Dive deep into philosophical thoughts and ideas."
+                  />
+                </Link>
 
+                <Link to="/manga">
+                  <Book
+                    genre="Manga"
+                    description="Explore our extensive collection of Manga."
+                  />
+                </Link>
               </div>
             </section>
-
 
             {/* New Arrivals Section */}
             <section className="bg-gray-200 py-8 dark:bg-[rgb(40,40,40)]">
@@ -125,6 +125,7 @@ const Home = () => {
             </section>
 
             {/* Top Trending Books Section */}
+
             {/* <section className="container mx-auto my-8">
             <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Top Trending Books</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -146,6 +147,7 @@ const Home = () => {
                 </h2>
 
                 <Trending />
+
               </div>
             </section>
 
@@ -170,6 +172,7 @@ const Home = () => {
                 </div>
               </div>
             </section>
+
             <Review />
           </>
         )}

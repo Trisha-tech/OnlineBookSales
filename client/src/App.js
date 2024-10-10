@@ -32,6 +32,7 @@ import License from "./Pages/Licensing.jsx";
 import CustomerProfile from './Pages/CustomerProfile.jsx';
 import GiftCards from './Pages/GiftCards.jsx';
 import Careers from './Pages/Careers.jsx';
+import NotFound from './Pages/NotFound.jsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -89,8 +90,5 @@ function App() {
   );
 }
 
-function NotFound() {
-  return <h1>404 Not Found</h1>;
-}
 
 export default App;
