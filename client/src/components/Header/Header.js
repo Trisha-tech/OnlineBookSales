@@ -75,7 +75,7 @@ function Header(){
             {/* Mobile navigation toggle */}
             <div className="lg:hidden flex items-center">
               <button onClick={() => setToggleMenu(!toggleMenu)}>
-                <Bars3Icon className="h-6" />
+                <Bars3Icon className="h-6 bg-white" />
               </button>
             </div>
           </div>
