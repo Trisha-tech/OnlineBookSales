@@ -22,7 +22,11 @@ import Preloader from "./Components/Preloader.jsx";
 import { Toast } from "./Toast/Toast.js";
 import GoToTop from "./Components/GoToTop.jsx";
 import License from "./Pages/Licensing.jsx";
+<<<<<<< HEAD
 import ResetPassword from "./Pages/ResetPassword.jsx";
+=======
+import CustomerProfile from './Pages/CustomerProfile.jsx';
+>>>>>>> f6fbc9b7747c11fdc795f7ab9e13203c0afd760b
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -54,6 +58,7 @@ function App() {
           <Route path="/orders" element={<OrderList />} />
           <Route path="/contactus" element={<Contact />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/profile" element={<CustomerProfile />} />
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/licensing" element={<License />} />
