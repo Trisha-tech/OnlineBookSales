@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './Animations.css';
 import { Navbar, Footer } from './Components/index.js';
-import { ProfilePage, Product } from './Components/index';
+import { ProfilePage, Product } from './Components/index.js';
 import RomancePage from './Pages/RomancePage.jsx';
 import ActionPage from './Pages/ActionPage.jsx';
 import ThrillerPage from './Pages/ThrillerPage.jsx';
@@ -32,6 +32,7 @@ import License from "./Pages/Licensing.jsx";
 import CustomerProfile from './Pages/CustomerProfile.jsx';
 import GiftCards from './Pages/GiftCards.jsx';
 import Careers from './Pages/Careers.jsx';
+import NotFound from './Pages/NotFound.jsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -89,8 +90,5 @@ function App() {
   );
 }
 
-function NotFound() {
-  return <h1>404 Not Found</h1>;
-}
 
 export default App;

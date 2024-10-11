@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 import Preloader from "../Components/Preloader";
+import GoogleLogin from "../Components/GoogleLogin";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -134,6 +135,8 @@ const LoginPage = () => {
                 >
                   Login
                 </button>
+                {/* Google Login Button */}
+                <GoogleLogin />
                 <div className='w-full flex items-center justify-center mt-3 mb-3'>
                   <p className='text-sm text-[#060606] dark:text-white'>
                     Don't have an account?{' '} <Link to="/signup">Sign up</Link>
