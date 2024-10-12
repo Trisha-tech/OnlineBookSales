@@ -40,17 +40,24 @@ const MenuContainer = styled('div')({
 });
 
 const MobileMenu = styled('div')(({ open }) => ({
-  display: open ? 'flex' : 'none',
+  display: 'flex',
   flexDirection: 'column',
-  position: 'absolute',
-  top: '64px',
+  gap: '10px', // Added 'px' for proper gap
+  position: 'fixed',
+  top: '0', // Align to the top of the screen
   right: '0',
   backgroundColor: '#002147',
   width: '100%',
-  padding: '10px',
+  height: '100vh', // Full height
+  padding: '20px', // Padding for better spacing
   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
   zIndex: 1000,
+  overflowY: 'auto', // Enable scrolling if needed
+  transform: open ? 'translateX(0)' : 'translateX(100%)', // Slide from right
+  transition: 'transform 0.4s ease-in-out', // Smooth transition effect
 }));
+
+
 
 const MobileMenuButton = styled(IconButton)({
   fill: '#fff',
@@ -102,19 +109,57 @@ function Navbar({ darkMode, toggleDarkMode }) {
             </MobileMenuButton>
             
             <MobileMenu open={openMenu}>
-              <StyledButton color="inherit" component={Link} to="/" startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+              <IconButton onClick={handleMenuClick} style={{ marginBottom: '20px', color: '#fff' }}>
+                Close
+              </IconButton>
+              <StyledButton
+                color="inherit"
+                component={Link}
+                to="/"
+                startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}
+                fullWidth
+                style={{ marginBottom: '15px' }} // Add margin for spacing
+              >
                 Home
               </StyledButton>
-              <StyledButton color="inherit" component={Link} to="/shop" startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+              <StyledButton
+                color="inherit"
+                component={Link}
+                to="/shop"
+                startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />}
+                fullWidth
+                style={{ marginBottom: '15px' }} // Add margin for spacing
+              >
                 Shop
               </StyledButton>
-              <StyledButton color="inherit" component={Link} to="/wishlist" startIcon={<FavoriteIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+              <StyledButton
+                color="inherit"
+                component={Link}
+                to="/wishlist"
+                startIcon={<FavoriteIcon sx={{ fontSize: '1.5rem' }} />}
+                fullWidth
+                style={{ marginBottom: '15px' }} // Add margin for spacing
+              >
                 Wishlist
               </StyledButton>
-              <StyledButton color="inherit" component={Link} to="/cart" startIcon={<ShoppingCartIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+              <StyledButton
+                color="inherit"
+                component={Link}
+                to="/cart"
+                startIcon={<ShoppingCartIcon sx={{ fontSize: '1.5rem' }} />}
+                fullWidth
+                style={{ marginBottom: '15px' }} // Add margin for spacing
+              >
                 Cart
               </StyledButton>
-              <StyledButton color="inherit" component={Link} to="/orders" startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+              <StyledButton
+                color="inherit"
+                component={Link}
+                to="/orders"
+                startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />}
+                fullWidth
+                style={{ marginBottom: '15px' }} // Add margin for spacing
+              >
                 Orders
               </StyledButton>
 
@@ -125,6 +170,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 onClick={userLoggedIn ? handleLogout : null}
                 startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
                 fullWidth
+                style={{ marginBottom: '15px' }} // Add margin for spacing
               >
                 {userLoggedIn ? "Logout" : "Login"}
               </StyledButton>
