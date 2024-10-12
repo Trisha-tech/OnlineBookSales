@@ -1,4 +1,4 @@
-# 📚 Online Book Sales 📚
+# 📚 Online Book Sales. 📚
 
 ![CoverPage](cover-page.png)
 
