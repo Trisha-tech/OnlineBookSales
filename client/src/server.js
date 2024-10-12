@@ -13,9 +13,17 @@ const port = process.env.PORT || 5000; // Use port from .env or fallback to 5000
 
 // Enable CORS to allow requests from the frontend
 app.use(cors({
-    origin: 'http://localhost:3000', // Frontend URL
-    credentials: true // To allow cookies (for session management)
+    origin: 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
 }));
+
+// Your routes here
+
+app.listen(8080, () => {
+    console.log('Server is running on port 8080');
+});
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URL, {
