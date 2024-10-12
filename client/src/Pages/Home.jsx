@@ -9,7 +9,7 @@ import Newarrivals from "./Newarrivals";
 import Review from "./Review";
 import Trending from "../Components/Trending";
 import Book from "../Components/Card/Book";
-import Review from './Review';
+//import Review from './Review';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);

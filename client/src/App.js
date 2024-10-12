@@ -33,6 +33,7 @@ import CustomerProfile from './Pages/CustomerProfile.jsx';
 import GiftCards from './Pages/GiftCards.jsx';
 import Careers from './Pages/Careers.jsx';
 import NotFound from './Pages/NotFound.jsx';
+import ResetPassword from "./Pages/ResetPassword.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -79,6 +80,7 @@ function App() {
           <Route path="/contributors" element={<Contributors />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/giftcards" element={<GiftCards />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} /> {/* Fallback route */}
         </Routes>
         <Toast position="bottom-right" />
