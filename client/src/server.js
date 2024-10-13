@@ -6,7 +6,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const User = require('./models/customerSchema'); // Import User model
+const User = require('../../models/customerSchema'); // Import User model
 
 const app = express();
 const port = process.env.PORT || 5000; // Use port from .env or fallback to 5000

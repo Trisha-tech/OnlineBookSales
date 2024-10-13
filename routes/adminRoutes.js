@@ -3,7 +3,7 @@ const { authorizeRoles } = require('../middlewares/auth');
 const router=express.Router();
 const {retriveFeedbacks,retriveFeedbacksById,updateFeeback}=require('../controllers/adminController');
 
-
+    
 
 
 
