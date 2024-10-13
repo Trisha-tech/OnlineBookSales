@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const { sendContactEmail } = require('./controllers/mailcontroller.js');
 const errorMiddleware = require("./middlewares/error.js");
+const reviewRoutes = require('./routes/reviewRoutes');
 
 // Load environment variables from .env file
 dotenv.config({ path: ".env" });
@@ -19,6 +20,9 @@ const MONGO_URL = process.env.MONGO_URL;
 
 // CORS
 const cors = require("cors");
+app.use('/api/reviews', reviewRoutes);
+
+
 app.use(
   cors({
 
