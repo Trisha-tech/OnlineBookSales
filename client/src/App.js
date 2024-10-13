@@ -13,6 +13,7 @@ import PhilosophyPage from './Pages/PhilosophyPage.jsx';
 import MangaPage from './Pages/MangaPage.jsx';
 import LoginPage from './Pages/LoginPage.jsx';
 import SignUpPage from './Pages/SignUpPage.jsx';
+import BookDetail from './Components/BookDetail.js';
 import Cart from './Pages/Cart.jsx';
 import Orders from './Pages/Orders.jsx';
 import Wishlist from './Pages/Wishlist.jsx';
@@ -48,6 +49,18 @@ function App() {
   const appStyle = {
     backgroundColor: darkMode ? '#333' : '#f4f4f4',
   };
+  const App = () => {
+    const bookId = '12345'; // Replace with actual book ID logic
+    const authToken = 'your_auth_token'; // Replace with logic to get user token
+  
+    return (
+      <div>
+        <h1>Book Reviews</h1>
+        <BookDetail bookId={bookId} authToken={authToken} />
+      </div>
+    );
+  };
+  
 
   return (
     <Router>
