@@ -25,9 +25,9 @@ const Home = () => {
     setTimeout(() => {
       setData({
         featuredAuthor: {
-          name: "Stephen King",
-          bio: "Stephen King is a prolific author of horror, supernatural fiction, suspense, crime, science-fiction, and fantasy novels.",
-          image: B1Child,
+          name: "John Doe",
+          bio: "John Doe is a bestselling author known for his thrilling novels and captivating storytelling.",
+          image: AuthorImage,
         },
       });
       setBooks(newbooks);
