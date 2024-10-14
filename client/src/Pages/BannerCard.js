@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
@@ -6,9 +6,24 @@ import 'swiper/css/pagination';
 import { FaCartShopping } from 'react-icons/fa6';
 import { Pagination } from 'swiper/modules';
 import './BannerCard.css';
-function BannerCard({ headLine, books }) {
+
+function BannerCard({ books, highlightedBookId }) {
+    const bookref = useRef({});
+    const headLine = "New Arrivals";
+    useEffect(() => {
+        if (highlightedBookId && bookref.current[highlightedBookId]) {
+            const bookElement = bookref.current[highlightedBookId];
+            bookElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            bookElement.classList.add("highlight");
+            setTimeout(() => {
+                bookElement.classList.remove("highlight");
+            }, 3000);
+        }
+    }, [highlightedBookId]);
+
     return (
         <div className='my-16 px-4 lg:px-24'>
+            {/* Ensure headLine is correctly used here */}
             <h2 className='text-5xl text-center font-bold text-black my-5'>{headLine}</h2>
 
             <div className='mt-12'>
@@ -38,7 +53,8 @@ function BannerCard({ headLine, books }) {
                     {books.map((book) => (
                         <SwiperSlide key={book._id}>
                             <Link to={`/book/${book._id}`}>
-                                <div className="relative">
+                                <div ref={(el) => (bookref
+                                    .current[book.bookTitle] = el)} className="relative">
                                     <img
                                         src={book.imageURL}
                                         alt={book.bookTitle}
@@ -60,8 +76,6 @@ function BannerCard({ headLine, books }) {
                                         <p className="text-lg font-bold text-gray-800">$10.00</p>
                                     </div>
                                 </div>
-
-
                             </Link>
                         </SwiperSlide>
                     ))}
