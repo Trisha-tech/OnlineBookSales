@@ -1,37 +1,63 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import B1Child from "../assets/image/B1Child.jpeg";
 import AuthorImage from "../assets/image/author1.jpeg";
 import Spinner from "./Spinner";
 import SearchBar from "../Components/SearchBar";
 import Preloader from "../Components/Preloader";
-import Newarrivals from "./Newarrivals";
+import Newarrivals, { books as newbooks } from "./Newarrivals";
 import Review from "./Review";
 import Trending from "../Components/Trending";
 import Book from "../Components/Card/Book";
-import Review from './Review';
+
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [bookNotFound, setBookNotFound] = useState(false);
+  const [highlightedBookId, setHighlightedBookId] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
       setData({
         featuredAuthor: {
-          name: "John Doe",
-          bio: "John Doe is a bestselling author known for his thrilling novels and captivating storytelling.",
-          image: AuthorImage,
+          name: "Stephen King",
+          bio: "Stephen King is a prolific author of horror, supernatural fiction, suspense, crime, science-fiction, and fantasy novels.",
+          image: B1Child,
         },
       });
+      setBooks(newbooks);
+      setFilteredBooks(newbooks);
       setIsLoading(false);
     }, 2000);
   }, []);
 
   const handleSearch = (query) => {
     console.log("Search query:", query);
-    // Implement search logic here
+    if (query) {
+      const results = books.filter((book) =>
+        book.bookTitle.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredBooks(results);
+      setBookNotFound(results.length === 0);
+      if (results.length > 0) {
+        setHighlightedBookId(null);
+        setTimeout(() => {
+          setHighlightedBookId(results[0].bookTitle);
+        }, 100);
+      } else {
+        setHighlightedBookId(null);
+      }
+    } else {
+      setFilteredBooks(books);
+      setBookNotFound(false);
+      setHighlightedBookId(null);
+    }
   };
+
 
   return (
     <>
@@ -42,7 +68,30 @@ const Home = () => {
           <>
             {/* Search Bar */}
             <SearchBar onSearch={handleSearch} />
+            {bookNotFound && (
+              <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
+                <div className="bg-white p-8 rounded-xl shadow-2xl max-w-md text-center">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png" // Sample 'Book Not Found' icon
+                    alt="Book Not Found"
+                    className="w-20 h-20 mx-auto mb-4"
+                  />
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                    Oops! Book Not Found
+                  </h2>
+                  <p className="text-gray-600 text-md mb-6">
+                    Sorry, the book you're looking for isn't available right now.
+                  </p>
+                  <button
+                    onClick={() => setBookNotFound(false)}
+                    className="mt-4 bg-black text-white font-semibold py-2 px-6 rounded-lg shadow-md transition transform duration-300 ease-in-out neon-btn"
+                  >
+                    Close
+                  </button>
 
+                </div>
+              </div>
+            )}
             {/* Image Container */}
             <header className="bg-white shadow dark:bg-inherit">
               <div className="container mx-auto p-6">
@@ -119,8 +168,8 @@ const Home = () => {
                 <h2 className="text-4xl font-bold mb-6 text-gray-800 dark:text-white text-center">
                   New Arrivals
                 </h2>
-
-                <Newarrivals />
+                <Newarrivals onBookClick={(bookTitle) => navigate(`/book/${bookTitle}`)}
+                  highlightedBookId={highlightedBookId} />
               </div>
             </section>
 
