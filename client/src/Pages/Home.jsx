@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import B1Child from "../assets/image/B1Child.jpeg";
-import AuthorImage from "../assets/image/author1.jpeg";
-import Spinner from "./Spinner";
-import SearchBar from "../Components/SearchBar";
-import Preloader from "../Components/Preloader";
-import Newarrivals, { books as newbooks } from "./Newarrivals";
-import Review from "./Review";
-import Trending from "../Components/Trending";
-import Book from "../Components/Card/Book";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import B1Child from '../assets/image/B1Child.jpeg';
+import AuthorImage from '../assets/image/author1.jpeg';
+import Spinner from './Spinner';
+import SearchBar from '../Components/SearchBar';
+import Preloader from '../Components/Preloader';
+import Newarrivals from './Newarrivals';
+import Review from './Review';
+import crawdadsImage from '../assets/image/WhereTheCrawdadsSings.jpg';
+import TheMidnightLibrary from '../assets/image/theMidnightLibrary.jpg';
+import TheVanishingHalf from '../assets/image/theVanishingHalf.jpg';
+import Dune from '../assets/image/Dune.jpg';
+import KlaraAndtheSun from '../assets/image/klaraAndtheSun.jpg';
+import ProjectHailMary from '../assets/image/projectHailMary.jpg';
+import MalibuRising from '../assets/image/malibuRising.jpg';
 
 
 const Home = () => {
