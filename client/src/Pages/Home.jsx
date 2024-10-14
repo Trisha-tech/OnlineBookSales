@@ -9,7 +9,7 @@ import Newarrivals from "./Newarrivals";
 import Review from "./Review";
 import Trending from "../Components/Trending";
 import Book from "../Components/Card/Book";
-import Review from './Review';
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -61,12 +61,10 @@ const Home = () => {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Link to="/romance">
-
                   <Book
                     genre="Romance"
                     description="Explore our collection of romantic novels."
                   />
-
                 </Link>
 
                 <Link to="/action">
@@ -147,7 +145,6 @@ const Home = () => {
                 </h2>
 
                 <Trending />
-
               </div>
             </section>
 
@@ -174,6 +171,7 @@ const Home = () => {
             </section>
 
             <Review />
+            <Testimonial />
           </>
         )}
       </div>

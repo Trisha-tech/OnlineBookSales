@@ -1,0 +1,21 @@
+.carousel-inner {
+    height: 538px;
+  }
+  
+  .carousel-control-prev {
+    height: 50px;
+    left: unset !important;
+    position: fixed !important;
+    top: -5px !important;
+    right: 50%;
+    color: gray !important;
+  }
+  
+  .carousel-control-next {
+    height: 50px;
+    right: unset !important;
+    position: fixed !important;
+    top: -5px !important;
+    left: 50%;
+    color: gray !important;
+  }
