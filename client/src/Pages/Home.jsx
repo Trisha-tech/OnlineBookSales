@@ -17,6 +17,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [bookNotFound, setBookNotFound] = useState(false);
+  const [emptySearch, setEmptySearch] = useState(false);
   const [highlightedBookId, setHighlightedBookId] = useState(null);
   const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ const Home = () => {
       );
       setFilteredBooks(results);
       setBookNotFound(results.length === 0);
+      setEmptySearch(false); // Reset empty search state if query is provided
       if (results.length > 0) {
         setHighlightedBookId(null);
         setTimeout(() => {
@@ -52,6 +54,7 @@ const Home = () => {
         setHighlightedBookId(null);
       }
     } else {
+      setEmptySearch(true); 
       setFilteredBooks(books);
       setBookNotFound(false);
       setHighlightedBookId(null);
@@ -68,6 +71,24 @@ const Home = () => {
           <>
             {/* Search Bar */}
             <SearchBar onSearch={handleSearch} />
+            {emptySearch && (
+              <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
+                <div className="bg-white p-8 rounded-xl shadow-2xl max-w-md text-center">
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                    Please Enter a Book Name..!!
+                  </h2>
+                  <p className="text-gray-900 text-md mb-4">
+                    You must type a book name in the search bar to search for books.
+                  </p>
+                  <button
+                    onClick={() => setEmptySearch(false)}
+                    className="mt-4 bg-black text-white font-semibold py-2 px-6 rounded-lg shadow-md transition transform duration-300 ease-in-out neon-btn"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
             {bookNotFound && (
               <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
                 <div className="bg-white p-8 rounded-xl shadow-2xl max-w-md text-center">
