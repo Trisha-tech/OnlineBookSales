@@ -1,15 +1,11 @@
-import Header from "./Header/Header.js";
-import ProfilePage from "./Profile/ProfilePage";
-import HomePage from "./HomePage";
+
+import Profile from "./CustomerProfile/Profile.jsx";
 import Product from "./Product.jsx"
 import Footer from "./Footer/Footer.jsx"
-import Navbar from "./NavBar/NavBar.jsx";
-
+import Navbar from "./NavBar/NavBar.jsx"
 export {
-    Header,
-    ProfilePage,
-    HomePage,
+    Profile,
     Product,
     Footer,
-    Navbar,
+    Navbar
 }
