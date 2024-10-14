@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #286ac5; 
+  background: #2066c9; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,9 +18,9 @@
   width: 95vw; 
   height: 45vh; 
   object-fit: cover; 
-  transform: translate(-50%, -50%); 
+  transform: translate(-55%, -55%); 
 }
 
 .preloader.fade-out {
-  opacity: 0;
+  opacity: 0.11;
 }

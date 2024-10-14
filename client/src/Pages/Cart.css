@@ -12,6 +12,9 @@
     font-size: 24px;
     margin-bottom: 10px;
   }
+  .cart-header:hover{
+    color:#28a745;
+  }
   
   .error-message {
     color: red;
@@ -19,7 +22,7 @@
   }
   
   .retry-button {
-    background-color: #007bff;
+    background-color: #1482f7;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -47,13 +50,13 @@
   }
   
   .item-image {
-    max-width: 60px;
-    max-height: 60px;
+    max-width: 65px;
+    max-height: 70px;
     border-radius: 4px;
   }
   
   .quantity-button {
-    background-color: #007bff;
+    background-color: #0b14c8;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -82,11 +85,11 @@
   }
   
   .cart-total {
-    font-size: 18px;
+    font-size: 20px;
   }
   
   .checkout-button {
-    background-color: #28a745;
+    background-color: #05b72e;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -101,6 +104,7 @@
   
   .suggested-products h2 {
     font-size: 20px;
+    font-weight: 600;
   }
   
   .suggested-products ul {
@@ -117,6 +121,7 @@
     .cart-table th,
     .cart-table td {
       font-size: 14px;
+      font-weight: 500;
     }
   }
   

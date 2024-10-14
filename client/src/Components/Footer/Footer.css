@@ -36,8 +36,8 @@
 
 /* Copyright section styles */
 .copyright-section {
-    color: #ffffff; /* Text color for copyright */
-    font-size: 0.875rem; /* Smaller text size */
+    color: #f5e7e7; /* Text color for copyright */
+    font-size: 0.9rem; /* Smaller text size */
 }
 
 /* Footer links styles */
@@ -47,6 +47,7 @@
 
 .footer-list li a:hover {
     transform: scale(1.1); /* Scale up by 10% on hover */
+    color: #f5e7e7;
 }
 
 /* Social icons list styles */
@@ -68,7 +69,7 @@
 
 /* Copyright section styles */
 .copyright-section {
-    color: #ffffff; /* Text color for copyright */
+    color: #f7e8e8; /* Text color for copyright */
     font-size: 0.875rem; /* Smaller text size */
 }
 
@@ -86,7 +87,7 @@
 
 .newsletter-input {
     padding: 10px;
-    border: 1px solid #ced4da;
+    border: 1px solid #c4d7e9;
     border-radius: 4px;
     width: 100%;
     color: black;
@@ -105,7 +106,7 @@
 }
 
 .newsletter-button:hover {
-    background-color: #003366; 
+    background-color: #011b35; 
 }
 
 .newsletter-message {
@@ -113,4 +114,8 @@
     color: #ffff00; /* Yellow color for the message */
     margin-top: 10px; /* Space above the message */
     text-align: center; /* Center-align the message */
+}
+.newsletter-message:hover
+{
+    color:orange;
 }
