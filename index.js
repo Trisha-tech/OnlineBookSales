@@ -21,15 +21,10 @@ const MONGO_URL = process.env.MONGO_URL;
 const cors = require("cors");
 app.use(
   cors({
-
-    origin: "http://localhost:3000", // your frontend's origin
-    optionsSuccessStatus: 200,
-
-    origin: "http://localhost:3000", // Allow requests from localhost:3000
-    credentials: true, // Allow sending cookies from the frontend
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow the HTTP methods you use
-    allowedHeaders: ["Content-Type", "auth-token", "Origin", "X-Requested-With", "Accept"], // Allow headers
-
+    origin: "*",  // Allow all origins
+    credentials: true,  
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  // Allow all methods
+    allowedHeaders: ["Content-Type", "auth-token", "Origin", "X-Requested-With", "Accept"],  // Allow all required headers
   })
 );
 
