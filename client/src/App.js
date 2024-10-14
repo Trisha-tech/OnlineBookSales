@@ -34,7 +34,7 @@ import CustomerProfile from "./Pages/CustomerProfile.jsx";
 import GiftCards from "./Pages/GiftCards.jsx";
 import Careers from "./Pages/Careers.jsx";
 import NotFound from "./Pages/NotFound.jsx";
-import ChatBotEmbed from "./Components/ChatBotEmbed.jsx";
+import ChatBotEmbed from "./chatbot.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
