@@ -23,10 +23,22 @@ const SignUpPage = () => {
     // const [phone, setPhone] = useState("");
     // const [address, setAddress] = useState("");
     const [error, setError] = useState(""); //state to store error message
+    const [emailError, setEmailError] = useState('');
     let navigate = useNavigate();
     // handle Submit function
+
+      
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const value = e.target.value;
+    setEmail(value);
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(value)) {
+      setError('Please enter a valid email address.');
+    } else {
+      setError('');
+    }
 
         if (password !== confirmPassword) {
             setError("Passwords do not match!");
