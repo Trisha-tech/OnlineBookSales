@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Categories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: darkblue;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            background-color:rgb(249, 249, 249);
+            color:rgb(177, 115, 2);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        h3{
+            color:rgb(227, 142, 31)
+        }
+        h1{
+            color:aliceblue;
+        }
+        div{
+            box-shadow:10px 10px rgb(214, 230, 4) ;
+        } 
+        div:hover{
+            color: #f45e13;
+            background-color: #007bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body >
+    <a href="quiz.html"><h3>Book Preference Quiz</h3></a>
+   
+    <h1>Book Categories</h1>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Action</h3>
+            <a class="button" href="action.html">Show Books</a>
+        </div>
+        <div class="card">
+            <h3>Thriller</h3>
+            <a class="button" href="thriller.html">Show Books</a>
+        </div>
+        <div class="card">
+            <h3>Fiction</h3>
+            <a class="button" href="fiction.html">Show Books</a>
+        </div>
+        <div class="card">
+            <h3>Tech</h3>
+            <a class="button" href="tech.html">Show Books</a>
+        </div>
+        <div class="card">
+            <h3>Philosophy</h3>
+            <a class="button" href="philosophy.html">Show Books</a>
+        </div>
+        <div class="card">
+            <h3>Manga</h3>
+            <a class="button" href="manga.html">Show Books</a>
+        </div>
+    </div>
+
+</body>
+</html>

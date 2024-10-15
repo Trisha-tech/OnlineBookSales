@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thriller Books</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            background-color: darkblue;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .book {
+            margin: 10px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(45% - 20px); /* Two books per row */
+            max-width: calc(45% - 20px); /* Two books per row */
+        }
+
+        .book h4 {
+            margin: 0;
+        }
+
+        .button {
+            background-color: darkblue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #e65c39;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .description {
+            color: #555;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        div{
+            box-shadow:10px 10px rgb(214, 230, 4) ;
+        } 
+        div:hover{
+            color: #f45e13;
+            background-color: #007bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="category-title"><h2>MANGA BOOKS</h2></div>
+    <div id="book-list" class="book-list"></div>
+
+    <script>
+        const fetchBooks = async () => {
+            // Fetching thriller books from Open Library
+            const response = await fetch('https://openlibrary.org/subjects/thriller.json?limit=50');
+            const data = await response.json();
+            return data.works;
+        };
+
+        const showBooks = async () => {
+            const thrillerBooks = await fetchBooks();
+            const bookList = document.getElementById('book-list');
+            thrillerBooks.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.className = 'book';
+                bookDiv.innerHTML = `
+                    <h4>${book.title}</h4>
+                    <p><strong>Author:</strong> ${book.authors.map(author => author.name).join(", ")}</p>
+                    <p><strong>Cost:</strong> $${Math.floor(Math.random() * 20) + 10} (estimated price)</p>
+                    `;
+                bookList.appendChild(bookDiv);
+            });
+        };
+
+        // Show the books on page load
+        showBooks();
+    </script>
+
+</body>
+
+</html>

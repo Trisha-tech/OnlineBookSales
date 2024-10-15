@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Preference Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color:darkblue;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-top: 15px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #033aa1;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #e65c39;
+        }
+
+        .hidden {
+            display: none;
+        }
+        div{
+            box-shadow:10px 10px rgb(214, 230, 4) ;
+        } 
+        div:hover{
+            color: #f45e13;
+            background-color: #007bff;
+            cursor: pointer;
+        }
+       
+    </style>
+</head>
+
+<body>
+
+    <h1>Book Preference Form</h1>
+    <div class="form-container">
+        <form id="bookPreferenceForm">
+            <label for="gender">Gender:</label>
+            <select id="gender" required>
+                <option value="" disabled selected>Select your gender</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="not_disclose">Prefer not to disclose</option>
+            </select>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" min="0" required>
+
+            <label for="bookType">Book Type:</label>
+            <select id="bookType" required>
+                <option value="" disabled selected>Select book category</option>
+                <option value="action">Action</option>
+                <option value="thriller">Thriller</option>
+                <option value="fiction">Fiction</option>
+                <option value="tech">Technology</option>
+                <option value="philosophy">Philosophy</option>
+                <option value="manga">Manga</option>
+            </select>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" required>
+
+            <label for="cost">Book Cost:</label>
+            <input type="number" id="cost" min="0" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="bookButtonContainer" class="hidden">
+            <h2>Selected Category: <span id="selectedCategory"></span></h2>
+            <button id="viewBooksButton">View Books</button>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('bookPreferenceForm');
+        const bookButtonContainer = document.getElementById('bookButtonContainer');
+        const selectedCategory = document.getElementById('selectedCategory');
+        const viewBooksButton = document.getElementById('viewBooksButton');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const bookType = document.getElementById('bookType').value;
+
+            // Display the selected book category
+            selectedCategory.innerText = bookType.charAt(0).toUpperCase() + bookType.slice(1);
+            bookButtonContainer.classList.remove('hidden'); // Show the button container
+        });
+
+        viewBooksButton.addEventListener('click', function () {
+            const bookType = selectedCategory.innerText.toLowerCase();
+            window.location.href = `${bookType}.html`; // Redirect to the corresponding book category page
+        });
+    </script>
+
+</body>
+</html>
