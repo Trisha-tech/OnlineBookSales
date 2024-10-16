@@ -34,7 +34,8 @@ import CustomerProfile from "./Pages/CustomerProfile.jsx";
 import GiftCards from "./Pages/GiftCards.jsx";
 import Careers from "./Pages/Careers.jsx";
 import NotFound from "./Pages/NotFound.jsx";
-import ChatBotEmbed from "./chatbot.jsx";
+import ChatBotEmbed from "./ChatBot.jsx";
+import ResetPassword from "./Pages/ResetPassword.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -82,12 +83,15 @@ function App() {
           <Route path="/careers" element={<Careers />} />
           <Route path="/giftcards" element={<GiftCards />} />
           <Route path="*" element={<NotFound />} /> {/* Fallback route */}
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
         <Toast position="bottom-right" />
         <Footer darkMode={darkMode} /> {/* Pass darkMode prop here */}
         <Preloader /> {/* Ensure Preloader is correctly styled */}
         <GoToTop /> {/* Added GoToTop component */}
-        <ChatBotEmbed />
+
+         <ChatBotEmbed />
+
       </div>
     </Router>
   );

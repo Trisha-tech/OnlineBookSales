@@ -1,5 +1,4 @@
 
-
 import Header from "./Header/Header.js";
 import ProfilePage from "./Profile/ProfilePage";
 import HomePage from "./HomePage";
@@ -14,7 +13,6 @@ export {
     HomePage,
     Product,
     Footer,
-
 
     Navbar,
 }

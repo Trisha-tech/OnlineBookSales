@@ -11,11 +11,12 @@ const errorMiddleware = require("./middlewares/error.js");
 
 // Load environment variables from .env file
 dotenv.config({ path: ".env" });
-const PORT = process.env.PORT || 8080;
-console.log(process.env.MONGO_URL);
+const PORT = process.env.sample.PORT || 8080;
+console.log(process.env.sample.MONGO_URL);
 
 /* MONGODB CONNECTION START */
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = process.env.sample.MONGO_URL;
+
 
 // CORS
 const cors = require("cors");
