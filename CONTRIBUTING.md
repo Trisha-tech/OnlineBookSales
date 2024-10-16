@@ -1,171 +1,150 @@
-# How to Contribute
+How to Contribute 🚀
+We warmly welcome all those who wish to contribute to Online Book Sales! Whether you're looking to add a new feature or fix a bug, your help is greatly appreciated. Follow the steps below to start contributing:
 
-We warmly welcome all those who wish to contribute to **Online Book Sales**. Whether you're looking to add a new feature or fix a bug, your help is greatly appreciated. Follow the steps below to start contributing:
+Getting Started
+Create a folder at your desired location (usually on your desktop).
 
-## Getting Started
+Open Git Bash in the new folder.
 
-1. **Create a folder** at your desired location (usually on your desktop).
+Initialize a Git repository by running the command:
 
-2. **Open Git Bash** in the new folder.
+bash
+Copy code
+git init
+Forking and Cloning the Repository
+Fork the repository on GitHub.
 
-3. **Initialize a Git repository** by running the command:
-    ```bash
-    git init
-    ```
+Clone your forked repository of the project using:
 
-## Forking and Cloning the Repository
+bash
+Copy code
+git clone https://github.com/<your_username>/OnlineBookSales.git
+Setting Upstream and Updating Your Fork
+Navigate to the project directory:
 
-4. **Fork the repository** on GitHub.
+bash
+Copy code
+cd OnlineBookSales
+Add a reference (remote) to the original repository:
 
-5. **Clone your forked repository** of the project using:
-    ```bash
-    git clone https://github.com/<your_username>/OnlineBookSales.git
-    ```
+bash
+Copy code
+git remote add upstream https://github.com/Trisha-tech/OnlineBookSales.git
+Check the remotes for this repository:
 
-## Setting Upstream and Updating Your Fork
+bash
+Copy code
+git remote -v
+Update your fork with the latest changes from the upstream repository:
 
-6. **Navigate to the project directory**:
-    ```bash
-    cd FunwithScience
-    ```
+bash
+Copy code
+git pull upstream main
+Making Changes
+Create a new branch (prefer a branch name that relates to your assigned issue):
 
-7. **Add a reference(remote) to the original repository**:
-    ```bash
-    git remote add upstream https://github.com/Trisha-tech/OnlineBookSales.git
-    ```
+bash
+Copy code
+git checkout -b <YOUR_BRANCH_NAME>
+Make your desired changes to the codebase.
 
-8. **Check the remotes for this repository**:
-    ```bash
-    git remote -v
-    ```
+Check your changes:
 
-9. **Update your fork** with the latest changes from the upstream repository:
-    ```bash
-    git pull upstream main
-    ```
+bash
+Copy code
+git status
+git diff
+Stage your changes:
 
-## Making Changes
+bash
+Copy code
+git add <files_that_you_made_changes>
+Commit your changes:
 
-10. **Create a new branch** (prefer a branch name that relates to your assigned issue):
-    ```bash
-    git checkout -b <YOUR_BRANCH_NAME>
-    ```
+bash
+Copy code
+git commit -m "A relevant message"
+Push the committed changes in your feature branch to your remote repository.
 
-11. **Make your desired changes** to the code base.
+Alternatively, Contribute Using GitHub Desktop
+Open GitHub Desktop: Launch GitHub Desktop and log in to your GitHub account if you haven't already.
 
-12. **Check your changes**:
-    ```bash
-    git status
-    git diff
-    ```
+Clone the Repository:
 
-13. **Stage your changes**:
-    ```bash
-    git add . <\files_that_you_made_changes>
-    ```
-    
-14. **Commit your changes**:
-    ```bash
-    git commit -m "relevant message"
-    ```
+If you haven't cloned the OnlineBookSales repository yet, you can do so by clicking on the "File" menu and selecting "Clone Repository."
+Choose the OnlineBookSales repository from the list of repositories on GitHub and clone it to your local machine.
+Switch to the Correct Branch:
 
-15. **Push the committed changes** in your feature branch to your remote repository.
+Ensure you are on the branch that you want to submit a pull request for.
+If you need to switch branches, you can do so by clicking on the "Current Branch" dropdown menu and selecting the desired branch.
+Make Changes: Make your changes to the code or files in the repository using your preferred code editor.
 
-### Alternatively contribute using GitHub Desktop
+Commit Changes:
 
-1. **Open GitHub Desktop:**
-   Launch GitHub Desktop and log in to your GitHub account if you haven't already.
+In GitHub Desktop, you'll see a list of the files you've changed. Check the box next to each file you want to include in the commit.
+Enter a summary and description for your changes in the "Summary" and "Description" fields, respectively. Click the "Commit to <branch-name>" button to commit your changes to the local branch.
+Push Changes to GitHub: After committing your changes, click the "Push origin" button in the top right corner of GitHub Desktop to push your changes to your forked repository on GitHub.
 
-2. **Clone the Repository:**
-   - If you haven't cloned the OnlineBookSales repository yet, you can do so by clicking on the "File" menu and selecting "Clone Repository."
-   - Choose the OnlineBookSales repository from the list of repositories on GitHub and clone it to your local machine.
+Create a Pull Request:
 
-3. **Switch to the Correct Branch:**
-   - Ensure you are on the branch that you want to submit a pull request for.
-   - If you need to switch branches, you can do so by clicking on the "Current Branch" dropdown menu and selecting the desired branch.
+Go to the GitHub website and navigate to your fork of the OnlineBookSales repository.
+You should see a button to "Compare & pull request" between your fork and the original repository. Click on it.
+Review and Submit:
 
-4. **Make Changes:**
-   Make your changes to the code or files in the repository using your preferred code editor.
-
-5. **Commit Changes:**
-   - In GitHub Desktop, you'll see a list of the files you've changed. Check the box next to each file you want to include in the commit.
-   - Enter a summary and description for your changes in the "Summary" and "Description" fields, respectively. Click the "Commit to <branch-name>" button to commit your changes to the local branch.
-
-6. **Push Changes to GitHub:**
-   After committing your changes, click the "Push origin" button in the top right corner of GitHub Desktop to push your changes to your forked repository on GitHub.
-
-7. **Create a Pull Request:**
-   - Go to the GitHub website and navigate to your fork of the OnlineBookSales repository.
-   - You should see a button to "Compare & pull request" between your fork and the original repository. Click on it.
-
-8. **Review and Submit:**
-   - On the pull request page, review your changes and add any additional information, such as a title and description, that you want to include with your pull request.
-   - Once you're satisfied, click the "Create pull request" button to submit your pull request.
-
-9. **Wait for Review:**
-   Your pull request will now be available for review by the project maintainers. They may provide feedback or ask for changes before merging your pull request into the main branch of the OnlineBookSales repository.
+On the pull request page, review your changes and add any additional information, such as a title and description, that you want to include with your pull request.
+Once you're satisfied, click the "Create pull request" button to submit your pull request.
+Wait for Review: Your pull request will now be available for review by the project maintainers. They may provide feedback or ask for changes before merging your pull request into the main branch of the OnlineBookSales repository.
 
 ⭐️ Support the Project
 If you find this project helpful, please consider giving it a star on GitHub! Your support helps to grow the project and reach more contributors.
 
-
-# Contributing to OnlineBookSales
-
+Contributing to OnlineBookSales
 First off, thanks for taking the time to contribute! 🎉
 
 The following is a set of guidelines for contributing to OnlineBookSales. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
-## Reporting Issues
+Reporting Issues
+Before You Submit an Issue
+Check the existing issues to see if your issue has already been reported. Duplicate issues clutter the issue tracker and make it harder for us to prioritize issues.
 
-### Before You Submit an Issue
+Search through open and closed issues to see if your issue has already been addressed.
 
-1. Check the existing issues to see if your issue has already been reported. Duplicate issues clutter the issue tracker and make it harder for us to prioritize issues.
+Review the project documentation to ensure your issue hasn't already been covered.
 
-2. Search through open and closed issues to see if your issue has already been addressed.
+How to Submit an Issue
+Use a clear and descriptive title for the issue to identify the problem.
 
-3. Review the project documentation to ensure your issue hasn't already been covered.
+Describe the exact steps to reproduce the problem. Include code snippets or links to a repository, if applicable.
 
-### How to Submit an Issue
+Explain the expected behavior and what actually happens.
 
-1. Use a clear and descriptive title for the issue to identify the problem.
+Include any relevant logs or screenshots that can help us understand and reproduce the issue.
 
-2. Describe the exact steps to reproduce the problem. Include code snippets or links to a repository, if applicable.
+(Optional) Mention the version of the software you're using and the environment (e.g., operating system, browser) where the issue occurs.
 
-3. Explain the expected behavior and what actually happens.
+Pull Requests
+Before You Submit a Pull Request
+Ensure that your changes align with the project's goals and codebase.
 
-4. Include any relevant logs or screenshots that can help us understand and reproduce the issue.
+Write clear and concise commit messages and add the issue number where you were assigned the task (for clarity).
 
-5. (Optional)Mention the version of the software you're using and the environment (e.g., operating system, browser) where the issue occurs.
+Test your changes thoroughly.
 
-## Pull Requests
+Update the documentation if your changes require it.
 
-### Before You Submit a Pull Request
+Ensure there are no merge conflicts with the base branch.
 
-1. Ensure that your changes are aligned with the project's goals and codebase.
+Only submit a pull request for issues that have been assigned to you or if the issue is not assigned to anyone else. Someone else might be working on an issue that has been assigned to them, so it’s important to avoid duplicating efforts.
 
-2. Write clear and concise commit messages and add the issue number where you were assigned the task (for clarity).
+Submitting a Pull Request
+Create a new branch for your work.
 
-3. Test your changes thoroughly.
+Make your changes on this branch.
 
-4. Update the documentation if your changes require it.
+Commit your changes with a clear message.
 
-5. Ensure there are no merge conflicts with the base branch.
+Push your changes to your fork on GitHub.
 
-6. Only submit a pull request for issues that have been assigned to you or if the issue is not assigned to anyone else. Someone else might be working on an issue that has been assigned to them, so it’s important to avoid duplicating efforts.
+Create a pull request from your fork's branch to the original repository's main branch.
 
-### Submitting a Pull Request
-
-1. Create a new branch for your work.
-
-2. Make your changes on this branch.
-
-3. Commit your changes with a clear message.
-
-4. Push your changes to your fork on GitHub.
-
-5. Create a pull request from your fork's branch to the original repository's main branch.
-
-6. Provide a detailed description of your changes in the pull request.
-
-
-Remember, contributions are reviewed by project maintainers who might provide feedback or request changes before merging your pull request into the main branch.
+Provide a detailed description of your changes in the pull request.
