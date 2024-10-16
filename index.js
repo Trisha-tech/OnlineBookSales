@@ -125,7 +125,7 @@ const books = {
   fiction: [
       {
           title: "Fiction Book 1",
-          description: "A captivating fiction novel..",
+          
           author: "Author 5",
           cost: "$14"
       }
