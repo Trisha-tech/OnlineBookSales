@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+// import TextField from "@mui/material/TextField";
+// import Button from "@mui/material/Button";
 import { Box, Container, Grid, IconButton, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility"; // Import VisibilityIcon
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Import VisibilityOffIcon
@@ -23,7 +23,7 @@ const SignUpPage = () => {
     // const [phone, setPhone] = useState("");
     // const [address, setAddress] = useState("");
     const [error, setError] = useState(""); //state to store error message
-    const [emailError, setEmailError] = useState('');
+    // const [emailError, setEmailError] = useState('');
     let navigate = useNavigate();
     // handle Submit function
 
