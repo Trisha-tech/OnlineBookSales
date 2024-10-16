@@ -21,7 +21,7 @@ const MONGO_URL = process.env.MONGO_URL;
 const cors = require("cors");
 app.use(
   cors({
-    origin: "*",  // Allow all origins
+    origin: ["http://localhost:3000", "https://book4u-j5au.onrender.com"],  // Allow particular origins
     credentials: true,  
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  // Allow all methods
     allowedHeaders: ["Content-Type", "auth-token", "Origin", "X-Requested-With", "Accept"],  // Allow all required headers
