@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import B1Child from '../assets/image/B1Child.jpeg';
 import AuthorImage from '../assets/image/author1.jpeg';
 import Spinner from './Spinner';
-
+import SearchBar from '../Components/SearchBar';
+import { useTheme, useMediaQuery } from '@mui/material';
 import Preloader from '../Components/Preloader';
 import Newarrivals from './Newarrivals';
 import Review from './Review';
@@ -16,6 +17,8 @@ import ProjectHailMary from '../assets/image/projectHailMary.jpg';
 import MalibuRising from '../assets/image/malibuRising.jpg';
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
 
@@ -40,7 +43,7 @@ const Home = () => {
         {isLoading && <Spinner />}
         {!isLoading && (
           <>
-
+            {isMobile && <SearchBar />}
             {/* Image Container */}
             <header className="bg-white shadow dark:bg-inherit">
               <div className="container mx-auto p-6">
