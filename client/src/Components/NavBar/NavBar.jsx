@@ -13,6 +13,7 @@ import { useToast } from "../../Context/ToastContext";
 import sunIcon from '../../assets/sun.png'; // Adjust the path as necessary
 import moonIcon from '../../assets/moon.png'; // Adjust the path as necessary
 import logo from '../../assets/Logo.png'; // Adjust the path as necessary
+import SearchBar from "../SearchBar";
 
 const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
   backgroundColor: darkMode ? 'black' : '#002147', // Change color based on darkMode
@@ -89,6 +90,11 @@ function Navbar({ darkMode, toggleDarkMode }) {
     localStorage.removeItem('token');
     navigate('/', { replace: true });
     showToast("success", "", "Logged out successfully");
+  };
+
+    const handleSearch = (query) => {
+    console.log("Search query:", query);
+    // Implement search logic here
   };
 
   return (
@@ -178,6 +184,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
           </>
         ) : (
           <MenuContainer>
+            <SearchBar onSearch={handleSearch} />
             <StyledButton color="inherit" component={Link} to="/" startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}>
               Home
             </StyledButton>

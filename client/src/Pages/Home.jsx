@@ -1,11 +1,9 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import B1Child from '../assets/image/B1Child.jpeg';
 import AuthorImage from '../assets/image/author1.jpeg';
 import Spinner from './Spinner';
-import SearchBar from '../Components/SearchBar';
+
 import Preloader from '../Components/Preloader';
 import Newarrivals from './Newarrivals';
 import Review from './Review';
@@ -16,8 +14,6 @@ import Dune from '../assets/image/Dune.jpg';
 import KlaraAndtheSun from '../assets/image/klaraAndtheSun.jpg';
 import ProjectHailMary from '../assets/image/projectHailMary.jpg';
 import MalibuRising from '../assets/image/malibuRising.jpg';
-
-
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,11 +33,6 @@ const Home = () => {
     }, 2000);
   }, []);
 
-  const handleSearch = (query) => {
-    console.log("Search query:", query);
-    // Implement search logic here
-  };
-
   return (
     <>
       <Preloader />
@@ -49,10 +40,6 @@ const Home = () => {
         {isLoading && <Spinner />}
         {!isLoading && (
           <>
-
-            {/* Search Bar */}
-            <SearchBar onSearch={handleSearch} />
-
 
             {/* Image Container */}
             <header className="bg-white shadow dark:bg-inherit">
@@ -339,3 +326,5 @@ const Home = () => {
 };
 
 export default Home;
+
+

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -34,7 +33,7 @@ import CustomerProfile from "./Pages/CustomerProfile.jsx";
 import GiftCards from "./Pages/GiftCards.jsx";
 import Careers from "./Pages/Careers.jsx";
 import NotFound from "./Pages/NotFound.jsx";
-//import ChatBotEmbed from "./Components/ChatBotEmbed.jsx";
+import ChatBotEmbed from "./chatbot.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -87,7 +86,7 @@ function App() {
         <Footer darkMode={darkMode} /> {/* Pass darkMode prop here */}
         <Preloader /> {/* Ensure Preloader is correctly styled */}
         <GoToTop /> {/* Added GoToTop component */}
-        
+        <ChatBotEmbed />
       </div>
     </Router>
   );
