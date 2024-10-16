@@ -34,9 +34,10 @@ import CustomerProfile from "./Pages/CustomerProfile.jsx";
 import GiftCards from "./Pages/GiftCards.jsx";
 import Careers from "./Pages/Careers.jsx";
 import NotFound from "./Pages/NotFound.jsx";
-//import ChatBotEmbed from "./Pages/ChatBotEmbed.jsx";
+
 import ResetPassword from "./Pages/ResetPassword.jsx";
-import Chatbot from './chatbot';
+import ChatBotEmbed from './chatbot';
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -90,7 +91,9 @@ function App() {
         <Footer darkMode={darkMode} /> {/* Pass darkMode prop here */}
         <Preloader /> {/* Ensure Preloader is correctly styled */}
         <GoToTop /> {/* Added GoToTop component */}
-        {/* <ChatBotEmbed /> */}
+
+         <ChatBotEmbed />
+
       </div>
     </Router>
   );
