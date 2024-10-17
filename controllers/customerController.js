@@ -6,6 +6,8 @@ const errorHandler = require("../utils/errorHandler");
 const responseHandler = require("../utils/responseHandler");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const bcrypt = require("bcryptjs");
+const saltRounds = 10;
 const validator = require("validator");
 const disposableEmailDomains = require("disposable-email-domains");
 
@@ -16,7 +18,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     // Validate email format
     if (!validator.isEmail(email)) {
       return res
-        .status(404)
+        .status(400) // Changed to 400 for bad request
         .send(
           errorHandler(
             404,
@@ -50,7 +52,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
       },
     });
 
-    sendToken(customer, 201, res);
+    // sendToken(customer, 201, res);
     const refreshToken = jwt.sign(
       { id: customer._id },
       process.env.REFRESH_TOKEN_SECRET
@@ -78,7 +80,7 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, jwtSecret);
-    sendToken(customer, 201, res);
+    // sendToken(customer, 201, res);
 
     const options = {
       expires: new Date(
@@ -88,10 +90,19 @@ exports.registerCustomer = catchAsyncErrors(async (req, res, next) => {
       httpOnly: true,
     };
 
+    // Send response with customer and tokens
     res.status(201).cookie("refreshToken", refreshToken, options).json({
       success: true,
       refreshToken,
-      customer,
+      customer :{
+        name: customer.name,
+        email: customer.email,
+        avatar: customer.avatar,
+        role: customer.role,
+          _id: customer._id,
+        createdAt: customer.createdAt,
+      },
+      token,
     });
   } catch (error) {
     console.error("Error occurred during user registration:", error);
@@ -260,6 +271,37 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     errors: {},
   });
 });
+
+
+// Move the resetPassword function outside and export it
+exports.resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  if (!newPassword) {
+    return res.status(400).json({ error: "New password is required." });
+  }
+
+  try {
+    const saltRounds = 10; // You might want to ensure this value is defined
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);  // Hash new password
+
+    const updatedUser = await Customer.findOneAndUpdate(
+      { email },  // Find user by email
+      { $set: { password: hashedPassword } },  // Set new hashed password
+      { new: true }
+    );
+
+    if (updatedUser) {
+      return res.json({ message: "Password updated successfully." });
+    } else {
+      return res.status(404).json({ error: "User not found." });
+    }
+  } catch (error) {
+    console.error("Error updating password:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 
 exports.addFeedback = catchAsyncErrors(async (req, res, next) => {
   const { feedback, topic } = req.body;
