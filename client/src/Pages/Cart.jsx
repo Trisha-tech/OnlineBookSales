@@ -48,7 +48,8 @@ function Cart() {
         navigate("/login");
       }, 3000); // 3000 milliseconds = 3 seconds
     }
-  }, [userLoggedIn]);
+  // }, [userLoggedIn]);    
+}, [userLoggedIn, showToast, navigate]);
 
   const handleAddItem = (item) => {
     setIsLoading(true);

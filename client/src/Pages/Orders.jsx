@@ -12,15 +12,15 @@ import {
   TableHead,
   TableRow,
   TextField,
-  InputAdornment,
+  // InputAdornment,
   IconButton,
   Button,
   Box,
-  MenuItem,
-  InputLabel,
+  // MenuItem,
+  // InputLabel,
 } from "@mui/material";
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+// import FormControl from '@mui/material/FormControl';
+// import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -63,7 +63,8 @@ function OrderList() {
         navigate("/login");
       }, 3000); // 3000 milliseconds = 3 seconds
     }
-  }, [userLoggedIn]);
+  // }, [userLoggedIn]);
+}, [userLoggedIn, showToast, navigate]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaHeart, FaTrash, FaTable, FaRegHeart } from "react-icons/fa";
+import { 
+  FaHeart, 
+  FaTrash, 
+  FaTable, 
+  // FaRegHeart 
+} from "react-icons/fa";
 import "./Wishlist.css"; // Import CSS file for wishlist component styling
 import Preloader from "../Components/Preloader";
 import { useAuth } from "../Context/AuthContext";
@@ -8,7 +13,7 @@ import { useToast } from "../Context/ToastContext";
 import { useNavigate } from "react-router-dom";
 
 function Wishlist() {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [wishlistItems, setWishlistItems] = useState([]);
   const [error, setError] = useState(null);
   const { userLoggedIn } = useAuth();
@@ -28,10 +33,10 @@ function Wishlist() {
           withCredentials: true
         });
         setWishlistItems(response.data.wishlistItems);
-        setIsLoading(false);
+        // setIsLoading(false);
       } catch (error) {
         setError("Failed to fetch wishlist. Please try again later.");
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     };
 
@@ -45,7 +50,8 @@ function Wishlist() {
         navigate("/login");
       }, 5000); // 3000 milliseconds = 3 seconds
     }
-  }, [userLoggedIn]);
+  // }, [userLoggedIn]);
+}, [userLoggedIn, showToast, navigate]);
 
 
   const removeFromWishlist = async (productId) => {

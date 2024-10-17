@@ -15,19 +15,17 @@ body {
   z-index: 9999;
 }
 
-
 ::-webkit-scrollbar-track {
   background: rgb(252, 252, 253); /* Color of the track (the empty space behind the scrollbar) */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: navy; /* Darker blue when hovered */
+  background: linear-gradient(45deg, #abffee, #3d00a6, #000e17); /* Gradient color combination */
   border-radius: 10px; /* Rounded corners */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(15, 103, 198) ; /* Blue color for the scrollbar */
- 
+  background: linear-gradient(45deg, #000e17, #3d00a6, #abffee); /* Inverted gradient color on hover */
 }
 
 code {

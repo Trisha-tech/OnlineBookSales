@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Spinner from './Spinner';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const ProductItem = () => {
   const [products, setProducts] = useState([]);
