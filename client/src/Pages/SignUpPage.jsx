@@ -27,44 +27,56 @@ const SignUpPage = () => {
     let navigate = useNavigate();
     // handle Submit function
 
-      
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const value = e.target.value;
-    setEmail(value);
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(value)) {
-      setError('Please enter a valid email address.');
-    } else {
-      setError('');
-    }
-
+    
+        // Check if passwords match
         if (password !== confirmPassword) {
-            setError("Passwords do not match!");
-            return; //Prevent form submission if passwords don't match
+            setError("Passwords do not match");
+            return;
         }
-
+    
         try {
-            const response = await axios.post("http://localhost:8080/customer/register", { name, email, password })
-
-            console.log(response.data);
-            toast.success("register sucess");
-            navigate('/login')
-            // reset form and err msg on success
-            setName("");
-            setEmail("");
-            setPassword("");
-            //setPhone("");
-            //setAddress("");
-            setError("");
+            const response = await axios.post("http://localhost:8080/customer/register", { name, email, password });
+    
+            // Check if the response indicates success
+            if (response.status === 200) {
+                // Display success message
+                toast.success("Your account was created successfully. Please login to access the website", { duration: 3000 });
+    
+                // Clear form fields
+                setName("");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
+    
+                // Redirect to login page after 3 seconds
+                setTimeout(() => {
+                    navigate('/login');
+                }, 3000);
+            } else {
+                // Handle unexpected response
+                setError("Registration failed. Please try again.");
+            }
+    
         } catch (err) {
-            // Check if err.response exists, otherwise set a default error message
-            const errorMessage = err.response ? err.response.data.message : "An error occurred. Please try again later.";
-            setError(errorMessage);
+            console.error("An error occurred:", err);
+            if (err.response) {
+                // The request was made and the server responded with a status code
+                console.log("Server responded with:", err.response.status, err.response.data);
+                setError("Server responded with an error. Please try again.");
+            } else if (err.request) {
+                // The request was made but no response was received
+                console.log("No response received from server.");
+                setError("No response received from server. Please try again.");
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error setting up request:", err.message);
+                setError("Error setting up request. Please try again.");
+            }
         }
-    }
-
+    };
+    
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
