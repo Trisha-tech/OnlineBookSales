@@ -69,7 +69,7 @@ function Footer({ darkMode }) {
               </Link>
             </li>
             <li>
-              <Link to="/" className="hover:text-yellow-300 text-lg">
+              <Link to="/cancelreturns" className="hover:text-yellow-300 text-lg">
                 Cancellation & Returns
               </Link>
             </li>

@@ -34,7 +34,7 @@ import CustomerProfile from "./Pages/CustomerProfile.jsx";
 import GiftCards from "./Pages/GiftCards.jsx";
 import Careers from "./Pages/Careers.jsx";
 import NotFound from "./Pages/NotFound.jsx";
-
+import CancelReturns from './Pages/CancelReturns.jsx'
 import ChatBotEmbed from "./chatbot.jsx";
 
 import ResetPassword from "./Pages/ResetPassword.jsx";
@@ -80,6 +80,7 @@ function App() {
           <Route path="/profile" element={<CustomerProfile />} />
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/cancelreturns" element={<CancelReturns />} />
           <Route path="/licensing" element={<License />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/contributors" element={<Contributors />} />
