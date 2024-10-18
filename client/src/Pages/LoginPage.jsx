@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
-// import TextField from "@mui/material/TextField";
-// import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton"; // Import IconButton
 import VisibilityIcon from "@mui/icons-material/Visibility"; // Import VisibilityIcon
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Import VisibilityOffIcon
@@ -14,7 +14,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 import Preloader from "../Components/Preloader";
-import GoogleLogin from "../Components/GoogleLogin";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -135,22 +134,11 @@ const LoginPage = () => {
                 >
                   Login
                 </button>
-                {/* Google Login Button */}
-                <GoogleLogin />
-                <div className='w-full flex flex-col items-start justify-start mt-3 mb-3'>
-  {/* Sign up link */}
-  <p className='text-sm text-[#060606] dark:text-white'>
-    Don't have an account?{' '} <Link to="/signup">Sign up</Link>
-  </p>
-
-  {/* Add spacing between the two sections */}
-  <div className="my-2"></div> {/* This adds vertical spacing */}
-
-  {/* Forgot password link */}
-  <p className='text-sm text-[#060606] dark:text-white'>
-    Forgot Password?{' '} <Link to="/reset-password">Reset here</Link> {/* Update link if necessary */}
-  </p>
-</div>
+                <div className='w-full flex items-center justify-center mt-3 mb-3'>
+                  <p className='text-sm text-[#060606] dark:text-white'>
+                    Don't have an account?{' '} <Link to="/signup">Sign up</Link>
+                  </p>
+                </div>
               </form>
             </Grid>
           </Grid>

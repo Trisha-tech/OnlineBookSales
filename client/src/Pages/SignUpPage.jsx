@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-// import TextField from "@mui/material/TextField";
-// import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import { Box, Container, Grid, IconButton, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility"; // Import VisibilityIcon
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Import VisibilityOffIcon
@@ -11,7 +11,6 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast"
 import { Link, useNavigate } from "react-router-dom";
 import Preloader from "../Components/Preloader";
-import GoogleLogin from "../Components/GoogleLogin";
 
 
 const SignUpPage = () => {
@@ -23,24 +22,12 @@ const SignUpPage = () => {
     // const [phone, setPhone] = useState("");
     // const [address, setAddress] = useState("");
     const [error, setError] = useState(""); //state to store error message
-    // const [emailError, setEmailError] = useState('');
     let navigate = useNavigate();
     // handle Submit function
-
-      
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const value = e.target.value;
-    setEmail(value);
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(value)) {
-      setError('Please enter a valid email address.');
-    } else {
-      setError('');
-    }
-
-        if (password !== confirmPassword) {
+        if (password !== confirmPassword){
             setError("Passwords do not match!");
             return; //Prevent form submission if passwords don't match
         }
@@ -173,10 +160,6 @@ const SignUpPage = () => {
                                 >
                                     Register
                                 </button>
-
-                                {/* Google Login Button */}
-                                <GoogleLogin />
-
                                 <div className='w-full flex items-center justify-center mt-3 mb-3'>
                                     <p className='text-sm text-[#060606] dark:text-white'>
                                         Already have an account?{' '} <Link to="/login">Login</Link>
