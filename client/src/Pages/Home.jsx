@@ -43,7 +43,7 @@ const Home = () => {
         {isLoading && <Spinner />}
         {!isLoading && (
           <>
-            {isMobile && <SearchBar />}
+            <SearchBar />
             {/* Image Container */}
             <header className="bg-white shadow dark:bg-inherit">
               <div className="container mx-auto p-6">
