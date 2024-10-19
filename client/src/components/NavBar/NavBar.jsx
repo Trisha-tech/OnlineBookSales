@@ -163,6 +163,11 @@ function Navbar({ darkMode, toggleDarkMode }) {
               >
                 Home
               </StyledButton>
+              {userLoggedIn && (
+                <StyledButton color="inherit" component={Link} to="/profile" startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />} fullWidth>
+                  Profile
+                </StyledButton>
+              )}
               <StyledButton
                 color="inherit"
                 component={Link}
@@ -245,7 +250,16 @@ function Navbar({ darkMode, toggleDarkMode }) {
               to="/shop"
               isActive={isActive("/shop")}
               startIcon={<StoreIcon sx={{ fontSize: "1.5rem" }} />}
-            >
+            ></StyledButton>
+            <StyledButton color="inherit" component={Link} to="/" isActive={isActive('/')} startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}>
+              Home
+            </StyledButton>
+            {userLoggedIn && (
+              <StyledButton color="inherit" component={Link} to="/profile" startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}>
+                Profile
+              </StyledButton>
+            )}
+            <StyledButton color="inherit" component={Link} to="/shop" isActive={isActive('/shop')} startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />}>
               Shop
             </StyledButton>
             <StyledButton
