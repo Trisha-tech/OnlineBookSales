@@ -131,33 +131,16 @@ function Navbar({ darkMode, toggleDarkMode }) {
 
         {isMobile ? (
           <>
-            <Toolbar
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-            >
-              <Tooltip
-                title={
-                  darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
-                }
-              >
-                <IconButton
-                  onClick={toggleDarkMode}
-                  style={{ marginRight: "10px" }}
-                >
-                  <img
-                    src={darkMode ? sunIcon : moonIcon}
-                    alt="Toggle Dark Mode"
-                    style={{ width: "20px", height: "20px" }}
-                  />
-                </IconButton>
-              </Tooltip>
-
-              <MobileMenuButton onClick={handleMenuClick}>
-                <MenuIcon sx={{ fontSize: "2rem" }} />
-              </MobileMenuButton>
+          <Toolbar style={{display: "flex", justifyContent: 'flex-end', alignItems: "center"}}>
+            <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+            <IconButton onClick={toggleDarkMode} style={{ marginRight: '10px' }}>
+              <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
+            </IconButton>
+            </Tooltip>
+            
+            <MobileMenuButton onClick={handleMenuClick}>
+              <MenuIcon sx={{ fontSize: "2rem" }} />
+            </MobileMenuButton>
             </Toolbar>
 
             <MobileMenu open={openMenu}>
@@ -254,7 +237,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
             >
                 Home
    </StyledButton>
-            <StyledButton color="inherit" component={Link} to="/" isActive={isActive('/')} startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}>
               
          
             <StyledButton
@@ -324,8 +306,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
           )}
         </Toolbar>
       </StyledAppBar>
-    </>
-  );
-          }
+    );
+}
 
 export default Navbar;

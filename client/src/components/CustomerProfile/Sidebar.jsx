@@ -83,15 +83,15 @@ const Sidebar = ({setActiveSection}) => {
           <div onClick={() => setActiveSection('delivery-location')} className="w-full bg-white focus-within:border-blue-500 focus-within:outline-none cursor-pointer hover:bg-blue-100 transition duration-300 ease-in-out px-11 py-3 mt-2">
             <span className="text-center px-2" >Manage Addresses</span>{" "}
           </div>
-          <div onClick={() => setActiveSection('profile')} className="w-full bg-white focus-within:border-blue-500 focus-within:outline-none cursor-pointer hover:bg-blue-100 transition duration-300 ease-in-out px-11 py-3 mt-2">
+          <div onClick={() => setActiveSection('pan-card')} className="w-full bg-white focus-within:border-blue-500 focus-within:outline-none cursor-pointer hover:bg-blue-100 transition duration-300 ease-in-out px-11 py-3 mt-2">
             <span className="text-center px-2">PAN Card information</span>{" "}
           </div>
         </div>
 
         {/* ----------------------- */}
 
-        <div className="w-[25vw] border-2 px-2 py-1 shadow-lg bg-white border-b-gray-400">
-          <div className="flex">
+        <div className="w-[25vw] border-2 py-1 shadow-lg bg-white border-b-gray-400">
+          <div className="flex px-2">
             <div className="w-10 h-10 flex items-center justify-center">
               <div className="w-7">
                 {" "}
@@ -108,7 +108,7 @@ const Sidebar = ({setActiveSection}) => {
               </span>
             </div>
           </div>
-          <div className="w-full bg-white  px-11 py-3 mt-2">
+          <div onClick={() => setActiveSection('gift-card')} className="w-full bg-white focus-within:border-blue-500 focus-within:outline-none cursor-pointer hover:bg-blue-100 transition duration-300 ease-in-out px-11 py-3 mt-2">
             <span className="text-center">Gift Cards</span>{" "}
           </div>
           <div className="w-full bg-white  px-11 py-3 mt-2">
