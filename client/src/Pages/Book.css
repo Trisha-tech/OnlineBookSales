@@ -1,0 +1,53 @@
+
+  .book-container {
+    display: flex; /* Flexbox layout */
+    max-width: 800px; /* Maximum width of the book container */
+    margin: 20px; /* Margin around the container */
+    padding: 16px; /* Padding inside the container */
+    border: 1px solid #e2e8f0; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #fff; /* White background for the container */
+    margin: 5rem auto;
+  }
+  
+  img {
+    width: 250px;
+  }
+  .book-cover {
+    width: 200px; /* Fixed width for the cover */
+    height: auto; /* Auto height to maintain aspect ratio */
+    object-fit: cover; /* Cover the area, maintaining aspect ratio */
+    border-radius: 8px; /* Rounded corners for the image */
+  }
+  
+  .book-details {
+    margin-left: 16px; /* Space between the image and details */
+    display: flex; /* Flexbox layout for details */
+    flex-direction: column; /* Vertical alignment */
+    justify-content: center; /* Center vertically */
+  }
+  
+  .book-title {
+    font-size: 24px; /* Title font size */
+    font-weight: bold; /* Bold font */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .book-author {
+    font-size: 20px; /* Author font size */
+    color: #4a5568; /* Dark gray color */
+    margin: 4px 0; /* Margin above and below author */
+  }
+  
+  .book-description {
+    margin: 8px 0; /* Space above and below the description */
+    color: #718096; /* Gray color for the text */
+  }
+  
+  .published-date {
+    margin-top: 16px; /* Space above the published date */
+    font-size: 18px; /* Font size for published date */
+    font-weight: bold; /* Bold font for emphasis */
+  }
+  

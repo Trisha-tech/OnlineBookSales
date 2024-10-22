@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 // import BannerCard from '../Pages/BannerCard.js';
 // import { set } from 'mongoose';
 
@@ -26,9 +27,13 @@ function Newarrivals() {
         }
 
         const data = await response.json();
+        console.log(data);
+        
 
         if (data.items) {
+          
           const formattedBooks = data.items.map(item => ({
+            id: item.id,
             bookTitle: item.volumeInfo.title,
             authorName: item.volumeInfo.authors ? item.volumeInfo.authors[0] : 'Unknown Author',
             imageURL: item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/128x193.png',
@@ -59,6 +64,7 @@ function Newarrivals() {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
           {books.map((book, index) => (
+            <Link to={`/book/${book.id}`}>
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <img src={book.imageURL} alt={book.bookTitle} className="w-full h-48 object-cover" />
                   <div className="p-4">
@@ -67,6 +73,7 @@ function Newarrivals() {
                       <p className="text-xs text-gray-500">{book.category}</p>
                   </div>
               </div>
+            </Link>
           ))}
       </div>
   );
