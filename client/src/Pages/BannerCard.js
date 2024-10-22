@@ -36,8 +36,8 @@ function BannerCard({ headLine, books }) {
                     className="mySwiper w-full h-full"
                 >
                     {books.map((book) => (
-                        <SwiperSlide key={book._id}>
-                            <Link to={`/book/${book._id}`}>
+                        <SwiperSlide key={book.id}>
+                            <Link to={`/book/${book.id}`}>
                                 <div className="relative">
                                     <img
                                         src={book.imageURL}

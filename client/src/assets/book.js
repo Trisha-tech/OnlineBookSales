@@ -1,8 +1,4 @@
-import React from 'react';
-import BannerCard from '../Pages/BannerCard.js';
-
-function Newarrivals() {
-  const books = [
+export const books = [
     {
       id:1,
       bookTitle: "Fourth Wing",
@@ -55,12 +51,3 @@ function Newarrivals() {
       },
     
   ];
-
-  return (
-    <div className="App">
-      <BannerCard books={books} />
-    </div>
-  );
-}
-
-export default Newarrivals;
