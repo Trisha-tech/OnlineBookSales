@@ -26,7 +26,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: linear-gradient(45deg, #000e17, #3d00a6, #abffee); /* Inverted gradient color on hover */
+  background: linear-gradient(45deg, #000e17, #3d00a6, #abffee); /* Inverted gradient color on hover */
 }
 
 code {
