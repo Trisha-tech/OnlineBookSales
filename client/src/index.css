@@ -11,12 +11,12 @@ body {
 
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 7px; /* Width of the scrollbar */
+  width: 8px; /* Width of the scrollbar */
   z-index: 9999;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(252, 252, 253); /* Color of the track (the empty space behind the scrollbar) */
+  background: rgb(214, 214, 222); /* Color of the track (the empty space behind the scrollbar) */
 }
 
 ::-webkit-scrollbar-thumb {
