@@ -246,7 +246,7 @@ function Cart() {
             </table>
             <div className="cart-summary">
       <div className="cart-total dark:text-white">
-         Total: <span className="font-medium">$300</span>       </div>
+         Total: <span className="font-medium">${data ? data.total.toFixed(2) : "0.00"}</span>       </div>
        <button className="checkout-button dark:text-white">
         Proceed to Checkout
       </button>   </div>
