@@ -26,8 +26,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(18, 127, 244) ; /* Blue color for the scrollbar */
- 
+  background-color: linear-gradient(45deg, #000e17, #3d00a6, #abffee); /* Inverted gradient color on hover */
 }
 
 code {
