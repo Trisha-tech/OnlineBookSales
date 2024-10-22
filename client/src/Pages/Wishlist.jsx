@@ -4,7 +4,6 @@ import {
   FaHeart, 
   FaTrash, 
   FaTable, 
-  // FaRegHeart 
 } from "react-icons/fa";
 import "./Wishlist.css"; // Import CSS file for wishlist component styling
 import Preloader from "../Components/Preloader";
@@ -13,7 +12,6 @@ import { useToast } from "../Context/ToastContext";
 import { useNavigate } from "react-router-dom";
 
 function Wishlist() {
-  // const [isLoading, setIsLoading] = useState(true);
   const [wishlistItems, setWishlistItems] = useState([]);
   const [error, setError] = useState(null);
   const { userLoggedIn } = useAuth();
@@ -48,10 +46,10 @@ function Wishlist() {
       showToast("error", "Please login to view your wishlist.", undefined, 7000);
       setTimeout(() => {
         navigate("/login");
-      }, 5000); // 3000 milliseconds = 3 seconds
+      }, 5000); // 5000 milliseconds = 5 seconds
     }
-  // }, [userLoggedIn]);
-}, [userLoggedIn, showToast, navigate]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [userLoggedIn, navigate]);
 
 
   const removeFromWishlist = async (productId) => {
