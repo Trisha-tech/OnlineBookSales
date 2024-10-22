@@ -48,9 +48,6 @@ code {
 @tailwind utilities;
 
 .css-18xdh7s-MuiButtonBase-root-MuiIconButton-root {
-  background-color: rgba(82, 161, 252, 0.877) !important;
-}
-.css-18xdh7s-MuiButtonBase-root-MuiIconButton-root:hover {
-  background-color: rgba(15, 111, 245, 0.621) !important;
+  background-color: rgb(255, 255, 255) !important;
 }
 
