@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 // import TextField from "@mui/material/TextField";
 // import Button from "@mui/material/Button";
@@ -15,6 +14,7 @@ import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 import Preloader from "../Components/Preloader";
 import GoogleLogin from "../Components/GoogleLogin";
+import { loginValidation } from "../validations/validation";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -23,17 +23,38 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const { setUserLoggedIn } = useAuth();
   const { showToast } = useToast();
-
+  const [errors, setErrors] = useState({});
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/customer/login", {
-        email,
-        password,
+      await loginValidation.validate(
+        { email, password },
+        { abortEarly: false }
+      );
+      setErrors({});
+      // console.log("Form Submitted", formData);
+    } catch (error) {
+      const newErrors = {};
+
+      error.inner.forEach((err) => {
+        newErrors[err.path] = err.message;
       });
+
+      setErrors(newErrors);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/customer/login",
+        {
+          email,
+          password,
+        }
+      );
       console.log(response.data);
       toast.success("login success");
       setEmail("");
@@ -80,11 +101,21 @@ const LoginPage = () => {
                 justifyContent: "center",
               }}
             >
-              <form onSubmit={handleSubmit} className="w-full max-w-[400px] flex flex-col bg-white dark:bg-[#1e1e1e] p-8 rounded-xl shadow-2xl transform transition-all duration-300 hover:scale-105">
-                <Typography variant="h5" align="center" gutterBottom className="dark:text-white">
-                  <h1 className='text-2xl md:text-3xl text-[#060606] font-semibold mb-1 mt-1 dark:text-white'>Book4U</h1>
-                  <h2 className='text-lg md:text-xl mb-1'>Login</h2>
-
+              <form
+                noValidate
+                onSubmit={handleSubmit}
+                className="w-full max-w-[400px] flex flex-col bg-white dark:bg-[#1e1e1e] p-8 rounded-xl shadow-2xl transform transition-all duration-300 hover:scale-105"
+              >
+                <Typography
+                  variant="h5"
+                  align="center"
+                  gutterBottom
+                  className="dark:text-white"
+                >
+                  <h1 className="text-2xl md:text-3xl text-[#060606] font-semibold mb-1 mt-1 dark:text-white">
+                    Book4U
+                  </h1>
+                  <h2 className="text-lg md:text-xl mb-1">Login</h2>
                 </Typography>
                 <input
                   placeholder="Email"
@@ -96,7 +127,16 @@ const LoginPage = () => {
                   color="primary"
                   className="w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none dark:text-white dark:border-white"
                 />
-                <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+                {errors.email && (
+                  <div className="text-red-600">{errors.email}</div>
+                )}
+                <Box
+                  sx={{
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   <input
                     placeholder="Password"
                     label="Password"
@@ -108,7 +148,12 @@ const LoginPage = () => {
                   />
                   <IconButton
                     onClick={togglePasswordVisibility}
-                    sx={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)" }}
+                    sx={{
+                      position: "absolute",
+                      right: "10px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                    }}
                   >
                     {showPassword ? (
                       <VisibilityIcon className="text-black dark:text-white" /> // Text color changes based on theme
@@ -116,8 +161,10 @@ const LoginPage = () => {
                       <VisibilityOffIcon className="text-black dark:text-white" />
                     )}
                   </IconButton>
-
                 </Box>
+                {errors.password && (
+                  <div className="text-red-600">{errors.password}</div>
+                )}
                 {error && (
                   <Typography color="error" align="center">
                     {error}
@@ -137,20 +184,21 @@ const LoginPage = () => {
                 </button>
                 {/* Google Login Button */}
                 <GoogleLogin />
-                <div className='w-full flex flex-col items-start justify-start mt-3 mb-3'>
-  {/* Sign up link */}
-  <p className='text-sm text-[#060606] dark:text-white'>
-    Don't have an account?{' '} <Link to="/signup">Sign up</Link>
-  </p>
-
-  {/* Add spacing between the two sections */}
-  <div className="my-2"></div> {/* This adds vertical spacing */}
-
-  {/* Forgot password link */}
-  <p className='text-sm text-[#060606] dark:text-white'>
-    Forgot Password?{' '} <Link to="/reset-password">Reset here</Link> {/* Update link if necessary */}
-  </p>
-</div>
+                <div className="w-full flex flex-col items-start justify-start mt-3 mb-3">
+                  {/* Sign up link */}
+                  <p className="text-sm text-[#060606] dark:text-white">
+                    Don't have an account? <Link to="/signup">Sign up</Link>
+                  </p>
+                  {/* Add spacing between the two sections */}
+                  <div className="my-2"></div>{" "}
+                  {/* This adds vertical spacing */}
+                  {/* Forgot password link */}
+                  <p className="text-sm text-[#060606] dark:text-white">
+                    Forgot Password?{" "}
+                    <Link to="/reset-password">Reset here</Link>{" "}
+                    {/* Update link if necessary */}
+                  </p>
+                </div>
               </form>
             </Grid>
           </Grid>
