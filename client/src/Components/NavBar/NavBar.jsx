@@ -16,6 +16,7 @@ import logo from '../../assets/Logo.png'; // Adjust the path as necessary
 import SearchBar from "../SearchBar";
 import { Tooltip } from '@mui/material';
 import { pink } from '@mui/material/colors';
+import ScrollProgressBar from './ScrollProgressBar';
 
 const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
   backgroundColor: darkMode ? 'black' : '#002147', // Change color based on darkMode
@@ -105,27 +106,29 @@ function Navbar({ darkMode, toggleDarkMode }) {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <StyledAppBar position="sticky" darkMode={darkMode}>
-      <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <IconButton component={Link} to="/">
-          <Logo src={logo} alt="Logo" />
-        </IconButton>
-        
-        {isMobile ? (
-          <>
-          <Toolbar style={{display: "flex", justifyContent: 'flex-end', alignItems: "center"}}>
-            <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
-            <IconButton onClick={toggleDarkMode} style={{ marginRight: '10px' }}>
-              <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
-            </IconButton>
-            </Tooltip>
-            
-            <MobileMenuButton onClick={handleMenuClick}>
-              <MenuIcon sx={{ fontSize: '2rem' }} />
-            </MobileMenuButton>
-            </Toolbar>
-            
-            <MobileMenu open={openMenu}>
+    <>
+      <ScrollProgressBar />
+      <StyledAppBar position="sticky" darkMode={darkMode}>
+        <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <IconButton component={Link} to="/">
+            <Logo src={logo} alt="Logo" />
+          </IconButton>
+  
+          {isMobile ? (
+            <>
+              <Toolbar style={{ display: "flex", justifyContent: 'flex-end', alignItems: "center" }}>
+                <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+                  <IconButton onClick={toggleDarkMode} style={{ marginRight: '10px' }}>
+                    <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
+                  </IconButton>
+                </Tooltip>
+  
+                <MobileMenuButton onClick={handleMenuClick}>
+                  <MenuIcon sx={{ fontSize: '2rem' }} />
+                </MobileMenuButton>
+              </Toolbar>
+  
+              <MobileMenu open={openMenu}>
               <IconButton onClick={handleMenuClick} style={{ marginBottom: '20px', color: '#fff' }}>
                 Close
               </IconButton>
@@ -240,10 +243,11 @@ function Navbar({ darkMode, toggleDarkMode }) {
             </IconButton>
             </Tooltip>
           </MenuContainer>
-        )}
-      </Toolbar>
-    </StyledAppBar>
+          )}
+        </Toolbar>
+      </StyledAppBar>
+    </>
   );
-}
+          }
 
 export default Navbar;
