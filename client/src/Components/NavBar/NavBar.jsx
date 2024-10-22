@@ -204,7 +204,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
           </>
         ) : (
           <MenuContainer>
-            <SearchBar onSearch={handleSearch} />
             <StyledButton color="inherit" component={Link} to="/" isActive={isActive('/')} startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}>
               Home
             </StyledButton>
