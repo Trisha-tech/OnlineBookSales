@@ -1,4 +1,3 @@
-// src/components/SearchBar.js
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
@@ -11,12 +10,12 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="w-full max-w-lg mx-auto my-8 p-4  ">
+    <form onSubmit={handleSearch} className="max-w-lg mx-auto my-8 p-4">
       <div className="relative">
         <input
-          className="w-full bg-white text-gray-800 placeholder-gray-400 rounded-lg shadow-md py-4 pl-10 pr-10 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+          className="w-full bg-white text-gray-800 placeholder-gray-400 rounded-lg shadow-md py-3 pl-5 pr-[50px] transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
           type="text"
-          placeholder="🔍 Search for books..."
+          placeholder="Search for books..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
