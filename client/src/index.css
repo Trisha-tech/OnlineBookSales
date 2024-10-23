@@ -47,7 +47,10 @@ code {
 @tailwind components;
 @tailwind utilities;
 
-.css-18xdh7s-MuiButtonBase-root-MuiIconButton-root {
+/* .css-18xdh7s-MuiButtonBase-root-MuiIconButton-root {
   background-color: rgb(255, 255, 255) !important;
-}
+} */
 
+.MuiIconButton-root svg {
+  fill: white /* Set the initial color of the icon */
+}
