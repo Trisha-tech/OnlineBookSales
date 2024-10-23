@@ -1,7 +1,7 @@
 
   .book-container {
     display: flex; /* Flexbox layout */
-    max-width: 800px; /* Maximum width of the book container */
+    max-width: 900px; /* Maximum width of the book container */
     margin: 20px; /* Margin around the container */
     padding: 16px; /* Padding inside the container */
     border: 1px solid #e2e8f0; /* Light gray border */
@@ -11,17 +11,19 @@
     margin: 5rem auto;
   }
   
-  img {
-    width: 250px;
-  }
   .book-cover {
-    width: 200px; /* Fixed width for the cover */
+    width: 35%; /* Fixed width for the cover */
     height: auto; /* Auto height to maintain aspect ratio */
     object-fit: cover; /* Cover the area, maintaining aspect ratio */
     border-radius: 8px; /* Rounded corners for the image */
   }
+
+  .book_img{
+    width: 100%;
+  }
   
   .book-details {
+    width: 65%;
     margin-left: 16px; /* Space between the image and details */
     display: flex; /* Flexbox layout for details */
     flex-direction: column; /* Vertical alignment */
@@ -51,3 +53,18 @@
     font-weight: bold; /* Bold font for emphasis */
   }
   
+  @media screen and (max-width: 900px){
+    .book-container{
+      flex-direction: column;
+    }
+    .book-cover{
+      margin: 0 auto;
+    }
+
+    .book-details{
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+  }

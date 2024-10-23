@@ -24,11 +24,13 @@ const Book = () => {
     
   return (
     <div className="book-container">
-      <img
-        src={book?.imageLinks?.smallThumbnail}
-        alt="image"
-        className="book-cover"
-      />
+      <div className='book-cover'>
+        <img
+          src={book?.imageLinks?.smallThumbnail}
+          alt="image"y
+          className=" book_img"
+        />
+      </div>
       <div className="book-details">
         <h1 className="book-title">{book?.title}</h1>
         <h2 className="book-author">{book?.authors[0]}</h2>
