@@ -42,6 +42,7 @@ const SearchBar = () => {
     setShowSuggestions(false); // Hide suggestions after selection
     navigate(suggestion.url);
   };
+  
 
   return (
     <div style={{ width: "300px", margin: "0 auto", textAlign: "center" }}>
@@ -89,5 +90,4 @@ const SearchBar = () => {
     </div>
   );
 };
-
 export default SearchBar;

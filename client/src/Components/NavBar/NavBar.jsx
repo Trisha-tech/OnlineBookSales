@@ -244,8 +244,11 @@ function Navbar({ darkMode, toggleDarkMode }) {
               isActive={isActive("/")}
               startIcon={<HomeIcon sx={{ fontSize: "1.5rem" }} />}
             >
-              Home
-            </StyledButton>
+                Home
+   </StyledButton>
+            <StyledButton color="inherit" component={Link} to="/" isActive={isActive('/')} startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}>
+              
+         
             <StyledButton
               color="inherit"
               component={Link}
