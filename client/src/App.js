@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './Animations.css';
 import { Navbar, Footer } from './Components/index.js';
-import { ProfilePage, Product } from './Components/index.js';
+// import { ProfilePage, Product } from './Components/index.js';
+import { Product } from './Components/index.js';
 import RomancePage from './Pages/RomancePage.jsx';
 import ActionPage from './Pages/ActionPage.jsx';
 import ThrillerPage from './Pages/ThrillerPage.jsx';
@@ -15,7 +15,7 @@ import MangaPage from './Pages/MangaPage.jsx';
 import LoginPage from './Pages/LoginPage.jsx';
 import SignUpPage from './Pages/SignUpPage.jsx';
 import Cart from './Pages/Cart.jsx';
-import Orders from './Pages/Orders.jsx';
+// import Orders from './Pages/Orders.jsx';
 import Wishlist from './Pages/Wishlist.jsx';
 import HomePage from './Pages/Home.jsx';
 import Shop from "./Pages/Shop.jsx";
@@ -34,7 +34,11 @@ import CustomerProfile from "./Pages/CustomerProfile.jsx";
 import GiftCards from "./Pages/GiftCards.jsx";
 import Careers from "./Pages/Careers.jsx";
 import NotFound from "./Pages/NotFound.jsx";
-// import ChatBotEmbed from "./Components/ChatBotEmbed.jsx";
+import CancelReturns from './Pages/CancelReturns.jsx'
+import ChatBotEmbed from "./chatbot.jsx";
+
+import ResetPassword from "./Pages/ResetPassword.jsx";
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -76,18 +80,21 @@ function App() {
           <Route path="/profile" element={<CustomerProfile />} />
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/cancelreturns" element={<CancelReturns />} />
           <Route path="/licensing" element={<License />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/contributors" element={<Contributors />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/giftcards" element={<GiftCards />} />
           <Route path="*" element={<NotFound />} /> {/* Fallback route */}
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
         <Toast position="bottom-right" />
         <Footer darkMode={darkMode} /> {/* Pass darkMode prop here */}
         <Preloader /> {/* Ensure Preloader is correctly styled */}
         <GoToTop /> {/* Added GoToTop component */}
-        {/* <ChatBotEmbed /> */}
+        <ChatBotEmbed />
+
       </div>
     </Router>
   );

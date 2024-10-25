@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import { Avatar } from 'flowbite-react';
 import propic from '../assets/image/profile.jpg'; // Example image
 
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay} from 'swiper/modules';
 
 function Review() {
     return (
@@ -18,6 +18,11 @@ function Review() {
                     spaceBetween={20}
                     pagination={{
                         clickable: true,
+                    }}
+                    //implemented autoplay for auto-scrolling reviews
+                    autoplay={{
+                        delay: 2500, 
+                        disableOnInteraction: false, 
                     }}
                     breakpoints={{
                         640: {
@@ -33,7 +38,7 @@ function Review() {
                             spaceBetween: 30,
                         },
                     }}
-                    modules={[Pagination]}
+                    modules={[Pagination , Autoplay ]}
                     className="mySwiper"
                 >
                     <SwiperSlide className='shadow-2xl bg-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>

@@ -8,8 +8,10 @@ import { Pagination } from 'swiper/modules';
 import './BannerCard.css';
 
 function BannerCard({ books, highlightedBookId }) {
-    const bookref = useRef({});
+    const bookref = useRef({}); // Ensure refs are stored in an object
     const headLine = "New Arrivals";
+
+    // Scroll to the highlighted book when highlightedBookId changes
     useEffect(() => {
         if (highlightedBookId && bookref.current[highlightedBookId]) {
             const bookElement = bookref.current[highlightedBookId];
@@ -23,10 +25,8 @@ function BannerCard({ books, highlightedBookId }) {
 
     return (
         <div className='my-16 px-4 lg:px-24'>
-            {/* Ensure headLine is correctly used here */}
             <h2 className='text-5xl text-center font-bold text-black my-5'>{headLine}</h2>
-
-            <div className='mt-12'>
+            <div className='mt-12' style={{ overflowY: 'auto', maxHeight: '400px' }}> {/* Added overflow */}
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={10}
@@ -53,8 +53,7 @@ function BannerCard({ books, highlightedBookId }) {
                     {books.map((book) => (
                         <SwiperSlide key={book._id}>
                             <Link to={`/book/${book._id}`}>
-                                <div ref={(el) => (bookref
-                                    .current[book.bookTitle] = el)} className="relative">
+                                <div ref={(el) => (bookref.current[book.bookTitle] = el)} className="relative">
                                     <img
                                         src={book.imageURL}
                                         alt={book.bookTitle}
@@ -65,13 +64,10 @@ function BannerCard({ books, highlightedBookId }) {
                                     </div>
                                 </div>
                                 <div className="flex justify-between items-start pt-4">
-                                    {/* Book Title and Author on the Left */}
                                     <div>
                                         <h4 className="text-md font-medium text-gray-800">{book.bookTitle}</h4>
                                         <p className="text-sm text-gray-600">{book.authorName}</p>
                                     </div>
-
-                                    {/* Price on the Right */}
                                     <div>
                                         <p className="text-lg font-bold text-gray-800">$10.00</p>
                                     </div>
@@ -80,7 +76,6 @@ function BannerCard({ books, highlightedBookId }) {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
                 <div className="mt-4"></div>
             </div>
         </div>
