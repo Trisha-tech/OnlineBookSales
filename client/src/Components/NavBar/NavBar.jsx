@@ -13,12 +13,10 @@ import { useToast } from "../../Context/ToastContext";
 import sunIcon from '../../assets/sun.png'; // Adjust the path as necessary
 import moonIcon from '../../assets/moon.png'; // Adjust the path as necessary
 import logo from '../../assets/Logo.png'; // Adjust the path as necessary
-import SearchBar from "../SearchBar";
 import { Tooltip } from '@mui/material';
-import { pink } from '@mui/material/colors';
 
 const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
-  backgroundColor: darkMode ? 'black' : '#002147', // Change color based on darkMode
+  backgroundColor: darkMode ? 'black' : '#002147',
 }));
 
 const Logo = styled('img')({
@@ -29,11 +27,11 @@ const Logo = styled('img')({
 
 const StyledButton = styled(Button)(({ isActive }) => ({
   fontSize: '1rem',
-  color: isActive ? '#FFD700' : '#FFF',  // Highlight active page color
-  textDecoration: isActive ? 'underline' : 'none',  // Add underline for active page
+  color: isActive ? '#FFD700' : '#FFF',
+  textDecoration: 'none',  // Remove underline from default state
   '&:hover': {
     color: '#FFD700',
-    textDecoration: 'underline',
+    textDecoration: 'none',  // Remove underline from hover state
   },
 }));
 
@@ -47,22 +45,20 @@ const MenuContainer = styled('div')({
 const MobileMenu = styled('div')(({ open }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: '10px', // Added 'px' for proper gap
+  gap: '10px',
   position: 'fixed',
-  top: '0', // Align to the top of the screen
+  top: '0',
   right: '0',
   backgroundColor: '#002147',
   width: '100%',
-  height: '100vh', // Full height
-  padding: '20px', // Padding for better spacing
+  height: '100vh',
+  padding: '20px',
   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
   zIndex: 1000,
-  overflowY: 'auto', // Enable scrolling if needed
-  transform: open ? 'translateX(0)' : 'translateX(100%)', // Slide from right
-  transition: 'transform 0.4s ease-in-out', // Smooth transition effect
+  overflowY: 'auto',
+  transform: open ? 'translateX(0)' : 'translateX(100%)',
+  transition: 'transform 0.4s ease-in-out',
 }));
-
-
 
 const MobileMenuButton = styled(IconButton)({
   fill: '#fff',
@@ -97,12 +93,16 @@ function Navbar({ darkMode, toggleDarkMode }) {
     showToast("success", "", "Logged out successfully");
   };
 
-    const handleSearch = (query) => {
+  const handleSearch = (query) => {
     console.log("Search query:", query);
     // Implement search logic here
   };
 
   const isActive = (path) => location.pathname === path;
+
+  const handleLinkClick = () => {
+    if (isMobile) setOpenMenu(false);
+  };
 
   return (
     <StyledAppBar position="sticky" darkMode={darkMode}>
@@ -113,16 +113,16 @@ function Navbar({ darkMode, toggleDarkMode }) {
         
         {isMobile ? (
           <>
-          <Toolbar style={{display: "flex", justifyContent: 'flex-end', alignItems: "center"}}>
-            <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
-            <IconButton onClick={toggleDarkMode} style={{ marginRight: '10px' }}>
-              <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
-            </IconButton>
-            </Tooltip>
-            
-            <MobileMenuButton onClick={handleMenuClick}>
-              <MenuIcon sx={{ fontSize: '2rem' }} />
-            </MobileMenuButton>
+            <Toolbar style={{display: "flex", justifyContent: 'flex-end', alignItems: "center"}}>
+              <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+                <IconButton onClick={toggleDarkMode} style={{ marginRight: '10px' }}>
+                  <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
+                </IconButton>
+              </Tooltip>
+              
+              <MobileMenuButton onClick={handleMenuClick}>
+                <MenuIcon sx={{ fontSize: '2rem' }} />
+              </MobileMenuButton>
             </Toolbar>
             
             <MobileMenu open={openMenu}>
@@ -136,7 +136,8 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive('/')}
                 startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}
                 fullWidth
-                style={{ marginBottom: '15px' }} // Add margin for spacing
+                style={{ marginBottom: '15px' }}
+                onClick={handleLinkClick}
               >
                 Home
               </StyledButton>
@@ -147,7 +148,8 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive('/shop')}
                 startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />}
                 fullWidth
-                style={{ marginBottom: '15px' }} // Add margin for spacing
+                style={{ marginBottom: '15px' }}
+                onClick={handleLinkClick}
               >
                 Shop
               </StyledButton>
@@ -158,7 +160,8 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive('/wishlist')}
                 startIcon={<FavoriteIcon sx={{ fontSize: '1.5rem' }} />}
                 fullWidth
-                style={{ marginBottom: '15px' }} // Add margin for spacing
+                style={{ marginBottom: '15px' }}
+                onClick={handleLinkClick}
               >
                 Wishlist
               </StyledButton>
@@ -169,34 +172,36 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive('/cart')}
                 startIcon={<ShoppingCartIcon sx={{ fontSize: '1.5rem' }} />}
                 fullWidth
-                style={{ marginBottom: '15px' }} // Add margin for spacing
+                style={{ marginBottom: '15px' }}
+                onClick={handleLinkClick}
               >
                 Cart
               </StyledButton>
 
-              {(userLoggedIn) ? ( 
+              {userLoggedIn && (
                 <StyledButton
-                color="inherit"
-                component={Link}
-                to="/orders"
-                isActive={isActive('/orders')}
-                startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />}
-                fullWidth
-                style={{ marginBottom: '15px' }} // Add margin for spacing
-              >
-                Orders
-              </StyledButton>
-              ) : null}
+                  color="inherit"
+                  component={Link}
+                  to="/orders"
+                  isActive={isActive('/orders')}
+                  startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />}
+                  fullWidth
+                  style={{ marginBottom: '15px' }}
+                  onClick={handleLinkClick}
+                >
+                  Orders
+                </StyledButton>
+              )}
 
               <StyledButton
                 color="inherit"
                 component={Link}
                 to={userLoggedIn ? "#" : "/login"}
                 isActive={isActive('/login')}
-                onClick={userLoggedIn ? handleLogout : null}
+                onClick={userLoggedIn ? handleLogout : handleLinkClick}
                 startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
                 fullWidth
-                style={{ marginBottom: '15px' }} // Add margin for spacing
+                style={{ marginBottom: '15px' }}
               >
                 {userLoggedIn ? "Logout" : "Login"}
               </StyledButton>
@@ -216,11 +221,11 @@ function Navbar({ darkMode, toggleDarkMode }) {
             <StyledButton color="inherit" component={Link} to="/cart" isActive={isActive('/cart')} startIcon={<ShoppingCartIcon sx={{ fontSize: '1.5rem' }} />}>
               Cart
             </StyledButton>
-            {userLoggedIn ? (
+            {userLoggedIn && (
               <StyledButton color="inherit" component={Link} to="/orders" isActive={isActive('/orders')} startIcon={<ShoppingBagIcon sx={{ fontSize: '1.5rem' }} />}>
-              Orders
-            </StyledButton>
-            ) : null}
+                Orders
+              </StyledButton>
+            )}
             
             <StyledButton
               color="inherit"
@@ -232,11 +237,10 @@ function Navbar({ darkMode, toggleDarkMode }) {
             >
               {userLoggedIn ? "Logout" : "Login"}
             </StyledButton>
-            <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-            <IconButton onClick={toggleDarkMode} style={{ marginLeft: 'auto', marginRight: '10px' }}>
-              <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
-            </IconButton>
+            <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+              <IconButton onClick={toggleDarkMode} style={{ marginLeft: '15px' }}>
+                <img src={darkMode ? sunIcon : moonIcon} alt="Toggle Dark Mode" style={{ width: '20px', height: '20px' }} />
+              </IconButton>
             </Tooltip>
           </MenuContainer>
         )}
