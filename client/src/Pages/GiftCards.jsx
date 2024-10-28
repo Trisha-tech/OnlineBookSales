@@ -13,10 +13,10 @@ const GiftCards = () => {
             <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-blue-100 rounded-lg overflow-hidden shadow-lg dark:bg-[rgb(40,40,40)]">
                 <div className="p-10">
-                <h2 className="text-5xl font-extrabold text-gray-900 mb-8 text-center dark:text-white">
+                <h2 className="text-5xl font-extrabold  text-gray-900 mb-8 text-center dark:text-white">
                     GiftCards
                 </h2>
-                <p className="text-2xl text-center">Sorry we have no Giftcards right now!!!</p>
+                <p className="text-2xl text-center dark:text-gray-200">Sorry we have no Giftcards right now!!!</p>
                 </div>
             </div>
             </div>

@@ -16,7 +16,7 @@ const Careers = () => {
                 <h2 className="text-5xl font-extrabold text-gray-900 mb-8 text-center dark:text-white">
                     Careers
                 </h2>
-                <p className="text-2xl text-center">Sorry we have no career openings right now!!!</p>
+                <p className="text-2xl text-center dark:text-gray-200">Sorry we have no career openings right now!!!</p>
                 </div>
             </div>
             </div>

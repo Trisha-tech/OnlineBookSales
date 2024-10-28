@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Preloader from '../Components/Preloader';
 
 const TermsAndConditions = () => {
@@ -10,10 +10,10 @@ const TermsAndConditions = () => {
   return (
     <>
     <Preloader/>
-      <div className="py-8 mb-5 sm:w-[90vw] justify-start ml-auto mr-auto mt-10">
+      <div className="py-8 mb-5 sm:w-[90vw] dark:text-gray-200 justify-start ml-auto mr-auto mt-10 w-full max-w-screen-lg mx-auto">
         <div className='text-center'>
-          <TermsWrapper className='privacy'>
-            <h1>Terms and Conditions</h1>
+          <div className=''>
+            <h1 className='text-3xl font-bold dark:text-white mb-6'>Terms and Conditions</h1>
             <section className='text-left'>
               <p>Last updated: August 8, 2024</p>
               <p>Welcome to Online Book Sales - Book4U. These terms and conditions outline the rules and regulations for the use of Book4U's website and services. By accessing this website, we assume you accept these terms and conditions. Do not continue to use Book4U if you do not agree to all of the terms and conditions stated on this page.</p>
@@ -70,51 +70,51 @@ const TermsAndConditions = () => {
               <h2>Contact Us</h2>
               <p>If you have any questions about these terms, please contact us at: <br />Email: <a href="mailto:supportbook4u@onlinebooksales.com">supportbook4u@onlinebooksales.com</a></p>
             </section>
-          </TermsWrapper>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-const TermsWrapper = styled.div`
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  color: #333;
-  line-height: 1.6;
-  margin-top: -65px;
+// const TermsWrapper = styled.div`
+//   padding: 20px;
+//   max-width: 800px;
+//   margin: 0 auto;
+//   color: #333;
+//   line-height: 1.6;
+//   margin-top: -65px;
 
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #002147;
-  }
+//   h1 {
+//     font-size: 2.5rem;
+//     margin-bottom: 20px;
+//     font-weight: bold;
+//     color: #002147;
+//   }
 
-  h2 {
-    font-size: 1.5rem;
-    margin-top: 20px;
-  }
+//   h2 {
+//     font-size: 1.5rem;
+//     margin-top: 20px;
+//   }
 
-  p {
-    margin: 10px 0;
-  }
+//   p {
+//     margin: 10px 0;
+//   }
 
-  ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
+//   ul {
+//     list-style-type: disc;
+//     margin-left: 20px;
+//   }
 
-  li {
-    margin: 10px 0;
-  }
+//   li {
+//     margin: 10px 0;
+//   }
 
-  address {
-    font-style: normal;
-    line-height: 1.6;
-  }
-`;
+//   address {
+//     font-style: normal;
+//     line-height: 1.6;
+//   }
+// `;
 
 export default TermsAndConditions;

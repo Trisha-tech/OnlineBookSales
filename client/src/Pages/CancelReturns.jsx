@@ -9,16 +9,16 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Preloader />
-      <div className="py-8 mb-5 sm:w-[90vw] justify-start ml-auto mr-auto mt-10">
+      <div className="py-8 mb-5 sm:w-[90vw] justify-start mt-10 w-full max-w-screen-lg mx-auto text-black dark:text-gray-200 my-12">
         <div className='text-center'>
           <div className='policy'>
-            <h1>Cancellations/Returns</h1>
-            <section className='text-left'>
+            <h1 className='text-center text-4xl font-bold mb-8'>Cancellations/Returns</h1>
+            <section className='text-left my-4'>
               <p>Last updated: August 8, 2024</p>
               <p>Welcome to Online Book Sales - Book4U. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy or our practices with regard to your personal information, please contact us at <a href="mailto:supportbook4u@onlinebooksales.com">supportbook4u@onlinebooksales.com</a>.</p>
             </section>
 
-            <section className='text-left'>
+            <section className='text-left my-4'>
               <h2>Cancellations & Returns</h2>
               <p>We understand that sometimes you may need to cancel an order or return a product. Below are the details of our cancellation and return policy:</p>
               <ul>
@@ -31,17 +31,17 @@ const PrivacyPolicy = () => {
               <p>If you have any further questions regarding cancellations or returns, feel free to contact us at <a href="mailto:supportbook4u@onlinebooksales.com">supportbook4u@onlinebooksales.com</a>.</p>
             </section>
 
-            <section className='text-left'>
+            <section className='text-left my-4'>
               <h2>Information We Collect</h2>
               <p>We collect personal information that you provide to us, such as your name, address, contact information, and payment details. We collect this information when you register for our services, make a purchase, or otherwise interact with our website.</p>
             </section>
 
-            <section className='text-left'>
+            <section className='text-left my-4'>
               <h2>How We Use Your Information</h2>
               <p>We use the personal information we collect to process transactions, manage your orders, and communicate with you about our products and services. We may also use this information for customer support, marketing purposes, and to improve our website and services.</p>
             </section>
 
-            <section className='text-left'>
+            <section className='text-left my-4'>
               <h2>Sharing Your Information</h2>
               <p>We may share your information in the following situations:</p>
               <ul>
@@ -51,12 +51,12 @@ const PrivacyPolicy = () => {
               </ul>
             </section>
 
-            <section className='text-left'>
+            <section className='text-left my-4'>
               <h2>Security of Your Information</h2>
               <p>We implement a variety of security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no security system is impenetrable, and we cannot guarantee the absolute security of your information.</p>
             </section>
 
-            <section className='text-left'>
+            <section className='text-left my-4'>
               <h2>Contact Us</h2>
               <p>If you have any questions or comments about this privacy policy or our cancellation and return policies, please contact us at <a href="mailto:supportbook4u@onlinebooksales.com">supportbook4u@onlinebooksales.com</a>.</p>
             </section>
