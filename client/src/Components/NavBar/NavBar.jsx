@@ -189,7 +189,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
               </StyledButton>
               ) : null}
 
-              <StyledButton
+               <StyledButton
                 color="inherit"
                 component={Link}
                 to={userLoggedIn ? "#" : "/login"}
@@ -200,7 +200,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 style={{ marginBottom: '15px' }} // Add margin for spacing
               >
                 {userLoggedIn ? "Logout" : "Login"}
-              </StyledButton>
+              </StyledButton> 
             </MobileMenu>
           </>
         ) : (

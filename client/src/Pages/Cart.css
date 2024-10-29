@@ -11,22 +11,30 @@
   .cart-header {
     font-size: 24px;
     margin-bottom: 10px;
+    font-weight: bold;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
   
-  .error-message {
-    color: red;
-    font-size: 18px;
-  }
+  
   
   .retry-button {
-    background-color: #007bff;
+    background-color: #002147;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding-inline:30px;
+    padding-block: 6px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
-    border-radius: 4px;
+    border-radius: 6px;
+   text-align: center;
+   border:2px solid #002147;
+
+  }
+  .retry-button:hover{
+    color:#002147;
+    background-color: #F4F4F4;
+    font-weight: 500;
   }
   
   .cart-table {
@@ -93,7 +101,14 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-  }
+    transition: background-color 400ms ease, transform 200ms ease;
+}
+
+.checkout-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
   
   .suggested-products {
     margin-top: 20px;
@@ -119,4 +134,54 @@
       font-size: 14px;
     }
   }
+
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse; 
+   font-family: poppins;
+   margin-top: 20px;
+  }
   
+  .cart-table th,
+  .cart-table td {
+    border: none; 
+    padding: 15px;
+    text-align: center;
+    
+  }
+  
+  .cart-table th {
+    font-weight: bold;
+   background-color:#dde8f9;
+ 
+  }
+  
+  .cart-table tbody tr {
+  
+    margin-bottom: 10px; /* Adds space between rows */
+    border-bottom: 1px solid #e0e0e0; /* Optional separator between rows */
+  }
+  
+  .cart-table img {
+    border-radius: 8px; /* Optional: Makes images rounded */
+    display: block;
+    width:10vw;
+    height:20vh;
+  }
+  .remove-btn{
+    background-color: #F95454;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 400ms ease, transform 200ms ease;
+  }
+  
+ 
+  .remove-btn:hover {
+    background-color: #C62E2E;
+    transform: scale(1.05);
+}
+

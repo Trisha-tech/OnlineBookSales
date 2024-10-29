@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "./Spinner";
-import { fetchCartData, addItemToCart, removeItemFromCart } from "../api/api.js";
+import {
+  fetchCartData,
+  addItemToCart,
+  removeItemFromCart,
+} from "../api/api.js";
 import "./Cart.css";
-import Preloader from '../Components/Preloader';
-
-import { useAuth } from "../Context/AuthContext";
+import Preloader from "../Components/Preloader";
 import { useToast } from "../Context/ToastContext";
-
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../Context/AuthContext";
 
 function Cart() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,6 +17,7 @@ function Cart() {
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const isAuthenticated =!! localStorage.getItem('token');
   if(!isAuthenticated){
     navigate('/login')
@@ -23,9 +25,8 @@ function Cart() {
  }
 
   const { userLoggedIn } = useAuth();
-  const { showToast } = useToast();
-  // const navigate = useNavigate();
-
+ 
+ 
 
   useEffect(() => {
     fetchCartData()
@@ -50,6 +51,21 @@ function Cart() {
     }
   // }, [userLoggedIn]);    
 }, [userLoggedIn, showToast, navigate]);
+
+
+  useEffect(() => {
+    fetchCartData()
+      .then((cartData) => {
+        setData(cartData);
+        setIsLoading(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setError("Failed to load cart data. Please try again later.");
+        setIsLoading(false);
+        console.error("Error fetching cart data:", err);
+      });
+  }, [retryCount]);
 
   const handleAddItem = (item) => {
     setIsLoading(true);
@@ -79,29 +95,21 @@ function Cart() {
       });
   };
 
-  const handleRetry = () => {
-    setRetryCount(retryCount + 1); // Trigger useEffect to retry fetching data
-  };
+  const handleRetry = () => setRetryCount(retryCount + 1);
 
   const renderCartItems = () => {
-    if (!data || !data.items || data.items.length === 0) {
-      return (
-        <tr>
-          <td colSpan="5" className="dark:text-white">Your cart is empty.</td>
-        </tr>
-      );
-    }
 
     return data.items.map((item) => (
+      <table className="cart-table">
       <tr key={item.id}>
         <td>
           <img
             src={item.image || "https://via.placeholder.com/150"}
             alt={item.name}
-            className="item-image"
+
           />
         </td>
-        <td>{item.name}</td>
+        <td className="font-semibold">{item.name}</td>
         <td>${item.price.toFixed(2)}</td>
         <td>
           <button
@@ -121,96 +129,145 @@ function Cart() {
         <td>
           <button
             onClick={() => handleRemoveItem(item.id)}
-            className="remove-button"
+            className="remove-btn"
           >
             Remove
           </button>
         </td>
       </tr>
+      </table>
     ));
   };
 
-  const renderSuggestedProducts = () => {
-    // Replace with actual suggested products logic
-    return (
-      <div className="suggested-products">
-        <h2 className="dark:text-white">Suggested Products</h2>
-        <ul>
-          <li className="dark:text-white">Suggested Product 1</li>
-          <li className="dark:text-white">Suggested Product 2</li>
-          <li className="dark:text-white">Suggested Product 3</li>
-        </ul>
-      </div>
-    );
-  };
+  const renderSuggestedProducts = () => (
+    <div className="suggested-products space-y-4">
+      <h2 className="dark:text-white font-semibold font-poppins underline underline-offset-4">Suggested Products</h2>
+      <ul className="flex  gap-5">
+        <div className="dark:text-white border-2  pb-2  rounded-md overflow-hidden h-max shadow-lg w-[10vw]">
+          <div className="font-dmsans flex flex-col items-center">
+            <div className="p-4">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1635260162i/58724923.jpg"
+                width={100}
+                className="h-[15vh] shadow-md"
+                alt="img"
+              />
+            </div>
+            <h1 className="text-blue-950 font-semibold text-sm">
+              Hidden Pictures
+            </h1>
+            <p className="text-xs">Horror</p>
+            <p className="font-semibold">$10.99</p>
+            <button className="bg-yellow-500 text-xs px-4 py-1 rounded-md mt-2">Add to Cart</button>
+          </div>
+        </div>
+        <div className="dark:text-white border-2  pb-2  rounded-md overflow-hidden h-max shadow-lg w-[10vw]">
+          <div className="font-dmsans flex flex-col items-center">
+            <div className="p-4">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1678378842i/60683957.jpg"
+                width={100}
+                className="h-[15vh] shadow-md"
+                alt="img"
+              />
+            </div>
+            <h1 className="text-blue-950 font-semibold text-sm">
+            Check & Mate
+            </h1>
+            <p className="text-xs">Young Adult Fantasy</p>
+            <p className="font-semibold">$11.59</p>
+            <button className="bg-yellow-500 text-xs px-4 py-1 rounded-md mt-2">Add to Cart</button>
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+          </div>
+        </div>{" "}
+        <div className="dark:text-white border-2  pb-2  rounded-md overflow-hidden h-max shadow-lg w-[10vw]">
+          <div className="font-dmsans flex flex-col items-center">
+            <div className="p-4">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1643228739i/55196813.jpg"
+                width={100}
+                className="h-[15vh] shadow-md"
+                alt="img"
+              />
+            </div>
+            <h1 className="text-blue-950 font-semibold text-sm">
+            The Maid
+            </h1>
+            <p className="text-xs">Fiction</p>
+            <p className="font-semibold">$8.99</p>
+            <button className="bg-yellow-500 text-xs px-4 py-1 rounded-md mt-2">Add to Cart</button>
+
+          </div>
+        </div>
+      </ul>
+    </div>
+  );
+
+  if (isLoading) return <Spinner />;
 
   if (error) {
     return (
-    <>
-      <Preloader/>
-      <div className="cart-container dark:bg-[rgb(40,40,40)]">
-        <h1 className="cart-header dark:text-white">Shopping Cart</h1>
-        <p className="error-message">{error}</p>
-        <button onClick={handleRetry} className="retry-button dark:text-white">
-          Retry
-        </button>
-        {/* <hr /> */}
-        <table className="cart-table">
-          <thead>
-            <tr className="dark:bg-[rgb(40,40,40)]">
-              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Image</th>
-              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Name</th>
-              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Price</th>
-              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Quantity</th>
-              <th className="dark:text-white dark:bg-[rgb(40,40,40)]">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {renderCartItems()}
-          </tbody>
-        </table>
-        <div className="cart-summary">
-          <div className="cart-total dark:text-white">Total: ${data ? data.total.toFixed(2) : "0.00"}</div>
-          <button className="checkout-button dark:text-white">Proceed to Checkout</button>
+      <>
+        <Preloader />
+        <div className="cart-container dark:bg-[rgb(40,40,40)]">
+          <h1 className="cart-header dark:text-white">Shopping Cart</h1>
+          <div className="w-full justify-center items-center flex">
+            <img src="/error.png"/>
+          </div>
+          <p className="font-dmsans text-center text-red-400">{error}</p>
+         <div className="w-full  justify-center flex mt-5">
+         <button onClick={handleRetry} className="retry-button dark:text-white">
+            Retry
+          </button>
+         </div>
         </div>
-        <hr />
-        {renderSuggestedProducts()}
-      </div>
       </>
     );
   }
 
   return (
-    <><Preloader/>
-    <div className="cart-container dark:bg-[rgb(40,40,40)]">
-      <h1 className="cart-header dark:text-white">Shopping Cart</h1>
-      <table className="cart-table">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {renderCartItems()}
-        </tbody>
-      </table>
-      <div className="cart-summary">
-        <div className="cart-total dark:text-white">Total: ${data ? data.total.toFixed(2) : "0.00"}</div>
-        <button className="checkout-button dark:text-white">Proceed to Checkout</button>
+    <>
+      <Preloader />
+      <div className="cart-container dark:bg-[rgb(40,40,40)]">
+        <h1 className="cart-header dark:text-white">Shopping Cart</h1>
+        {data && data.items && data.items.length > 0 ? (
+          <>
+            <table className="cart-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>{renderCartItems()}</tbody>
+            </table>
+            <div className="cart-summary">
+      <div className="cart-total dark:text-white">
+         Total: <span className="font-medium">${data ? data.total.toFixed(2) : "0.00"}</span>       </div>
+       <button className="checkout-button dark:text-white">
+        Proceed to Checkout
+      </button>   </div>
+          </>
+        ) 
+        : (
+          <div className="flex text-3xl items-center  justify-center  font-poppins">
+          
+            <div>
+              <img src="/cart.webp" width={200} />
+            </div>
+            <p className="dark:text-white text-[#4A628A] ">
+              Your cart is empty.
+            </p>
+          </div>
+        )}
+        {renderSuggestedProducts()}
       </div>
-      {/* <hr /> */}
-      {renderSuggestedProducts()}
-    </div>
     </>
   );
+
 }
 
 export default Cart;
