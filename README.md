@@ -1,8 +1,34 @@
-# 📚 Online Book Sales 📚
+# <p>**📚 Online Book Sales 📚**
+<img  src="https://readme-typing-svg.herokuapp.com?color=45ffaa&size=40&width=900&height=80&lines=Welcome-to-Online-Book-Sales"/>
+</p>
 
-![CoverPage](cover-page.png)
 
 Welcome to **Online Book Sales**, an e-commerce platform where you can browse, purchase, and enjoy a wide range of books from our extensive catalog! Our system is built with a 3-tier architecture, featuring a **MongoDB** database backend, **Node.js** & **Express.js** middleware, and a sleek **React** frontend.
+
+<table align="center">
+    <thead align="center">
+        <tr border: 2px;>
+            <td><b>🌟 Stars</b></td>
+            <td><b>🍴 Forks</b></td>
+            <td><b>🐛 Issues</b></td>
+            <td><b>🔔 Open PRs</b></td>
+            <td><b>🔕 Close PRs</b></td>
+        </tr>
+     </thead>
+    <tbody>
+      <tr>
+          <td><img alt="Stars" src="https://img.shields.io/github/stars/Trisha-tech/OnlineBookSales?style=flat&logo=github"/></td>
+          <td><img alt="Forks" src="https://img.shields.io/github/forks/Trisha-tech/OnlineBookSales?style=flat&logo=github"/></td>
+          <td><img alt="Issues" src="https://img.shields.io/github/issues/Trisha-tech/OnlineBookSales?style=flat&logo=github"/></td>
+          <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/OnlineBookSales/Flash-Fathom-AI?style=flat&logo=github"/></td>
+          <td><img alt="Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/Trisha-tech/OnlineBookSales?style=flat&color=critical&logo=github"/></td>
+      </tr>
+    </tbody>
+</table>
+<hr/>
+<br/>
+
+![CoverPage](cover-page.png)
 
 ## 📑 Table of Contents
 
@@ -100,6 +126,33 @@ Follow these steps to run the project on your local machine:
 That's it! You’re ready to explore the application locally. 🚀
 
 ---
+## Troubleshooting
+
+### Common Installation Issues
+- **Error: `npm install` fails**: 
+  - Ensure that [Node.js](https://nodejs.org/en/download/) and npm are correctly installed on your machine. You can check this by running `node -v` and `npm -v` in your terminal.
+  - If you encounter permission issues, try using `sudo npm install` (for macOS/Linux) or running the command prompt as an administrator (for Windows).
+
+### Problems with Starting the Server
+- **Error: `Cannot find module 'express'`**:
+  - This error usually indicates that the required packages haven't been installed. Make sure to run `npm install` in both the root and `client` directories.
+- **Server crashes on startup**: 
+  - Check the console logs for any errors that may provide hints about what went wrong. Common issues could be related to incorrect environment variables or database connection strings.
+
+### Issues Related to Dependencies
+- **Version conflicts**:
+  - Ensure that all dependencies in your `package.json` are compatible. If you see warnings or errors during installation, consider using `npm audit fix` to resolve vulnerabilities.
+
+### FAQs
+- **Q: How do I reset my local database?**
+  - A: You can drop the existing database and run your migrations or seed scripts again. Make sure to back up any important data before doing this.
+  
+- **Q: How can I contact support?**
+  - A: If you have further issues or questions, please open an issue in this repository, and we'll be happy to help!
+
+### Additional Suggestions
+- **Clarity**: Make sure the instructions are as clear as possible. For example, specify where to run commands (in which directory).
+- **Links**: If you refer to any external resources (like Node.js downloads), adding hyperlinks could be beneficial.
 
 ## Using GitHub Desktop
 

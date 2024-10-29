@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
@@ -6,12 +6,27 @@ import 'swiper/css/pagination';
 import { FaCartShopping } from 'react-icons/fa6';
 import { Pagination } from 'swiper/modules';
 import './BannerCard.css';
-function BannerCard({ headLine, books }) {
+
+function BannerCard({ books, highlightedBookId }) {
+    const bookref = useRef({}); // Ensure refs are stored in an object
+    const headLine = "New Arrivals";
+
+    // Scroll to the highlighted book when highlightedBookId changes
+    useEffect(() => {
+        if (highlightedBookId && bookref.current[highlightedBookId]) {
+            const bookElement = bookref.current[highlightedBookId];
+            bookElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            bookElement.classList.add("highlight");
+            setTimeout(() => {
+                bookElement.classList.remove("highlight");
+            }, 3000);
+        }
+    }, [highlightedBookId]);
+
     return (
         <div className='my-16 px-4 lg:px-24'>
             <h2 className='text-5xl text-center font-bold text-black my-5'>{headLine}</h2>
-
-            <div className='mt-12'>
+            <div className='mt-12' style={{ overflowY: 'auto', maxHeight: '400px' }}> {/* Added overflow */}
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={10}
@@ -38,7 +53,7 @@ function BannerCard({ headLine, books }) {
                     {books.map((book) => (
                         <SwiperSlide key={book._id}>
                             <Link to={`/book/${book._id}`}>
-                                <div className="relative">
+                                <div ref={(el) => (bookref.current[book.bookTitle] = el)} className="relative">
                                     <img
                                         src={book.imageURL}
                                         alt={book.bookTitle}
@@ -49,24 +64,18 @@ function BannerCard({ headLine, books }) {
                                     </div>
                                 </div>
                                 <div className="flex justify-between items-start pt-4">
-                                    {/* Book Title and Author on the Left */}
                                     <div>
                                         <h4 className="text-md font-medium text-gray-800">{book.bookTitle}</h4>
                                         <p className="text-sm text-gray-600">{book.authorName}</p>
                                     </div>
-
-                                    {/* Price on the Right */}
                                     <div>
                                         <p className="text-lg font-bold text-gray-800">$10.00</p>
                                     </div>
                                 </div>
-
-
                             </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
                 <div className="mt-4"></div>
             </div>
         </div>
