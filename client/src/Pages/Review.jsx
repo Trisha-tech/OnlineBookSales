@@ -11,7 +11,7 @@ import { Pagination, Autoplay} from 'swiper/modules';
 function Review() {
     return (
         <div className='my-2 px-4 lg:px-24'>
-            <h2 className='text-5xl font-bold text-center mb-10 leading-snug'>Our Customers</h2>
+            <h2 className='text-5xl dark:text-white font-bold text-center mb-10 leading-snug'>Our Customers</h2>
             <div>
                 <Swiper
                     slidesPerView={1}
@@ -41,7 +41,7 @@ function Review() {
                     modules={[Pagination , Autoplay ]}
                     className="mySwiper"
                 >
-                    <SwiperSlide className='shadow-2xl bg-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
+                    <SwiperSlide className='shadow-2xl bg-white dark:bg-[rgb(30,30,30)] dark:text-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
                         <div className='space-y-6'>
                             <div className='text-amber-500 flex gap-2'>
                                 <FaStar />
@@ -65,7 +65,7 @@ function Review() {
                         </div>
                     </SwiperSlide>
 
-                    <SwiperSlide className='shadow-2xl bg-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
+                    <SwiperSlide className='shadow-2xl bg-white dark:bg-[rgb(30,30,30)] dark:text-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
                         <div className='space-y-6'>
                             <div className='text-amber-500 flex gap-2'>
                                 <FaStar />
@@ -87,7 +87,7 @@ function Review() {
                         </div>
                     </SwiperSlide>
 
-                    <SwiperSlide className='shadow-2xl bg-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
+                    <SwiperSlide className='shadow-2xl bg-white dark:bg-[rgb(30,30,30)] dark:text-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
                         <div className='space-y-6'>
                             <div className='text-amber-500 flex gap-2'>
                                 <FaStar />
@@ -109,7 +109,7 @@ function Review() {
                         </div>
                     </SwiperSlide>
 
-                    <SwiperSlide className='shadow-2xl bg-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
+                    <SwiperSlide className='shadow-2xl bg-white dark:bg-[rgb(30,30,30)] dark:text-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
                         <div className='space-y-6'>
                             <div className='text-amber-500 flex gap-2'>
                                 <FaStar />
@@ -132,7 +132,7 @@ function Review() {
                         </div>
                     </SwiperSlide>
 
-                    <SwiperSlide className='shadow-2xl bg-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
+                    <SwiperSlide className='shadow-2xl bg-white dark:bg-[rgb(30,30,30)] dark:text-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
                         <div className='space-y-6'>
                             <div className='text-amber-500 flex gap-2'>
                                 <FaStar />
@@ -154,7 +154,7 @@ function Review() {
                         </div>
                     </SwiperSlide>
 
-                    <SwiperSlide className='shadow-2xl bg-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
+                    <SwiperSlide className='shadow-2xl bg-white dark:bg-[rgb(30,30,30)] dark:text-white py-8 px-4 rounded-lg border flex flex-col justify-between' style={{ minHeight: '350px' }}>
                         <div className='space-y-6'>
                             <div className='text-amber-500 flex gap-2'>
                                 <FaStar />

@@ -10,10 +10,10 @@ const PrivacyPolicy = () => {
   return (
     <>
     <Preloader />
-      <div className="py-8 mb-5 sm:w-[90vw] justify-start ml-auto mr-auto mt-10">
+      <div className="py-8 mb-5 sm:w-[90vw] dark:text-gray-300 justify-start mt-10 w-full max-w-screen-lg mx-auto">
         <div className='text-center'>
           <div className='privacy'>
-            <h1>Privacy Policy</h1>
+            <h1 className='text-4xl font-bold dark:text-gray-200 mb-6'>Privacy Policy</h1>
             <section className='text-left'>
               <p>Last updated: August 8, 2024</p>
               <p>Welcome to Online Book Sales - Book4U. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy or our practices with regard to your personal information, please contact us <a href="mailto:supportbook4u@onlinebooksales.com">supportbook4u@onlinebooksales.com.</a></p>

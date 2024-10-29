@@ -120,10 +120,10 @@ function Newarrivals({ onBookClick, highlightedBookId }) {
             <Link to={`/book/${book.id}`}>
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <img src={book.imageURL} alt={book.bookTitle} className="w-full h-48 object-cover" />
-                  <div className="p-4">
-                      <h3 className="font-bold text-lg mb-2 truncate">{book.bookTitle}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{book.authorName}</p>
-                      <p className="text-xs text-gray-500">{book.category}</p>
+                  <div className="p-4 dark:bg-[rgb(30,30,30)] dark:text-white">
+                      <h3 className="font-bold text-lg mb-2 truncate dark:text-white">{book.bookTitle}</h3>
+                      <p className="text-sm text-gray-600 mb-2 dark:text-gray-400">{book.authorName}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{book.category}</p>
                   </div>
               </div>
             </Link>
