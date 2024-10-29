@@ -93,7 +93,6 @@ function App() {
         <Footer darkMode={darkMode} /> {/* Pass darkMode prop here */}
         <Preloader /> {/* Ensure Preloader is correctly styled */}
         <GoToTop /> {/* Added GoToTop component */}
-
         <ChatBotEmbed />
 
       </div>
