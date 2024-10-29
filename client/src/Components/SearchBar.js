@@ -1,82 +1,95 @@
-import React, { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+// Example data list for suggestions
+const data = [
+  { name: "Romance", url: "/romance" },
+   { name:"Action", url: "/action" },
+    { name: "Thriller", url: "/thriller" },
+   { name: "Fiction", url: "/fiction" },
+   { name: "Technology", url: "/tech" },
+   { name: "Philosophy", url: "philosophy" },
+   { name: "Manga", url: "/manga" },
+  // { name: "Honeydew", url: "/books/romance/honeydew" },
+];
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [query, setQuery] = useState(""); // For storing user input
+  const [filteredData, setFilteredData] = useState([]); // For storing filtered results
+  const [showSuggestions, setShowSuggestions] = useState(false); // Toggle suggestions
+  const navigate = useNavigate(); // Hook to navigate to different routes
 
-  const apiKey = 'your google books api';
-
-  const handleSearch = (e) => {
-    e.preventDefault();
+  // Function to handle input change
+  const handleInputChange = (e) => {
+    const userInput = e.target.value;
+    setQuery(userInput);
   
-    if (query.length > 2) {
-      setLoading(true);
-      setError(null);
-  
-      fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${apiKey}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Failed to fetch books');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setBooks(data.items);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError('Failed to fetch books');
-          setLoading(false);
-        });
-      } else {
-        setError('Please enter at least 3 characters');
-        setBooks([]);
+    if (userInput) {
+      const suggestions = data.filter((item) =>
+        item.name.toLowerCase().includes(userInput.toLowerCase()) // Access the name field
+      );
+      setFilteredData(suggestions);
+      setShowSuggestions(true);
+    } else {
+      setFilteredData([]);
+      setShowSuggestions(false);
     }
+  };
+
+  // Function to handle suggestion click
+  const handleSuggestionClick = (suggestion) => {
+    setQuery(suggestion);
+    setShowSuggestions(false); // Hide suggestions after selection
+    navigate(suggestion.url);
   };
   
 
   return (
-    <div className="relative w-full max-w-lg mx-auto my-8">
-      <form onSubmit={handleSearch}>
-        <div className="flex items-center border-b-2 border-teal-500 py-2">
-          <input
-            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none dark:text-white"
-            type="text"
-            placeholder="Search for books..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button
-            className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-            type="submit"
-          >
-            <div className="bg-white text-orange-600 rounded-full p-2 shadow-lg hover:bg-gray-100 transition duration-200 ease-in-out">
-            <FaSearch />
-          </div>
-          </button>
-        </div>
-      </form>
-
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-
-      {books && books.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 max-h-60 overflow-auto shadow-lg">
-          {books.map((book) => (
-            <li
-              key={book.id}
-              className="px-4 py-2 hover:bg-teal-100 cursor-pointer"
-            >
-              <strong>{book.volumeInfo.title}</strong> by {book.volumeInfo.authors?.join(', ')}
-            </li>
-          ))}
+    <div style={{ width: "300px", margin: "0 auto", textAlign: "center" }}>
+      <input
+        type="text"
+        value={query}
+        onChange={handleInputChange}
+        placeholder="Search..."
+        color="black"
+        style={{
+          width: "100%",
+          padding: "10px",
+          borderRadius: "5px",
+          border: "1px solid #ccc",
+        }}
+      />
+      {showSuggestions && filteredData.length > 0 && (
+        <ul
+          style={{
+            listStyleType: "none",
+            padding: 0,
+            border: "1px solid #ccc",
+            borderRadius: "5px",
+            marginTop: "5px",
+            maxHeight: "150px",
+            overflowY: "auto",
+          }}
+        >
+       {filteredData.map((suggestion, index) => (
+  <li
+    key={index}
+    onClick={() => handleSuggestionClick(suggestion)}
+    style={{
+      padding: "10px",
+      cursor: "pointer",
+      backgroundColor: "#f9f9f9",
+      borderBottom: "1px solid #ccc",
+    }}
+  >
+    {suggestion.name} {/* Render the name, not the whole object */}
+  </li>
+))}
         </ul>
       )}
+
     </div>
   );
 };
-
 export default SearchBar;

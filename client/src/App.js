@@ -38,6 +38,7 @@ import CancelReturns from './Pages/CancelReturns.jsx'
 import ChatBotEmbed from "./chatbot.jsx";
 
 import ResetPassword from "./Pages/ResetPassword.jsx";
+import Book from './Pages/Book.jsx';
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <Routes>
           <Route path="/" element={<HomePage darkMode={darkMode} />} />
+          <Route path="/book/:id" element={<Book />} />
           <Route path="/romance" element={<RomancePage />} />
           <Route path="/action" element={<ActionPage />} />
           <Route path="/thriller" element={<ThrillerPage />} />
@@ -93,7 +95,6 @@ function App() {
         <Footer darkMode={darkMode} /> {/* Pass darkMode prop here */}
         <Preloader /> {/* Ensure Preloader is correctly styled */}
         <GoToTop /> {/* Added GoToTop component */}
-
         <ChatBotEmbed />
 
       </div>
