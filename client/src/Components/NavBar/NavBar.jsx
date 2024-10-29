@@ -22,8 +22,11 @@ import sunIcon from "../../assets/sun.png"; // Adjust the path as necessary
 import moonIcon from "../../assets/moon.png"; // Adjust the path as necessary
 import logo from "../../assets/Logo.png"; // Adjust the path as necessary
 import SearchBar from "../SearchBar";
-import { Tooltip } from "@mui/material";
-import { pink } from "@mui/material/colors";
+
+import { Tooltip } from '@mui/material';
+import { pink } from '@mui/material/colors';
+import ScrollProgressBar from './ScrollProgressBar';
+
 
 const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
   backgroundColor: darkMode ? "black" : "#002147", // Change color based on darkMode
@@ -36,12 +39,14 @@ const Logo = styled("img")({
 });
 
 const StyledButton = styled(Button)(({ isActive }) => ({
+
   fontSize: "1rem",
   color: isActive ? "#FFD700" : "#FFF", // Highlight active page color
   textDecoration: isActive ? "underline" : "none", // Add underline for active page
   "&:hover": {
     color: "#FFD700",
     textDecoration: "underline",
+
   },
 }));
 
@@ -111,6 +116,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
   const isActive = (path) => location.pathname === path;
 
   return (
+
     <StyledAppBar position="sticky" darkMode={darkMode}>
       <Toolbar
         style={{
@@ -159,6 +165,8 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 onClick={handleMenuClick}
                 style={{ marginBottom: "20px", color: "#fff" }}
               >
+
+ 
                 Close
               </IconButton>
               <StyledButton
@@ -220,7 +228,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 </StyledButton>
               ) : null}
 
-              <StyledButton
+               <StyledButton
                 color="inherit"
                 component={Link}
                 to={userLoggedIn ? "#" : "/login"}
@@ -231,7 +239,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 style={{ marginBottom: "15px" }} // Add margin for spacing
               >
                 {userLoggedIn ? "Logout" : "Login"}
-              </StyledButton>
+              </StyledButton> 
             </MobileMenu>
           </>
         ) : (
@@ -313,10 +321,11 @@ function Navbar({ darkMode, toggleDarkMode }) {
               </IconButton>
             </Tooltip>
           </MenuContainer>
-        )}
-      </Toolbar>
-    </StyledAppBar>
+          )}
+        </Toolbar>
+      </StyledAppBar>
+    </>
   );
-}
+          }
 
 export default Navbar;

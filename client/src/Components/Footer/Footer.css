@@ -93,8 +93,8 @@
 }
 
 .newsletter-button {
-    padding: 10px;
-    background-color: navy;
+    padding: 6px 10px;
+    background-color:  #003366;
     border: none;
     color: white;
     border-radius: 4px;
@@ -105,7 +105,7 @@
 }
 
 .newsletter-button:hover {
-    background-color: #003366; 
+    background-color: #044d95; 
 }
 
 .newsletter-message {

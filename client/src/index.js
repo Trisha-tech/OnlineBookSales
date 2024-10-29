@@ -52,11 +52,11 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthContextProvider>
+   <AuthContextProvider>
     <ToastContextProvider>
       <App/>
     </ToastContextProvider>
-  </AuthContextProvider>
+   </AuthContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
