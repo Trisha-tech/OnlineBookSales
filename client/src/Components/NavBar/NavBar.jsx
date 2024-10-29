@@ -29,11 +29,9 @@ const Logo = styled('img')({
 
 const StyledButton = styled(Button)(({ isActive }) => ({
   fontSize: '1rem',
-  color: isActive ? '#FFD700' : '#FFF',  // Highlight active page color
-  textDecoration: isActive ? 'underline' : 'none',  // Add underline for active page
+  color: isActive ? '#FFD966' : '#FFF',  // Highlight active page color
   '&:hover': {
-    color: '#FFD700',
-    textDecoration: 'underline',
+    color: '#FFD966',
   },
 }));
 
