@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import Preloader from '../Components/Preloader';
+import Preloader from '../components/Preloader';
 
 const FAQ = () => {
   const faqs = [

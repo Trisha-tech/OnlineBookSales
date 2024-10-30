@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Preloader from '../Components/Preloader';
+import Preloader from '../components/Preloader';
 import { Link } from 'react-router-dom';
 
 const AboutUs = () => {

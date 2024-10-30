@@ -24,7 +24,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import Preloader from "../Components/Preloader";
+import Preloader from "../components/Preloader";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 import { useNavigate } from "react-router-dom";

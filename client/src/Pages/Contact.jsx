@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Preloader from "../Components/Preloader";
+import Preloader from "../components/Preloader";
 import { FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 // import "./Contact.css";
 function Contact() {

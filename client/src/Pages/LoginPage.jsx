@@ -12,8 +12,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
-import Preloader from "../Components/Preloader";
-import GoogleLogin from "../Components/GoogleLogin";
+import Preloader from "../components/Preloader";
+import GoogleLogin from "../components/GoogleLogin";
 import { loginValidation } from "../validations/validation";
 
 const LoginPage = () => {

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Sidebar from "../Components/CustomerProfile/Sidebar";
-import Profile from "../Components/CustomerProfile/Profile";
-import Orders from "../Components/CustomerProfile/Orders";
-import Pancard from "../Components/CustomerProfile/Pancard";
-import DeliveryLocation from "../Components/CustomerProfile/DeliveryLocation";
-import Giftcard from "../Components/CustomerProfile/Giftcard";
+import Sidebar from "../components/CustomerProfile/Sidebar";
+import Profile from "../components/CustomerProfile/Profile";
+import Orders from "../components/CustomerProfile/Orders";
+import Pancard from "../components/CustomerProfile/Pancard";
+import DeliveryLocation from "../components/CustomerProfile/DeliveryLocation";
+import Giftcard from "../components/CustomerProfile/Giftcard";
 const CustomerProfile = () => {
   const [activeSection, setActiveSection] = useState("profile");
 
