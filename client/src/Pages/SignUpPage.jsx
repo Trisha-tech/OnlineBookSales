@@ -1,92 +1,62 @@
 "use client";
 import React, { useState } from "react";
-// import TextField from "@mui/material/TextField";
-// import Button from "@mui/material/Button";
 import { Box, Container, Grid, IconButton, Typography } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility"; // Import VisibilityIcon
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Import VisibilityOffIcon
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import Lottie from "lottie-react";
 import loginAnimation from "../Lottie-animation/loginAnimation.json";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Preloader from "../Components/Preloader";
-import GoogleLogin from "../Components/GoogleLogin";
 import { registerValidation } from "../validations/validation";
 
 const SignUpPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); //New state for confirm password
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const [phone, setPhone] = useState("");
-  // const [address, setAddress] = useState("");
-  const [error, setError] = useState(""); //state to store error message
-  // const [emailError, setEmailError] = useState('');
-  let navigate = useNavigate();
-  // handle Submit function
-
+  const [error, setError] = useState("");
   const [errors, setErrors] = useState({});
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await registerValidation.validate(
         { name, email, password, confirmPassword },
         { abortEarly: false }
       );
       setErrors({});
-      // console.log("Form Submitted", formData);
     } catch (error) {
       const newErrors = {};
-
       error.inner.forEach((err) => {
         newErrors[err.path] = err.message;
       });
-
       setErrors(newErrors);
       return;
     }
-
-    const value = e.target.value;
-    setEmail(value);
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(value)) {
-      setError("Please enter a valid email address.");
-    } else {
-      setError("");
-    }
-
     if (password !== confirmPassword) {
       setError("Passwords do not match!");
-      return; //Prevent form submission if passwords don't match
+      return;
     }
-
     try {
       const response = await axios.post(
         "http://localhost:8080/customer/register",
         { name, email, password }
       );
-
       console.log(response.data);
-      toast.success("register sucess");
+      toast.success("Register success");
       navigate("/login");
-      // reset form and err msg on success
       setName("");
       setEmail("");
       setPassword("");
-      //setPhone("");
-      //setAddress("");
       setError("");
     } catch (err) {
-      // Check if err.response exists, otherwise set a default error message
-      const errorMessage = err.response
-        ? err.response.data.message
-        : "An error occurred. Please try again later.";
-      setError(errorMessage);
+      setError(
+        err.response ? err.response.data.message : "An error occurred. Please try again later."
+      );
     }
   };
 
@@ -168,7 +138,7 @@ const SignUpPage = () => {
                     placeholder="Password"
                     variant="outlined"
                     value={password}
-                    type={showPassword ? "text" : "password"} // Set input type dynamically
+                    type={showPassword ? "text" : "password"}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none dark:text-white dark:border-white"
                   />
@@ -182,7 +152,7 @@ const SignUpPage = () => {
                     }}
                   >
                     {showPassword ? (
-                      <VisibilityIcon className="text-black dark:text-white" /> // Text color changes based on theme
+                      <VisibilityIcon className="text-black dark:text-white" />
                     ) : (
                       <VisibilityOffIcon className="text-black dark:text-white" />
                     )}
@@ -199,10 +169,10 @@ const SignUpPage = () => {
                   }}
                 >
                   <input
-                    placeholder=" Confirm Password"
+                    placeholder="Confirm Password"
                     variant="outlined"
                     value={confirmPassword}
-                    type={showPassword ? "text" : "password"} // Set input type dynamically
+                    type={showPassword ? "text" : "password"}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none dark:text-white dark:border-white"
                   />
@@ -210,22 +180,6 @@ const SignUpPage = () => {
                 {errors.confirmPassword && (
                   <div className="text-red-600">{errors.confirmPassword}</div>
                 )}
-                {/* <TextField
-                                label="Phone"
-                                fullWidth
-                                variant="outlined"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                margin="normal"
-                            />
-                            <TextField
-                                label="Address"
-                                fullWidth
-                                variant="outlined"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                                margin="normal"
-                            /> */}
                 {error && (
                   <Typography color="error" align="center">
                     {error}
@@ -235,18 +189,10 @@ const SignUpPage = () => {
                   variant="contained"
                   type="submit"
                   fullWidth
-                  sx={{
-                    mt: 2,
-                    "&:hover": { backgroundColor: "#0069d9" },
-                  }}
-                  className="w-full text-white my-2 mt-5 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black"
+                  className="w-full text-white my-2 mt-5 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black hover:bg-[#1a1a1a]"
                 >
                   Register
                 </button>
-
-                {/* Google Login Button */}
-                <GoogleLogin />
-
                 <div className="w-full flex items-center justify-center mt-3 mb-3">
                   <p className="text-sm text-[#060606] dark:text-white">
                     Already have an account? <Link to="/login">Login</Link>
