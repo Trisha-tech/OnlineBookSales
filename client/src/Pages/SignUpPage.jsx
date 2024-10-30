@@ -10,8 +10,8 @@ import loginAnimation from "../Lottie-animation/loginAnimation.json";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import Preloader from "../Components/Preloader";
-import GoogleLogin from "../Components/GoogleLogin";
+import Preloader from "../components/Preloader";
+import GoogleLogin from "../components/GoogleLogin";
 import { registerValidation } from "../validations/validation";
 
 const SignUpPage = () => {

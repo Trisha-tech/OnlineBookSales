@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './Animations.css';
-import { Navbar, Footer } from './Components/index.js';
+import { Navbar, Footer } from './components/index.js';
 // import { ProfilePage, Product } from './Components/index.js';
-import { Product } from './Components/index.js';
+import { Product } from './components/index.js';
 import RomancePage from './Pages/RomancePage.jsx';
 import ActionPage from './Pages/ActionPage.jsx';
 import ThrillerPage from './Pages/ThrillerPage.jsx';
@@ -26,9 +26,9 @@ import FAQ from "./Pages/Faq.jsx";
 import AboutUs from "./Pages/AboutUs.jsx";
 import { OrderList } from "./Pages/Orders.jsx";
 import Contributors from "./Pages/Contributors.jsx";
-import Preloader from "./Components/Preloader.jsx";
+// import Preloader from "./Components/Preloader.jsx";
 import { Toast } from "./Toast/Toast.js";
-import GoToTop from "./Components/GoToTop.jsx";
+import GoToTop from "./components/GoToTop.jsx";
 import License from "./Pages/Licensing.jsx";
 import CustomerProfile from "./Pages/CustomerProfile.jsx";
 import GiftCards from "./Pages/GiftCards.jsx";
@@ -93,7 +93,7 @@ function App() {
         </Routes>
         <Toast position="bottom-right" />
         <Footer darkMode={darkMode} /> {/* Pass darkMode prop here */}
-        <Preloader /> {/* Ensure Preloader is correctly styled */}
+        {/*<Preloader />*/} {/* Ensure Preloader is correctly styled */}
         <GoToTop /> {/* Added GoToTop component */}
         <ChatBotEmbed />
 

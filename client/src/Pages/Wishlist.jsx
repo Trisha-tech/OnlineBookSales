@@ -6,7 +6,7 @@ import {
   FaTable, 
 } from "react-icons/fa";
 import "./Wishlist.css"; // Import CSS file for wishlist component styling
-import Preloader from "../Components/Preloader";
+import Preloader from "../components/Preloader";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
 import { useNavigate } from "react-router-dom";

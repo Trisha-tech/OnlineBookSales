@@ -6,7 +6,7 @@ import {
   removeItemFromCart,
 } from "../api/api.js";
 import "./Cart.css";
-import Preloader from "../Components/Preloader";
+import Preloader from "../components/Preloader";
 import { useToast } from "../Context/ToastContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";

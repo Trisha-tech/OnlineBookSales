@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import B1Child from '../assets/image/B1Child.jpeg';
 import AuthorImage from '../assets/image/author1.jpeg';
 import Spinner from './Spinner';
-import SearchBar from '../Components/SearchBar';
+import SearchBar from '../components/SearchBar';
 import { useTheme, useMediaQuery } from '@mui/material';
-import Preloader from '../Components/Preloader';
+import Preloader from '../components/Preloader';
 import Newarrivals, { books as newbooks } from './Newarrivals';
 import Review from './Review';
 import crawdadsImage from '../assets/image/WhereTheCrawdadsSings.jpg';
@@ -144,148 +144,167 @@ const Home = () => {
             </header>
 
             <section className="container mx-auto my-8">
-              <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white text-center">Book Categories</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white text-center">Book Categories</h2>
+  
+  {/* Top row of four cards */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    {/* Romance Card */}
+    <Link to="/romance">
+      <div className="bg-gradient-to-r from-pink-200 to-red-200 dark:from-purple-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-400 hover:to-red-400 dark:hover:from-purple-600 dark:hover:to-purple-900">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/034/468/961/small/romantic-couple-lovers-in-park-under-trees-romantic-date-night-under-the-stars-valentines-day-photo.jpg" alt="Romance" className="w-full h-32 object-cover rounded-md mb-4" />
+        <h3 className="text-xl font-bold mb-2 dark:text-white">Romance</h3>
+        <p className="text-gray-700 dark:text-gray-300">Explore our collection of romantic novels.</p>
+      </div>
+    </Link>
+    
+    {/* Action Card */}
+    <Link to="/action">
+      <div className="bg-gradient-to-r from-blue-200 to-indigo-200 dark:from-indigo-600 dark:to-blue-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-blue-300 hover:to-indigo-300 dark:hover:from-indigo-500 dark:hover:to-blue-800">
+        <img src="https://static.vecteezy.com/system/resources/previews/024/804/211/non_2x/super-agent-cartoon-vector.jpg" alt="Action" className="w-full h-32 object-cover rounded-md mb-4" />
+        <h3 className="text-xl font-bold mb-2 text-center">Action</h3>
+        <p className="text-gray-700 dark:text-gray-300 text-center">Dive into thrilling action-packed stories.</p>
+      </div>
+    </Link>
 
-                <Link to="/romance">
-                  <div className="bg-gradient-to-r from-pink-200 to-red-200 dark:from-purple-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-400 hover:to-red-400 dark:hover:from-purple-600 dark:hover:to-purple-900">
-                    <h3 className="text-xl font-bold mb-2 dark:text-white">Romance</h3>
-                    <p className="text-gray-700 dark:text-gray-300">Explore our collection of romantic novels.</p>
-                  </div>
-                </Link>
+    {/* Thriller Card */}
+    <Link to="/thriller">
+      <div className="bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-800 dark:to-black text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-gray-300 hover:to-gray-500 dark:hover:from-gray-700 dark:hover:to-black">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYPGY_iKV-7JjnD42yFhj_NkZ_6MST58WCMA&s" alt="Thriller" className="w-full h-32 object-cover rounded-md mb-4" />
+        <h3 className="text-xl font-bold mb-2 text-center">Thriller</h3>
+        <p className="text-gray-700 dark:text-gray-300 text-center">Get your adrenaline pumping with our thrillers.</p>
+      </div>
+    </Link>
 
-                <Link to="/action">
-                  <div className="bg-gradient-to-r from-blue-200 to-indigo-200 dark:from-indigo-600 dark:to-blue-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-blue-300 hover:to-indigo-300 dark:hover:from-indigo-500 dark:hover:to-blue-800">
-                    <h3 className="text-xl font-bold mb-2 text-center">Action</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-center">Dive into thrilling action-packed stories.</p>
-                  </div>
-                </Link>
+    {/* Fiction Card */}
+    <Link to="/fiction">
+      <div className="bg-gradient-to-r from-green-200 to-teal-200 dark:from-green-700 dark:to-teal-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-green-300 hover:to-teal-300 dark:hover:from-green-600 dark:hover:to-teal-800">
+        <img src="https://www.theglobeandmail.com/resizer/v2/LSXVK3TZGBHGJD7JHTZI5ZMYHY.jpg?auth=61bbbc27fbf20bc53da412ad11166d2a34c179e8e47013fee80848d8920202f9&width=600&height=400&quality=80&smart=true" alt="Fiction" className="w-full h-32 object-cover rounded-md mb-4" />
+        <h3 className="text-xl font-bold mb-2 text-center">Fiction</h3>
+        <p className="text-gray-700 dark:text-gray-300 text-center">Discover imaginative and captivating fiction.</p>
+      </div>
+    </Link>
+  </div>
 
-                <Link to="/thriller">
-                  <div className="bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-800 dark:to-black text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-gray-300 hover:to-gray-500 dark:hover:from-gray-700 dark:hover:to-black">
-                    <h3 className="text-xl font-bold mb-2 text-center">Thriller</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-center">Get your adrenaline pumping with our thrillers.</p>
-                  </div>
-                </Link>
+  {/* Bottom row of three centered cards */}
+  <div className="flex justify-center gap-6 mt-8">
+    {/* Tech Card */}
+    <Link to="/tech">
+      <div className="bg-gradient-to-r from-yellow-200 to-orange-200 dark:from-yellow-700 dark:to-orange-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-yellow-300 hover:to-orange-300 dark:hover:from-yellow-600 dark:hover:to-orange-800">
+        <img src="https://img.freepik.com/free-vector/cute-astronaut-working-laptop-cartoon-vector-icon-illustration-science-technology-icon-isolated_138676-4634.jpg" alt="Tech" className="w-full h-32 object-cover rounded-md mb-4" />
+        <h3 className="text-xl font-bold mb-2 text-center">Tech</h3>
+        <p className="text-gray-700 dark:text-gray-300 text-center">Stay updated with the latest in technology.</p>
+      </div>
+    </Link>
 
-                <Link to="/fiction">
-                  <div className="bg-gradient-to-r from-green-200 to-teal-200 dark:from-green-700 dark:to-teal-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-green-300 hover:to-teal-300 dark:hover:from-green-600 dark:hover:to-teal-800">
-                    <h3 className="text-xl font-bold mb-2 text-center">Fiction</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-center">Discover imaginative and captivating fiction.</p>
-                  </div>
-                </Link>
+    {/* Philosophy Card */}
+    <Link to="/philosophy">
+      <div className="bg-gradient-to-r from-purple-200 to-pink-200 dark:from-purple-700 dark:to-pink-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-purple-300 hover:to-pink-300 dark:hover:from-purple-600 dark:hover:to-pink-800">
+        <img src="https://c8.alamy.com/comp/HP4E35/a-happy-cartoon-greek-philosopher-with-a-stone-tablet-HP4E35.jpg" alt="Philosophy" className="w-full h-32 object-cover rounded-md mb-4" />
+        <h3 className="text-xl font-bold mb-2 text-center">Philosophy</h3>
+        <p className="text-gray-700 dark:text-gray-300 text-center">Dive deep into philosophical thoughts and ideas.</p>
+      </div>
+    </Link>
 
-                <Link to="/tech">
-                  <div className="bg-gradient-to-r from-yellow-200 to-orange-200 dark:from-yellow-700 dark:to-orange-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-yellow-300 hover:to-orange-300 dark:hover:from-yellow-600 dark:hover:to-orange-800">
-                    <h3 className="text-xl font-bold mb-2 text-center">Tech</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-center">Stay updated with the latest in technology.</p>
-                  </div>
-                </Link>
+    {/* Manga Card */}
+    <Link to="/manga">
+      <div className="bg-gradient-to-r from-pink-200 to-purple-200 dark:from-pink-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-300 dark:hover:from-pink-600 dark:hover:to-purple-800">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRADdH75SMU5kyXzsDMp8XgyYZGqZ6fIiS77w&s" alt="Manga" className="w-full h-32 object-cover rounded-md mb-4" />
+        <h3 className="text-xl font-bold mb-2 text-center">Manga</h3>
+        <p className="text-gray-700 dark:text-gray-300 text-center">Explore our extensive collection of Manga.</p>
+      </div>
+    </Link>
+  </div>
+</section>
 
-                <Link to="/philosophy">
-                  <div className="bg-gradient-to-r from-purple-200 to-pink-200 dark:from-purple-700 dark:to-pink-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-purple-300 hover:to-pink-300 dark:hover:from-purple-600 dark:hover:to-pink-800">
-                    <h3 className="text-xl font-bold mb-2 text-center">Philosophy</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-center">Dive deep into philosophical thoughts and ideas.</p>
-                  </div>
-                </Link>
-
-                <Link to="/manga">
-                  <div className="bg-gradient-to-r from-pink-200 to-purple-200 dark:from-pink-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-300 dark:hover:from-pink-600 dark:hover:to-purple-800">
-                    <h3 className="text-xl font-bold mb-2 text-center">Manga</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-center">Explore our extensive collection of Manga.</p>
-                  </div>
-                </Link>
-
-              </div>
-            </section>
-
-
-
-
-            {/* New Arrivals Section */}
-            <section className="bg-gray-200 py-8 dark:bg-[rgb(40,40,40)]">
-              <div className="container mx-auto">
-                <Newarrivals
-                  onBookClick={(bookTitle) => {
-                    const book = newbooks.find(b => b.title === bookTitle);
-                    if (book) {
-                      setHighlightedBookId(book.id);  // Highlight the found book
-                      navigate(`/book/${bookTitle}`);
-                    }
-                  }}
-                  highlightedBookId={highlightedBookId}
-                  bookRefs={bookRefs}
-                  filteredBooks={filteredBooks} // Pass filteredBooks to display
-                />
-                {bookNotFound && <div className="text-center text-red-600">No books found matching your search.</div>}
-              </div>
-            </section>
-
-            {/* Top Trending Books Section */}
+{/* New Arrivals Section */}
+<section className="bg-gray-200 py-8 dark:bg-[rgb(40,40,40)]">
+  <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white text-center">Newly Arrived</h2>
+  <div className="container mx-auto">
+    <Newarrivals
+      onBookClick={(bookTitle) => {
+        const book = newbooks.find(b => b.title === bookTitle);
+        if (book) {
+          setHighlightedBookId(book.id);  // Highlight the found book
+          navigate(`/book/${bookTitle}`);
+        }
+      }}
+      highlightedBookId={highlightedBookId}
+      bookRefs={bookRefs}
+      filteredBooks={filteredBooks} // Pass filteredBooks to display
+    />
+    {bookNotFound && <div className="text-center text-red-600">No books found matching your search.</div>}
+  </div>
+</section>
 
 
-            <section className="container mx-auto my-8">
-              <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white text-center">Top Trending Books</h2>
-              <div className="overflow-x-auto">
-                <div className="flex space-x-6">
-                  <Link to="/where-the-crawdads-sing">
-                    <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-900 dark:bg-[rgb(30,30,30)] w-64 flex flex-col hover:shadow-xl hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-800">
-                      <img src={crawdadsImage} alt="Where the Crawdads Sing" className="mb-4 h-54 w-full object-cover rounded-md" />
-                      <h3 className="text-xl font-bold mb-2 dark:text-white">Where the Crawdads Sing</h3>
-                      <p className="text-gray-600 dark:text-white">A coming-of-age story intertwined with a murder mystery set in the marshes of North Carolina.</p>
-                    </div>
-                  </Link>
 
-                  <Link to="/the-midnight-library">
-                    <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-1000 dark:bg-[rgb(30,30,30)] w-64 flex flex-col hover:shadow-xl hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-800">
-                      <img src={TheMidnightLibrary} alt="The Midnight Library" className="mb-4 h-54 w-full object-cover rounded-md" />
-                      <h3 className="text-xl font-bold mb-2 dark:text-white">The Midnight Library</h3>
-                      <p className="text-gray-600 dark:text-white">A philosophical tale about choices, regrets, and the infinite possibilities of life.</p>
-                    </div>
-                  </Link>
+{/* Top Trending Books Section */}
+<section className="container mx-auto my-8">
+  <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white text-center">Top Trending Books</h2>
+  
+  <div className="overflow-x-auto">
+    <div className="flex space-x-6">
+      {/* Book Cards */}
+            
+      <Link to="/the-midnight-library">
+        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r from-indigo-100 to-indigo-200 dark:from-indigo-900 dark:to-indigo-800 dark:bg-[rgb(30,30,30)] w-64">
+          <img src={TheMidnightLibrary} alt="The Midnight Library" className="h-52 w-full object-cover rounded-md mb-4" />
+          <h3 className="text-xl font-bold mb-2 dark:text-white">The Midnight Library</h3>
+          <p className="text-gray-600 dark:text-gray-300">A philosophical tale about choices, regrets, and the infinite possibilities of life.</p>
+        </div>
+      </Link>
+      
+      <Link to="/dune">
+        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r from-yellow-100 to-yellow-200 dark:from-yellow-900 dark:to-yellow-800 dark:bg-[rgb(30,30,30)] w-64">
+          <img src={Dune} alt="Dune" className="h-52 w-full object-cover rounded-md mb-4" />
+          <h3 className="text-xl font-bold mb-2 dark:text-white">Dune</h3>
+          <p className="text-gray-600 dark:text-gray-300">A science fiction epic set on the desert planet of Arrakis, exploring themes of politics, religion, and ecology.</p>
+        </div>
+      </Link>
 
-                  <Link to="/the-vanishing-half">
-                    <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-1100 dark:bg-[rgb(30,30,30)] w-64 flex flex-col hover:shadow-xl hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-800">
-                      <img src={TheVanishingHalf} alt="The Vanishing Half" className="mb-4 h-54 w-full object-cover rounded-md" />
-                      <h3 className="text-xl font-bold mb-2 dark:text-white">The Vanishing Half</h3>
-                      <p className="text-gray-600 dark:text-white">A multigenerational saga about twin sisters whose lives diverge when one decides to live as a white woman.</p>
-                    </div>
-                  </Link>
+      <Link to="/project-hail-mary">
+        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r from-teal-100 to-teal-200 dark:from-teal-900 dark:to-teal-800 dark:bg-[rgb(30,30,30)] w-64">
+          <img src={ProjectHailMary} alt="Project Hail Mary" className="h-52 w-full object-cover rounded-md mb-4" />
+          <h3 className="text-xl font-bold mb-2 dark:text-white">Project Hail Mary</h3>
+          <p className="text-gray-600 dark:text-gray-300">A gripping tale of survival in space as an astronaut embarks on a mission to save humanity.</p>
+        </div>
+      </Link>
 
-                  <Link to="/dune">
-                    <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-1200 dark:bg-[rgb(30,30,30)] w-64 flex flex-col hover:shadow-xl hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-800">
-                      <img src={Dune} alt="Dune" className="mb-4 h-54 w-full object-cover rounded-md" />
-                      <h3 className="text-xl font-bold mb-2 dark:text-white">Dune</h3>
-                      <p className="text-gray-600 dark:text-white">A science fiction epic set on the desert planet of Arrakis, exploring themes of politics, religion, and ecology.</p>
-                    </div>
-                  </Link>
+      <Link to="/where-the-crawdads-sing">
+        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 dark:bg-[rgb(30,30,30)] w-64">
+          <img src={crawdadsImage} alt="Where the Crawdads Sing" className="h-52 w-full object-cover rounded-md mb-4" />
+          <h3 className="text-xl font-bold mb-2 dark:text-white">Where the Crawdads Sing</h3>
+          <p className="text-gray-600 dark:text-gray-300">A coming-of-age tale blended with a murder mystery in the marshes of North Carolina.</p>
+        </div>
+      </Link>
 
-                  <Link to="/klara-and-the-sun">
-                    <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-1300 dark:bg-[rgb(30,30,30)] w-64 flex flex-col hover:shadow-xl hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-800">
-                      <img src={KlaraAndtheSun} alt="Klara and the Sun" className="mb-4 h-54 w-full object-cover rounded-md" />
-                      <h3 className="text-xl font-bold mb-2 dark:text-white">Klara and the Sun</h3>
-                      <p className="text-gray-600 dark:text-white">A story told from the perspective of an artificial friend, exploring themes of love and what it means to be human.</p>
-                    </div>
-                  </Link>
+      <Link to="/the-vanishing-half">
+        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 dark:bg-[rgb(30,30,30)] w-64">
+          <img src={TheVanishingHalf} alt="The Vanishing Half" className="h-52 w-full object-cover rounded-md mb-4" />
+          <h3 className="text-xl font-bold mb-2 dark:text-white">The Vanishing Half</h3>
+          <p className="text-gray-600 dark:text-gray-300">A multigenerational saga about twin sisters whose lives diverge when one decides to live as a white woman.</p>
+        </div>
+      </Link>
 
-                  <Link to="/project-hail-mary">
-                    <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-1400 dark:bg-[rgb(30,30,30)] w-64 flex flex-col hover:shadow-xl hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-800">
-                      <img src={ProjectHailMary} alt="Project Hail Mary" className="mb-4 h-54 w-full object-cover rounded-md" />
-                      <h3 className="text-xl font-bold mb-2 dark:text-white">Project Hail Mary</h3>
-                      <p className="text-gray-600 dark:text-white">A gripping tale of survival in space as an astronaut embarks on a mission to save humanity.</p>
-                    </div>
-                  </Link>
+      <Link to="/klara-and-the-sun">
+        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r from-pink-100 to-pink-200 dark:from-pink-900 dark:to-pink-800 dark:bg-[rgb(30,30,30)] w-64">
+          <img src={KlaraAndtheSun} alt="Klara and the Sun" className="h-52 w-full object-cover rounded-md mb-4" />
+          <h3 className="text-xl font-bold mb-2 dark:text-white">Klara and the Sun</h3>
+          <p className="text-gray-600 dark:text-gray-300">A story told from the perspective of an artificial friend, exploring themes of love and what it means to be human.</p>
+        </div>
+      </Link>
 
-                  <Link to="/malibu-rising">
-                    <div className="bg-white rounded-lg shadow-lg p-6 slide-in transition-opacity duration-500 delay-1500 dark:bg-[rgb(30,30,30)] w-64 flex flex-col hover:shadow-xl hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-800">
-                      <img src={MalibuRising} alt="Malibu Rising" className="mb-4 h-54 w-full object-cover rounded-md" />
-                      <h3 className="text-xl font-bold mb-2 dark:text-white">Malibu Rising</h3>
-                      <p className="text-gray-600 dark:text-white">A summer story of four siblings throwing a party that changes everything, set in Malibu's vibrant beach culture.</p>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            </section>
+      <Link to="/malibu-rising">
+        <div className="bg-white rounded-lg shadow-lg p-6 flex-grow flex flex-col transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900 dark:to-red-800 dark:bg-[rgb(30,30,30)] w-64">
+          <img src={MalibuRising} alt="Malibu Rising" className="h-52 w-full object-cover rounded-md mb-4" />
+          <h3 className="text-xl font-bold mb-2 dark:text-white">Malibu Rising</h3>
+          <p className="text-gray-600 dark:text-gray-300">A summer story of four siblings throwing a party that changes everything, set in Malibu's vibrant beach culture.</p>
+        </div>
+      </Link>
+    </div>
+  </div>
+</section>
+
             {/* Featured Author Section */}
             <section className="container mx-auto my-8 ">
               <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Featured Author</h2>
@@ -313,5 +332,3 @@ const Home = () => {
 };
 
 export default Home;
-
-

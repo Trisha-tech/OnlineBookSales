@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Contributors.css';
-import Preloader from '../Components/Preloader';
+import Preloader from '../components/Preloader';
 
 function Contributors() {
   const [contributors, setContributors] = useState([]);
