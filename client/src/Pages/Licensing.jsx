@@ -38,24 +38,4 @@ const License = () => {
   );
 };
 
-// const LicenseWrapper = styled.div`
-//   padding: 20px;
-//   max-width: 800px;
-//   margin: 0 auto;
-//   color: #333;
-//   line-height: 1.6;
-//   margin-top: 20px;
-
-//   h1 {
-//     font-size: 2.5rem;
-//     margin-bottom: 20px;
-//     font-weight: bold;
-//     color: #002147;
-//   }
-
-//   p {
-//     margin: 10px 0;
-//   }
-// `;
-
 export default License;
