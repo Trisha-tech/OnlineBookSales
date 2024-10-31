@@ -1,0 +1,69 @@
+/* General Container Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Book Category Card Styles */
+  .book-category-card {
+    background: linear-gradient(to right, #e2e2e2, #ffffff);
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    transition: transform 0.5s, background 0.5s;
+    cursor: pointer;
+  }
+  
+  .book-category-card:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, #e2e2e2, #f9f9f9);
+  }
+  
+  /* Dark Mode Styles */
+  .dark .book-category-card {
+    background: linear-gradient(to right, #4a4a4a, #303030);
+    color: #ffffff;
+  }
+  
+  .dark .book-category-card:hover {
+    background: linear-gradient(to right, #5a5a5a, #404040);
+  }
+  
+  /* Category Title Styles */
+  .book-category-card h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Category Description Styles */
+  .book-category-card p {
+    color: #666;
+    text-align: center;
+  }
+  
+  .dark .book-category-card p {
+    color: #ccc;
+  }
+  
+  /* Responsive Grid */
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  

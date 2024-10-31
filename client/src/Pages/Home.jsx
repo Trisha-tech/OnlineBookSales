@@ -15,6 +15,7 @@ import Dune from '../assets/image/Dune.jpg';
 import KlaraAndtheSun from '../assets/image/klaraAndtheSun.jpg';
 import ProjectHailMary from '../assets/image/projectHailMary.jpg';
 import MalibuRising from '../assets/image/malibuRising.jpg';
+import './Home.css';
 
 const Home = () => {
   const theme = useTheme();
