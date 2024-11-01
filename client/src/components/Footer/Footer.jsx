@@ -21,7 +21,7 @@ function Footer({ darkMode }) {
 
   return (
     <footer style={footerStyle} className="py-8">
-      <div className="container mx-auto flex flex-wrap justify-between max-w-[90%]">
+      <div className="container mx-auto flex flex-wrap gap-5 justify-between md:justify-around max-w-[90%]">
         <div className="footer-section">
           <h2 className="text-lg font-bold mb-4">ABOUT</h2>
           <ul className="footer-list">
@@ -100,9 +100,10 @@ function Footer({ darkMode }) {
             </li>
           </ul>
         </div>
-        <div className="footer-section">
-          <h2 className="text-lg font-bold mb-4 text-center">SOCIALS</h2>
-          <ul className="footer-list flex">
+        <div className="footer-section container mx-auto flex flex-wrap justify-around gap-5 items-center"> 
+          <div>
+          <h2 className="text-lg font-bold mb-4 text-center flex flex-col">SOCIALS</h2>
+          <ul className="footer-list flex ">
             <li>
               <a
                 href="https://www.linkedin.com/in/trisha-sahu-171623193/"
@@ -136,23 +137,24 @@ function Footer({ darkMode }) {
               </a>
             </li>
           </ul>
+          </div>
           <div
             className="translator"
             style={{
-              position: "relative",
-              marginLeft: "auto",
-              marginRight: "0",
-              marginBottom: "4px",
-              marginTop: "16px",
+              // position: "relative",
+              // marginLeft: "auto",
+              // marginRight: "0",
+              // marginBottom: "4px",
+              // marginTop: "16px",
               color: "white",
-              display: "block",
+              // display: "block",
               alignItems: "center",
               width: "fit-content",
             }}
           >
             <img
               src="google.png"
-              alt=""
+              alt="google translate png"
               className="google-translate"
               style={{ display: "block", width: "45px", margin: "auto" }}
             />
@@ -160,7 +162,7 @@ function Footer({ darkMode }) {
             <GoogleTranslate />
           </div>
         </div>
-        <div className="footer-section">
+        <div className="footer-section container mx-auto mt-2 flex flex-col items-center">
           <h2 className="text-lg font-bold mb-4 text-center">NEWSLETTER</h2>
           <form className="newsletter-form" onSubmit={handleSubscribe}>
             <input

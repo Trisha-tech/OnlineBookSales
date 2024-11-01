@@ -39,13 +39,13 @@ const GoogleTranslate = () => {
   }, []);
 
   return (
-    <div id="google_element" className="google-translate-container pl-20 md:pl-0">
+    <div id="google_element" className="google-translate-container">
       <style jsx>{`
         .goog-te-combo {
           background-color: #e0f2ff; /* Light blue background */
           border: 2px solid #0056b3; /* Dark blue border */
           border-radius: 0.5rem; /* Slightly more rounded */
-          // padding: 0.5rem 1rem; /* Tailwind: p-2 */
+          padding: 0.5rem 1rem; /* Tailwind: p-2 */
           font-size: 0.875rem; /* Tailwind: text-sm */
           transition: all 0.3s ease; /* Smooth transition */
           outline: none;
