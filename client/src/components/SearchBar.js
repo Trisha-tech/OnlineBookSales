@@ -46,7 +46,7 @@ const SearchBar = () => {
   
 
   return (
-    <div style={{ width: "300px", margin: "0 auto", textAlign: "center" }}>
+    <div className="w-[300px] my-0 mx-auto text-center">
       <input
         type="text"
         value={query}
@@ -61,16 +61,16 @@ const SearchBar = () => {
         }}
       />
       {showSuggestions && filteredData.length > 0 && (
-        <ul
-          style={{
-            listStyleType: "none",
-            padding: 0,
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-            marginTop: "5px",
-            maxHeight: "150px",
-            overflowY: "auto",
-          }}
+        <ul className="list-none p-0 border border-[#ccc] rounded mt-3 max-h-[150px] overflow-y-auto"
+          // style={{
+          //   listStyleType: "none",
+          //   padding: 0,
+          //   border: "1px solid #ccc",
+          //   borderRadius: "5px",
+          //   marginTop: "5px",
+          //   maxHeight: "150px",
+          //   overflowY: "auto",
+          // }}
         >
        {filteredData.map((suggestion, index) => (
   <li

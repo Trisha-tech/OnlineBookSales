@@ -5,7 +5,7 @@ import {
   FaTrash, 
   FaTable, 
 } from "react-icons/fa";
-import "./Wishlist.css"; // Import CSS file for wishlist component styling
+//import "./Wishlist.css"; // Import CSS file for wishlist component styling
 import Preloader from "../Components/Preloader";
 import { useAuth } from "../Context/AuthContext";
 import { useToast } from "../Context/ToastContext";
@@ -89,15 +89,15 @@ function Wishlist() {
 
   if (error) {
     return <div className="h-[60vh] md:h-[80vh]">
-      <div className="error-message">{error}</div>
+      <div className="error-message text-[#ff6347] text-lg text-center mt-5">{error}</div>
     </div>;
   }
 
   return (
     <>
     <Preloader/>
-    <div className="wishlist-container">
-      <h2 className="dark:text-white">
+    <div className="wishlist-container m-5 p-5 border border-[#ccc] rounded-md shadow-md">
+      <h2 className="dark:text-white flex items-center text-2xl text-[#333] mb-5">
         <FaTable /> Your Wishlist
       </h2>
       {wishlistItems.length === 0 ? (

@@ -69,12 +69,12 @@ function Contact() {
               Get in Touch
             </h1>
 
-            <p className="mb-5 text-[#10a5f5] smalltitlefont dark:text-white">
+            <p className="mb-5 text-[#10a5f5] smalltitlefont text-xl font-normal tracking-wide dark:text-white">
               We are here for you. How can we help?
             </p>
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
               <div className="flex flex-col">
-                <label htmlFor="name" className="formlevel dark:text-white">
+                <label htmlFor="name" className="formlevel text-black p-1 tracking-wide text-xs md:text-xl font-normal dark:text-white">
                   Name:
                 </label>
                 <input
@@ -89,7 +89,7 @@ function Contact() {
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="email" className="formlevel dark:text-white">
+                <label htmlFor="email" className="formlevel text-black p-1 tracking-wide text-xs md:text-xl font-normal dark:text-white">
                   Email:
                 </label>
                 <input
@@ -104,7 +104,7 @@ function Contact() {
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="message" className="formlevel dark:text-white">
+                <label htmlFor="message" className="formlevel text-black p-1 tracking-wide text-xs md:text-xl font-normal dark:text-white">
                   Message:
                 </label>
                 <textarea
