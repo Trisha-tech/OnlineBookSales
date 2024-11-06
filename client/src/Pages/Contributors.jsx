@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Contributors.css';
+import '../Animations.css'
 import Preloader from '../Components/Preloader';
 
 function Contributors() {
@@ -55,26 +56,26 @@ function Contributors() {
   }
 
   return (
-    <div className="contributors-container">
-      <h1 className="contributors-title">Our Contributors</h1>
-      <div className="contributors-grid">
+    <div className="contributors-container w-full h-full pt-8 overflow-hidden">
+      <h1 className="contributors-title mt-0 text-center text-[#0077b6] text-4xl font-bold mb-8 uppercase">Our Contributors</h1>
+      <div className="contributors-grid flex flex-wrap justify-center gap-8 mb-16">
         {contributors.length > 0 ? (
           contributors.map((contributor) => (
-            <div key={contributor.id} className="contributor-card">
+            <div key={contributor.id} className="contributor-card relative w-full max-w-[97%] md:max-w-[50%] lg:max-w-[400px] flex flex-col items-center bg-[#000055] border border-[#6969ff] rounded-lg shadow-md p-4 overflow-hidden transition-all duration-[400ms] ease-in-out hover:scale-105 hover:shadow-custom ">
               <a
                 href={contributor.html_url}
-                className="contributor-link"
+                className="contributor-link block"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
                   src={contributor.avatar_url}
                   alt={contributor.login}
-                  className="contributor-avatar"
+                  className="contributor-avatar w-20 h-20 rounded-[50%] object-cover mb-4 border-2 border-[#00b4d8] transition delay-[400ms] ease-in-out"
                 />
               </a>
-              <h2 className="contributor-name">{contributor.login}</h2>
-              <p className="contributor-contributions">
+              <h2 className="contributor-name transition ease-in-out duration-[400ms] text-base font-semibold text-[#f3f4f6] mb-2">{contributor.login}</h2>
+              <p className="contributor-contributions transition-shadow delay-[400ms] ease-in-out text-[#d1d5db]">
                 Contributions: {contributor.contributions}
               </p>
             </div>

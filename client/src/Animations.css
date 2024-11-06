@@ -62,3 +62,50 @@
       opacity: 1;
     }
   }
+
+
+ /* contributors animation */
+ .contributor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(5, 205, 208, 0.752);
+}
+
+.contributor-card:hover p {
+  text-shadow: 1px 1px 2px rgb(0, 225, 255), 0 0 0.2em rgb(0, 191, 255), 0 0 0.8em rgb(135, 206, 235);
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+}
+
+.contributor-card:hover h2 {
+  text-shadow: 1px 1px 2px rgba(237, 9, 176, 0.926), 0 0 0.2em rgb(0, 191, 255), 0 0 0.8em rgb(135, 206, 235);
+  color: white;
+  font-size: 1.04rem;
+  font-weight: 600;
+  text-decoration: wavy;
+}
+
+.contributor-card:hover .contributor-avatar {
+  border: 3.5px solid #89e6f0;
+  width: 5.2rem;
+  box-shadow: -2px 4px 10px 1px rgba(1, 41, 218, 0.75);
+  height: 5.2rem;
+}
+
+.contributor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(152deg, #0077b6 50%, #023e8a 50%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translate(-100%, -100%);
+  opacity: 0;
+  z-index: -1;
+}
+
+.contributor-card:hover::before {
+  transform: translate(0, 0);
+  opacity: 1;
+}

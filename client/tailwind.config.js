@@ -15,6 +15,9 @@ module.exports = {
           green:'#45B36B',
 
         },
+        boxShadow: {
+          custom: '0 4px 6px rgba(5, 205, 208, 0.752)',
+        },
         secondary:{
           DEFAULT:'#3772FF',
           pink: '#E4D7CF',

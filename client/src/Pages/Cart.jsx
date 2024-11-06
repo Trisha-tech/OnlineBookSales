@@ -5,7 +5,7 @@ import {
   addItemToCart,
   removeItemFromCart,
 } from "../api/api.js";
-import "./Cart.css";
+// import "./Cart.css";
 import Preloader from "../Components/Preloader";
 import { useToast } from "../Context/ToastContext";
 import { useNavigate } from "react-router-dom";
@@ -100,36 +100,36 @@ function Cart() {
   const renderCartItems = () => {
 
     return data.items.map((item) => (
-      <table className="cart-table">
-      <tr key={item.id}>
-        <td>
+      <table className="cart-table w-full border-collapse mt-5">
+      <tr key={item.id} className="mb-[10px] border-b border-[#e0e0e0]">
+        <td className=" border border-[#ddd] p-2 text-left">
           <img
             src={item.image || "https://via.placeholder.com/150"}
             alt={item.name}
-
+            className="rounded-lg block w-[10vw] h-[20vh]"
           />
         </td>
-        <td className="font-semibold">{item.name}</td>
-        <td>${item.price.toFixed(2)}</td>
-        <td>
+        <td className="font-semibold border border-[#ddd] p-2 text-left">{item.name}</td>
+        <td className=" border border-[#ddd] p-2 text-left">${item.price.toFixed(2)}</td>
+        <td className=" border border-[#ddd] p-2 text-left">
           <button
             onClick={() => handleRemoveItem(item.id)}
-            className="quantity-button"
+            className="quantity-button bg-[#007bff] text-white border-none py-[5px] px-[10px] text-sm cursor-pointer ml-[5px] rounded-md"
           >
             -
           </button>
           <span>{item.quantity}</span>
           <button
             onClick={() => handleAddItem(item)}
-            className="quantity-button"
+            className="quantity-button bg-[#007bff] text-white border-none py-[5px] px-[10px] text-sm cursor-pointer ml-[5px] rounded-md"
           >
             +
           </button>
         </td>
-        <td>
+        <td className=" border border-[#ddd] p-2 text-left">
           <button
             onClick={() => handleRemoveItem(item.id)}
-            className="remove-btn"
+            className="remove-btn bg-[#F95454] text-white border-none py-[10px] px-5 text-xs cursor-pointer rounded-md transition-none delay-[400ms] ease-in hover:bg-[#C62E2E] hover:scale-105"
           >
             Remove
           </button>
@@ -140,9 +140,9 @@ function Cart() {
   };
 
   const renderSuggestedProducts = () => (
-    <div className="suggested-products space-y-4">
-      <h2 className="dark:text-white font-semibold font-poppins underline underline-offset-4">Suggested Products</h2>
-      <ul className="flex  gap-5">
+    <div className="suggested-products mt-5 space-y-4">
+      <h2 className="dark:text-white text-xl font-semibold font-poppins underline underline-offset-4">Suggested Products</h2>
+      <ul className="flex list-none p-0 gap-5">
         <div className="dark:text-white border-2  pb-2  rounded-md overflow-hidden h-max shadow-lg w-[10vw]">
           <div className="font-dmsans flex flex-col items-center">
             <div className="p-4">
@@ -209,14 +209,14 @@ function Cart() {
     return (
       <>
         <Preloader />
-        <div className="cart-container dark:bg-[rgb(40,40,40)]">
-          <h1 className="cart-header dark:text-white">Shopping Cart</h1>
+        <div className="cart-container max-w-[800px] my-5 mx-auto p-5 border border-[#ddd] rounded-lg shadow-sm dark:bg-[rgb(40,40,40)]">
+          <h1 className="cart-header text-2xl mb-3 font-bold dark:text-white">Shopping Cart</h1>
           <div className="w-full justify-center items-center flex">
             <img src="/error.png"/>
           </div>
           <p className="font-dmsans text-center text-red-400">{error}</p>
          <div className="w-full  justify-center flex mt-5">
-         <button onClick={handleRetry} className="retry-button dark:text-white">
+         <button onClick={handleRetry} className="retry-button dark:text-white bg-[#002147] text-white border-none p-8 text-base cursor-pointer mt-3 rounded-md text-center border-2 border-[#002147] hover:text-[#002147] hover:bg-[#F4F4F4] hover:font-semibold">
             Retry
           </button>
          </div>
@@ -228,26 +228,26 @@ function Cart() {
   return (
     <>
       <Preloader />
-      <div className="cart-container dark:bg-[rgb(40,40,40)]">
-        <h1 className="cart-header dark:text-white">Shopping Cart</h1>
+      <div className="cart-container max-w-[800px] my-5 mx-auto p-5 border border-[#ddd] rounded-lg shadow-sm dark:bg-[rgb(40,40,40)]">
+        <h1 className="cart-header text-2xl mb-3 font-bold dark:text-white">Shopping Cart</h1>
         {data && data.items && data.items.length > 0 ? (
           <>
-            <table className="cart-table">
+            <table className="cart-table w-full border-collapse mt-5">
               <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Action</th>
+                  <th className="border-none p-4 text-center font-bold bg-[#dde8f9]">Image</th>
+                  <th className="border-none p-4 text-center font-bold bg-[#dde8f9]">Name</th>
+                  <th className="border-none p-4 text-center font-bold bg-[#dde8f9]">Price</th>
+                  <th className="border-none p-4 text-center font-bold bg-[#dde8f9]">Quantity</th>
+                  <th className="border-none p-4 text-center font-bold bg-[#dde8f9]">Action</th>
                 </tr>
               </thead>
               <tbody>{renderCartItems()}</tbody>
             </table>
-            <div className="cart-summary">
-      <div className="cart-total dark:text-white">
+            <div className="cart-summary mt-5 flex justify-between items-center">
+      <div className="cart-total text-lg dark:text-white">
          Total: <span className="font-medium">${data ? data.total.toFixed(2) : "0.00"}</span>       </div>
-       <button className="checkout-button dark:text-white">
+       <button className="checkout-button bg-[#28a745] text-white border-none py-[10px] px-5 text-base cursor-pointer rounded-md transition delay-[400ms] ease-in dark:text-white hover:bg-[#218838] hover:scale-105">
         Proceed to Checkout
       </button>   </div>
           </>
