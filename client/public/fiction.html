@@ -44,26 +44,23 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             flex: 1 1 calc(45% - 20px); /* Two books per row */
             max-width: calc(45% - 20px); /* Two books per row */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .book h4 {
             margin: 0;
         }
 
-        .button {
-            background-color: #f76b45;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            display: block;
-            text-align: center;
+        .description {
+            color: #555;
+            margin-top: 5px;
+            font-size: 14px;
         }
 
-        .button:hover {
-            background-color: #e65c39;
+        .book:hover {
+            color: #f45e13;
+            background-color: #007bff;
+            cursor: pointer;
         }
 
         footer {
@@ -75,20 +72,6 @@
             bottom: 0;
             width: 100%;
         }
-
-        .description {
-            color: #555;
-            margin-top: 5px;
-            font-size: 14px;
-        }
-        div{
-            box-shadow:10px 10px rgb(214, 230, 4) ;
-        } 
-        div:hover{
-            color: #f45e13;
-            background-color: #007bff;
-            cursor: pointer;
-        }
     </style>
 </head>
 
@@ -99,23 +82,41 @@
 
     <script>
         const fetchBooks = async () => {
-            // Fetching thriller books from Open Library
-            const response = await fetch('https://openlibrary.org/subjects/fiction.json?limit=50');
-            const data = await response.json();
-            return data.works;
+            try {
+                // Fetching thriller books from Open Library
+                const response = await fetch('https://openlibrary.org/subjects/fiction.json?limit=50');
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.statusText}`);
+                }
+                const data = await response.json();
+                return data.works;
+            } catch (error) {
+                console.error(error);
+                alert("Unable to load books at this time. Please try again later.");
+                return [];
+            }
         };
 
         const showBooks = async () => {
             const thrillerBooks = await fetchBooks();
             const bookList = document.getElementById('book-list');
+
             thrillerBooks.forEach(book => {
                 const bookDiv = document.createElement('div');
                 bookDiv.className = 'book';
-                bookDiv.innerHTML = `
-                    <h4>${book.title}</h4>
-                    <p><strong>Author:</strong> ${book.authors.map(author => author.name).join(", ")}</p>
-                    <p><strong>Cost:</strong> $${Math.floor(Math.random() * 20) + 10} (estimated price)</p>
-                    `;
+
+                const title = document.createElement('h4');
+                title.textContent = book.title;
+                bookDiv.appendChild(title);
+
+                const authors = document.createElement('p');
+                authors.innerHTML = `<strong>Author:</strong> ${book.authors.map(author => author.name).join(", ")}`;
+                bookDiv.appendChild(authors);
+
+                const cost = document.createElement('p');
+                cost.innerHTML = `<strong>Cost:</strong> $${Math.floor(Math.random() * 20) + 10} (estimated price)`;
+                bookDiv.appendChild(cost);
+
                 bookList.appendChild(bookDiv);
             });
         };
