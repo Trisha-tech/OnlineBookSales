@@ -72,7 +72,7 @@ const FAQ = () => {
     <>
     <Preloader />
     <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-extrabold text-gray-900 mb-6 text-center dark:text-white">FAQ</h2>
+      <h2 className="text-3xl font-extrabold text-black mb-6 text-center dark:text-white">FAQ</h2>
       <dl className="space-y-6">
       {faqs.map((faq, index) => (
   <div
@@ -85,7 +85,7 @@ const FAQ = () => {
       aria-expanded={openIndex === index}
     >
       <div className="flex justify-between items-center ">
-        <span className="text-lg font-medium text-gray-900 dark:text-white">{faq.question}</span>
+        <span className="text-lg font-medium text-black dark:text-white">{faq.question}</span>
         <svg
           className={`h-6 w-6 transition-transform dark:text-white duration-600 transform ${
             openIndex === index ? 'rotate-180' : ''
@@ -105,7 +105,7 @@ const FAQ = () => {
       </div>
     </button>
     {openIndex === index && (
-      <p className="p-4 text-base text-gray-900 dark:text-gray-50">{faq.answer}</p>
+      <p className="p-4 text-base text-black dark:text-gray-50">{faq.answer}</p>
     )}
   </div>
 ))}
