@@ -36,7 +36,7 @@
 
 /* Copyright section styles */
 .copyright-section {
- color: #ffffff; /* Text color for copyright */
+    color: #ffffff; /* Text color for copyright */
     font-size: 0.875rem; /* Smaller text size */
 }
 
