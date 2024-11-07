@@ -10,11 +10,11 @@
     top: 0;
     right: 0;
     border: none;
-    border-radius: 60%;
+    border-radius: 50%;
     margin: 0.8rem 1.1rem 0 0;
 }
 
 .added-to-wishlist-btn:hover
 {
-    background-color: var(--light rgb(77, 131, 138));
+    background-color: var(--grey);
 }

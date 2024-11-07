@@ -39,7 +39,7 @@
     flex-direction: column;
     align-items: center;
     background-color: rgb(0,0,85);
-    border: 1px solid #6464eb;
+    border: 1px solid #6969ff;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 1rem;
@@ -49,7 +49,7 @@
   
   .contributor-card:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 6px rgba(11, 241, 245, 0.752);
+    box-shadow: 0 4px 6px rgba(5, 205, 208, 0.752);
   }
   
   .contributor-card:hover p {
@@ -118,7 +118,7 @@
   }
   
   .contributor-contributions {
-    color: #75777b;
+    color: #d1d5db;
     transition: text-shadow 0.4s ease-in-out;
   }
   

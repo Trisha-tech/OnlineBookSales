@@ -36,7 +36,7 @@
 
 /* Copyright section styles */
 .copyright-section {
-    color: #f5e7e7; /* Text color for copyright */
+    color: #ffffff; /* Text color for copyright */
     font-size: 0.9rem; /* Smaller text size */
 }
 
@@ -87,7 +87,7 @@
 
 .newsletter-input {
     padding: 10px;
-    border: 1px solid #c4d7e9;
+    border: 1px solid #c4d4da;
     border-radius: 4px;
     width: 100%;
     color: black;
@@ -106,7 +106,7 @@
 }
 
 .newsletter-button:hover {
-    background-color: #011b35; 
+    background-color: #003366; 
 }
 
 .newsletter-message {
