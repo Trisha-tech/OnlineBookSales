@@ -1,7 +1,5 @@
-import React,{ useEffect, useState} from 'react'
+import React from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
-import jwt_decode from "jwt-decode";
 import './ProductCard.css'
 
 
@@ -22,11 +20,6 @@ export default function ProductCard({ productdetails })
         outOfStock
     } = productdetails
   
-
-    
-
-  
-    
     return (
         <Link 
             to={`/shop/${_id}`}  

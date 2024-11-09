@@ -77,44 +77,5 @@ const TermsAndConditions = () => {
   );
 };
 
-// const TermsWrapper = styled.div`
-//   padding: 20px;
-//   max-width: 800px;
-//   margin: 0 auto;
-//   color: #333;
-//   line-height: 1.6;
-//   margin-top: -65px;
-
-
-//   h1 {
-//     font-size: 2.5rem;
-//     margin-bottom: 20px;
-//     font-weight: bold;
-//     color: #002147;
-//   }
-
-//   h2 {
-//     font-size: 1.5rem;
-//     margin-top: 20px;
-//   }
-
-//   p {
-//     margin: 10px 0;
-//   }
-
-//   ul {
-//     list-style-type: disc;
-//     margin-left: 20px;
-//   }
-
-//   li {
-//     margin: 10px 0;
-//   }
-
-//   address {
-//     font-style: normal;
-//     line-height: 1.6;
-//   }
-// `;
 
 export default TermsAndConditions;
