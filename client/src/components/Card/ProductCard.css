@@ -12,6 +12,7 @@
     border: none;
     border-radius: 50%;
     margin: 0.8rem 1.1rem 0 0;
+    transition: all;
 }
 
 .added-to-wishlist-btn:hover
