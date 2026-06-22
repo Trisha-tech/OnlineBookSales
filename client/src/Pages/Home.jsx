@@ -148,49 +148,49 @@ const Home = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <Link to="/romance">
-                  <div className="bg-gradient-to-r from-pink-200 to-red-200 dark:from-purple-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-400 hover:to-red-400 dark:hover:from-purple-600 dark:hover:to-purple-900">
+                  <div className="bg-gradient-to-r from-pink-200 to-red-200 dark:from-purple-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition-all duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-400 hover:to-red-400 dark:hover:from-purple-600 dark:hover:to-purple-900 hover:shadow-xl hover:shadow-pink-300/50 dark:hover:shadow-pink-900/50">
                     <h3 className="text-xl font-bold mb-2 dark:text-white">Romance</h3>
                     <p className="text-gray-700 dark:text-gray-300">Explore our collection of romantic novels.</p>
                   </div>
                 </Link>
 
                 <Link to="/action">
-                  <div className="bg-gradient-to-r from-blue-200 to-indigo-200 dark:from-indigo-600 dark:to-blue-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-blue-300 hover:to-indigo-300 dark:hover:from-indigo-500 dark:hover:to-blue-800">
+                  <div className="bg-gradient-to-r from-blue-200 to-indigo-200 dark:from-indigo-600 dark:to-blue-900 text-white rounded-lg shadow-md p-6 transform transition-all duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-blue-300 hover:to-indigo-300 dark:hover:from-indigo-500 dark:hover:to-blue-800 hover:shadow-xl hover:shadow-blue-300/50 dark:hover:shadow-blue-900/50">
                     <h3 className="text-xl font-bold mb-2 text-center">Action</h3>
                     <p className="text-gray-700 dark:text-gray-300 text-center">Dive into thrilling action-packed stories.</p>
                   </div>
                 </Link>
 
                 <Link to="/thriller">
-                  <div className="bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-800 dark:to-black text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-gray-300 hover:to-gray-500 dark:hover:from-gray-700 dark:hover:to-black">
+                  <div className="bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-800 dark:to-black text-white rounded-lg shadow-md p-6 transform transition-all duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-gray-300 hover:to-gray-500 dark:hover:from-gray-700 dark:hover:to-black hover:shadow-xl hover:shadow-gray-400/50 dark:hover:shadow-gray-800/50">
                     <h3 className="text-xl font-bold mb-2 text-center">Thriller</h3>
                     <p className="text-gray-700 dark:text-gray-300 text-center">Get your adrenaline pumping with our thrillers.</p>
                   </div>
                 </Link>
 
                 <Link to="/fiction">
-                  <div className="bg-gradient-to-r from-green-200 to-teal-200 dark:from-green-700 dark:to-teal-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-green-300 hover:to-teal-300 dark:hover:from-green-600 dark:hover:to-teal-800">
+                  <div className="bg-gradient-to-r from-green-200 to-teal-200 dark:from-green-700 dark:to-teal-900 text-white rounded-lg shadow-md p-6 transform transition-all duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-green-300 hover:to-teal-300 dark:hover:from-green-600 dark:hover:to-teal-800 hover:shadow-xl hover:shadow-green-300/50 dark:hover:shadow-green-900/50">
                     <h3 className="text-xl font-bold mb-2 text-center">Fiction</h3>
                     <p className="text-gray-700 dark:text-gray-300 text-center">Discover imaginative and captivating fiction.</p>
                   </div>
                 </Link>
 
                 <Link to="/tech">
-                  <div className="bg-gradient-to-r from-yellow-200 to-orange-200 dark:from-yellow-700 dark:to-orange-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-yellow-300 hover:to-orange-300 dark:hover:from-yellow-600 dark:hover:to-orange-800">
+                  <div className="bg-gradient-to-r from-yellow-200 to-orange-200 dark:from-yellow-700 dark:to-orange-900 text-white rounded-lg shadow-md p-6 transform transition-all duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-yellow-300 hover:to-orange-300 dark:hover:from-yellow-600 dark:hover:to-orange-800 hover:shadow-xl hover:shadow-yellow-300/50 dark:hover:shadow-yellow-900/50">
                     <h3 className="text-xl font-bold mb-2 text-center">Tech</h3>
                     <p className="text-gray-700 dark:text-gray-300 text-center">Stay updated with the latest in technology.</p>
                   </div>
                 </Link>
 
                 <Link to="/philosophy">
-                  <div className="bg-gradient-to-r from-purple-200 to-pink-200 dark:from-purple-700 dark:to-pink-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-purple-300 hover:to-pink-300 dark:hover:from-purple-600 dark:hover:to-pink-800">
+                  <div className="bg-gradient-to-r from-purple-200 to-pink-200 dark:from-purple-700 dark:to-pink-900 text-white rounded-lg shadow-md p-6 transform transition-all duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-purple-300 hover:to-pink-300 dark:hover:from-purple-600 dark:hover:to-pink-800 hover:shadow-xl hover:shadow-purple-300/50 dark:hover:shadow-purple-900/50">
                     <h3 className="text-xl font-bold mb-2 text-center">Philosophy</h3>
                     <p className="text-gray-700 dark:text-gray-300 text-center">Dive deep into philosophical thoughts and ideas.</p>
                   </div>
                 </Link>
 
                 <Link to="/manga">
-                  <div className="bg-gradient-to-r from-pink-200 to-purple-200 dark:from-pink-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-300 dark:hover:from-pink-600 dark:hover:to-purple-800">
+                  <div className="bg-gradient-to-r from-pink-200 to-purple-200 dark:from-pink-700 dark:to-purple-900 text-white rounded-lg shadow-md p-6 transform transition-all duration-500 hover:scale-105 hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-300 dark:hover:from-pink-600 dark:hover:to-purple-800 hover:shadow-xl hover:shadow-pink-300/50 dark:hover:shadow-pink-900/50">
                     <h3 className="text-xl font-bold mb-2 text-center">Manga</h3>
                     <p className="text-gray-700 dark:text-gray-300 text-center">Explore our extensive collection of Manga.</p>
                   </div>
