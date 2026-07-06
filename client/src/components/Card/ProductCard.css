@@ -1,3 +1,115 @@
+.card-basic {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+.card-basic:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.card-basic img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-item-details {
+  padding: 14px 16px 16px;
+}
+
+.item-title h4 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.item-author {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: 400;
+}
+
+.card-basic p {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.card-basic del {
+  color: #999;
+}
+
+.discount-on-card {
+  color: #e53935;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.card-button {
+  margin-top: 6px;
+}
+
+.card-icon-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.card-icon-btn:hover {
+  background: #fce4ec;
+  border-color: #e91e63;
+}
+
+.badge-on-card {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e53935;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.card-text-overlay-container {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.card-text-overlay-container p {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
 .fa-heart
 {
     overflow: hidden;
