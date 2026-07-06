@@ -105,7 +105,7 @@ const FAQ = () => {
       </div>
     </button>
     {openIndex === index && (
-      <p className="p-4 text-base text-gray-900 dark:text-gray-50">{faq.answer}</p>
+      <p className="p-4 text-base text-gray-900 dark:text-gray-100 font-sans leading-relaxed">{faq.answer}</p>
     )}
   </div>
 ))}
