@@ -178,7 +178,7 @@ const LoginPage = () => {
                     mt: 2,
                     "&:hover": { backgroundColor: "#0069d9" },
                   }}
-                  className="w-full text-white my-2 mt-5 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black"
+                  className="w-full text-white my-2 mt-5 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center dark:bg-white dark:text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95"
                 >
                   Login
                 </button>
