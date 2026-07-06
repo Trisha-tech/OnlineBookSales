@@ -102,6 +102,8 @@
       document.addEventListener("DOMContentLoaded", function () {
         const coords = { x: 0, y: 0 };
         const circles = document.querySelectorAll(".circle");
+        const container = document.querySelector(".circle-container");
+        let hidden = false;
 
         circles.forEach(function (circle) {
           circle.x = 0;
@@ -110,7 +112,21 @@
 
         window.addEventListener("mousemove", function (e) {
           coords.x = e.pageX;
-          coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+          coords.y = e.pageY - window.scrollY;
+        });
+
+        document.addEventListener("mouseleave", function () {
+          hidden = true;
+          circles.forEach(function (circle) {
+            circle.style.opacity = "0";
+          });
+        });
+
+        document.addEventListener("mouseenter", function () {
+          hidden = false;
+          circles.forEach(function (circle) {
+            circle.style.opacity = "1";
+          });
         });
 
         function animateCircles() {
@@ -136,5 +152,12 @@
         animateCircles();
       });
 
+    </script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
     </script>
   </body>
