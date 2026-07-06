@@ -222,3 +222,4 @@ If you have any questions or feedback, feel free to reach out via **GitHub**. Yo
 We look forward to hearing from you! ✨
 
 💙 Thank You !!! 💙
+# TODO: improvemnet in the ui of the contact us page and the faq section
