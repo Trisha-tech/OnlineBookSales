@@ -35,7 +35,6 @@ const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
 const Logo = styled("img")({
   width: "220px",
   height: "auto",
-  marginRight: "auto",
 });
 
 const StyledButton = styled(Button)(({ isActive }) => ({
@@ -54,7 +53,8 @@ const MenuContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   gap: "10px",
-  marginLeft: "auto",
+  flex: 1,
+  justifyContent: "center",
 });
 
 const MobileMenu = styled("div")(({ open }) => ({
@@ -148,8 +148,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 onClick={handleMenuClick}
                 style={{ marginBottom: "20px", color: "#fff" }}
               >
-
- 
                 Close
               </IconButton>
               <StyledButton
@@ -159,7 +157,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive("/")}
                 startIcon={<HomeIcon sx={{ fontSize: "1.5rem" }} />}
                 fullWidth
-                style={{ marginBottom: "15px" }} // Add margin for spacing
+                style={{ marginBottom: "15px" }}
               >
                 Home
               </StyledButton>
@@ -175,7 +173,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive("/shop")}
                 startIcon={<StoreIcon sx={{ fontSize: "1.5rem" }} />}
                 fullWidth
-                style={{ marginBottom: "15px" }} // Add margin for spacing
+                style={{ marginBottom: "15px" }}
               >
                 Shop
               </StyledButton>
@@ -186,7 +184,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive("/wishlist")}
                 startIcon={<FavoriteIcon sx={{ fontSize: "1.5rem" }} />}
                 fullWidth
-                style={{ marginBottom: "15px" }} // Add margin for spacing
+                style={{ marginBottom: "15px" }}
               >
                 Wishlist
               </StyledButton>
@@ -197,7 +195,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 isActive={isActive("/cart")}
                 startIcon={<ShoppingCartIcon sx={{ fontSize: "1.5rem" }} />}
                 fullWidth
-                style={{ marginBottom: "15px" }} // Add margin for spacing
+                style={{ marginBottom: "15px" }}
               >
                 Cart
               </StyledButton>
@@ -210,7 +208,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                   isActive={isActive("/orders")}
                   startIcon={<ShoppingBagIcon sx={{ fontSize: "1.5rem" }} />}
                   fullWidth
-                  style={{ marginBottom: "15px" }} // Add margin for spacing
+                  style={{ marginBottom: "15px" }}
                 >
                   Orders
                 </StyledButton>
@@ -224,7 +222,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 onClick={userLoggedIn ? handleLogout : null}
                 startIcon={<AccountCircleIcon sx={{ fontSize: "1.5rem" }} />}
                 fullWidth
-                style={{ marginBottom: "15px" }} // Add margin for spacing
+                style={{ marginBottom: "15px" }}
               >
                 {userLoggedIn ? "Logout" : "Login"}
               </StyledButton> 
@@ -232,7 +230,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
           </>
         ) : (
           <MenuContainer>
-            <SearchBar />
             <StyledButton
               color="inherit"
               component={Link}
@@ -240,18 +237,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
               isActive={isActive("/")}
               startIcon={<HomeIcon sx={{ fontSize: "1.5rem" }} />}
             >
-                Home
-   </StyledButton>
-              
-         
-            <StyledButton
-              color="inherit"
-              component={Link}
-              to="/shop"
-              isActive={isActive("/shop")}
-              startIcon={<StoreIcon sx={{ fontSize: "1.5rem" }} />}
-            ></StyledButton>
-            <StyledButton color="inherit" component={Link} to="/" isActive={isActive('/')} startIcon={<HomeIcon sx={{ fontSize: '1.5rem' }} />}>
               Home
             </StyledButton>
             {userLoggedIn && (
@@ -259,7 +244,13 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 Profile
               </StyledButton>
             )}
-            <StyledButton color="inherit" component={Link} to="/shop" isActive={isActive('/shop')} startIcon={<StoreIcon sx={{ fontSize: '1.5rem' }} />}>
+            <StyledButton
+              color="inherit"
+              component={Link}
+              to="/shop"
+              isActive={isActive("/shop")}
+              startIcon={<StoreIcon sx={{ fontSize: "1.5rem" }} />}
+            >
               Shop
             </StyledButton>
             <StyledButton
@@ -302,12 +293,14 @@ function Navbar({ darkMode, toggleDarkMode }) {
             >
               {userLoggedIn ? "Logout" : "Login"}
             </StyledButton>
+            <span style={{ flex: 1 }} />
+            <SearchBar />
             <Tooltip
               title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               <IconButton
                 onClick={toggleDarkMode}
-                style={{ marginLeft: "auto", marginRight: "10px" }}
+                style={{ marginLeft: "10px", marginRight: "10px" }}
               >
                 <img
                   src={darkMode ? sunIcon : moonIcon}
