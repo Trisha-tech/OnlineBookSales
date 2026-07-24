@@ -57,8 +57,12 @@ const SearchBar = () => {
           width: "100%",
           padding: "10px",
           borderRadius: "5px",
-          border: "1px solid #ccc",
+          border: "2px solid #8B5CF6",
+          outline: "none",
+          transition: "border-color 0.3s, box-shadow 0.3s",
         }}
+        onFocus={(e) => { e.target.style.borderColor = "#6D28D9"; e.target.style.boxShadow = "0 0 0 3px rgba(139,92,246,0.2)"; }}
+        onBlur={(e) => { e.target.style.borderColor = "#8B5CF6"; e.target.style.boxShadow = "none"; }}
       />
       {showSuggestions && filteredData.length > 0 && (
         <ul className="list-none p-0 border border-[#ccc] rounded mt-3 max-h-[150px] overflow-y-auto"

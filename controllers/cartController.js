@@ -46,9 +46,15 @@ exports.getCartItems = catchAsyncErrors(async (req, res, next) => {
 // Delete cart item => /customer/cart/remove-product
 exports.deleteCartItem = catchAsyncErrors(async (req, res, next) => {
     const cart = await Cart.findOne({ user: req.body.user._id });
+    if (!cart) {
+        return res.status(404).json({ success: false, message: 'Cart not found' });
+    }
     const productId=req.body.productId;
     const cartItems = cart.cartItems;
     const index = cartItems.findIndex(item => item.product.toString() === productId.toString());
+    if (index === -1) {
+        return res.status(404).json({ success: false, message: 'Item not found in cart' });
+    }
     cartItems.splice(index, 1);
     await cart.save();
     res.status(200).json({ success: true,length:cart.cartItems.length });
