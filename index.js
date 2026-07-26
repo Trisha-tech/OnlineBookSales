@@ -69,7 +69,7 @@ app.use("/admin", authorizeRoles, admin);
 
 
 app.use("/api/wishlist", wishlistRoutes);
-app.use("admin", authorizeRoles, admin);
+app.use("/admin", authorizeRoles, admin);
 
 // Middleware for Errors
 app.use(errorMiddleware);

@@ -368,7 +368,7 @@ exports.exchangeToken = catchAsyncErrors(async (req, res, next) => {
     );
 
     const updatedCustomer = await Customer.findByIdAndUpdate(customer._id, {
-      refreshTOken: newRefreshToken,
+      refreshToken: newRefreshToken,
     });
 
     const accessTokenOptions = {
