@@ -165,8 +165,8 @@ exports.filterProduct = catchAsyncErrors(async (req, res, next) => {
 
 exports.getShareableLink = async (req, res) => {
   try {
-    const { Id } = req.params;
-    const product = await Product.findById(Id);
+    const { id } = req.params;
+    const product = await Product.findById(id);
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
