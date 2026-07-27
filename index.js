@@ -65,7 +65,7 @@ app.use("/api/product", productRoutes);
 app.use("/order", order);
 app.use(bodyParser.json());
 
-app.use("/admin", authorizeRoles, admin);
+app.use("/admin", authorizeRoles("admin"), admin);
 
 
 app.use("/api/wishlist", wishlistRoutes);
