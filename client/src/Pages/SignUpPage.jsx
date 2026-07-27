@@ -50,16 +50,6 @@ const SignUpPage = () => {
       return;
     }
 
-    const value = e.target.value;
-    setEmail(value);
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(value)) {
-      setError("Please enter a valid email address.");
-    } else {
-      setError("");
-    }
-
     if (password !== confirmPassword) {
       setError("Passwords do not match!");
       return; //Prevent form submission if passwords don't match
