@@ -16,7 +16,8 @@ exports.sendContactEmail = async (req, res) => {
 
 
     const mailOptions = {
-      from: email, 
+      from: process.env.SMTP_EMAIL,
+      replyTo: email,
       to: "1234trishasahu@gmail.com", 
       subject: `Contact Us Message from ${name}`,
       text: message,
