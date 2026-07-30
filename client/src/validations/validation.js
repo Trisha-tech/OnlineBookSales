@@ -9,7 +9,7 @@ export const loginValidation = yup.object().shape({
 });
 
 export const registerValidation = yup.object().shape({
-  name: yup.string().required("Name is required"),
+  name: yup.string().min(2, "Name must be at least 2 characters").max(50, "Name must not exceed 50 characters").required("Name is required"),
   email: yup
     .string()
     .email("Email format invalid")
