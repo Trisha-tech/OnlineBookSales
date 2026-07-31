@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const ChatBotEmbed = () => {
   useEffect(() => {
     const script1 = document.createElement('script');
-    script1.innerHTML = `
+    script1.textContent = `
       window.embeddedChatbotConfig = {
         chatbotId: "701s6dCoJK8uMimSHx9Gk",
         domain: "www.chatbase.co"
