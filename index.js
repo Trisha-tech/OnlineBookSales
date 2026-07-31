@@ -153,11 +153,11 @@ const books = {
 
 function showBooks(category) {
   const bookList = document.getElementById('book-list');
-  bookList.innerHTML = '';
+  bookList.textContent = '';
   books[category].forEach(book => {
       const bookDiv = document.createElement('div');
       bookDiv.className = 'book';
-      bookDiv.innerHTML = `<strong>${book.title}</strong> <button class="button" onclick="openModal('${book.title}', '${book.description}', '${book.author}', '${book.cost}')">View Details</button>`;
+      bookDiv.textContent = `<strong>${book.title}</strong> <button class="button" onclick="openModal('${book.title}', '${book.description}', '${book.author}', '${book.cost}')">View Details</button>`;
       bookList.appendChild(bookDiv);
   });
 }
