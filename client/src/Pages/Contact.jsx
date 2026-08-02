@@ -36,7 +36,8 @@ function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      if (!response.ok) throw new Error("Request failed");
+const data = await response.json();
 
       if (data.success) {
         setResponseMessage(data.message);
