@@ -36,7 +36,7 @@ const ScrollProgressBar = () => {
 
 // CSS keyframe animation for pulse effect
 const styles = document.createElement('style');
-styles.innerHTML = `
+styles.textContent = `
   @keyframes pulse {
     0% {
       box-shadow: 0 0 5px #00BFFF, 0 0 10px #FFD700;
