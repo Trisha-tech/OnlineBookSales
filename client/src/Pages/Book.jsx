@@ -13,7 +13,8 @@ const Book = () => {
     const fetchBook = async () => {
         const res = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`)
 
-        const data = await res.json();
+        if (!res.ok) throw new Error("Request failed");
+const data = await res.json();
 
         console.log(data);
 
