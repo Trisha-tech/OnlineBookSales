@@ -1,6 +1,7 @@
 export const fetchCartData = async () => {
     const response = await fetch('/api/cart');
-    const data = await response.json();
+    if (!response.ok) throw new Error("Request failed");
+const data = await response.json();
     return data;
 };
 
@@ -12,7 +13,8 @@ export const addItemToCart = async (item) => {
         },
         body: JSON.stringify(item)
     });
-    const data = await response.json();
+    if (!response.ok) throw new Error("Request failed");
+const data = await response.json();
     return data;
 };
 
@@ -20,6 +22,7 @@ export const removeItemFromCart = async (itemId) => {
     const response = await fetch(`/api/cart/${itemId}`, {
         method: 'DELETE'
     });
-    const data = await response.json();
+    if (!response.ok) throw new Error("Request failed");
+const data = await response.json();
     return data;
 };
